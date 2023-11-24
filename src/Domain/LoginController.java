@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class LoginController {
     public String logPlayerIn(String PlayerID, Image Avatar){
-        if(isUniquePlayerID(PlayerID) && isUniqueImage(Avatar) ){
+        if(isUniquePlayerID(PlayerID) && isUniqueAvatar(Avatar) ){
             new Player(PlayerID,Avatar);
             return "Log in is successful";
         }
