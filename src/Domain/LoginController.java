@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class LoginController {
-    public String logPlayerIn(String PlayerID, Image Avatar){
+    public String logPlayerIn(String PlayerID, String Avatar){
         if(isUniquePlayerID(PlayerID) && isUniqueAvatar(Avatar) ){
             new Player(PlayerID,Avatar);
             return "Log in is successful";
@@ -28,7 +28,7 @@ public class LoginController {
         }
         return true;
     }
-    private boolean isUniqueAvatar(Image Avatar){
+    private boolean isUniqueAvatar(String Avatar){
         ArrayList<Player> arrList= Player.getInstances();
         for (int counter = 0; counter < arrList.size(); counter++) {
             if(arrList.get(counter).getAvatar() == Avatar){

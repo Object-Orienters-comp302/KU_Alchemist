@@ -8,8 +8,8 @@ public class Player {
 
     private static ArrayList<Player> instances = new ArrayList<Player>();
     String PlayerID;
-    Image Avatar;
-    public Player(String PlayerID, Image Avatar){
+    String Avatar;
+    public Player(String PlayerID, String Avatar){
         this.PlayerID = PlayerID;
         this.Avatar = Avatar;
         instances.add(this);
@@ -23,7 +23,7 @@ public class Player {
         return PlayerID;
     }
 
-    public Image getAvatar() {
+    public String getAvatar() {
         return Avatar;
     }
 }
