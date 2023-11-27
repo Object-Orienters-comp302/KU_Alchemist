@@ -60,6 +60,14 @@ public class LoginPage extends JPanel {
          tokenList.add(GUtil.fetchImage(".\\Images\\tokens\\tzeentch.png"));
          
          
+         CircularLinkedList<BufferedImage> backgroundList= new CircularLinkedList<BufferedImage>();
+         
+         backgroundList.add(GUtil.fetchImage(".\\Images\\backgrounds\\khorne_background.png"));
+         backgroundList.add(GUtil.fetchImage(".\\Images\\backgrounds\\nurgle_background.png"));
+         backgroundList.add(GUtil.fetchImage(".\\Images\\backgrounds\\slaanesh_background.png"));
+         backgroundList.add(GUtil.fetchImage(".\\Images\\backgrounds\\tzeentch_background.png"));
+         
+         
         
         List<String> nameList = new ArrayList<>();
         
@@ -77,20 +85,20 @@ public class LoginPage extends JPanel {
         
         
         
-        JPanel panel = new JPanel();
-        GridBagConstraints gbc_panel = new GridBagConstraints();
-        gbc_panel.fill = GridBagConstraints.BOTH;
-        gbc_panel.gridx = 0;
-        gbc_panel.gridy = 0;
-        add(panel, gbc_panel);
-        panel.setLayout(null);
+        ImagePanel MainPanel = new ImagePanel(backgroundList.get());
+        GridBagConstraints gbc_MainPanel = new GridBagConstraints();
+        gbc_MainPanel.fill = GridBagConstraints.BOTH;
+        gbc_MainPanel.gridx = 0;
+        gbc_MainPanel.gridy = 0;
+        add(MainPanel, gbc_MainPanel);
+        MainPanel.setLayout(null);
         
         JPanel TokenSelectorPanel = new JPanel();
         TokenSelectorPanel.setBounds(100, 100, 600, 300);
-        panel.add(TokenSelectorPanel);
+        MainPanel.add(TokenSelectorPanel);
         TokenSelectorPanel.setLayout(null);
         
-        JPanel TokenSelectorPanel_Left = new ColorChangingPanel(Color.RED,Color.BLUE);
+        JPanel TokenSelectorPanel_Left = new ColorChangingPanel("#cf9d15","#FFD700");
         
         TokenSelectorPanel_Left.setBounds(0, 0, 50, 300);
         TokenSelectorPanel.add(TokenSelectorPanel_Left);
@@ -113,7 +121,7 @@ public class LoginPage extends JPanel {
         TokenSelectorPanel.add(TokenSelectorPanel_Displayer);
         TokenSelectorPanel_Displayer.setLayout(null);
         
-        JPanel TokenSelectorPanel_Right = new  ColorChangingPanel(Color.RED,Color.BLUE);
+        JPanel TokenSelectorPanel_Right = new  ColorChangingPanel("#cf9d15","#FFD700");
         TokenSelectorPanel_Right.setBounds(550, 0, 50, 300);
         TokenSelectorPanel.add(TokenSelectorPanel_Right);
         TokenSelectorPanel_Right.setLayout(null);
@@ -132,13 +140,15 @@ public class LoginPage extends JPanel {
         
         JPanel UserNamePanel = new JPanel();
         UserNamePanel.setBounds(200, 425, 400, 50);
-        panel.add(UserNamePanel);
+        UserNamePanel.setBackground(Color.decode("#FFD700"));
+        MainPanel.add(UserNamePanel);
         UserNamePanel.setLayout(null);
         
         textField = new JTextField();
         
         textField.setBounds(100, 0, 250, 50);
         UserNamePanel.add(textField);
+        textField.setBorder(null);
         textField.setColumns(10);
         
         JLabel lblNewLabel = new JLabel("Username:  ");
@@ -147,13 +157,15 @@ public class LoginPage extends JPanel {
         UserNamePanel.add(lblNewLabel);
         
         ImagePanel UserNamePanel_CheckPanel = new ImagePanel(".\\Images\\tokens\\redX.png");
-        UserNamePanel_CheckPanel.setBounds(350, 0, 50, 50);
+        UserNamePanel_CheckPanel.setBounds(355, 5, 40, 40);
+        UserNamePanel_CheckPanel.setBackground(Color.decode("#FFD700"));
         UserNamePanel.add(UserNamePanel_CheckPanel);
         
-        JPanel NextPanel = new  ColorChangingPanel(Color.RED,Color.BLUE);
+        
+        JPanel NextPanel = new  ColorChangingPanel("#cf9d15","#FFD700");
         
         NextPanel.setBounds(300, 500, 200, 50);
-        panel.add(NextPanel);
+        MainPanel.add(NextPanel);
         NextPanel.setLayout(null);
         
         JLabel NextPanel_Label = new JLabel("NEXT");
@@ -177,6 +189,7 @@ public class LoginPage extends JPanel {
         	@Override
         	public void mouseClicked(MouseEvent e) {
         		TokenSelectorPanel_Displayer.changeImage(tokenList.getPrev());
+        		MainPanel.changeImage(backgroundList.getPrev());
         	}
         });
         
@@ -184,6 +197,7 @@ public class LoginPage extends JPanel {
         	@Override
         	public void mouseClicked(MouseEvent e) {       		
         		TokenSelectorPanel_Displayer.changeImage(tokenList.getNext());
+        		MainPanel.changeImage(backgroundList.getNext());
         	}
         });
         
@@ -200,6 +214,7 @@ public class LoginPage extends JPanel {
         			
                 		
         			Player player = new Player(textField.getText(),tokenList.delete());
+        			backgroundList.delete();
         			nameList.add(textField.getText());
         			textField.setText("");
         			TokenSelectorPanel_Displayer.changeImage(tokenList.get());
