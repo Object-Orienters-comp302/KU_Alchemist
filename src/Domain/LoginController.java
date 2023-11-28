@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class LoginController {
     public String logPlayerIn(String PlayerID, Image Avatar){
         if(isUniquePlayerID(PlayerID) && isUniqueAvatar(Avatar) ){
-            new Player(PlayerID,Avatar);
+            new Player(PlayerID,Avatar, 0);// Later will have shuffle
             return "Log in is successful";
         }
         else if (isUniquePlayerID(PlayerID)){

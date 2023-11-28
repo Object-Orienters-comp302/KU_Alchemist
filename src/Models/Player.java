@@ -2,16 +2,28 @@ package Models;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Player {
 
     private static ArrayList<Player> instances = new ArrayList<Player>();
     String PlayerID;
     Image Avatar;
-    public Player(String PlayerID, Image Avatar){
+    Inventory PlayerInventory;
+
+    Integer PlayerScore;
+    public Player(String PlayerID, Image Avatar){// ToDo: Delete this. It is only to support gorkemsPackage
         this.PlayerID = PlayerID;
         this.Avatar = Avatar;
+        this.PlayerInventory = new Inventory(new ArrayList<Ingredient>(), new ArrayList<ArtifactCard>(), 0);
+        this.PlayerScore = 0;
+        instances.add(this);
+    }
+    public Player(String PlayerID, Image Avatar, Integer StartingGold){
+        this.PlayerID = PlayerID;
+        this.Avatar = Avatar;
+        this.PlayerInventory = new Inventory(new ArrayList<Ingredient>(), new ArrayList<ArtifactCard>(), StartingGold);
+        this.PlayerScore = 0;
         instances.add(this);
     }
 
@@ -26,4 +38,8 @@ public class Player {
     public Image getAvatar() {
         return Avatar;
     }
+    public Inventory getPlayerInventory(){
+        return PlayerInventory;
+    }
+
 }
