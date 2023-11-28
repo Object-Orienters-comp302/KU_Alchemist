@@ -75,10 +75,10 @@ public class LoginPage extends JPanel {
         //// non GUI
         
         
-        setPreferredSize(new Dimension(800, 600));
+        setPreferredSize(new Dimension(	1200, 900));
         GridBagLayout gridBagLayout = new GridBagLayout();
-        gridBagLayout.columnWidths = new int[]{800, 0};
-        gridBagLayout.rowHeights = new int[]{600, 0};
+        gridBagLayout.columnWidths = new int[]{1200, 0};
+        gridBagLayout.rowHeights = new int[]{900, 0};
         gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
         gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
         setLayout(gridBagLayout);
@@ -94,40 +94,40 @@ public class LoginPage extends JPanel {
         MainPanel.setLayout(null);
         
         JPanel TokenSelectorPanel = new JPanel();
-        TokenSelectorPanel.setBounds(100, 100, 600, 300);
+        TokenSelectorPanel.setBounds(150, 150, 900, 450);
         MainPanel.add(TokenSelectorPanel);
         TokenSelectorPanel.setLayout(null);
         
         JPanel TokenSelectorPanel_Left = new ColorChangingPanel("#cf9d15","#FFD700");
         
-        TokenSelectorPanel_Left.setBounds(0, 0, 50, 300);
+        TokenSelectorPanel_Left.setBounds(0, 0, 75, 450);
         TokenSelectorPanel.add(TokenSelectorPanel_Left);
         TokenSelectorPanel_Left.setLayout(null);
         
         JPanel TokenSelectorPanel_Left_Label_Holder = new JPanel();
         TokenSelectorPanel_Left_Label_Holder.setLayout(null);
-        TokenSelectorPanel_Left_Label_Holder.setBounds(15, 130, 20, 40);
+        TokenSelectorPanel_Left_Label_Holder.setBounds(23, 195, 30, 60);
         TokenSelectorPanel_Left.add(TokenSelectorPanel_Left_Label_Holder);
         TokenSelectorPanel_Left_Label_Holder.setOpaque(false);    
         
         JLabel TokenSelectorPanel_Left_Label = new JLabel("<");
         TokenSelectorPanel_Left_Label.setHorizontalAlignment(SwingConstants.CENTER);
         TokenSelectorPanel_Left_Label.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        TokenSelectorPanel_Left_Label.setBounds(0, 0, 20, 40);
+        TokenSelectorPanel_Left_Label.setBounds(0, 0, 30, 60);
         TokenSelectorPanel_Left_Label_Holder.add(TokenSelectorPanel_Left_Label);
         
         ImagePanel TokenSelectorPanel_Displayer = new ImagePanel(tokenList.get());
-        TokenSelectorPanel_Displayer.setBounds(50, 0, 500, 300);
+        TokenSelectorPanel_Displayer.setBounds(75, 0, 750, 450);
         TokenSelectorPanel.add(TokenSelectorPanel_Displayer);
         TokenSelectorPanel_Displayer.setLayout(null);
         
         JPanel TokenSelectorPanel_Right = new  ColorChangingPanel("#cf9d15","#FFD700");
-        TokenSelectorPanel_Right.setBounds(550, 0, 50, 300);
+        TokenSelectorPanel_Right.setBounds(825, 0, 75, 450);
         TokenSelectorPanel.add(TokenSelectorPanel_Right);
         TokenSelectorPanel_Right.setLayout(null);
         
         JPanel TokenSelectorPanel_Right_Label_Holder = new JPanel();
-        TokenSelectorPanel_Right_Label_Holder.setBounds(15, 130, 20, 40);
+        TokenSelectorPanel_Right_Label_Holder.setBounds(22, 195, 30, 60);
         TokenSelectorPanel_Right.add(TokenSelectorPanel_Right_Label_Holder);
         TokenSelectorPanel_Right_Label_Holder.setLayout(null);
         TokenSelectorPanel_Right_Label_Holder.setOpaque(false);
@@ -135,41 +135,41 @@ public class LoginPage extends JPanel {
         JLabel TokenSelectorPanel_Right_Label = new JLabel(">");
         TokenSelectorPanel_Right_Label.setHorizontalAlignment(SwingConstants.CENTER);
         TokenSelectorPanel_Right_Label.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        TokenSelectorPanel_Right_Label.setBounds(0, 0, 20, 40);
+        TokenSelectorPanel_Right_Label.setBounds(0, 0, 30, 60);
         TokenSelectorPanel_Right_Label_Holder.add(TokenSelectorPanel_Right_Label);
         
         JPanel UserNamePanel = new JPanel();
-        UserNamePanel.setBounds(200, 425, 400, 50);
+        UserNamePanel.setBounds(450, 645, 300, 50);
         UserNamePanel.setBackground(Color.decode("#FFD700"));
         MainPanel.add(UserNamePanel);
         UserNamePanel.setLayout(null);
         
         textField = new JTextField();
         
-        textField.setBounds(100, 0, 250, 50);
+        textField.setBounds(75, 0, 175, 50);
         UserNamePanel.add(textField);
         textField.setBorder(null);
         textField.setColumns(10);
         
         JLabel lblNewLabel = new JLabel("Username:  ");
         lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblNewLabel.setBounds(0, 0, 100, 50);
+        lblNewLabel.setBounds(0, 0, 75, 50);
         UserNamePanel.add(lblNewLabel);
         
         ImagePanel UserNamePanel_CheckPanel = new ImagePanel(".\\Images\\tokens\\redX.png");
-        UserNamePanel_CheckPanel.setBounds(355, 5, 40, 40);
+        UserNamePanel_CheckPanel.setBounds(255, 5, 40, 40);
         UserNamePanel_CheckPanel.setBackground(Color.decode("#FFD700"));
         UserNamePanel.add(UserNamePanel_CheckPanel);
         
         
         JPanel NextPanel = new  ColorChangingPanel("#cf9d15","#FFD700");
         
-        NextPanel.setBounds(300, 500, 200, 50);
+        NextPanel.setBounds(450, 750, 300, 75);
         MainPanel.add(NextPanel);
         NextPanel.setLayout(null);
         
         JLabel NextPanel_Label = new JLabel("NEXT");
-        NextPanel_Label.setBounds(70, 5, 60, 40);
+        NextPanel_Label.setBounds(105, 8, 90, 60);
         NextPanel_Label.setHorizontalAlignment(SwingConstants.CENTER);
         NextPanel_Label.setFont(new Font("Tahoma", Font.PLAIN, 20));
         NextPanel.add(NextPanel_Label);
@@ -272,7 +272,7 @@ public class LoginPage extends JPanel {
 
 		JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        frame.setSize(1200, 900);
         frame.getContentPane().setLayout(new GridBagLayout());
         JPanel login = new LoginPage();
         frame.getContentPane().add(login);
