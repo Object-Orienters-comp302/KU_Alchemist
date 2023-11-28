@@ -15,14 +15,14 @@ public class Player {
     public Player(String PlayerID, Image Avatar){// ToDo: Delete this. It is only to support gorkemsPackage
         this.PlayerID = PlayerID;
         this.Avatar = Avatar;
-        this.PlayerInventory = new Inventory(new ArrayList<Ingredient>(), new ArrayList<ArtifactCard>(), 0);
+        this.PlayerInventory = new Inventory();
         this.PlayerScore = 0;
         instances.add(this);
     }
     public Player(String PlayerID, Image Avatar, Integer StartingGold){
         this.PlayerID = PlayerID;
         this.Avatar = Avatar;
-        this.PlayerInventory = new Inventory(new ArrayList<Ingredient>(), new ArrayList<ArtifactCard>(), StartingGold);
+        this.PlayerInventory = new Inventory();
         this.PlayerScore = 0;
         instances.add(this);
     }

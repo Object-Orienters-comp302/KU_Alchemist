@@ -1,30 +1,30 @@
 package Models;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Inventory {
-    ArrayList<Ingredient> Ingredients;
-    ArrayList<ArtifactCard> Artifacts;
+    HashMap<Ingredient, Integer> Ingredients;
+    HashMap<ArtifactCard, Integer> Artifacts;
     Integer Gold;
 
-    public Inventory(ArrayList<Ingredient> ingredients, ArrayList<ArtifactCard> artifacts, Integer gold) {
-        Ingredients = ingredients;
-        Artifacts = artifacts;
-        Gold = gold;
+    public Inventory() {
+        Ingredients = new HashMap<Ingredient, Integer>();
+        Artifacts = new HashMap<ArtifactCard, Integer>();;
+        Gold = 0;
     }
 
-    public ArrayList<Ingredient> getIngredients() {
+    public HashMap<Ingredient, Integer> getIngredients() {
         return Ingredients;
     }
-    public void addIngredient(Ingredient ingredient) {
-        getIngredients().add(ingredient);
+    public void addIngredient(Ingredient ingredient, int quantity) {
+        Ingredients.merge(ingredient, quantity, Integer::sum);
     }
 
-    public ArrayList<ArtifactCard> getArtifacts() {
+    public HashMap<ArtifactCard, Integer> getArtifacts() {
         return Artifacts;
     }
-    public void addArtifactCard(ArtifactCard artifact) {
-        getArtifacts().add(artifact);
+    public void addArtifactCard(ArtifactCard artifact, int quantity) {
+        Artifacts.merge(artifact, quantity, Integer::sum);
     }
 
     public Integer getGold() {
