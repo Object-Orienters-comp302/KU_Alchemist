@@ -12,14 +12,8 @@ public class Player {
     Inventory PlayerInventory;
 
     Integer PlayerScore;
-    public Player(String PlayerID, Image Avatar){// ToDo: Delete this. It is only to support gorkemsPackage
-        this.PlayerID = PlayerID;
-        this.Avatar = Avatar;
-        this.PlayerInventory = new Inventory();
-        this.PlayerScore = 0;
-        instances.add(this);
-    }
-    public Player(String PlayerID, Image Avatar, Integer StartingGold){
+
+    public Player(String PlayerID, Image Avatar) {// ToDo: Delete this. It is only to support gorkemsPackage
         this.PlayerID = PlayerID;
         this.Avatar = Avatar;
         this.PlayerInventory = new Inventory();
@@ -27,7 +21,15 @@ public class Player {
         instances.add(this);
     }
 
-    public static ArrayList<Player> getInstances(){
+    public Player(String PlayerID, Image Avatar, Integer StartingGold) {
+        this.PlayerID = PlayerID;
+        this.Avatar = Avatar;
+        this.PlayerInventory = new Inventory();
+        this.PlayerScore = 0;
+        instances.add(this);
+    }
+
+    public static ArrayList<Player> getInstances() {
         return instances;
     }
 
@@ -38,7 +40,8 @@ public class Player {
     public Image getAvatar() {
         return Avatar;
     }
-    public Inventory getPlayerInventory(){
+
+    public Inventory getPlayerInventory() {
         return PlayerInventory;
     }
 
