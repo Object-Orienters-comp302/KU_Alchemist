@@ -1,31 +1,52 @@
 package Models;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 public class Deck {
-    ArrayList<Ingredient> Ingredients;
-    ArrayList<Artifact> Artifacts;
+    private HashMap<Ingredient, Integer> Ingredients;
+    private HashMap<Artifact, Integer> Artifacts;
 
-    public Deck(ArrayList<Ingredient> ingredients, ArrayList<Artifact> artifacts) {
-        Ingredients = ingredients;
-        Artifacts = artifacts;
+    public Deck() {
+        Ingredients = new HashMap<>();
+        Artifacts = new HashMap<>();
     }
 
-    public ArrayList<Ingredient> getIngredients() {
+    public HashMap<Ingredient, Integer> getIngredients() {
         return Ingredients;
     }
 
-    public ArrayList<Artifact> getArtifacts() {
+    public HashMap<Artifact, Integer> getArtifacts() {
         return Artifacts;
     }
-    public Ingredient popIngredient(){
-        Ingredient ingredient = getIngredients().getLast();
-        getIngredients().remove(ingredient);
-        return ingredient;
+
+    public Ingredient popIngredient() {
+        if (Ingredients.isEmpty()) {
+            return null;
+        }
+
+        for (Entry<Ingredient, Integer> entry : Ingredients.entrySet()) {
+            if (entry.getValue() > 0) {
+                Ingredients.put(entry.getKey(), entry.getValue() - 1);
+                return entry.getKey();
+            }
+        }
+
+        return null;
     }
-    public Artifact popArtifactCard(){
-        Artifact artifact = getArtifacts().getLast();
-        getArtifacts().remove(artifact);
-        return artifact;
+
+    public Artifact popArtifactCard() {
+        if (Artifacts.isEmpty()) {
+            return null;
+        }
+
+        for (Entry<Artifact, Integer> entry : Artifacts.entrySet()) {
+            if (entry.getValue() > 0) {
+                Artifacts.put(entry.getKey(), entry.getValue() - 1);
+                return entry.getKey();
+            }
+        }
+
+        return null;
     }
 }
