@@ -10,5 +10,17 @@ public class Deck {
         Ingredients = ingredients;
         Artifacts = artifacts;
     }
-    
+
+    public ArrayList<Ingredient> getIngredients() {
+        return Ingredients;
+    }
+
+    public ArrayList<ArtifactCard> getArtifacts() {
+        return Artifacts;
+    }
+    public Ingredient popIngredient(){
+        Ingredient ingredient = getIngredients().getLast();
+        getIngredients().remove(ingredient);
+        return ingredient
+    }
 }
