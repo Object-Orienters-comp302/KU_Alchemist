@@ -9,13 +9,14 @@ public class Inventory {
 
     public Inventory() {
         Ingredients = new HashMap<Ingredient, Integer>();
-        Artifacts = new HashMap<Artifact, Integer>();;
+        Artifacts = new HashMap<Artifact, Integer>();
         Gold = 0;
     }
 
     public HashMap<Ingredient, Integer> getIngredients() {
         return Ingredients;
     }
+
     public void addIngredient(Ingredient ingredient, int quantity) {
         Ingredients.merge(ingredient, quantity, Integer::sum);
     }
@@ -23,6 +24,7 @@ public class Inventory {
     public HashMap<Artifact, Integer> getArtifacts() {
         return Artifacts;
     }
+
     public void addArtifactCard(Artifact artifact, int quantity) {
         Artifacts.merge(artifact, quantity, Integer::sum);
     }
