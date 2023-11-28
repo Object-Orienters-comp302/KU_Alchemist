@@ -44,28 +44,28 @@ public class LoginPage extends JPanel {
         /*     works with strings
         CircularLinkedList<String> tokenList= new CircularLinkedList<String>();
         
-        tokenList.add(".\\Images\\tokens\\khorne.png");
-        tokenList.add(".\\Images\\tokens\\nurgle.png");
-        tokenList.add(".\\Images\\tokens\\slaanesh.png");
-        tokenList.add(".\\Images\\tokens\\tzeentch.png");
+        tokenList.add("./Images/tokens/khorne.png");
+        tokenList.add("./Images/tokens/nurgle.png");
+        tokenList.add("./Images/tokens/slaanesh.png");
+        tokenList.add("./Images/tokens/tzeentch.png");
         */
          
          
          // works with Image
          CircularLinkedList<BufferedImage> tokenList= new CircularLinkedList<BufferedImage>();
          
-         tokenList.add(GUtil.fetchImage(".\\Images\\tokens\\khorne.png"));
-         tokenList.add(GUtil.fetchImage(".\\Images\\tokens\\nurgle.png"));
-         tokenList.add(GUtil.fetchImage(".\\Images\\tokens\\slaanesh.png"));
-         tokenList.add(GUtil.fetchImage(".\\Images\\tokens\\tzeentch.png"));
+         tokenList.add(GUtil.fetchImage("./Images/tokens/khorne.png"));
+         tokenList.add(GUtil.fetchImage("./Images/tokens/nurgle.png"));
+         tokenList.add(GUtil.fetchImage("./Images/tokens/slaanesh.png"));
+         tokenList.add(GUtil.fetchImage("./Images/tokens/tzeentch.png"));
          
          
          CircularLinkedList<BufferedImage> backgroundList= new CircularLinkedList<BufferedImage>();
          
-         backgroundList.add(GUtil.fetchImage(".\\Images\\backgrounds\\khorne_background.png"));
-         backgroundList.add(GUtil.fetchImage(".\\Images\\backgrounds\\nurgle_background.png"));
-         backgroundList.add(GUtil.fetchImage(".\\Images\\backgrounds\\slaanesh_background.png"));
-         backgroundList.add(GUtil.fetchImage(".\\Images\\backgrounds\\tzeentch_background.png"));
+         backgroundList.add(GUtil.fetchImage("./Images/backgrounds/khorne_background.png"));
+         backgroundList.add(GUtil.fetchImage("./Images/backgrounds/nurgle_background.png"));
+         backgroundList.add(GUtil.fetchImage("./Images/backgrounds/slaanesh_background.png"));
+         backgroundList.add(GUtil.fetchImage("./Images/backgrounds/tzeentch_background.png"));
          
          
         
@@ -156,7 +156,7 @@ public class LoginPage extends JPanel {
         lblNewLabel.setBounds(0, 0, 75, 50);
         UserNamePanel.add(lblNewLabel);
         
-        ImagePanel UserNamePanel_CheckPanel = new ImagePanel(".\\Images\\tokens\\redX.png");
+        ImagePanel UserNamePanel_CheckPanel = new ImagePanel("./Images/tokens/redX.png");
         UserNamePanel_CheckPanel.setBounds(255, 5, 40, 40);
         UserNamePanel_CheckPanel.setBackground(Color.decode("#FFD700"));
         UserNamePanel.add(UserNamePanel_CheckPanel);
@@ -237,22 +237,22 @@ public class LoginPage extends JPanel {
             @Override
             public void insertUpdate(DocumentEvent e) {
             	if(nameList.contains(textField.getText())||(textField.getText().isBlank())) {
-        			UserNamePanel_CheckPanel.changeImage(".\\Images\\tokens\\redX.png");
+        			UserNamePanel_CheckPanel.changeImage("./Images/tokens/redX.png");
         			
         		}
         		else {
-        			UserNamePanel_CheckPanel.changeImage(".\\Images\\tokens\\greenTick.png");
+        			UserNamePanel_CheckPanel.changeImage("./Images/tokens/greenTick.png");
         		}
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
             	if(nameList.contains(textField.getText())||(textField.getText().isBlank())) {
-        			UserNamePanel_CheckPanel.changeImage(".\\Images\\tokens\\redX.png");
+        			UserNamePanel_CheckPanel.changeImage("./Images/tokens/redX.png");
         			
         		}
         		else {
-        			UserNamePanel_CheckPanel.changeImage(".\\Images\\tokens\\greenTick.png");
+        			UserNamePanel_CheckPanel.changeImage("./Images/tokens/greenTick.png");
         		}
             }
 
