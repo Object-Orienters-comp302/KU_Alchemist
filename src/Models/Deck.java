@@ -21,6 +21,11 @@ public class Deck {
     public Ingredient popIngredient(){
         Ingredient ingredient = getIngredients().getLast();
         getIngredients().remove(ingredient);
-        return ingredient
+        return ingredient;
+    }
+    public ArtifactCard popArtifactCard(){
+        ArtifactCard artifact = getArtifacts().getLast();
+        getIngredients().remove(artifact);
+        return artifact;
     }
 }
