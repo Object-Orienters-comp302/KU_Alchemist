@@ -25,7 +25,7 @@ public class Deck {
     }
     public ArtifactCard popArtifactCard(){
         ArtifactCard artifact = getArtifacts().getLast();
-        getIngredients().remove(artifact);
+        getArtifacts().remove(artifact);
         return artifact;
     }
 }
