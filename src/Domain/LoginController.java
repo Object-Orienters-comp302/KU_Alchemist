@@ -4,6 +4,7 @@ import Models.Player;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class LoginController {
     public String logPlayerIn(String PlayerID, Image Avatar){
@@ -21,8 +22,8 @@ public class LoginController {
 
     private boolean isUniquePlayerID(String PlayerID){
         ArrayList<Player> arrList= Player.getInstances();
-        for (int counter = 0; counter < arrList.size(); counter++) {
-            if(arrList.get(counter).getPlayerID() == PlayerID){
+        for (Player player : arrList) {
+            if (Objects.equals(player.getPlayerID(), PlayerID)) {
                 return false;
             }
         }
@@ -30,8 +31,8 @@ public class LoginController {
     }
     private boolean isUniqueAvatar(Image Avatar){
         ArrayList<Player> arrList= Player.getInstances();
-        for (int counter = 0; counter < arrList.size(); counter++) {
-            if(arrList.get(counter).getAvatar() == Avatar){
+        for (Player player : arrList) {
+            if (player.getAvatar() == Avatar) {
                 return false;
             }
         }
