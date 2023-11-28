@@ -1,5 +1,5 @@
 package Models;
 
-public class ArtifactCard {
+public class Artifact {
     //Not implemented yet.
 }

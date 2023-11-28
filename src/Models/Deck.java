@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Deck {
     ArrayList<Ingredient> Ingredients;
-    ArrayList<ArtifactCard> Artifacts;
+    ArrayList<Artifact> Artifacts;
 
-    public Deck(ArrayList<Ingredient> ingredients, ArrayList<ArtifactCard> artifacts) {
+    public Deck(ArrayList<Ingredient> ingredients, ArrayList<Artifact> artifacts) {
         Ingredients = ingredients;
         Artifacts = artifacts;
     }
@@ -15,7 +15,7 @@ public class Deck {
         return Ingredients;
     }
 
-    public ArrayList<ArtifactCard> getArtifacts() {
+    public ArrayList<Artifact> getArtifacts() {
         return Artifacts;
     }
     public Ingredient popIngredient(){
@@ -23,8 +23,8 @@ public class Deck {
         getIngredients().remove(ingredient);
         return ingredient;
     }
-    public ArtifactCard popArtifactCard(){
-        ArtifactCard artifact = getArtifacts().getLast();
+    public Artifact popArtifactCard(){
+        Artifact artifact = getArtifacts().getLast();
         getArtifacts().remove(artifact);
         return artifact;
     }
