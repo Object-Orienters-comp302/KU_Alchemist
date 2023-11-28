@@ -35,7 +35,7 @@ public class Deck {
         return null;
     }
 
-    public Artifact popArtifactCard() {
+    public Artifact popArtifact() {
         if (Artifacts.isEmpty()) {
             return null;
         }
