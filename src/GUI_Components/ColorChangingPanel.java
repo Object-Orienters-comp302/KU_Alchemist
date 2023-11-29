@@ -1,9 +1,9 @@
 package GUI_Components;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
 
 public class ColorChangingPanel extends JPanel {
     private Color defColor;
@@ -46,17 +46,5 @@ public class ColorChangingPanel extends JPanel {
         public void mouseExited(MouseEvent e) {
             panel.setBackground(originalColor);
         }
-    }
-
-    
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Minesweeper");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
-        frame.getContentPane().setLayout(new GridBagLayout());
-        ColorChangingPanel tri = new ColorChangingPanel(Color.red, Color.black);
-        frame.getContentPane().add(tri);
-        frame.setVisible(true);
     }
 }

@@ -1,19 +1,30 @@
 package Models;
 
 public class Potion {//creating function is in the GameController for now
-    final String Color;
-    final String Sign;
+    final Colors Color;
+    final Signs Sign;
 
-    public Potion(String color, String Sign) {
+    public Potion(Colors color, Signs Sign) {
         Color = color;
         this.Sign = Sign;
     }
 
-    public String getColor() {
+    public Colors getColor() {
         return Color;
     }
 
-    public String getSign() {
+    public Signs getSign() {
         return Sign;
+    }
+
+    public enum Signs {
+        Positive,
+        Neutral,
+        Negative
+    }
+    public enum Colors {
+        Green,
+        Blue,
+        Red
     }
 }
