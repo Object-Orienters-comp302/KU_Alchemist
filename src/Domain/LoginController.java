@@ -1,10 +1,14 @@
 package Domain;
 
 import Models.Player;
+import Models.Token;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Objects;
+
+import DataTypes.CircularLinkedList;
 
 public class LoginController {
     public String logPlayerIn(String PlayerID, Image Avatar) {
@@ -18,7 +22,7 @@ public class LoginController {
         }
     }
 
-    private boolean isUniquePlayerID(String PlayerID) {
+    public boolean isUniquePlayerID(String PlayerID) {
         ArrayList<Player> arrList = Player.getInstances();
         for (Player player : arrList) {
             if (Objects.equals(player.getPlayerID(), PlayerID)) {
@@ -37,5 +41,13 @@ public class LoginController {
         }
         return true;
     }
+    
+    public CircularLinkedList<BufferedImage> getTokenImages(){
+    	return Token.tokenImages;
+    }
+    public CircularLinkedList<BufferedImage> getTokenBackgrounds(){
+    	return Token.tokenBackgrounds;
+    }
+    
 
 }
