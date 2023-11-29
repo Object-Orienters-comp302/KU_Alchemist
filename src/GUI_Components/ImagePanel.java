@@ -13,10 +13,12 @@ public class ImagePanel extends JPanel {
 
     public ImagePanel(String source) {
         loadImage(source);
+        this.setOpaque(false);
     }
 
     public ImagePanel(BufferedImage source) {
         loadImage(source);
+        this.setOpaque(false);
     }
 
     private void loadImage(String source) {

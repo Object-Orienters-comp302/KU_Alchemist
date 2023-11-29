@@ -1,6 +1,7 @@
-package gorkemsPackage;
+package UI;
 
 import DataTypes.CircularLinkedList;
+import Domain.LoginController;
 import GUI_Components.ColorChangingPanel;
 import GUI_Components.ImagePanel;
 import Models.Player;
@@ -24,23 +25,19 @@ public class LoginPage extends JPanel {
 
         //// non GUI
         int wanted = 2;
+        LoginController loginControl=new LoginController();
 
         // works with Image
-        CircularLinkedList<BufferedImage> tokenList = new CircularLinkedList<BufferedImage>();
+        CircularLinkedList<BufferedImage> tokenList = loginControl.getTokenImages();
 
-        tokenList.add(GUtil.fetchImage("./Images/tokens/khorne.png"));
-        tokenList.add(GUtil.fetchImage("./Images/tokens/nurgle.png"));
-        tokenList.add(GUtil.fetchImage("./Images/tokens/slaanesh.png"));
-        tokenList.add(GUtil.fetchImage("./Images/tokens/tzeentch.png"));
 
-        CircularLinkedList<BufferedImage> backgroundList = new CircularLinkedList<BufferedImage>();
+        CircularLinkedList<BufferedImage> backgroundList = loginControl.getTokenBackgrounds();
 
-        backgroundList.add(GUtil.fetchImage("./Images/backgrounds/khorne_background.png"));
-        backgroundList.add(GUtil.fetchImage("./Images/backgrounds/nurgle_background.png"));
-        backgroundList.add(GUtil.fetchImage("./Images/backgrounds/slaanesh_background.png"));
-        backgroundList.add(GUtil.fetchImage("./Images/backgrounds/tzeentch_background.png"));
-
-        List<String> nameList = new ArrayList<>();
+        
+        
+        
+        
+        
 
         setPreferredSize(new Dimension(1200, 900));
         GridBagLayout gridBagLayout = new GridBagLayout();
@@ -160,12 +157,12 @@ public class LoginPage extends JPanel {
         NextPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (!nameList.contains(textField.getText()) && (!textField.getText().isBlank())) {
-                    Player player = new Player(textField.getText(), tokenList.delete());
+                if (loginControl.isUniquePlayerID(textField.getText()) && (!textField.getText().isBlank())) {
+                    loginControl.logPlayerIn(textField.getText(), tokenList.delete());
                     backgroundList.delete();
-                    nameList.add(textField.getText());
                     textField.setText("");
                     TokenSelectorPanel_Displayer.changeImage(tokenList.get());
+                    MainPanel.changeImage(backgroundList.get());
                     LoginPage.iter += 1;
                     System.out.print(LoginPage.iter);
                     if (NextPanel_Label.getText() == "START") {
@@ -183,7 +180,7 @@ public class LoginPage extends JPanel {
         textField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                if (nameList.contains(textField.getText()) || (textField.getText().isBlank())) {
+                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText().isBlank())) {
                     UserNamePanel_CheckPanel.changeImage("./Images/tokens/redX.png");
 
                 } else {
@@ -193,7 +190,7 @@ public class LoginPage extends JPanel {
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                if (nameList.contains(textField.getText()) || (textField.getText().isBlank())) {
+                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText().isBlank())) {
                     UserNamePanel_CheckPanel.changeImage("./Images/tokens/redX.png");
 
                 } else {
