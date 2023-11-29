@@ -1,14 +1,27 @@
 package GUI_Components;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridBagLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class TrianglePanel extends JPanel {
-    private Color triangleColor;//TODO: can be changed to hexcode later
+	private Color triangleColor;//TODO: can be changed to hexcode later
 
-    // Constructor that takes a Color parameter
+    
     public TrianglePanel(Color triangleColor) {
+    	
         this.triangleColor = triangleColor;
+
+    }
+    
+    public TrianglePanel(String color) {
+    	
+        this.triangleColor = Color.decode(color);
+
     }
 
     @Override
@@ -28,6 +41,24 @@ public class TrianglePanel extends JPanel {
         // Fill the triangle
         g.fillPolygon(xPoints, yPoints, 3);
     }
+    
+   
+    
+    
+    
+    public static void main(String[] args) {
+		//TriangleTable tri = new TriangleTable("#34ebcf");
 
 
+		JFrame frame = new JFrame("test");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1200, 900);
+        frame.getContentPane().setLayout(new GridBagLayout());
+        TrianglePanel login = new TrianglePanel(Color.red);
+        login.setPreferredSize(new Dimension(800, 400));
+        frame.getContentPane().add(login);
+        frame.setVisible(true);
+	}
+
+    
 }
