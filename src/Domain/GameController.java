@@ -47,5 +47,32 @@ public class GameController implements ActionListener {
         // Handle state change logic
         // For example, switch between different panels/views
     }
-    // ... other methods to interact with models or manage application state
+
+    public LoginController getLoginController() {
+        return loginController;
+    }
+
+    public HelpController getHelpController() {
+        return helpController;
+    }
+
+    public PauseController getPauseController() {
+        return pauseController;
+    }
+
+    public MenuController getMenuController() {
+        return menuController;
+    }
+
+    public RegisterController getRegisterController() {
+        return registerController;
+    }
+
+    public RoundOneController getRoundOneController() {
+        return roundOneController;
+    }
+
+    public RoundTwoController getRoundTwoController() {
+        return roundTwoController;
+    }
 }
