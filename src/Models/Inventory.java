@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 public class Inventory {
     HashMap<Ingredient, Integer> Ingredients;
+    HashMap<Potion, Integer> Potions;
+
     HashMap<Artifact, Integer> Artifacts;
     Integer Gold;
 
@@ -17,8 +19,17 @@ public class Inventory {
         return Ingredients;
     }
 
+    public HashMap<Potion, Integer> getPotions() {
+        return Potions;
+    }
+
+
     public void addIngredient(Ingredient ingredient, int quantity) {
         Ingredients.merge(ingredient, quantity, Integer::sum);
+    }
+
+    public void addPotions(Potion potion, int quantity) {
+        Potions.merge(potion, quantity, Integer::sum);
     }
 
     public HashMap<Artifact, Integer> getArtifacts() {
