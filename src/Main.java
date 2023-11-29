@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Models.Token;
-import gorkemsPackage.LoginPage;
+import UI.LoginPage;
 
 public class Main {
     public static void main(String[] args) {

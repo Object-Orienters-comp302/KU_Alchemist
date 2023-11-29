@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import DataTypes.CircularLinkedList;
-import gorkemsPackage.GUtil;
+import Utils.GUtil;
 
 public class Token {
 	private String name;
