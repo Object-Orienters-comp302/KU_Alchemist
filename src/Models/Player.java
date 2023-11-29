@@ -12,12 +12,14 @@ public class Player {
     Inventory PlayerInventory;
 
     Integer PlayerScore;
+    Integer Reputation;
 
     public Player(String PlayerID, Image Avatar) {// ToDo: Delete this. It is only to support gorkemsPackage
         this.PlayerID = PlayerID;
         this.Avatar = Avatar;
         this.PlayerInventory = new Inventory();
         this.PlayerScore = 0;
+        Reputation = 0;
         instances.add(this);
     }
 
@@ -28,6 +30,7 @@ public class Player {
         this.PlayerScore = 0;
         instances.add(this);
     }
+
 
     public static ArrayList<Player> getInstances() {
         return instances;
@@ -45,4 +48,11 @@ public class Player {
         return PlayerInventory;
     }
 
+    public Integer getReputation() {
+        return Reputation;
+    }
+
+    public void setReputation(Integer reputation) {
+        Reputation = reputation;
+    }
 }
