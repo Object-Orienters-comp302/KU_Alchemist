@@ -3,22 +3,25 @@ package Domain;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-// Assuming you have these controllers
-// import your.package.LoginController;
-// import your.package.MenuController;
-// ... other controllers
-
 public class GameController implements ActionListener {
     private LoginController loginController;
+    private HelpController helpController;
+    private PauseController pauseController;
     private MenuController menuController;
-    // ... other sub-controllers
+    private RegisterController registerController;
+    private RoundOneController roundOneController;
+    private RoundTwoController roundTwoController;
 
     // Constructor
     public GameController() {
         // Initialize sub-controllers
         loginController = new LoginController();
         menuController = new MenuController();
-        // ... initialize other sub-controllers
+        helpController = new HelpController();
+        pauseController = new PauseController();
+        registerController = new RegisterController();
+        roundOneController = new RoundOneController();
+        roundTwoController = new RoundTwoController();
     }
 
     // Method to handle actions

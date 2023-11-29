@@ -3,7 +3,7 @@ package Domain;
 import Models.Deck;
 import Models.Player;
 
-public class RoundOneControllerBranch {
+public class RoundOneController {
 
     public void ForageForIngredient(Player player) {
         Deck deck = Deck.getInstance();
