@@ -20,11 +20,11 @@ public class Potion {//creating function is in the GameController for now
     public enum Signs {
         Positive,
         Neutral,
-        Negative;
+        Negative
     }
     public enum Colors {
         Green,
         Blue,
-        Red;
+        Red
     }
 }

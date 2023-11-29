@@ -25,17 +25,17 @@ public class Aspect {
 
     public enum Sizes {
         Big,
-        Small;
+        Small
     }
 
     public enum Positivities {
         Positive,
-        Negative;
+        Negative
     }
 
     public enum Colors {
         Green,
         Blue,
-        Red;
+        Red
     }
 }
