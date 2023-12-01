@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Player {
 
-    private static ArrayList<Player> instances = new ArrayList<Player>();
+    private static ArrayList<Player> instances = new ArrayList<>();
     String PlayerID;
     Image Avatar;
     Inventory PlayerInventory;
