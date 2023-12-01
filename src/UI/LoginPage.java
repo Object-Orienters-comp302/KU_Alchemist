@@ -6,6 +6,7 @@ import Domain.LoginController;
 import GUI_Components.ColorChangingPanel;
 import GUI_Components.ImagePanel;
 import Models.Token;
+import Utils.AssetLoader;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -109,7 +110,7 @@ public class LoginPage extends JPanel {
         lblNewLabel.setBounds(0, 0, 75, 50);
         UserNamePanel.add(lblNewLabel);
 
-        ImagePanel UserNamePanel_CheckPanel = new ImagePanel("./Images/tokens/redX.png");
+        ImagePanel UserNamePanel_CheckPanel = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
         UserNamePanel_CheckPanel.setBounds(255, 5, 40, 40);
         UserNamePanel_CheckPanel.setBackground(Color.decode("#FFD700"));
         UserNamePanel.add(UserNamePanel_CheckPanel);
@@ -172,20 +173,20 @@ public class LoginPage extends JPanel {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText().isBlank())) {
-                    UserNamePanel_CheckPanel.changeImage("./Images/tokens/redX.png");
+                    UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
 
                 } else {
-                    UserNamePanel_CheckPanel.changeImage("./Images/tokens/greenTick.png");
+                    UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
                 }
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
                 if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText().isBlank())) {
-                    UserNamePanel_CheckPanel.changeImage("./Images/tokens/redX.png");
+                    UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
 
                 } else {
-                    UserNamePanel_CheckPanel.changeImage("./Images/tokens/greenTick.png");
+                    UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
                 }
             }
 
@@ -197,10 +198,10 @@ public class LoginPage extends JPanel {
     }
 
     public static void main(String[] args) {
-        new Token("khorne","./Images/tokens/khorne.png","./Images/backgrounds/khorne_background.png");
-        new Token("nurgle","./Images/tokens/nurgle.png","./Images/backgrounds/nurgle_background.png");
-        new Token("slaanesh","./Images/tokens/slaanesh.png","./Images/backgrounds/slaanesh_background.png");
-        new Token("tzeentch","./Images/tokens/tzeentch.png","./Images/backgrounds/tzeentch_background.png");
+        new Token("khorne", AssetLoader.getAssetPath(AssetLoader.Tokens.KHORNE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.KHORNE));
+        new Token("nurgle", AssetLoader.getAssetPath(AssetLoader.Tokens.NURGLE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.NURGLE));
+        new Token("slaanesh", AssetLoader.getAssetPath(AssetLoader.Tokens.SLAANESH),AssetLoader.getAssetPath(AssetLoader.Backgrounds.SLAANESH));
+        new Token("tzeentch",AssetLoader.getAssetPath(AssetLoader.Tokens.TZEENTCH), AssetLoader.getAssetPath(AssetLoader.Backgrounds.TZEENTCH));
 
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
