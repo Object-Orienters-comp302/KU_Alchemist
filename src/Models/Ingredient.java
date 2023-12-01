@@ -56,6 +56,7 @@ public class Ingredient {
         Mandrake,
         Flower,
         Mushroom,
+        ChickenLeg,
         Toad,
         Feather,
         Scorpion;
