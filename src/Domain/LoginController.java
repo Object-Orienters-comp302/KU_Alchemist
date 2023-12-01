@@ -21,14 +21,14 @@ public class LoginController {
         ViewFactory.getInstance().getLoginView().displayLoginView();
     }
 
-    public String logPlayerIn(String PlayerID, Image Avatar) {
+    public logPlayerInEnums logPlayerIn(String PlayerID, Image Avatar) {
         if (isUniquePlayerID(PlayerID) && isUniqueAvatar(Avatar)) {
             new Player(PlayerID, Avatar, 0);// Later will have shuffle
-            return "Log in is successful";
+            return logPlayerInEnums.LogInSuccesful;
         } else if (isUniquePlayerID(PlayerID)) {
-            return "PlayerID is taken";
+            return logPlayerInEnums.PlayerIDTaken;
         } else {
-            return "Avatar is taken";
+            return logPlayerInEnums.AvatarTaken;
         }
     }
 
@@ -51,7 +51,12 @@ public class LoginController {
         }
         return true;
     }
-    
+    public enum logPlayerInEnums{
+            LogInSuccesful,
+            PlayerIDTaken,
+            AvatarTaken
+
+    }
     public CircularLinkedList<BufferedImage> getTokenImages(){
     	return Token.tokenImages;
     }
