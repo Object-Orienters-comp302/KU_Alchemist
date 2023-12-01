@@ -20,5 +20,4 @@ public class LoginView {
         frame.getContentPane().add(login);
         frame.setVisible(true);
     }
-
 }

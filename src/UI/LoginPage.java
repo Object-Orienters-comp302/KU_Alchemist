@@ -5,6 +5,7 @@ import Domain.GameController;
 import Domain.LoginController;
 import GUI_Components.ColorChangingPanel;
 import GUI_Components.ImagePanel;
+import Models.Token;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -20,10 +21,6 @@ public class LoginPage extends JPanel {
     private JTextField textField;
 
     protected LoginPage() {
-
-    }
-
-    public void displayLoginPage() {
         //// non GUI
         int wanted = 2;
         LoginController loginControl = GameController.getInstance().getLoginController();
@@ -199,8 +196,12 @@ public class LoginPage extends JPanel {
         });
     }
 
-
     public static void main(String[] args) {
+        new Token("khorne","./Images/tokens/khorne.png","./Images/backgrounds/khorne_background.png");
+        new Token("nurgle","./Images/tokens/nurgle.png","./Images/backgrounds/nurgle_background.png");
+        new Token("slaanesh","./Images/tokens/slaanesh.png","./Images/backgrounds/slaanesh_background.png");
+        new Token("tzeentch","./Images/tokens/tzeentch.png","./Images/backgrounds/tzeentch_background.png");
+
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 900);
