@@ -11,6 +11,9 @@ import java.util.Objects;
 import DataTypes.CircularLinkedList;
 import UI.ViewFactory;
 
+// NOTE: I think the LoginController shouldn't be handling ANYTHING related to the UI. Including and image processing.
+// TODO: Move the image processing to a different class, possibly to the view. The LoginController should only be handling the login logic.
+
 public class LoginController {
     protected LoginController() {}
 
