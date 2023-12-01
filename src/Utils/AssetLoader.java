@@ -1,5 +1,7 @@
 package Utils;
 
+import Models.Aspect;
+
 public class AssetLoader {
     // Method to get asset path
     public static String getAssetPath(AssetPath asset) {
@@ -63,6 +65,7 @@ public class AssetLoader {
             return path;
         }
     }
+
 
     // Interface for asset paths
     public interface AssetPath {

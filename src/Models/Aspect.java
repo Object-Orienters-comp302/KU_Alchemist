@@ -10,7 +10,7 @@ public class Aspect {
         Positivity = positivity;
         this.color = color;
     }
-
+    
     public Sizes getSize() {
         return size;
     }
