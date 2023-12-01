@@ -31,7 +31,7 @@ public class TriangleTableButtonPopup extends JPanel{
 		add(B5);
 		CircleImgButton B6 = new CircleImgButton(width*4/6,height*5/6,width*5/16,height*5/16,".\\Images\\triangleTable\\minusBlue.png",imgPanel);
 		add(B6);
-		CircleImgButton B7 = new CircleImgButton(width*3/6,height*3/6,width*5/16,height*5/16,".\\Images\\triangleTable\\outline.png",imgPanel);
+		CircleImgButton B7 = new CircleImgButton(width*3/6,height*3/6,width*11/32,height*11/32,".\\Images\\triangleTable\\outline.png",imgPanel);
 		add(B7);
 		
 		
