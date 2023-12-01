@@ -5,7 +5,6 @@ import Domain.GameController;
 import Domain.LoginController;
 import GUI_Components.ColorChangingPanel;
 import GUI_Components.ImagePanel;
-import Models.Player;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -14,16 +13,17 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginPage extends JPanel {
     static int iter = 0;
     String TriColor;
     private JTextField textField;
 
-    public LoginPage() {
+    protected LoginPage() {
 
+    }
+
+    public void displayLoginPage() {
         //// non GUI
         int wanted = 2;
         LoginController loginControl = GameController.getInstance().getLoginController();

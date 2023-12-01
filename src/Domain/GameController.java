@@ -32,6 +32,10 @@ public class GameController {
         return single_instance;
     }
 
+    public void startGame() {
+        loginController.startLogin();
+    }
+
     // Method to change views or states, called by sub-controllers
     public void changeState(String newState) {
         // Handle state change logic

@@ -9,9 +9,13 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 import DataTypes.CircularLinkedList;
+import UI.ViewFactory;
 
 public class LoginController {
-    protected LoginController() {
+    protected LoginController() {}
+
+    public void startLogin() {
+        ViewFactory.getInstance().getLoginPage().displayLoginPage();
     }
 
     public String logPlayerIn(String PlayerID, Image Avatar) {
@@ -51,6 +55,4 @@ public class LoginController {
     public CircularLinkedList<BufferedImage> getTokenBackgrounds(){
     	return Token.tokenBackgrounds;
     }
-    
-
 }

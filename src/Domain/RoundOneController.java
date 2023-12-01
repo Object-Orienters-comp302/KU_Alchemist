@@ -5,8 +5,7 @@ import Models.Player;
 
 public class RoundOneController {
 
-    protected RoundOneController() {
-    }
+    protected RoundOneController() {}
 
     public void ForageForIngredient(Player player) {
         Deck deck = Deck.getInstance();
