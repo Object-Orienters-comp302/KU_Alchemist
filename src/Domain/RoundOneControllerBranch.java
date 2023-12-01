@@ -30,6 +30,9 @@ public class RoundOneControllerBranch {
             player.getPlayerInventory().setGold(player.getPlayerInventory().getGold() -3);
         }
     }
+    public void Make_experiments(Player player, Ingredient ingredient_1,Ingredient ingredient_2 ){
+
+    }
 
     //TODO Add Make Experiment
 
