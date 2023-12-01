@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 
 public class TriangleTable extends JPanel {
 	String TriColor;
-	public TriangleTable(String col) {
+	public TriangleTable() {
 		setPreferredSize(new Dimension(605, 700));
 	    setBackground(Color.WHITE);
 	    setLayout(null);
@@ -333,7 +333,7 @@ public class TriangleTable extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 1000);
         frame.getContentPane().setLayout(new GridBagLayout());
-        TriangleTable login = new TriangleTable("#34ebcf");
+        TriangleTable login = new TriangleTable();
         frame.getContentPane().add(login);
         frame.setVisible(true);
         
