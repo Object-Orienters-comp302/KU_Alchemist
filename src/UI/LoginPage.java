@@ -1,10 +1,11 @@
 package UI;
 
 import DataTypes.CircularLinkedList;
+import Domain.GameController;
 import Domain.LoginController;
 import GUI_Components.ColorChangingPanel;
 import GUI_Components.ImagePanel;
-import Models.Player;
+import Models.Token;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -13,31 +14,21 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
 
 public class LoginPage extends JPanel {
     static int iter = 0;
     String TriColor;
     private JTextField textField;
 
-    public LoginPage() {
-
+    protected LoginPage() {
         //// non GUI
         int wanted = 2;
-        LoginController loginControl=new LoginController();
+        LoginController loginControl = GameController.getInstance().getLoginController();
 
         // works with Image
         CircularLinkedList<BufferedImage> tokenList = loginControl.getTokenImages();
 
-
         CircularLinkedList<BufferedImage> backgroundList = loginControl.getTokenBackgrounds();
-
-        
-        
-        
-        
-        
 
         setPreferredSize(new Dimension(1200, 900));
         GridBagLayout gridBagLayout = new GridBagLayout();
@@ -205,8 +196,12 @@ public class LoginPage extends JPanel {
         });
     }
 
-
     public static void main(String[] args) {
+        new Token("khorne","./Images/tokens/khorne.png","./Images/backgrounds/khorne_background.png");
+        new Token("nurgle","./Images/tokens/nurgle.png","./Images/backgrounds/nurgle_background.png");
+        new Token("slaanesh","./Images/tokens/slaanesh.png","./Images/backgrounds/slaanesh_background.png");
+        new Token("tzeentch","./Images/tokens/tzeentch.png","./Images/backgrounds/tzeentch_background.png");
+
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 900);

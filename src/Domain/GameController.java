@@ -1,42 +1,43 @@
 package Domain;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+public class GameController {
+    private static GameController single_instance;
 
-// Assuming you have these controllers
-// import your.package.LoginController;
-// import your.package.MenuController;
-// ... other controllers
-
-public class GameController implements ActionListener {
     private LoginController loginController;
+    private HelpController helpController;
+    private PauseController pauseController;
     private MenuController menuController;
-    // ... other sub-controllers
+    private RegisterController registerController;
+    private RoundOneController roundOneController;
+    private RoundTwoController roundTwoController;
 
-    // Constructor
-    public GameController() {
+    private GameController() {
         // Initialize sub-controllers
-        loginController = new LoginController();
-        menuController = new MenuController();
-        // ... initialize other sub-controllers
+        loginController    = new LoginController();
+        menuController     = new MenuController();
+        helpController     = new HelpController();
+        pauseController    = new PauseController();
+        registerController = new RegisterController();
+        roundOneController = new RoundOneController();
+        roundTwoController = new RoundTwoController();
+
+        GameController.single_instance = this;
     }
 
-    // Method to handle actions
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        String command = e.getActionCommand();
+    public static synchronized GameController getInstance() {
+        if (single_instance == null)
+            single_instance = new GameController();
+        return single_instance;
+    }
 
-        switch (command) {
-            case "LOGIN":
-                // loginController.handleLogin();
-                break;
-            case "OPEN_MENU":
-                // menuController.openMenu();
-                break;
-            // ... other cases
-            default:
-                System.out.println("Unknown command in GameController: " + command);
-        }
+    // Method to start the game, called by Main function
+    // The method initializes the GameController instance,
+    // Binds the sub-controllers to the GameController instance,
+    // and calls the loginController to start the login process
+    public static void startGame() {
+        GameController.getInstance();
+
+        single_instance.getLoginController().startLogin();
     }
 
     // Method to change views or states, called by sub-controllers
@@ -44,5 +45,32 @@ public class GameController implements ActionListener {
         // Handle state change logic
         // For example, switch between different panels/views
     }
-    // ... other methods to interact with models or manage application state
+
+    public LoginController getLoginController() {
+        return loginController;
+    }
+
+    public HelpController getHelpController() {
+        return helpController;
+    }
+
+    public PauseController getPauseController() {
+        return pauseController;
+    }
+
+    public MenuController getMenuController() {
+        return menuController;
+    }
+
+    public RegisterController getRegisterController() {
+        return registerController;
+    }
+
+    public RoundOneController getRoundOneController() {
+        return roundOneController;
+    }
+
+    public RoundTwoController getRoundTwoController() {
+        return roundTwoController;
+    }
 }
