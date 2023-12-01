@@ -19,7 +19,6 @@ public class ViewFactory {
         boardView      = new BoardView();
         dashboardView  = new DashboardView();
         helpScreenView = new HelpScreenView();
-        loginPage      = new LoginPage();
         loginView      = new LoginView();
         menuView       = new MenuView();
         pauseView      = new PauseView();
@@ -45,10 +44,6 @@ public class ViewFactory {
 
     public HelpScreenView getHelpScreenView() {
         return helpScreenView;
-    }
-
-    public LoginPage getLoginPage() {
-        return loginPage;
     }
 
     public LoginView getLoginView() {
