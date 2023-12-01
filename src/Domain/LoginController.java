@@ -18,7 +18,7 @@ public class LoginController {
     protected LoginController() {}
 
     public void startLogin() {
-        ViewFactory.getInstance().getLoginPage().displayLoginPage();
+        ViewFactory.getInstance().getLoginView().displayLoginView();
     }
 
     public String logPlayerIn(String PlayerID, Image Avatar) {
