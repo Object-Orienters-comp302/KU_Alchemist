@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GameController implements ActionListener {
+    private static GameController single_instance;
+
     private LoginController loginController;
     private HelpController helpController;
     private PauseController pauseController;
@@ -13,7 +15,7 @@ public class GameController implements ActionListener {
     private RoundTwoController roundTwoController;
 
     // Constructor
-    public GameController() {
+    private GameController() {
         // Initialize sub-controllers
         loginController = new LoginController();
         menuController = new MenuController();
@@ -22,6 +24,15 @@ public class GameController implements ActionListener {
         registerController = new RegisterController();
         roundOneController = new RoundOneController();
         roundTwoController = new RoundTwoController();
+
+        GameController.single_instance = this;
+    }
+
+    public static synchronized GameController getInstance() {
+        if (single_instance == null)
+            single_instance = new GameController();
+
+        return single_instance;
     }
 
     // Method to handle actions

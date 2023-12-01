@@ -1,6 +1,7 @@
 package UI;
 
 import DataTypes.CircularLinkedList;
+import Domain.GameController;
 import Domain.LoginController;
 import GUI_Components.ColorChangingPanel;
 import GUI_Components.ImagePanel;
@@ -25,19 +26,12 @@ public class LoginPage extends JPanel {
 
         //// non GUI
         int wanted = 2;
-        LoginController loginControl=new LoginController();
+        LoginController loginControl= GameController.getInstance().getLoginController();
 
         // works with Image
         CircularLinkedList<BufferedImage> tokenList = loginControl.getTokenImages();
 
-
         CircularLinkedList<BufferedImage> backgroundList = loginControl.getTokenBackgrounds();
-
-        
-        
-        
-        
-        
 
         setPreferredSize(new Dimension(1200, 900));
         GridBagLayout gridBagLayout = new GridBagLayout();

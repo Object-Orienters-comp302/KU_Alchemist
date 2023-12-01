@@ -7,22 +7,9 @@ public class Deck {
     private HashMap<Ingredient, Integer> Ingredients;
     private HashMap<Artifact, Integer> Artifacts;
 
-    private static Deck single_instance;
-
-    private Deck() {
+    public Deck() {
         Ingredients = new HashMap<>();
         Artifacts = new HashMap<>();
-
-        Deck.single_instance = this;
-
-
-    }
-
-    public static synchronized Deck getInstance() {
-        if (single_instance == null)
-            single_instance = new Deck();
-
-        return single_instance;
     }
 
     public HashMap<Ingredient, Integer> getIngredients() {
