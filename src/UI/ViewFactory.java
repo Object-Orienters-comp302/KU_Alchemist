@@ -16,13 +16,13 @@ public class ViewFactory {
 
     private ViewFactory() {
         // Initialize sub-controllers
-        boardView = new BoardView();
-        dashboardView = new DashboardView();
+        boardView      = new BoardView();
+        dashboardView  = new DashboardView();
         helpScreenView = new HelpScreenView();
-        loginPage = new LoginPage();
-        loginView = new LoginView();
-        menuView = new MenuView();
-        pauseView = new PauseView();
+        loginPage      = new LoginPage();
+        loginView      = new LoginView();
+        menuView       = new MenuView();
+        pauseView      = new PauseView();
 
         ViewFactory.single_instance = this;
     }

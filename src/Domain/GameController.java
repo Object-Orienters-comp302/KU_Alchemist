@@ -28,12 +28,23 @@ public class GameController {
     public static synchronized GameController getInstance() {
         if (single_instance == null)
             single_instance = new GameController();
-
         return single_instance;
     }
 
-    public void startGame() {
-        loginController.startLogin();
+    // Method to start the game, called by Main
+    // The method initializes the GameController instance,
+    // Binds the sub-controllers to the GameController instance,
+    // and calls the loginController to start the login process
+    public static void startGame() {
+        GameController.getInstance().loginController    = new LoginController();
+        GameController.getInstance().menuController     = new MenuController();
+        GameController.getInstance().helpController     = new HelpController();
+        GameController.getInstance().pauseController    = new PauseController();
+        GameController.getInstance().registerController = new RegisterController();
+        GameController.getInstance().roundOneController = new RoundOneController();
+        GameController.getInstance().roundTwoController = new RoundTwoController();
+
+        GameController.getInstance().getLoginController().startLogin();
     }
 
     // Method to change views or states, called by sub-controllers
