@@ -11,6 +11,9 @@ import java.util.Objects;
 import DataTypes.CircularLinkedList;
 
 public class LoginController {
+    protected LoginController() {
+    }
+
     public String logPlayerIn(String PlayerID, Image Avatar) {
         if (isUniquePlayerID(PlayerID) && isUniqueAvatar(Avatar)) {
             new Player(PlayerID, Avatar, 0);// Later will have shuffle

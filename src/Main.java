@@ -3,6 +3,8 @@ import java.awt.GridBagLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Domain.GameController;
+import Domain.LoginController;
 import Models.Token;
 import UI.LoginPage;
 

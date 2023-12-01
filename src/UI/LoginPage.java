@@ -26,7 +26,7 @@ public class LoginPage extends JPanel {
 
         //// non GUI
         int wanted = 2;
-        LoginController loginControl= GameController.getInstance().getLoginController();
+        LoginController loginControl = GameController.getInstance().getLoginController();
 
         // works with Image
         CircularLinkedList<BufferedImage> tokenList = loginControl.getTokenImages();

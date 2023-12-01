@@ -9,7 +9,8 @@ import java.util.Map;
 
 public class RoundTwoController {
 
-
+    protected RoundTwoController() {
+    }
 
     public Potion sellPotion(Inventory inventory, Potion potion, int guarantee_num){
         //guarantee = 3 positive , 2 neutral or positive, 1 negative
