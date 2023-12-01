@@ -9,7 +9,6 @@ public class ViewFactory {
     private BoardView  boardView;
     private DashboardView  dashboardView;
     private HelpScreenView  helpScreenView;
-    private LoginPage  loginPage;
     private LoginView  loginView;
     private MenuView  menuView;
     private PauseView  pauseView;
