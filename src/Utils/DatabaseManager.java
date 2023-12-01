@@ -1,4 +1,3 @@
 package Utils;
 
-public class DatabaseManager {
-}
+public class DatabaseManager { }

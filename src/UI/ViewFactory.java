@@ -1,19 +1,17 @@
 package UI;
 
-import Domain.*;
-
 public class ViewFactory {
-
+    
     private static ViewFactory single_instance;
-
-    private BoardView  boardView;
+    
+    private BoardView      boardView;
     private DashboardView  dashboardView;
-    private HelpScreenView  helpScreenView;
-    private LoginView  loginView;
-    private MenuView  menuView;
-    private PauseView  pauseView;
-
-    private ViewFactory() {
+    private HelpScreenView helpScreenView;
+    private LoginView      loginView;
+    private MenuView       menuView;
+    private PauseView      pauseView;
+    
+    private ViewFactory () {
         // Initialize sub-controllers
         boardView      = new BoardView();
         dashboardView  = new DashboardView();
@@ -21,39 +19,40 @@ public class ViewFactory {
         loginView      = new LoginView();
         menuView       = new MenuView();
         pauseView      = new PauseView();
-
+        
         ViewFactory.single_instance = this;
     }
-
-    public static synchronized ViewFactory getInstance() {
-        if (single_instance == null)
+    
+    public static synchronized ViewFactory getInstance () {
+        if (single_instance == null) {
             single_instance = new ViewFactory();
-
+        }
+        
         return single_instance;
     }
-
-
-    public BoardView getBoardView() {
+    
+    
+    public BoardView getBoardView () {
         return boardView;
     }
-
-    public DashboardView getDashboardView() {
+    
+    public DashboardView getDashboardView () {
         return dashboardView;
     }
-
-    public HelpScreenView getHelpScreenView() {
+    
+    public HelpScreenView getHelpScreenView () {
         return helpScreenView;
     }
-
-    public LoginView getLoginView() {
+    
+    public LoginView getLoginView () {
         return loginView;
     }
-
-    public MenuView getMenuView() {
+    
+    public MenuView getMenuView () {
         return menuView;
     }
-
-    public PauseView getPauseView() {
+    
+    public PauseView getPauseView () {
         return pauseView;
     }
 }
