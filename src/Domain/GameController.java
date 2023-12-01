@@ -8,7 +8,6 @@ public class GameController implements ActionListener {
     private HelpController helpController;
     private PauseController pauseController;
     private MenuController menuController;
-
     private RegisterController registerController;
     private RoundOneController roundOneController;
     private RoundTwoController roundTwoController;
