@@ -31,7 +31,7 @@ public class GameController {
     public static void startGame () {
         GameController.getInstance();
         
-        single_instance.getLoginController()
+        single_instance.getLoginController()protected RoundOneController () { }
                 .startLogin();
     }
     
