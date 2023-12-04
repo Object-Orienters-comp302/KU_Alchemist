@@ -8,32 +8,34 @@ import java.awt.event.MouseEvent;
 public class TriangleTableButtonPopup extends JPanel {
     private int width, height, x, y;
     
-    public TriangleTableButtonPopup (int x, int y, int width, int height, ImagePanel imgPanel) {
+    public TriangleTableButtonPopup (int x, int y, int width, int height, ImagePanel imgPanel,int index, int[] data) {
         this.setBounds(x, y, width, height);
         this.setOpaque(false);
         this.setLayout(null);
         
+        int current=data[index];
+        
         
         CircleImgButton B1 = new CircleImgButton(width * 2 / 6, height / 6, width * 5 / 16, height * 5 / 16,
-                                                 ".\\Images\\triangleTable\\plusRed.png", imgPanel);
+        		select(current,1), imgPanel,index,data);
         add(B1);
         CircleImgButton B2 = new CircleImgButton(width / 6, height * 3 / 6, width * 5 / 16, height * 5 / 16,
-                                                 ".\\Images\\triangleTable\\plusGreen.png", imgPanel);
+        		select(current,2), imgPanel,index,data);
         add(B2);
         CircleImgButton B3 = new CircleImgButton(width * 2 / 6, height * 5 / 6, width * 5 / 16, height * 5 / 16,
-                                                 ".\\Images\\triangleTable\\plusBlue.png", imgPanel);
+        		select(current,3), imgPanel,index,data);
         add(B3);
         CircleImgButton B4 = new CircleImgButton(width * 4 / 6, height / 6, width * 5 / 16, height * 5 / 16,
-                                                 ".\\Images\\triangleTable\\minusRed.png", imgPanel);
+        		select(current,4), imgPanel,index,data);
         add(B4);
         CircleImgButton B5 = new CircleImgButton(width * 5 / 6, height * 3 / 6, width * 5 / 16, height * 5 / 16,
-                                                 ".\\Images\\triangleTable\\minusGreen.png", imgPanel);
+        		select(current,5), imgPanel,index,data);
         add(B5);
         CircleImgButton B6 = new CircleImgButton(width * 4 / 6, height * 5 / 6, width * 5 / 16, height * 5 / 16,
-                                                 ".\\Images\\triangleTable\\minusBlue.png", imgPanel);
+        		select(current,6), imgPanel,index,data);
         add(B6);
         CircleImgButton B7 = new CircleImgButton(width * 3 / 6, height * 3 / 6, width * 11 / 32, height * 11 / 32,
-                                                 ".\\Images\\triangleTable\\outline.png", imgPanel);
+        		select(current,7), imgPanel,index,data);
         add(B7);
         
         
@@ -71,6 +73,14 @@ public class TriangleTableButtonPopup extends JPanel {
         });
         
     }
+    private int select(int current, int desired) {
+    	if(current==desired){
+    		return 0;
+    	}
+    	else {
+    		return desired;
+    	}
+    }
     
     public static void main (String[] args) {
         // TODO Auto-generated method stub
@@ -80,11 +90,14 @@ public class TriangleTableButtonPopup extends JPanel {
         frame.setSize(1500, 1500);
         frame.getContentPane()
                 .setLayout(null);
+        /*
         TriangleTableButtonPopup login = new TriangleTableButtonPopup(200, 200, 600, 600, null);
         
         
         frame.getContentPane()
                 .add(login);
+        
+        */
         frame.setVisible(true);
         
     }
