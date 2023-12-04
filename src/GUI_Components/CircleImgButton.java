@@ -9,12 +9,12 @@ public class CircleImgButton extends JPanel {
     private int diameter, x, y;
     private ImagePanel img;
     
-    public CircleImgButton (int x, int y, int width, int height, int imgVal, ImagePanel panelToChange,int index, int[] data) {
+    public CircleImgButton (int x, int y, int width, int height, String imgSource, ImagePanel panelToChange) {
         
         setLayout(null);
         this.setBounds(x - width / 2, y - height / 2, width, height);
         
-        img = new ImagePanel(TriangleTableButton.chooseImg(imgVal));
+        img = new ImagePanel(imgSource);
         img.setBounds(0, 0, width, height);
         add(img);
         this.setOpaque(false);
@@ -30,8 +30,8 @@ public class CircleImgButton extends JPanel {
                 
                 if (isClickInsideCircle(clickX, clickY)) {
                     
-                    panelToChange.changeImage(TriangleTableButton.chooseImg(imgVal));
-                    data[index]=imgVal;
+                    panelToChange.changeImage(imgSource);
+                    
                     if (grandParent != null) {
                         
                         grandParent.remove(parent);
@@ -75,11 +75,11 @@ public class CircleImgButton extends JPanel {
         frame.setSize(1200, 900);
         frame.getContentPane()
                 .setLayout(null);
-        //CircleImgButton login = new CircleImgButton(100, 100, 100, 100, ".\\Images\\triangleTable\\plusRed.png", null);
+        CircleImgButton login = new CircleImgButton(100, 100, 100, 100, ".\\Images\\triangleTable\\plusRed.png", null);
         
         
-        //frame.getContentPane()
-          //      .add(login);
+        frame.getContentPane()
+                .add(login);
         frame.setVisible(true);
         
         
