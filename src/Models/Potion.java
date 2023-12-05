@@ -24,7 +24,6 @@ public class Potion {//creating function is in the GameController for now
     }
     
     public enum Colors {
-        Colorless,
         Green,
         Blue,
         Red
