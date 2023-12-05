@@ -1,10 +1,10 @@
 package Domain;
 
-import Models.Inventory;
-import Models.Potion;
+import Models.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-
+import Domain.RoundOneController;
 public class RoundTwoController {
     
     public Potion sellPotion (Inventory inventory, Potion potion, Guarantee guarantee) {
@@ -44,6 +44,25 @@ public class RoundTwoController {
         } else {
             return null;
         }
+    }
+    
+    public boolean publishTheory (Player currentPlayer, Ingredient selectedIngredient, ArrayList<Aspect> alchemyMarker) {
+        if (selectedIngredient != null && alchemyMarker != null) {
+            // Check if the selected ingredient has an available alchemy marker and does not have a published theory
+            if (!PublicationTrack.getInstance()
+                    .searchInPublicationTrack(selectedIngredient, alchemyMarker)) {
+                // Assign the marker to the selected ingredient
+                PublicationCard new_Theory = new PublicationCard(selectedIngredient, alchemyMarker, 1);
+                // Mark the marker as used
+                PublicationTrack.getInstance().addPublicationCard(new_Theory);
+                // Pay 1 gold piece to the bank
+                currentPlayer.getPlayerInventory().addGold(1);
+                // Gain 1 point of reputation
+                currentPlayer.addReputation(1);
+                return true; // Theory published successfully
+            }
+        }
+        return false; // Publishing theory failed due to invalid inputs or unavailable markers/ingredients
     }
     
     public enum Guarantee {

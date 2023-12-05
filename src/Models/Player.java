@@ -61,7 +61,9 @@ public class Player {
     public void setReputation (Integer reputation) {
         Reputation = reputation;
     }
-    
+    public void addReputation (Integer num){
+        this.Reputation = this.Reputation + num;
+    }
     public Integer getSickness () {
         return Sickness;
     }
