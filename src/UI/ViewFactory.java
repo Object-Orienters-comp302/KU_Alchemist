@@ -10,6 +10,7 @@ public class ViewFactory {
     private LoginView      loginView;
     private MenuView       menuView;
     private PauseView      pauseView;
+
     
     private ViewFactory () {
         // Initialize sub-controllers
@@ -27,7 +28,6 @@ public class ViewFactory {
         if (single_instance == null) {
             single_instance = new ViewFactory();
         }
-        
         return single_instance;
     }
     
