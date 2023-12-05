@@ -86,9 +86,6 @@ public class LoginPage extends JPanel {
     }
     
     private void SetupObjets() {
-        
-
-        
         gridBagLayout.columnWidths  = new int[]{ 1200, 0 };
         gridBagLayout.rowHeights    = new int[]{ 900, 0 };
         gridBagLayout.columnWeights = new double[]{ 0.0, Double.MIN_VALUE };
@@ -242,18 +239,9 @@ public class LoginPage extends JPanel {
             }
         });
     }
-    
+
     
     public static void main (String[] args) { // TODO: Move to UnitTests
-        new Token("khorne", AssetLoader.getAssetPath(AssetLoader.Tokens.KHORNE),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.KHORNE));
-        new Token("nurgle", AssetLoader.getAssetPath(AssetLoader.Tokens.NURGLE),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.NURGLE));
-        new Token("slaanesh", AssetLoader.getAssetPath(AssetLoader.Tokens.SLAANESH),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.SLAANESH));
-        new Token("tzeentch", AssetLoader.getAssetPath(AssetLoader.Tokens.TZEENTCH),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.TZEENTCH));
-        
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 900);
