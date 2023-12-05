@@ -5,6 +5,8 @@ public enum Type {
     ARTIFACT,
     POTION,
     INGREDIENT,
+    DECK_ARTIFACT,
+    DECK_INGREDIENT,
     REPUTATION
     
 }

@@ -44,21 +44,7 @@ public class Deck implements Publisher {
         for (Entry<Ingredient, Integer> entry : Ingredients.entrySet()) {
             if (entry.getValue() > 0) {
                 Ingredients.put(entry.getKey(), entry.getValue() - 1);
-                return entry.getKey();
-            }
-        }
-        
-        return null;
-    }
-    
-    public Artifact popArtifact () {
-        if (Artifacts.isEmpty()) {
-            return null;
-        }
-        
-        for (Entry<Artifact, Integer> entry : Artifacts.entrySet()) {
-            if (entry.getValue() > 0) {
-                Artifacts.put(entry.getKey(), entry.getValue() - 1);
+                publishEvent(Type.DECK_INGREDIENT);
                 return entry.getKey();
             }
         }
@@ -71,6 +57,22 @@ public class Deck implements Publisher {
         for (Listener listener : listeners) {
             listener.onEvent(type);
         }
+    }
+    
+    public Artifact popArtifact () {
+        if (Artifacts.isEmpty()) {
+            return null;
+        }
+        
+        for (Entry<Artifact, Integer> entry : Artifacts.entrySet()) {
+            if (entry.getValue() > 0) {
+                Artifacts.put(entry.getKey(), entry.getValue() - 1);
+                publishEvent(Type.DECK_ARTIFACT);
+                return entry.getKey();
+            }
+        }
+        
+        return null;
     }
     
     @Override
