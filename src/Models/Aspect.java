@@ -11,6 +11,21 @@ public class Aspect {
         this.color = color;
     }
     
+    public boolean isEqual (Aspect other){
+        if(other.getColor() != this.getColor()){
+            return false;
+        }
+        if(other.getPositivity() != this.getPositivity()){
+            return false;
+        }
+        if(other.getSize() != this.getSize()){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    
     public Sizes getSize () {
         return size;
     }
