@@ -50,7 +50,7 @@ public class RoundTwoController {
         if (selectedIngredient != null && alchemyMarker != null) {
             // Check if the selected ingredient has an available alchemy marker and does not have a published theory
             if (!PublicationTrack.getInstance()
-                    .searchInPublicationTrack(selectedIngredient, alchemyMarker)) {
+                    .isInPublicationTrack(selectedIngredient, alchemyMarker)) {
                 // Assign the marker to the selected ingredient
                 PublicationCard new_Theory = new PublicationCard(selectedIngredient, alchemyMarker, 1);
                 // Mark the marker as used
