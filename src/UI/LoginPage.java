@@ -23,7 +23,7 @@ public class LoginPage extends JPanel {
     
     protected LoginPage () {
         //// non GUI
-        int playerCount = 2;
+        int wanted = 2;
         LoginController loginControl = GameController.getInstance()
                 .getLoginController();
         
@@ -158,11 +158,11 @@ public class LoginPage extends JPanel {
                     TokenSelectorPanel_Displayer.changeImage(tokenList.get());
                     MainPanel.changeImage(backgroundList.get());
                     LoginPage.iter += 1;
-                    //System.out.print(LoginPage.iter);
+                    System.out.print(LoginPage.iter);
                     if (NextPanel_Label.getText() == "START") {
                         System.exit(0);
                     }
-                    if ((LoginPage.iter) == playerCount - 1) {
+                    if ((LoginPage.iter) == wanted - 1) {
                         NextPanel_Label.setText("START");
                     }
                 }
