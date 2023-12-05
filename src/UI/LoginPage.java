@@ -193,7 +193,7 @@ public class LoginPage extends JPanel {
                     TokenSelectorPanel_Displayer.changeImage(tokenList.get());
                     MainPanel.changeImage(backgroundList.get());
                     LoginPage.iter += 1;
-                    System.out.print(LoginPage.iter);
+                    //System.out.print(LoginPage.iter);
                     if (NextPanel_Label.getText() == "START") {
                         System.exit(0);
                     }
