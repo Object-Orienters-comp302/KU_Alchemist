@@ -18,6 +18,7 @@ public class Inventory implements Publisher {
     public Inventory () {
         Ingredients = new HashMap<Ingredient, Integer>();
         Artifacts   = new HashMap<Artifact, Integer>();
+        Potions     = new HashMap<Potion, Integer>();
         Gold        = 0;
     }
     
@@ -68,5 +69,10 @@ public class Inventory implements Publisher {
     @Override
     public void addListener (Listener lis) {
         listeners.add(lis);
+    }
+    
+    public void removePotion (Potion potion) {
+        Potions.remove(potion);
+        publishEvent(Type.POTION);
     }
 }
