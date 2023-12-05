@@ -87,6 +87,5 @@ public class RoundOneController {
     private Boolean CompareTwoAspects(Aspect aspect1, Aspect aspect2){
         return aspect1.getPositivity() == aspect2.getPositivity();
     }
-    //TODO Add Make Experiment
     
 }
