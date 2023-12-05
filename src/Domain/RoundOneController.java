@@ -1,9 +1,6 @@
 package Domain;
 
-import Models.Artifact;
-import Models.Deck;
-import Models.Ingredient;
-import Models.Player;
+import Models.*;
 
 import java.util.HashMap;
 
@@ -41,10 +38,54 @@ public class RoundOneController {
         }
     }
     
-    public void Make_experiments (Player player, Ingredient ingredient_1, Ingredient ingredient_2) {
-    
+    public void Make_experiments (Player player, Potion potion, Boolean TestOnSelf) {//TODO Other cases will be implemented.
+        if(TestOnSelf){
+            if(potion.getSign() ==Potion.Signs.Negative){//If negative get sickness
+                player.setSickness(player.getSickness()+1);
+                if(player.getSickness() >= 3){
+                    player.getSurgery();
+                }
+            }
+        }
+        else{// Testing on Student
+            if(potion.getSign() ==Potion.Signs.Negative){//If negative lose 1 gold
+                player.getPlayerInventory().setGold(player.getPlayerInventory().getGold()-1);
+            }
+            
+        }
     }
-    
-    //TODO Add Make Experiment
+    public Potion MakePotion (Ingredient.AspectTrio AspectTrio1, Ingredient.AspectTrio AspectTrio2){//Takes 2 AspectTrios and outputs a Potion.
+        if(CompareTwoAspects(AspectTrio1.getAspectBlue(), AspectTrio2.getAspectBlue())){
+            if(AspectTrio1.getAspectBlue().getPositivity()== Aspect.Positivities.Positive){// If both of them are same we only need to check one.
+                return new Potion(Potion.Colors.Blue, Potion.Signs.Positive);
+            }
+            else {
+                return new Potion(Potion.Colors.Blue, Potion.Signs.Negative);
+            }
+        } else if(CompareTwoAspects(AspectTrio1.getAspectRed(), AspectTrio2.getAspectRed())){
+            if(AspectTrio1.getAspectRed().getPositivity()== Aspect.Positivities.Positive){
+                return new Potion(Potion.Colors.Red, Potion.Signs.Positive);
+            }
+            else {
+                return new Potion(Potion.Colors.Red, Potion.Signs.Negative);
+            }
+            
+        } else if(CompareTwoAspects(AspectTrio1.getAspectGreen(), AspectTrio2.getAspectGreen())){
+            if(AspectTrio1.getAspectGreen().getPositivity()== Aspect.Positivities.Positive){
+                return new Potion(Potion.Colors.Green, Potion.Signs.Positive);
+            }
+            else {
+                return new Potion(Potion.Colors.Green, Potion.Signs.Negative);
+            }
+            
+        } else{
+            return new Potion(Potion.Colors.Colorless, Potion.Signs.Neutral);
+        }
+        
+        
+    }
+    private Boolean CompareTwoAspects(Aspect aspect1, Aspect aspect2){
+        return aspect1.getPositivity() == aspect2.getPositivity();
+    }
     
 }
