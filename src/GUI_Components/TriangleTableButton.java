@@ -10,12 +10,12 @@ public class TriangleTableButton extends JPanel {
     private ImagePanel img;
     
     
-    public TriangleTableButton (int x, int y, int width, int height,int index, int[] data) {
+    public TriangleTableButton (int x, int y, int width, int height) {
         this.setOpaque(false);
         setLayout(null);
         this.setBounds(x, y, width, height);
         
-        img = new ImagePanel(chooseImg(data[index]));
+        img = new ImagePanel(".\\Images\\triangleTable\\outline.png");
         img.setBounds(0, 0, width, height);
         add(img);
         
@@ -30,7 +30,7 @@ public class TriangleTableButton extends JPanel {
                 if (isClickInsideCircle(clickX, clickY)) {
                     System.out.println("Button click inside the circle!");
                     TriangleTableButtonPopup pop =
-                            new TriangleTableButtonPopup(x - width, y - height, width * 3, height * 3, img,index,data);
+                            new TriangleTableButtonPopup(x - width, y - height, width * 3, height * 3, img);
                     //how to make it add to it
                     Container parent = getParent();
                     parent.add(pop);
@@ -56,50 +56,16 @@ public class TriangleTableButton extends JPanel {
         
         return distance <= radius;
     }
-    public static String chooseImg(int val) {
-    	String path;
-    	switch (val) {
-    	case 0:
-            path = ".\\Images\\triangleTable\\outline.png";
-            break;
-        case 1:
-            path = ".\\Images\\triangleTable\\plusRed.png";
-            break;
-        case 2:
-            path = ".\\Images\\triangleTable\\plusGreen.png";
-            break;
-        case 3:
-            path = ".\\Images\\triangleTable\\plusBlue.png";
-            break;
-        case 4:
-            path = ".\\Images\\triangleTable\\minusRed.png";
-            break;
-        case 5:
-            path = ".\\Images\\triangleTable\\minusGreen.png";
-            break;
-        case 6:
-            path = ".\\Images\\triangleTable\\minusBlue.png";
-            break;
-        case 7:
-            path = ".\\Images\\triangleTable\\empty.png";
-            break;
-        
-        default:
-            path = ".\\Images\\triangleTable\\outline.png";
-    	}
-    	return path;
-    }
     
     public static void main (String[] args) {
         // TODO Auto-generated method stub
-    	int[] testArray = new int[28];
         
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1500, 1500);
         frame.getContentPane()
                 .setLayout(null);
-        TriangleTableButton login = new TriangleTableButton(300, 300, 400, 400,0,testArray);
+        TriangleTableButton login = new TriangleTableButton(300, 300, 400, 400);
         
         
         frame.getContentPane()

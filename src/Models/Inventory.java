@@ -1,17 +1,24 @@
 package Models;
 
+import Domain.event.Listener;
+import Domain.event.Publisher;
+import Domain.event.Type;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Inventory {
+public class Inventory implements Publisher {
     HashMap<Ingredient, Integer> Ingredients;
     HashMap<Potion, Integer>     Potions;
+    HashMap<Artifact, Integer>   Artifacts;
+    Integer                      Gold;
     
-    HashMap<Artifact, Integer> Artifacts;
-    Integer                    Gold;
+    ArrayList<Listener> listeners;
     
     public Inventory () {
         Ingredients = new HashMap<Ingredient, Integer>();
         Artifacts   = new HashMap<Artifact, Integer>();
+        Potions     = new HashMap<Potion, Integer>();
         Gold        = 0;
     }
     
@@ -26,10 +33,19 @@ public class Inventory {
     
     public void addIngredient (Ingredient ingredient, int quantity) {
         Ingredients.merge(ingredient, quantity, Integer::sum);
+        publishEvent(Type.INGREDIENT);
+    }
+    
+    @Override
+    public void publishEvent (Type type) {
+        for (Listener listener : listeners) {
+            listener.onEvent(type);
+        }
     }
     
     public void addPotions (Potion potion, int quantity) {
         Potions.merge(potion, quantity, Integer::sum);
+        publishEvent(Type.POTION);
     }
     
     public HashMap<Artifact, Integer> getArtifacts () {
@@ -38,6 +54,7 @@ public class Inventory {
     
     public void addArtifactCard (Artifact artifact, int quantity) {
         Artifacts.merge(artifact, quantity, Integer::sum);
+        publishEvent(Type.ARTIFACT);
     }
     
     public Integer getGold () {
@@ -46,5 +63,16 @@ public class Inventory {
     
     public void setGold (Integer gold) {
         Gold = gold;
+        publishEvent(Type.GOLD);
+    }
+    
+    @Override
+    public void addListener (Listener lis) {
+        listeners.add(lis);
+    }
+    
+    public void removePotion (Potion potion) {
+        Potions.remove(potion);
+        publishEvent(Type.POTION);
     }
 }
