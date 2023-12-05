@@ -2,9 +2,11 @@ package Models;
 
 import DataTypes.CircularLinkedList;
 import Utils.GUtil;
+import Utils.KawaseBlur;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Token {
     public static ArrayList<Token>                  tokenList        = new ArrayList<Token>();
@@ -18,7 +20,7 @@ public class Token {
     public Token (String name, String imgUrl, String backgroundUrl) {
         this.name  = name;
         image      = GUtil.fetchImage(imgUrl);
-        background = GUtil.fetchImage(backgroundUrl);
+        background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(backgroundUrl)), 3, 2);
         tokenList.add(this);
         tokenImages.add(image);
         tokenBackgrounds.add(background);
