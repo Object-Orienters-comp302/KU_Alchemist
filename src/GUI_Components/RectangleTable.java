@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class RectangleTable extends JPanel {
     
-    public RectangleTable (int[][] data) {
+    public RectangleTable (int[][] data) { 
         setPreferredSize(new Dimension(800, 400));
         setBackground(Color.WHITE);
         setLayout(null);
