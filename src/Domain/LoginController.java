@@ -3,24 +3,17 @@ package Domain;
 import DataTypes.CircularLinkedList;
 import Models.Player;
 import Models.Token;
-import UI.ViewFactory;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Objects;
 
-// NOTE: I think the LoginController shouldn't be handling ANYTHING related to the UI. Including and image processing.
+// NOTE: I think the LoginController shouldn't be handling ANYTHING related to the UI. Including the image processing.
 // TODO: Move the image processing to a different class, possibly to the view. The LoginController should only be handling the login logic.
 
 public class LoginController {
     protected LoginController () { }
-    
-    public void startLogin () {
-        ViewFactory.getInstance()
-                .getLoginView()
-                .displayLoginView();
-    }
     
     public logPlayerInEnums logPlayerIn (String PlayerID, Image Avatar) {
         if (isUniquePlayerID(PlayerID) && isUniqueAvatar(Avatar)) {

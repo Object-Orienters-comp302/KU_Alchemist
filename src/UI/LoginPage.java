@@ -40,13 +40,32 @@ public class LoginPage extends JPanel {
     ImagePanel UserNamePanel_CheckPanel;
     JPanel NextPanel;
     JLabel NextPanel_Label;
-    
+
+
+    protected LoginPage () {
+        new Token("khorne", AssetLoader.getAssetPath(AssetLoader.Tokens.KHORNE),
+        AssetLoader.getAssetPath(AssetLoader.Backgrounds.KHORNE));
+        new Token("nurgle", AssetLoader.getAssetPath(AssetLoader.Tokens.NURGLE),
+                AssetLoader.getAssetPath(AssetLoader.Backgrounds.NURGLE));
+        new Token("slaanesh", AssetLoader.getAssetPath(AssetLoader.Tokens.SLAANESH),
+                AssetLoader.getAssetPath(AssetLoader.Backgrounds.SLAANESH));
+        new Token("tzeentch", AssetLoader.getAssetPath(AssetLoader.Tokens.TZEENTCH),
+                AssetLoader.getAssetPath(AssetLoader.Backgrounds.TZEENTCH));
+
+
+        playerAmount = 2;
+
+        setPreferredSize(new Dimension(1200, 900));
+        CreateObjects();
+        SetupObjets();
+        SetupListeners();
+    }
     
     private void CreateObjects() {
-    	loginControl = GameController.getInstance()
-                .getLoginController();
+    	loginControl = GameController.getInstance().getLoginController();
     	tokenList = loginControl.getTokenImages();
     	backgroundList = loginControl.getTokenBackgrounds();
+        
     	gridBagLayout = new GridBagLayout();
     	MainPanel = new ImagePanel(backgroundList.get());
     	gbc_MainPanel = new GridBagConstraints();
@@ -64,11 +83,13 @@ public class LoginPage extends JPanel {
     	UserNamePanel_CheckPanel = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
     	NextPanel = new ColorChangingPanel("#cf9d15", "#FFD700");
     	NextPanel_Label = new JLabel("NEXT");
-    	
     }
     
-    private void ApplyStuff() {
-    	gridBagLayout.columnWidths  = new int[]{ 1200, 0 };
+    private void SetupObjets() {
+        
+
+        
+        gridBagLayout.columnWidths  = new int[]{ 1200, 0 };
         gridBagLayout.rowHeights    = new int[]{ 900, 0 };
         gridBagLayout.columnWeights = new double[]{ 0.0, Double.MIN_VALUE };
         gridBagLayout.rowWeights    = new double[]{ 0.0, Double.MIN_VALUE };
@@ -145,7 +166,8 @@ public class LoginPage extends JPanel {
         NextPanel.add(NextPanel_Label);
         
     }
-    private void ApplyFunctions() {
+    
+    private void SetupListeners() {
     	TokenSelectorPanel_Left.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
@@ -186,52 +208,43 @@ public class LoginPage extends JPanel {
             }
         });
         
-        
-        textField.getDocument()
-                .addDocumentListener(new DocumentListener() {
-                    @Override
-                    public void insertUpdate (DocumentEvent e) {
-                        if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText()
-                                .isBlank())) {
-                            UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
-                            
-                        } else {
-                            UserNamePanel_CheckPanel.changeImage(
-                                    AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
-                        }
-                    }
+                
+            textField.getDocument().addDocumentListener(new DocumentListener() {
+            
+            
+            @Override
+            public void insertUpdate (DocumentEvent e) {
+                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText()
+                        .isBlank())) {
+                    UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
                     
-                    @Override
-                    public void removeUpdate (DocumentEvent e) {
-                        if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText()
-                                .isBlank())) {
-                            UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
-                            
-                        } else {
-                            UserNamePanel_CheckPanel.changeImage(
-                                    AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
-                        }
-                    }
+                } else {
+                    UserNamePanel_CheckPanel.changeImage(
+                            AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
+                }
+            }
+            
+            @Override
+            public void removeUpdate (DocumentEvent e) {
+                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText()
+                        .isBlank())) {
+                    UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
                     
-                    @Override
-                    public void changedUpdate (DocumentEvent e) {
-                        // TODO Auto-generated method stub
-                    }
-                });
+                } else {
+                    UserNamePanel_CheckPanel.changeImage(
+                            AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
+                }
+            }
+            
+            @Override
+            public void changedUpdate (DocumentEvent e) {
+                // TODO Auto-generated method stub
+            }
+        });
     }
     
-    protected LoginPage () {
-
-        playerAmount = 2;
-  
-        setPreferredSize(new Dimension(1200, 900));
-        CreateObjects();
-        ApplyStuff();
-        ApplyFunctions();
-        
-    }
     
-    public static void main (String[] args) {
+    public static void main (String[] args) { // TODO: Move to UnitTests
         new Token("khorne", AssetLoader.getAssetPath(AssetLoader.Tokens.KHORNE),
                   AssetLoader.getAssetPath(AssetLoader.Backgrounds.KHORNE));
         new Token("nurgle", AssetLoader.getAssetPath(AssetLoader.Tokens.NURGLE),

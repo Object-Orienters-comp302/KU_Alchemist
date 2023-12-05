@@ -24,17 +24,6 @@ public class GameController {
         GameController.single_instance = this;
     }
     
-    // Method to start the game, called by Main function
-    // The method initializes the GameController instance,
-    // Binds the sub-controllers to the GameController instance,
-    // and calls the loginController to start the login process
-    public static void startGame () {
-        GameController.getInstance();
-        
-        single_instance.getLoginController()
-                .startLogin();
-    }
-    
     public static synchronized GameController getInstance () {
         if (single_instance == null) {
             single_instance = new GameController();
