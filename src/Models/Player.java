@@ -14,15 +14,12 @@ public class Player {
     Integer PlayerScore;
     Integer Reputation;
     
-    Integer Sickness;
-    
     public Player (String PlayerID, Image Avatar) {// ToDo: Delete this. It is only to support gorkemsPackage
         this.PlayerID        = PlayerID;
         this.Avatar          = Avatar;
         this.PlayerInventory = new Inventory();
         this.PlayerScore     = 0;
-        this.Sickness        = 0;
-        this.Reputation      = 0;
+        Reputation           = 0;
         instances.add(this);
     }
     
@@ -31,9 +28,6 @@ public class Player {
         this.Avatar          = Avatar;
         this.PlayerInventory = new Inventory();
         this.PlayerScore     = 0;
-        this.Sickness        = 0;
-        this.Reputation      = 0;
-        
         instances.add(this);
     }
     
@@ -60,17 +54,5 @@ public class Player {
     
     public void setReputation (Integer reputation) {
         Reputation = reputation;
-    }
-    
-    public Integer getSickness () {
-        return Sickness;
-    }
-    
-    public void setSickness (Integer sickness) {
-        Sickness = sickness;
-    }
-    public void getSurgery(){
-        getPlayerInventory().setGold(0);
-        setSickness(0);
     }
 }
