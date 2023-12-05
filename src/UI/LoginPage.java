@@ -18,119 +18,135 @@ import java.awt.image.BufferedImage;
 
 public class LoginPage extends JPanel {
     static int iter = 0;
+    int playerAmount;
     String TriColor;
     private JTextField textField;
+    LoginController loginControl;
+    CircularLinkedList<BufferedImage> tokenList;
+    CircularLinkedList<BufferedImage> backgroundList;
+    GridBagLayout gridBagLayout;
+    ImagePanel MainPanel;
+    GridBagConstraints gbc_MainPanel;
+    JPanel TokenSelectorPanel;
+    JPanel TokenSelectorPanel_Left;
+    JPanel TokenSelectorPanel_Left_Label_Holder;
+    JLabel TokenSelectorPanel_Left_Label;
+    ImagePanel TokenSelectorPanel_Displayer;
+    JPanel TokenSelectorPanel_Right;
+    JPanel TokenSelectorPanel_Right_Label_Holder;
+    JLabel TokenSelectorPanel_Right_Label;
+    JPanel UserNamePanel;
+    JLabel lblNewLabel;
+    ImagePanel UserNamePanel_CheckPanel;
+    JPanel NextPanel;
+    JLabel NextPanel_Label;
     
-    protected LoginPage () {
-        //// non GUI
-        int wanted = 2;
-        LoginController loginControl = GameController.getInstance()
+    
+    private void CreateObjects() {
+    	loginControl = GameController.getInstance()
                 .getLoginController();
-        
-        // works with Image
-        CircularLinkedList<BufferedImage> tokenList = loginControl.getTokenImages();
-        
-        CircularLinkedList<BufferedImage> backgroundList = loginControl.getTokenBackgrounds();
-        
-        setPreferredSize(new Dimension(1200, 900));
-        GridBagLayout gridBagLayout = new GridBagLayout();
-        gridBagLayout.columnWidths  = new int[]{ 1200, 0 };
+    	tokenList = loginControl.getTokenImages();
+    	backgroundList = loginControl.getTokenBackgrounds();
+    	gridBagLayout = new GridBagLayout();
+    	MainPanel = new ImagePanel(backgroundList.get());
+    	gbc_MainPanel = new GridBagConstraints();
+    	TokenSelectorPanel = new JPanel();
+    	TokenSelectorPanel_Left = new ColorChangingPanel("#cf9d15", "#FFD700");
+    	TokenSelectorPanel_Left_Label_Holder = new JPanel();
+    	TokenSelectorPanel_Left_Label = new JLabel("<");
+    	TokenSelectorPanel_Displayer = new ImagePanel(tokenList.get());
+    	TokenSelectorPanel_Right = new ColorChangingPanel("#cf9d15", "#FFD700");
+    	TokenSelectorPanel_Right_Label_Holder = new JPanel();
+    	TokenSelectorPanel_Right_Label = new JLabel(">");
+    	UserNamePanel= new JPanel();
+    	textField = new JTextField();
+    	lblNewLabel = new JLabel("Username:  ");
+    	UserNamePanel_CheckPanel = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
+    	NextPanel = new ColorChangingPanel("#cf9d15", "#FFD700");
+    	NextPanel_Label = new JLabel("NEXT");
+    	
+    }
+    
+    private void ApplyStuff() {
+    	gridBagLayout.columnWidths  = new int[]{ 1200, 0 };
         gridBagLayout.rowHeights    = new int[]{ 900, 0 };
         gridBagLayout.columnWeights = new double[]{ 0.0, Double.MIN_VALUE };
         gridBagLayout.rowWeights    = new double[]{ 0.0, Double.MIN_VALUE };
         setLayout(gridBagLayout);
         
-        ImagePanel MainPanel = new ImagePanel(backgroundList.get());
-        GridBagConstraints gbc_MainPanel = new GridBagConstraints();
         gbc_MainPanel.fill  = GridBagConstraints.BOTH;
         gbc_MainPanel.gridx = 0;
         gbc_MainPanel.gridy = 0;
         add(MainPanel, gbc_MainPanel);
+        
         MainPanel.setLayout(null);
         
-        JPanel TokenSelectorPanel = new JPanel();
         TokenSelectorPanel.setBounds(150, 150, 900, 450);
         MainPanel.add(TokenSelectorPanel);
         TokenSelectorPanel.setLayout(null);
-        
-        JPanel TokenSelectorPanel_Left = new ColorChangingPanel("#cf9d15", "#FFD700");
         
         TokenSelectorPanel_Left.setBounds(0, 0, 75, 450);
         TokenSelectorPanel.add(TokenSelectorPanel_Left);
         TokenSelectorPanel_Left.setLayout(null);
         
-        JPanel TokenSelectorPanel_Left_Label_Holder = new JPanel();
         TokenSelectorPanel_Left_Label_Holder.setLayout(null);
         TokenSelectorPanel_Left_Label_Holder.setBounds(23, 195, 30, 60);
         TokenSelectorPanel_Left.add(TokenSelectorPanel_Left_Label_Holder);
         TokenSelectorPanel_Left_Label_Holder.setOpaque(false);
         
-        JLabel TokenSelectorPanel_Left_Label = new JLabel("<");
         TokenSelectorPanel_Left_Label.setHorizontalAlignment(SwingConstants.CENTER);
         TokenSelectorPanel_Left_Label.setFont(new Font("Tahoma", Font.PLAIN, 20));
         TokenSelectorPanel_Left_Label.setBounds(0, 0, 30, 60);
         TokenSelectorPanel_Left_Label_Holder.add(TokenSelectorPanel_Left_Label);
         
-        ImagePanel TokenSelectorPanel_Displayer = new ImagePanel(tokenList.get());
         TokenSelectorPanel_Displayer.setBounds(75, 0, 750, 450);
         TokenSelectorPanel.add(TokenSelectorPanel_Displayer);
         TokenSelectorPanel_Displayer.setLayout(null);
         
-        JPanel TokenSelectorPanel_Right = new ColorChangingPanel("#cf9d15", "#FFD700");
         TokenSelectorPanel_Right.setBounds(825, 0, 75, 450);
         TokenSelectorPanel.add(TokenSelectorPanel_Right);
         TokenSelectorPanel_Right.setLayout(null);
         
-        JPanel TokenSelectorPanel_Right_Label_Holder = new JPanel();
         TokenSelectorPanel_Right_Label_Holder.setBounds(22, 195, 30, 60);
         TokenSelectorPanel_Right.add(TokenSelectorPanel_Right_Label_Holder);
         TokenSelectorPanel_Right_Label_Holder.setLayout(null);
         TokenSelectorPanel_Right_Label_Holder.setOpaque(false);
         
-        JLabel TokenSelectorPanel_Right_Label = new JLabel(">");
         TokenSelectorPanel_Right_Label.setHorizontalAlignment(SwingConstants.CENTER);
         TokenSelectorPanel_Right_Label.setFont(new Font("Tahoma", Font.PLAIN, 20));
         TokenSelectorPanel_Right_Label.setBounds(0, 0, 30, 60);
         TokenSelectorPanel_Right_Label_Holder.add(TokenSelectorPanel_Right_Label);
         
-        JPanel UserNamePanel = new JPanel();
         UserNamePanel.setBounds(450, 645, 300, 50);
         UserNamePanel.setBackground(Color.decode("#FFD700"));
         MainPanel.add(UserNamePanel);
         UserNamePanel.setLayout(null);
-        
-        textField = new JTextField();
         
         textField.setBounds(75, 0, 175, 50);
         UserNamePanel.add(textField);
         textField.setBorder(null);
         textField.setColumns(10);
         
-        JLabel lblNewLabel = new JLabel("Username:  ");
         lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         lblNewLabel.setBounds(0, 0, 75, 50);
         UserNamePanel.add(lblNewLabel);
         
-        ImagePanel UserNamePanel_CheckPanel = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
         UserNamePanel_CheckPanel.setBounds(255, 5, 40, 40);
         UserNamePanel_CheckPanel.setBackground(Color.decode("#FFD700"));
         UserNamePanel.add(UserNamePanel_CheckPanel);
-        
-        JPanel NextPanel = new ColorChangingPanel("#cf9d15", "#FFD700");
         
         NextPanel.setBounds(450, 750, 300, 75);
         MainPanel.add(NextPanel);
         NextPanel.setLayout(null);
         
-        JLabel NextPanel_Label = new JLabel("NEXT");
         NextPanel_Label.setBounds(105, 8, 90, 60);
         NextPanel_Label.setHorizontalAlignment(SwingConstants.CENTER);
         NextPanel_Label.setFont(new Font("Tahoma", Font.PLAIN, 20));
         NextPanel.add(NextPanel_Label);
         
-        //events
-        
-        TokenSelectorPanel_Left.addMouseListener(new MouseAdapter() {
+    }
+    private void ApplyFunctions() {
+    	TokenSelectorPanel_Left.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
                 TokenSelectorPanel_Displayer.changeImage(tokenList.getPrev());
@@ -162,7 +178,7 @@ public class LoginPage extends JPanel {
                     if (NextPanel_Label.getText() == "START") {
                         System.exit(0);
                     }
-                    if ((LoginPage.iter) == wanted - 1) {
+                    if ((LoginPage.iter) == playerAmount - 1) {
                         NextPanel_Label.setText("START");
                     }
                 }
@@ -202,6 +218,17 @@ public class LoginPage extends JPanel {
                         // TODO Auto-generated method stub
                     }
                 });
+    }
+    
+    protected LoginPage () {
+
+        playerAmount = 2;
+  
+        setPreferredSize(new Dimension(1200, 900));
+        CreateObjects();
+        ApplyStuff();
+        ApplyFunctions();
+        
     }
     
     public static void main (String[] args) {
