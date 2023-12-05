@@ -24,7 +24,7 @@ public class HelpController {
                 " Board to form theories about these aspects.");
     
         helpTexts.put(Components.Ingredient, "Ingredients are the core elements used in potion-making" +
-                " and deduction within the game.");
+                " and deduction within the game. ");
     }
     
     
