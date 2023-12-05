@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TriangleTable extends JPanel {
+	/*
     String TriColor;
     
     public TriangleTable () {
@@ -330,6 +331,7 @@ public class TriangleTable extends JPanel {
         
         
     }
+    */
     
 }
 
