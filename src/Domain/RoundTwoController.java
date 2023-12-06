@@ -4,10 +4,10 @@ import Models.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import Domain.RoundOneController;
+
 public class RoundTwoController {
     
-    public Potion sellPotion (Inventory inventory, Potion potion, Guarantee guarantee) {
+    public Potion sellPotion(Inventory inventory, Potion potion, Guarantee guarantee) {
         Potion removed_potion = removePotion(inventory.getPotions(), potion);
         
         if (removed_potion != null) {
@@ -29,7 +29,7 @@ public class RoundTwoController {
         return null;
     }
     
-    public Potion removePotion (HashMap<Potion, Integer> Potions, Potion potion) {
+    public Potion removePotion(HashMap<Potion, Integer> Potions, Potion potion) {
         
         if (Potions.isEmpty()) {
             return null;
@@ -46,17 +46,16 @@ public class RoundTwoController {
         }
     }
     
-    public boolean publishTheory (Player currentPlayer, Ingredient selectedIngredient, ArrayList<Aspect> alchemyMarker) {
-        if (selectedIngredient != null && alchemyMarker != null) {
+    public boolean publishTheory(Player currentPlayer, Ingredient selectedIngredient, ArrayList<Aspect> alchemyMarker, Integer certainityPoint ) {
+        if (selectedIngredient != null && alchemyMarker != null && (certainityPoint == 1 || certainityPoint == 2 || certainityPoint == 3)) {
             // Check if the selected ingredient has an available alchemy marker and does not have a published theory
-            if (!PublicationTrack.getInstance()
-                    .isInPublicationTrack(selectedIngredient, alchemyMarker)) {
+            if (!PublicationTrack.getInstance().isInPublicationTrack(selectedIngredient, alchemyMarker)) {
                 // Assign the marker to the selected ingredient
-                PublicationCard new_Theory = new PublicationCard(selectedIngredient, alchemyMarker, 1);
+                PublicationCard new_Theory = new PublicationCard(selectedIngredient, alchemyMarker, certainityPoint); // Todo: The certainty point is a point that can take the values 1, 2, 3, expressing the player's confidence in the theory. It should be checked again after Phase 1
                 // Mark the marker as used
                 PublicationTrack.getInstance().addPublicationCard(new_Theory);
                 // Pay 1 gold piece to the bank
-                currentPlayer.getPlayerInventory().addGold(1);
+                currentPlayer.getPlayerInventory().addGold(-1);
                 // Gain 1 point of reputation
                 currentPlayer.addReputation(1);
                 return true; // Theory published successfully

@@ -11,15 +11,15 @@ public class Ingredient {
     private static HashMap<IngredientTypes, AspectTrio> TypeToAspectTrioMap;
     final          IngredientTypes                      Type;
     
-    public Ingredient (IngredientTypes type) {
+    public Ingredient(IngredientTypes type) {
         Type = type;
     }
     
-    public AspectTrio getAspects () {
+    public AspectTrio getAspects() {
         return getTypeToAspectTrioMap().get(this.getType());
     }
     
-    public static HashMap<IngredientTypes, AspectTrio> getTypeToAspectTrioMap () {
+    public static HashMap<IngredientTypes, AspectTrio> getTypeToAspectTrioMap() {
         if (Ingredient.TypeToAspectTrioMap == null) {
             initializeTypeToAspectTrioMap();
         }
@@ -27,11 +27,11 @@ public class Ingredient {
         
     }
     
-    public IngredientTypes getType () {
+    public IngredientTypes getType() {
         return Type;
     }
     
-    private static void initializeTypeToAspectTrioMap () {
+    private static void initializeTypeToAspectTrioMap() {
         TypeToAspectTrioMap = new HashMap<>();
         
         IngredientTypes[] types = IngredientTypes.values();
@@ -55,14 +55,24 @@ public class Ingredient {
     }
     
     public enum IngredientTypes {
-        Plant,
-        Mandrake,
-        Flower,
-        Mushroom,
-        ChickenLeg,
-        Toad,
-        Feather,
-        Scorpion
+        Plant("Plant"),
+        Mandrake("Mandrake"),
+        Flower("Flower"),
+        Mushroom("Mushroom"),
+        ChickenLeg("Chicken Leg"),
+        Toad("Toad"),
+        Feather("Feather"),
+        Scorpion("Scorpion");
+        private final String TypeString;
+        
+        IngredientTypes (String typeString){
+            
+            this.TypeString = typeString;
+        }
+        
+        public String getTypeString () {
+            return TypeString;
+        }
     }
     
     public enum AspectTrio {
@@ -96,21 +106,21 @@ public class Ingredient {
         private final Aspect aspectGreen;
         private final Aspect aspectRed;
         
-        AspectTrio (Aspect aspectBlue, Aspect aspectGreen, Aspect aspectRed) {
+        AspectTrio(Aspect aspectBlue, Aspect aspectGreen, Aspect aspectRed) {
             this.aspectBlue  = aspectBlue;
             this.aspectGreen = aspectGreen;
             this.aspectRed   = aspectRed;
         }
         
-        public Aspect getAspectBlue () {
+        public Aspect getAspectBlue() {
             return aspectBlue;
         }
         
-        public Aspect getAspectGreen () {
+        public Aspect getAspectGreen() {
             return aspectGreen;
         }
         
-        public Aspect getAspectRed () {
+        public Aspect getAspectRed() {
             return aspectRed;
         }
     }

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PublicationTrack {
-    private static PublicationTrack       single_instance;
-    private final List<PublicationCard> publicationCards;
+    private static PublicationTrack      single_instance;
+    private final  List<PublicationCard> publicationCards;
     
     private PublicationTrack() {
         publicationCards = new ArrayList<>();
@@ -13,14 +13,10 @@ public class PublicationTrack {
         PublicationTrack.single_instance = this;
     }
     
-    public static synchronized PublicationTrack getInstance () {
+    public static synchronized PublicationTrack getInstance() {
         if (single_instance == null) { single_instance = new PublicationTrack(); }
         
         return single_instance;
-    }
-    
-    public List<PublicationCard> getPublicationCards() {
-        return publicationCards;
     }
     
     public void addPublicationCard(PublicationCard publicationCard) {
@@ -30,6 +26,7 @@ public class PublicationTrack {
     public void removePublicationCard(PublicationCard publicationCard) {
         publicationCards.remove(publicationCard);
     }
+    
     public boolean isInPublicationTrack(Ingredient ingredient, ArrayList<Aspect> aspects) {
         List<PublicationCard> publicationCards = getPublicationCards();
         boolean isPublishedIngredient = false; // True if the ingredient has a theory about itself
@@ -43,11 +40,13 @@ public class PublicationTrack {
                 isPublishedAspects = true;  // PublicationCard aspects found in the track
             }
         }
-        if (!isPublishedAspects && !isPublishedIngredient){
-            return false;
-        }
-        return true; // PublicationCard found in the track
+        return isPublishedAspects || isPublishedIngredient;// PublicationCard found in the track
     }
+    
+    public List<PublicationCard> getPublicationCards() {
+        return publicationCards;
+    }
+    
     public boolean isPublished(PublicationCard publicationCard) {
         // Checks if the given pCard is published in publicationTrack
         List<PublicationCard> publicationCards = getPublicationCards();

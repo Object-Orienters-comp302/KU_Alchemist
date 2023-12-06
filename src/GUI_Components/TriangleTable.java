@@ -1,7 +1,6 @@
 package GUI_Components;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class TriangleTable extends JPanel {
 	/*

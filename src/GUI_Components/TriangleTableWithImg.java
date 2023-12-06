@@ -2,13 +2,10 @@ package GUI_Components;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Arrays;
 
 public class TriangleTableWithImg extends JPanel {
     
-	public TriangleTableWithImg(int[] data) {
+    public TriangleTableWithImg(int[] data) {
         setPreferredSize(new Dimension(425, 425));  // Set preferred size to 450x450
         setOpaque(true);
         setLayout(null);
@@ -17,7 +14,7 @@ public class TriangleTableWithImg extends JPanel {
         table.setSize(400, 400);    // Adjust the size based on the new size
         add(table);
         table.setLayout(null);
-
+        
         // Adjust the location and size of buttons based on the new size
         TriangleTableButton Button1_1 = new TriangleTableButton(185, 65, 30, 30, 0, data);
         TriangleTableButton Button2_1 = new TriangleTableButton(162, 105, 30, 30, 1, data);
@@ -47,7 +44,7 @@ public class TriangleTableWithImg extends JPanel {
         TriangleTableButton Button7_5 = new TriangleTableButton(230, 305, 30, 30, 25, data);
         TriangleTableButton Button7_6 = new TriangleTableButton(275, 305, 30, 30, 26, data);
         TriangleTableButton Button7_7 = new TriangleTableButton(318, 305, 30, 30, 27, data);
-
+        
         table.add(Button1_1);
         table.add(Button2_1);
         table.add(Button2_2);
@@ -76,25 +73,23 @@ public class TriangleTableWithImg extends JPanel {
         table.add(Button7_5);
         table.add(Button7_6);
         table.add(Button7_7);
-
+        
         
     }
     
     
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         //TriangleTable tri = new TriangleTable("#34ebcf");
         
-    	int[] testArray = new int[28];
-    	testArray[1]=2;
+        int[] testArray = new int[28];
+        testArray[1] = 2;
         
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 500);
-        frame.getContentPane()
-                .setLayout(new GridBagLayout());
+        frame.getContentPane().setLayout(new GridBagLayout());
         TriangleTableWithImg login = new TriangleTableWithImg(testArray);
-        frame.getContentPane()
-                .add(login);
+        frame.getContentPane().add(login);
         frame.setVisible(true);
         
         
