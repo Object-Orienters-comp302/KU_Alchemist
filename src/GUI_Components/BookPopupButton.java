@@ -27,7 +27,7 @@ public class BookPopupButton extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
-            	if(!BookButtonPopup.CheckIfUsed(imgVal)) {
+            	if(!BookButtonPopup.CheckIfUsed(imgVal)||imgVal==0) {
                 int clickX = e.getX();
                 int clickY = e.getY();
                 Container parent = BookPopupButton.this.getParent();

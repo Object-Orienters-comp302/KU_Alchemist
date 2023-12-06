@@ -35,7 +35,7 @@ public class BookButton extends JPanel {
                 if (isClickInsideCircle(clickX, clickY)&&!BookPanel.published[index]) {
                     System.out.println("Button click inside the circle!");
                     BookButtonPopup pop =
-                            new BookButtonPopup(x - width, y - height, width * 3, height * 3,img,BookButton.this);
+                            new BookButtonPopup(x - width/2, y - height/2, width * 2, height * 2,img,BookButton.this);
                     //how to make it add to it
                     Container parent = getParent();
                     parent.add(pop);

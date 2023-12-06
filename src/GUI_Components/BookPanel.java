@@ -16,26 +16,27 @@ public class BookPanel extends JPanel {
 	public BookPanel(int index) {
 		setPreferredSize(new Dimension(500, 250));
 		setLayout(null);
-		setBackground(Color.red);
+		setOpaque(false);
 		ImagePanel book= new ImagePanel("./Images/book/book.png");
-		book.setBounds(0, 0, 400, 200);
+		book.setBounds(0, 0, 300, 160);
 		add(book);
 		book.setLayout(null);
 		
 		
 		ImagePanel panel = new ImagePanel(BookPanel.chooseImg(index));
-		panel.setBounds(60, 10, 100, 100);
+		panel.setBounds(30, 5, 80, 80);
 		book.add(panel);
 		
 		ImagePanel endorsePanel = new ImagePanel("./Images/triangleTable/empty.png");
-		endorsePanel.setBounds(220, 10, 140, 120);
+		endorsePanel.setBounds(160, 5, 120, 100);
 		book.add(endorsePanel);
 		
 		ImageChangingPanel confirmButton = new ImageChangingPanel("./Images/book/book.png","./Images/book/feet.png");
 		
-		confirmButton.setBounds(220, 140, 140, 50);
+		confirmButton.setBounds(160, 105, 120, 50);
 		book.add(confirmButton);
-		BookButton CircleButton = new BookButton(70, 120, 65, 65,index);
+		BookButton CircleButton = new BookButton(35, 90, 65, 65,index);
+		
 		//panel_1.setBounds(70, 110, 80, 80);
 		add(CircleButton);
 		setComponentZOrder(CircleButton, 0);
