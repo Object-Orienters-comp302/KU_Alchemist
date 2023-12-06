@@ -36,6 +36,13 @@ public class Deck implements Publisher {
         return Artifacts;
     }
     
+    public void addIngredient (Ingredient ingredient, int quantity) {
+        Ingredients.merge(ingredient, quantity, Integer::sum); }
+    
+    public void addArtifactCard (Artifact artifact, int quantity) {
+        Artifacts.merge(artifact, quantity, Integer::sum);
+    }
+    
     public Ingredient popIngredient () {
         if (Ingredients.isEmpty()) {
             return null;
