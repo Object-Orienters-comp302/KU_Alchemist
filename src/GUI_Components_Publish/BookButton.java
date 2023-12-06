@@ -23,7 +23,7 @@ public class BookButton extends JPanel {
         this.setBounds(x, y, width, height);
         currentValue=BookPanel.traitUsed[index];
         img = new ImagePanel(ChooseImg(currentValue));
-        img.setBounds(15, 12, width*11/16, height*11/16);
+        img.setBounds(width/6, width/6, width*11/16, height*11/16);
         add(img);
         
         

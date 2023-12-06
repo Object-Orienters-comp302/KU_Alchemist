@@ -24,9 +24,9 @@ public class IngredientButton extends JPanel {
         this.setOpaque(false);
         setLayout(null);
         this.setBounds(x, y, width, height);
-        currentValue=1;
+        currentValue=8;
         img = new ImagePanel(ChooseImg(8));
-        img.setBounds(width*3/20, width*3/20, width*11/16, height*11/16);
+        img.setBounds(width*9/40, width*9/40, width*9/16, height*9/16);
         add(img);
         
         
@@ -43,6 +43,7 @@ public class IngredientButton extends JPanel {
                             new IngredientButtonPopup(x - width/2, y - height/2, width * 2, height * 2,img,IngredientButton.this);
                     Container parent = getParent();
                     parent.add(pop);
+                    parent.setComponentZOrder(pop,1);
                     
                     parent.repaint();
                     

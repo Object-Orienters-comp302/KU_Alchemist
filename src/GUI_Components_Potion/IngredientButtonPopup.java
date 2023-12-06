@@ -22,7 +22,7 @@ public class IngredientButtonPopup extends JPanel {
         this.setBounds(x, y, width, height);
         this.setOpaque(false);
         this.setLayout(null);
-        int [] data=new int[3];
+        
         int current=1;
         
         ///did not work when I put the block in another function
