@@ -1,10 +1,14 @@
 package Models;
 
+import Domain.event.Listener;
+import Domain.event.Publisher;
+import Domain.event.Type;
+
 import java.awt.*;
 import java.util.ArrayList;
 
 
-public class Player {
+public class Player implements Publisher {
     
     private static ArrayList<Player> instances = new ArrayList<>();
     String    PlayerID;
@@ -13,6 +17,9 @@ public class Player {
     
     Integer PlayerScore;
     Integer Reputation;
+    
+    private ArrayList<Listener> listeners;
+    private Integer             Sickness;
     
     public Player (String PlayerID, Image Avatar) {// ToDo: Delete this. It is only to support gorkemsPackage
         this.PlayerID        = PlayerID;
@@ -50,8 +57,6 @@ public class Player {
     
     public void setReputation (Integer reputation) {
         Reputation = reputation;
-<<<<<<< HEAD
-=======
         publishEvent(Type.REPUTATION);
     }
     
@@ -79,7 +84,6 @@ public class Player {
     public void getSurgery () {
         getPlayerInventory().setGold(0);
         setSickness(0);
->>>>>>> 2eaf161 (Attempting to fix github issues)
     }
     
     public Inventory getPlayerInventory () {
