@@ -1,4 +1,4 @@
-package GUI_Components;
+package UI.View;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -7,10 +7,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.*;
 
 import Domain.RoundOneController;
+import GUI_Components.ImagePanel;
 import Models.Ingredient;
 import Models.Player;
 import Utils.AssetLoader;
-public class ForageGrounds extends JPanel {
+public class ForageGroundsView extends JPanel {
     
     /**
      * Create the panel.
@@ -21,7 +22,7 @@ public class ForageGrounds extends JPanel {
     RoundOneController roundOneController;
     Player player;
     
-    public ForageGrounds(Player player, RoundOneController roundOneController) {
+    public ForageGroundsView(Player player, RoundOneController roundOneController) {
         this.roundOneController = roundOneController;
         this.player = player;
         
