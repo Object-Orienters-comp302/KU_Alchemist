@@ -53,6 +53,15 @@ public class Player implements Publisher {
         return Avatar;
     }
     
+    @Override
+    public void addListener (Listener lis) {
+        listeners.add(lis);
+    }
+    
+    public void addReputation (Integer num) {
+        setReputation(getReputation() + num);
+    }
+    
     public Integer getReputation () {
         return Reputation;
     }
@@ -69,13 +78,6 @@ public class Player implements Publisher {
         }
     }
     
-    @Override
-    public void addListener (Listener lis) {
-        listeners.add(lis);
-    }
-    public void addReputation (Integer num){
-        this.Reputation = this.Reputation + num;
-    }
     public Integer getSickness () {
         return Sickness;
     }
