@@ -3,6 +3,9 @@ package UI.View;
 import DataTypes.CircularLinkedList;
 import Domain.GameController;
 import Domain.LoginController;
+import Domain.event.Listener;
+import Domain.event.Publisher;
+import Domain.event.Type;
 import GUI_Components.ColorChangingPanel;
 import GUI_Components.ImagePanel;
 import Models.Token;
@@ -15,8 +18,9 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
-public class LoginView extends JPanel {
+public class LoginView extends JPanel implements Publisher {
     static int iter = 0;
     int                               playerAmount;
     String                            TriColor;
@@ -39,6 +43,7 @@ public class LoginView extends JPanel {
     ImagePanel                        UserNamePanel_CheckPanel;
     JPanel                            NextPanel;
     JLabel                            NextPanel_Label;
+    ArrayList<Listener> Listeners;
     private JTextField textField;
     
     
@@ -51,6 +56,7 @@ public class LoginView extends JPanel {
                   AssetLoader.getAssetPath(AssetLoader.Backgrounds.SLAANESH));
         new Token("tzeentch", AssetLoader.getAssetPath(AssetLoader.Tokens.TZEENTCH),
                   AssetLoader.getAssetPath(AssetLoader.Backgrounds.TZEENTCH));
+        this.Listeners = new ArrayList<>();
         
         
         playerAmount = 2;
@@ -194,7 +200,7 @@ public class LoginView extends JPanel {
                     LoginView.iter += 1;
                     //System.out.print(LoginView.iter);
                     if (NextPanel_Label.getText() == "START") {
-                        System.exit(0);
+                        publishEvent(Type.START_MENUVIEW);
                     }
                     if ((LoginView.iter) == playerAmount - 1) {
                         NextPanel_Label.setText("START");
@@ -245,4 +251,17 @@ public class LoginView extends JPanel {
         frame.getContentPane().add(login);
         frame.setVisible(true);
     }
+    
+    @Override
+    public void publishEvent (Type type) {
+        for (Listener listener : Listeners) {
+            listener.onEvent(type);
+        }
+    }
+    
+    @Override
+    public void addListener (Listener lis) {
+        this.Listeners.add(lis);
+    }
+    
 }
