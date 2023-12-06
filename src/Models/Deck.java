@@ -5,6 +5,7 @@ import Domain.event.Publisher;
 import Domain.event.Type;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Random;
@@ -88,6 +89,15 @@ public class Deck implements Publisher {
         return artifact;
     }
     
+    public void shuffleIngredients () {
+        Collections.shuffle(Ingredients);
+        publishEvent(Type.DECK_INGREDIENT);
+    }
+    
+    public void shuffleArtifact () {
+        Collections.shuffle(Artifacts);
+        publishEvent(Type.DECK_ARTIFACT);
+    }
     @Override
     public void addListener(Listener lis) {
         listeners.add(lis);
