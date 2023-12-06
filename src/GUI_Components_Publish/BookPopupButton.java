@@ -1,4 +1,4 @@
-package GUI_Components;
+package GUI_Components_Publish;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import GUI_Components.ImagePanel;
 
 public class BookPopupButton extends JPanel {
     private int diameter, x, y;

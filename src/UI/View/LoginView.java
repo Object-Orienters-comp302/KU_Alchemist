@@ -103,7 +103,7 @@ public class LoginView extends JPanel implements Publisher {
         
         MainPanel.setLayout(null);
         
-        TokenSelectorPanel.setBounds(225, 125, 750, 400);
+        TokenSelectorPanel.setBounds(225, 75, 750, 400);
         MainPanel.add(TokenSelectorPanel);
         TokenSelectorPanel.setLayout(null);
         
@@ -139,7 +139,7 @@ public class LoginView extends JPanel implements Publisher {
         TokenSelectorPanel_Right_Label.setBounds(0, 0, 30, 60);
         TokenSelectorPanel_Right_Label_Holder.add(TokenSelectorPanel_Right_Label);
         
-        UserNamePanel.setBounds(450, 600, 300, 50);
+        UserNamePanel.setBounds(450, 525, 300, 50);
         UserNamePanel.setBackground(Color.decode("#FFD700"));
         MainPanel.add(UserNamePanel);
         UserNamePanel.setLayout(null);
@@ -157,7 +157,7 @@ public class LoginView extends JPanel implements Publisher {
         UserNamePanel_CheckPanel.setBackground(Color.decode("#FFD700"));
         UserNamePanel.add(UserNamePanel_CheckPanel);
         
-        NextPanel.setBounds(450, 750, 300, 75);
+        NextPanel.setBounds(450, 600, 300, 75);
         MainPanel.add(NextPanel);
         NextPanel.setLayout(null);
         

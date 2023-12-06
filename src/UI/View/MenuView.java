@@ -1,6 +1,8 @@
 package UI.View;
 
 import GUI_Components.*;
+import GUI_Components_Tables.RectangleTable;
+import GUI_Components_Tables.TriangleTableWithImg;
 import UI.GamePage;
 
 import javax.swing.*;

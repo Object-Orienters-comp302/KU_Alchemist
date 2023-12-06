@@ -9,16 +9,16 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import GUI_Components.BookButton;
-import GUI_Components.BookButtonPopup;
-import GUI_Components.BookPopupButton;
 import GUI_Components.ImagePanel;
+import GUI_Components_Publish.BookButton;
+import GUI_Components_Publish.BookButtonPopup;
+import GUI_Components_Publish.BookPopupButton;
 
 public class IngredientPopupButton extends JPanel {
     private int diameter, x, y;
     private ImagePanel img;
     
-    public IngredientPopupButton (int x, int y, int width, int height, int imgVal, ImagePanel panelToChange,IngredientButton book) {
+    public IngredientPopupButton (int x, int y, int width, int height, int imgVal, ImagePanel panelToChange,IngredientButton book,boolean works) {
         
         setLayout(null);
         this.setBounds(x - width / 2, y - height / 2, width, height);
@@ -32,7 +32,7 @@ public class IngredientPopupButton extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
-            	if(!BookButtonPopup.CheckIfUsed(imgVal)||imgVal==0) {
+            	if(works&&imgVal!=8) {
                 int clickX = e.getX();
                 int clickY = e.getY();
                 Container parent = IngredientPopupButton.this.getParent();

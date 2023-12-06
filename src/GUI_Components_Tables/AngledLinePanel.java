@@ -1,4 +1,4 @@
-package GUI_Components;
+package GUI_Components_Tables;
 
 import javax.swing.*;
 import java.awt.*;

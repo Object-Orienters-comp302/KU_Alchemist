@@ -9,12 +9,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import GUI_Components.BookButton;
-import GUI_Components.BookButtonPopup;
-import GUI_Components.BookPanel;
-
 import GUI_Components.CircleTransparentPanel;
 import GUI_Components.ImagePanel;
+import GUI_Components_Publish.BookButton;
+import GUI_Components_Publish.BookButtonPopup;
+import GUI_Components_Publish.BookPanel;
 
 public class IngredientButtonPopup extends JPanel {
     private int width, height, x, y;
@@ -29,89 +28,89 @@ public class IngredientButtonPopup extends JPanel {
         ///did not work when I put the block in another function
         
         IngredientPopupButton B0 = new IngredientPopupButton(width * 4 / 8, height * 4 / 8, width * 8 / 16, height * 8 / 16,
-        		0, imgPanel, ingre);
+        		8, imgPanel, ingre, true);
         add(B0);
         
-        if(CheckIfUsed(1)) {
+        if(CheckIfInventory(1)) {
         	CircleTransparentPanel T1=new CircleTransparentPanel
         			((width * 3 / 8)-((width * 5 / 16)/2), (height * 1/8)-((height * 5 / 16)/2)
         					, width * 5 / 16, height * 5 / 16);
         add(T1);
         }
         IngredientPopupButton B1 = new IngredientPopupButton(width * 3 / 8, height * 1/8, width * 5 / 16, height * 5 / 16,
-        		1, imgPanel, ingre);
+        		0, imgPanel, ingre,!CheckIfInventory(1));
         add(B1);
         
         
-        if(CheckIfUsed(2)) {
+        if(CheckIfInventory(2)) {
         	CircleTransparentPanel T2 = new CircleTransparentPanel(
                     (width * 1 / 8) - ((width * 5 / 16) / 2), (height * 3 / 8) - ((height * 5 / 16) / 2),
                     width * 5 / 16, height * 5 / 16);
         add(T2);
         }
         IngredientPopupButton B2 = new IngredientPopupButton(width* 1 / 8, height * 3/8 , width * 5 / 16, height * 5 / 16,
-        		2, imgPanel, ingre);
+        		1, imgPanel, ingre,!CheckIfInventory(2));
         add(B2);
         
         
-        if(CheckIfUsed(3)) {
+        if(CheckIfInventory(3)) {
         	CircleTransparentPanel T3 = new CircleTransparentPanel(
                     (width * 1 / 8) - ((width * 5 / 16) / 2), (height * 5 / 8) - ((height * 5 / 16) / 2),
                     width * 5 / 16, height * 5 / 16);
         add(T3);
         }
         IngredientPopupButton B3 = new IngredientPopupButton(width *1/ 8, height * 5/8 , width * 5 / 16, height * 5 / 16,
-        		3, imgPanel, ingre);
+        		2, imgPanel, ingre,!CheckIfInventory(3));
         add(B3);
         
-        if(CheckIfUsed(4)) {
+        if(CheckIfInventory(4)) {
         	 CircleTransparentPanel T4 = new CircleTransparentPanel(
                      (width * 3 / 8) - ((width * 5 / 16) / 2), (height * 7 / 8) - ((height * 5 / 16) / 2),
                      width * 5 / 16, height * 5 / 16);
         add(T4);
         }
         IngredientPopupButton B4 = new IngredientPopupButton(width * 3 / 8, height * 7 / 8, width * 5 / 16, height * 5 / 16,
-        		4, imgPanel, ingre);
+        		3, imgPanel, ingre,!CheckIfInventory(4));
         add(B4);
         
         
-        if(CheckIfUsed(5)) {
+        if(CheckIfInventory(5)) {
         	CircleTransparentPanel T5 = new CircleTransparentPanel(
                     (width * 5 / 8) - ((width * 5 / 16) / 2), (height * 7 / 8) - ((height * 5 / 16) / 2),
                     width * 5 / 16, height * 5 / 16);
         add(T5);
         }IngredientPopupButton B5 = new IngredientPopupButton(width * 5/ 8, height *7/ 8, width * 5 / 16, height * 5 / 16,
-        		5, imgPanel, ingre);
+        		4, imgPanel, ingre,!CheckIfInventory(5));
         add(B5);
         
         
-        if(CheckIfUsed(6)) {
+        if(CheckIfInventory(6)) {
         	CircleTransparentPanel T6 = new CircleTransparentPanel(
                     (width * 7 / 8) - ((width * 5 / 16) / 2), (height * 5 / 8) - ((height * 5 / 16) / 2),
                     width * 5 / 16, height * 5 / 16);
         add(T6);
         }IngredientPopupButton B6 = new IngredientPopupButton(width * 7 / 8, height * 5 / 8, width * 5 / 16, height * 5 / 16,
-        		6, imgPanel, ingre);
+        		5, imgPanel, ingre,!CheckIfInventory(6));
         add(B6);
         
         
-        if(CheckIfUsed(7)) {
+        if(CheckIfInventory(7)) {
         	CircleTransparentPanel T7 = new CircleTransparentPanel(
                     (width * 7 / 8) - ((width * 5 / 16) / 2), (height * 3 / 8) - ((height * 5 / 16) / 2),
                     width * 5 / 16, height * 5 / 16);
         add(T7);
         }IngredientPopupButton B7 = new IngredientPopupButton(width * 7 / 8, height * 3 / 8, width * 5 / 16, height * 5 / 16,
-        		7, imgPanel, ingre);
+        		6, imgPanel, ingre,!CheckIfInventory(7));
         add(B7);
         
         
-        if(CheckIfUsed(8)) {
+        if(CheckIfInventory(8)) {
         	CircleTransparentPanel T8 = new CircleTransparentPanel(
                     (width * 5 / 8) - ((width * 5 / 16) / 2), (height * 1 / 8) - ((height * 5 / 16) / 2),
                     width * 5 / 16, height * 5 / 16);
         add(T8);
         }IngredientPopupButton B8 = new IngredientPopupButton(width * 5 / 8, height * 1 / 8, width * 5 / 16, height * 5 / 16,
-        		8, imgPanel, ingre);
+        		7, imgPanel, ingre,!CheckIfInventory(8));
         add(B8);
         
         
@@ -151,13 +150,8 @@ public class IngredientButtonPopup extends JPanel {
         
     }
     
-    public static boolean CheckIfUsed(int toCheck) {
-    	for(int i=0;i<8;i++) {
-    		if(BookPanel.traitUsed[i]==toCheck) {
-    			return true;
-    		}
-
-    	}
+    public static boolean CheckIfInventory(int toCheck) { //TODO:backend connect
+    	
     	return false;
     	
     }
