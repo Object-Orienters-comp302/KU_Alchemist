@@ -1,6 +1,9 @@
-package GUI_Components;
+package GUI_Components_Tables;
 
 import javax.swing.*;
+
+import GUI_Components.ImagePanel;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

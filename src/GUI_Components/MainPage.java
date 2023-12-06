@@ -2,6 +2,10 @@ package GUI_Components;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import GUI_Components_Tables.RectangleTable;
+import GUI_Components_Tables.TriangleTableWithImg;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
