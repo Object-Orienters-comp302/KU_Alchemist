@@ -9,61 +9,61 @@ import java.util.Arrays;
 public class RectangleTable extends JPanel {
     
     public RectangleTable (int[][] data) {
-        setPreferredSize(new Dimension(800, 400));
-        setBackground(Color.WHITE);
-        setLayout(null);
-        ImagePanel table = new ImagePanel(".//Images//triangleTable//RectangleTable.png");
-        table.setLocation(0, 0);
-        table.setSize(800, 400);
-        add(table);
-        
-        for (int i = 0; i <= 7; i++) {
-            RectangleTableButton button = new RectangleTableButton(60 + i * 100, 82, 35, 35,i, data[0]);
-            table.add(button);
-            setComponentZOrder(button, 0);
-        }
-        
-        for (int i = 0; i <= 7; i++) {
-            RectangleTableButton button = new RectangleTableButton(60 + i * 100, 122, 35, 35,i,data[1]);
-            table.add(button);
-            setComponentZOrder(button, 0);
-        }
-        
-        for (int i = 0; i <= 7; i++) {
-            RectangleTableButton button = new RectangleTableButton(60 + i * 100, 162, 35, 35,i,data[2]);
-            table.add(button);
-            setComponentZOrder(button, 0);
-        }
-        
-        for (int i = 0; i <= 7; i++) {
-            RectangleTableButton button = new RectangleTableButton(60 + i * 100, 202, 35, 35,i,data[3]);
-            table.add(button);
-            setComponentZOrder(button, 0);
-        }
-        
-        for (int i = 0; i <= 7; i++) {
-            RectangleTableButton button = new RectangleTableButton(60 + i * 100, 242, 35, 35,i,data[4]);
-            table.add(button);
-            setComponentZOrder(button, 0);
-        }
-        
-        for (int i = 0; i <= 7; i++) {
-            RectangleTableButton button = new RectangleTableButton(60 + i * 100, 282, 35, 35,i,data[5]);
-            table.add(button);
-            setComponentZOrder(button, 0);
-        }
-        
-        for (int i = 0; i <= 7; i++) {
-            RectangleTableButton button = new RectangleTableButton(60 + i * 100, 322, 35, 35,i,data[6]);
-            table.add(button);
-            setComponentZOrder(button, 0);
-        }
-        
-        for (int i = 0; i <= 7; i++) {
-            RectangleTableButton button = new RectangleTableButton(60 + i * 100, 362, 35, 35,i,data[7]);
-            table.add(button);
-            setComponentZOrder(button, 0);
-        }
+    	setPreferredSize(new Dimension(600, 300));
+    	setBackground(Color.WHITE);
+    	setLayout(null);
+    	ImagePanel table = new ImagePanel(".//Images//triangleTable//RectangleTable.png");
+    	table.setLocation(0, 0);
+    	table.setSize(600, 300);
+    	add(table);
+
+    	for (int i = 0; i <= 7; i++) {
+    	    RectangleTableButton button = new RectangleTableButton(40 + i * 75, 61, 25, 25, i, data[0]);
+    	    table.add(button);
+    	    setComponentZOrder(button, 0);
+    	}
+
+    	for (int i = 0; i <= 7; i++) {
+    	    RectangleTableButton button = new RectangleTableButton(40 + i * 75, 92, 25, 25, i, data[1]);
+    	    table.add(button);
+    	    setComponentZOrder(button, 0);
+    	}
+
+    	for (int i = 0; i <= 7; i++) {
+    	    RectangleTableButton button = new RectangleTableButton(40 + i * 75, 122, 25, 25, i, data[2]);
+    	    table.add(button);
+    	    setComponentZOrder(button, 0);
+    	}
+
+    	for (int i = 0; i <= 7; i++) {
+    	    RectangleTableButton button = new RectangleTableButton(40 + i * 75, 152, 25, 25, i, data[3]);
+    	    table.add(button);
+    	    setComponentZOrder(button, 0);
+    	}
+
+    	for (int i = 0; i <= 7; i++) {
+    	    RectangleTableButton button = new RectangleTableButton(40 + i * 75, 182, 25, 25, i, data[4]);
+    	    table.add(button);
+    	    setComponentZOrder(button, 0);
+    	}
+
+    	for (int i = 0; i <= 7; i++) {
+    	    RectangleTableButton button = new RectangleTableButton(40 + i * 75, 213, 25, 25, i, data[5]);
+    	    table.add(button);
+    	    setComponentZOrder(button, 0);
+    	}
+
+    	for (int i = 0; i <= 7; i++) {
+    	    RectangleTableButton button = new RectangleTableButton(40 + i * 75, 242, 25, 25, i, data[6]);
+    	    table.add(button);
+    	    setComponentZOrder(button, 0);
+    	}
+
+    	for (int i = 0; i <= 7; i++) {
+    	    RectangleTableButton button = new RectangleTableButton(40 + i * 75, 272, 25, 25, i, data[7]);
+    	    table.add(button);
+    	    setComponentZOrder(button, 0);
+    	}
         /*   // testing purposes
         Button but=new Button();
         but.addMouseListener(new MouseAdapter() {
