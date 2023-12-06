@@ -9,18 +9,18 @@ public class AngledLinePanel extends JPanel {
     private Float   lineThickness = (float) 2.0;
     private Boolean topToBot      = true;
     
-    public AngledLinePanel() {
+    public AngledLinePanel () {
         setOpaque(false);
     }
     
-    public AngledLinePanel(String color, int thickness) {
+    public AngledLinePanel (String color, int thickness) {
         setOpaque(false);
         lineColor     = Color.decode(color);
         lineThickness = (float) thickness;
         
     }
     
-    public AngledLinePanel(String color, int thickness, Boolean direction) {
+    public AngledLinePanel (String color, int thickness, Boolean direction) {
         setOpaque(false);
         lineColor     = Color.decode(color);
         lineThickness = (float) thickness;
@@ -28,21 +28,22 @@ public class AngledLinePanel extends JPanel {
         
     }
     
-    public static void main(String[] args) {
+    public static void main (String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Angled Line Panel");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(400, 400);
             
             AngledLinePanel angledLinePanel = new AngledLinePanel();
-            frame.getContentPane().add(angledLinePanel);
+            frame.getContentPane()
+                    .add(angledLinePanel);
             
             frame.setVisible(true);
         });
     }
     
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent (Graphics g) {
         super.paintComponent(g);
         
         Graphics2D g2d = (Graphics2D) g;
