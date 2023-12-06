@@ -32,7 +32,7 @@ public class IngredientPopupButton extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked (MouseEvent e) {
-            	if(works&&imgVal!=8) {
+            	if(works) {
                 int clickX = e.getX();
                 int clickY = e.getY();
                 Container parent = IngredientPopupButton.this.getParent();
