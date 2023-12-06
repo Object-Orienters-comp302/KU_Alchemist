@@ -25,6 +25,7 @@ public class Player implements Publisher {
         this.sicknessLevel = 0; // Sickness is an integer from 1 to 3 representing how sick the person is
 
         instances.add(this);
+        System.out.print("New Player Created!: "); System.out.println(this.playerID);
     }
     
     public static ArrayList<Player> getPlayers() {

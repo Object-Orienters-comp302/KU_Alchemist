@@ -16,6 +16,7 @@ public class LoginController {
     protected LoginController() { }
     
     public logPlayerInEnums logPlayerIn(String PlayerID) {
+        // TODO: Add to event log viewer
         if (isUniquePlayerID(PlayerID)) {
             new Player(PlayerID);// Later will have shuffle
             return logPlayerInEnums.LogInSuccesful;
