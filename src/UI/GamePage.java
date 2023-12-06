@@ -12,6 +12,9 @@ public class GamePage extends JFrame implements Listener {
     private CardLayout cardLayout;
     
     public GamePage() {
+        /*
+        GamePage is our main JFrame which we put other JPanels into. It uses CardLayout.
+         */
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1300, 800);
         

@@ -15,9 +15,10 @@ import java.util.Objects;
 public class LoginController {
     protected LoginController() { }
     
-    public logPlayerInEnums logPlayerIn(String PlayerID, Image Avatar) {
-        if (isUniquePlayerID(PlayerID) && isUniqueAvatar(Avatar)) {
-            new Player(PlayerID, Avatar);// Later will have shuffle
+    public logPlayerInEnums logPlayerIn(String PlayerID) {
+        // TODO: Add to event log viewer
+        if (isUniquePlayerID(PlayerID)) {
+            new Player(PlayerID);// Later will have shuffle
             return logPlayerInEnums.LogInSuccesful;
         } else if (isUniquePlayerID(PlayerID)) {
             return logPlayerInEnums.PlayerIDTaken;
@@ -30,16 +31,6 @@ public class LoginController {
         ArrayList<Player> arrList = Player.getPlayers();
         for (Player player : arrList) {
             if (Objects.equals(player.getPlayerID(), PlayerID)) {
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    private boolean isUniqueAvatar(Image Avatar) {
-        ArrayList<Player> arrList = Player.getPlayers();
-        for (Player player : arrList) {
-            if (player.getAvatar() == Avatar) {
                 return false;
             }
         }
