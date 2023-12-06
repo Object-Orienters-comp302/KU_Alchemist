@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.ArrayList;
+import Models.Deck;
 public class Artifact {
     private final String name;
 
@@ -25,5 +27,12 @@ public class Artifact {
         IMMEDIATE_ONE_TIME_EFFECT,
         MULTIPLE_TIMES_EFFECT_PER_ROUND
     }
-    
+    public ArrayList<Artifact> elixirOfInsight() {
+        ArrayList<Artifact> firstThreeCard = new ArrayList<Artifact>();
+        firstThreeCard.add(Deck.getInstance().getArtifacts().get(0));
+        firstThreeCard.add(Deck.getInstance().getArtifacts().get(1));
+        firstThreeCard.add(Deck.getInstance().getArtifacts().get(2));
+        return firstThreeCard;
+    }
+   
 }

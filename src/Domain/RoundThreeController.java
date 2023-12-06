@@ -1,9 +1,8 @@
 package Domain;
 
-import Models.Aspect;
-import Models.Player;
-import Models.PublicationCard;
-import Models.PublicationTrack;
+import Models.*;
+
+import java.util.ArrayList;
 
 public class RoundThreeController {
     public boolean debunkTheory(Player currentPlayer, PublicationCard publicationCardToDebunk,
@@ -39,5 +38,28 @@ public class RoundThreeController {
             }
         }
         return false; // Debunking failed due to invalid inputs or null references
+    }
+    
+    // All of the Functions above is false, and not usable, it is just for practice
+    public ArrayList<Artifact> UseArtifactForOnce (Player currentPlayer, Artifact artifactCard){ // This function is not working
+        ArrayList<Artifact> topThreeArray = new ArrayList<Artifact>();
+        if(currentPlayer.getPlayerInventory().getArtifacts().containsKey(artifactCard)){
+            topThreeArray = artifactCard.elixirOfInsight();
+            return topThreeArray;
+        }
+        return topThreeArray; // Todo raise error
+    }
+    public ArrayList<Artifact> reArrange(ArrayList<Artifact> firstThreeCard){  // This function is not working
+        ArrayList<Artifact> reArrangedfirstThreeCard = new ArrayList<Artifact>();
+        reArrangedfirstThreeCard.add(firstThreeCard.get(1));
+        reArrangedfirstThreeCard.add(firstThreeCard.get(2));
+        reArrangedfirstThreeCard.add(firstThreeCard.get(0));
+        return reArrangedfirstThreeCard;
+    }
+    public boolean UseArtifactEveryRound(PublicationCard pubCard1, PublicationCard pubCard2){ // This function is not working
+        ArrayList<Aspect> aspect_1 = pubCard1.getAspects();
+        ArrayList<Aspect> aspect_2 = pubCard2.getAspects();
+        pubCard1.setAspects(aspect_2);
+        pubCard2.setAspects(aspect_1);
     }
 }
