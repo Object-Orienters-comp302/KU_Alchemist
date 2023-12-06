@@ -61,5 +61,6 @@ public class RoundThreeController {
         ArrayList<Aspect> aspect_2 = pubCard2.getAspects();
         pubCard1.setAspects(aspect_2);
         pubCard2.setAspects(aspect_1);
+        return true;
     }
 }
