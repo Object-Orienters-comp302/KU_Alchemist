@@ -1,11 +1,15 @@
-package GUI_Components;
+package GUI_Components_Subviews;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import GUI_Components.ForageGrounds;
+import GUI_Components.ImageChangingPanel;
+import GUI_Components.PlayerDisplayer;
 import GUI_Components_Publish.BooksDisplayer;
 import GUI_Components_Tables.RectangleTable;
 import GUI_Components_Tables.TriangleTableWithImg;
+import UI.View.PotionBrewingView;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -24,7 +28,7 @@ public class MainPage extends JFrame {
 	//tables
 		JPanel tablesPanel;
 		BooksDisplayer theoriesPanel;
-			
+		PotionBrewingView PotionBrewingPanel;
 			
 		
 		//other?
@@ -56,6 +60,7 @@ public class MainPage extends JFrame {
 		displayerPanel = new JPanel(cardLay);
 			tablesPanel= new JPanel();
 			theoriesPanel= new BooksDisplayer();
+			PotionBrewingPanel= new PotionBrewingView();
 		
 		bottomPanel = new JPanel();
 		 
@@ -64,7 +69,8 @@ public class MainPage extends JFrame {
 			
 			side1 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
 			side2 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
-		 
+			side3 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
+
 		 
 	}
 	
@@ -86,9 +92,13 @@ public class MainPage extends JFrame {
 			tablesPanel.setBounds(0,0,1000,500);
 			tablesPanel.setLayout(null);
 			SummonPuzzle(tablesPanel);
+			
+			
 			displayerPanel.add(tablesPanel,"Tables");
 			
 			displayerPanel.add(theoriesPanel,"Theories");
+			
+			displayerPanel.add(PotionBrewingPanel,"Brewing");
 		
 		bottomPanel.setBounds(0, 590, 1000, 130);
 		basePanel.add(bottomPanel);
@@ -102,6 +112,9 @@ public class MainPage extends JFrame {
 			
 			side2.setBounds(0, 65, 280, 65);
 			sidePanel.add(side2);
+			
+			side3.setBounds(0, 130, 280, 65);
+			sidePanel.add(side3);
 			
 	}
 	
@@ -117,6 +130,12 @@ public class MainPage extends JFrame {
 		 	@Override
 		 	public void mouseClicked(MouseEvent e) {
 		 		cardLay.show(displayerPanel, "Theories");
+		 	}
+		 });
+		side3.addMouseListener(new MouseAdapter() {
+		 	@Override
+		 	public void mouseClicked(MouseEvent e) {
+		 		cardLay.show(displayerPanel, "Brewing");
 		 	}
 		 });
 	}

@@ -18,6 +18,7 @@ import GUI_Components_Publish.BookPanel;
 public class IngredientButton extends JPanel {
 	private int diameter, x, y,currentValue;
 	ImagePanel img;
+	boolean transparent=false;
 	
 
 	public IngredientButton(int x, int y, int width, int height) {
@@ -58,6 +59,45 @@ public class IngredientButton extends JPanel {
         
         
     }
+	public IngredientButton(int x, int y, int width, int height,boolean transparent) {
+        this.setOpaque(false);
+        setLayout(null);
+        this.setBounds(x, y, width, height);
+        currentValue=8;
+        img = new ImagePanel(ChooseImg(8));
+        img.setBounds(width*9/40, width*9/40, width*9/16, height*9/16);
+        add(img);
+        this.transparent=transparent;
+        
+        
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked (MouseEvent e) {
+                int clickX = e.getX();
+                int clickY = e.getY();
+                //Rectangle bounds = getBounds();
+                
+                if (isClickInsideCircle(clickX, clickY)) {
+                    //System.out.println("Button click inside the circle!");
+                    IngredientButtonPopup pop =
+                            new IngredientButtonPopup(x - width/2, y - height/2, width * 2, height * 2,img,IngredientButton.this);
+                    Container parent = getParent();
+                    parent.add(pop);
+                    parent.setComponentZOrder(pop,1);
+                    
+                    parent.repaint();
+                    
+                } else {
+                    System.out.println("Button click outside the circle.");
+                    System.out.print(getBounds());
+                }
+            }
+        });
+        
+        
+        
+        
+    }
 	@Override
     protected void paintComponent (Graphics g) {
         super.paintComponent(g);
@@ -68,9 +108,10 @@ public class IngredientButton extends JPanel {
         int x = (getWidth() - customDiameter) / 2;
         int y = (getHeight() - customDiameter) / 2;
         diameter = originalDiameter;
-        
+        if(!this.transparent) {
         g.setColor(Color.decode("#ebd2a9"));
         g.fillOval(x, y, customDiameter, customDiameter);
+        }
     }
     
     private boolean isClickInsideCircle (int clickX, int clickY) {
