@@ -95,6 +95,23 @@ public class AssetLoader {
             return path;
         }
     }
+    public enum PotionBrewingViewAssets implements AssetPath {
+        Background("Images/ForageGroundsAssets/forageGrounds.png");
+        
+        private final String path;
+        
+        PotionBrewingViewAssets(String Path) {
+            this.path = Path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
+    
+    
     
     // Interface for asset paths
     public interface AssetPath {
