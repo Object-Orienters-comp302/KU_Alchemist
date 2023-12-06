@@ -27,9 +27,7 @@ public class LoginView extends JPanel implements Publisher {
     LoginController                   loginControl;
     CircularLinkedList<BufferedImage> tokenList;
     CircularLinkedList<BufferedImage> backgroundList;
-    GridBagLayout                     gridBagLayout;
     ImagePanel                        MainPanel;
-    GridBagConstraints                gbc_MainPanel;
     JPanel                            TokenSelectorPanel;
     JPanel                            TokenSelectorPanel_Left;
     JPanel                            TokenSelectorPanel_Left_Label_Holder;
@@ -69,9 +67,9 @@ public class LoginView extends JPanel implements Publisher {
         this.Listeners = new ArrayList<>();
         
         
-        playerAmount = 2;
+        playerAmount = 2;//ToDO: change this
         
-        setPreferredSize(new Dimension(1200, 900));
+        setPreferredSize(new Dimension(1280, 720));
         CreateObjects();
         SetupObjets();
         SetupListeners();
@@ -81,10 +79,8 @@ public class LoginView extends JPanel implements Publisher {
         loginControl   = GameController.getInstance().getLoginController();
         tokenList      = loginControl.getTokenImages();
         backgroundList = loginControl.getTokenBackgrounds();
-        
-        gridBagLayout                         = new GridBagLayout();
         MainPanel                             = new ImagePanel(backgroundList.get());
-        gbc_MainPanel                         = new GridBagConstraints();
+        MainPanel.setBounds(0, 0, 1280, 720);
         TokenSelectorPanel                    = new JPanel();
         TokenSelectorPanel_Left               = new ColorChangingPanel("#cf9d15", "#FFD700");
         TokenSelectorPanel_Left_Label_Holder  = new JPanel();
@@ -102,24 +98,16 @@ public class LoginView extends JPanel implements Publisher {
     }
     
     private void SetupObjets() {
-        gridBagLayout.columnWidths  = new int[]{ 1200, 0 };
-        gridBagLayout.rowHeights    = new int[]{ 900, 0 };
-        gridBagLayout.columnWeights = new double[]{ 0.0, Double.MIN_VALUE };
-        gridBagLayout.rowWeights    = new double[]{ 0.0, Double.MIN_VALUE };
-        setLayout(gridBagLayout);
-        
-        gbc_MainPanel.fill  = GridBagConstraints.BOTH;
-        gbc_MainPanel.gridx = 0;
-        gbc_MainPanel.gridy = 0;
-        add(MainPanel, gbc_MainPanel);
+        setLayout(null);
+        add(MainPanel);
         
         MainPanel.setLayout(null);
         
-        TokenSelectorPanel.setBounds(150, 150, 900, 450);
+        TokenSelectorPanel.setBounds(225, 125, 750, 400);
         MainPanel.add(TokenSelectorPanel);
         TokenSelectorPanel.setLayout(null);
         
-        TokenSelectorPanel_Left.setBounds(0, 0, 75, 450);
+        TokenSelectorPanel_Left.setBounds(0, 0, 75, 400);
         TokenSelectorPanel.add(TokenSelectorPanel_Left);
         TokenSelectorPanel_Left.setLayout(null);
         
@@ -133,11 +121,11 @@ public class LoginView extends JPanel implements Publisher {
         TokenSelectorPanel_Left_Label.setBounds(0, 0, 30, 60);
         TokenSelectorPanel_Left_Label_Holder.add(TokenSelectorPanel_Left_Label);
         
-        TokenSelectorPanel_Displayer.setBounds(75, 0, 750, 450);
+        TokenSelectorPanel_Displayer.setBounds(75, 0, 600, 400);
         TokenSelectorPanel.add(TokenSelectorPanel_Displayer);
         TokenSelectorPanel_Displayer.setLayout(null);
         
-        TokenSelectorPanel_Right.setBounds(825, 0, 75, 450);
+        TokenSelectorPanel_Right.setBounds(675, 0, 75, 400);
         TokenSelectorPanel.add(TokenSelectorPanel_Right);
         TokenSelectorPanel_Right.setLayout(null);
         
@@ -151,7 +139,7 @@ public class LoginView extends JPanel implements Publisher {
         TokenSelectorPanel_Right_Label.setBounds(0, 0, 30, 60);
         TokenSelectorPanel_Right_Label_Holder.add(TokenSelectorPanel_Right_Label);
         
-        UserNamePanel.setBounds(450, 645, 300, 50);
+        UserNamePanel.setBounds(450, 600, 300, 50);
         UserNamePanel.setBackground(Color.decode("#FFD700"));
         MainPanel.add(UserNamePanel);
         UserNamePanel.setLayout(null);
@@ -255,7 +243,7 @@ public class LoginView extends JPanel implements Publisher {
     public static void main(String[] args) { // TODO: Move to UnitTests
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1200, 900);
+        frame.setSize(1294, 757);
         frame.getContentPane().setLayout(new GridBagLayout());
         JPanel login = new LoginView();
         frame.getContentPane().add(login);

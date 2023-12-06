@@ -1,4 +1,4 @@
-package GUI_Components;
+package GUI_Components_Potion;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -10,18 +10,23 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class BookButton extends JPanel {
+import GUI_Components.BookButton;
+import GUI_Components.BookButtonPopup;
+import GUI_Components.BookPanel;
+import GUI_Components.ImagePanel;
+//ToDo:invantory checks
+public class IngredientButton extends JPanel {
 	private int diameter, x, y,currentValue;
 	ImagePanel img;
-	public static ArrayList<Integer> taken= new ArrayList<Integer>();
+	
 
-	public BookButton(int x, int y, int width, int height,int index) {
+	public IngredientButton(int x, int y, int width, int height) {
         this.setOpaque(false);
         setLayout(null);
         this.setBounds(x, y, width, height);
-        currentValue=BookPanel.traitUsed[index];
-        img = new ImagePanel(ChooseImg(currentValue));
-        img.setBounds(15, 12, width*11/16, height*11/16);
+        currentValue=1;
+        img = new ImagePanel(ChooseImg(8));
+        img.setBounds(width*3/20, width*3/20, width*11/16, height*11/16);
         add(img);
         
         
@@ -32,14 +37,13 @@ public class BookButton extends JPanel {
                 int clickY = e.getY();
                 //Rectangle bounds = getBounds();
                 
-                if (isClickInsideCircle(clickX, clickY)&&!BookPanel.published[index]) {
-                    System.out.println("Button click inside the circle!");
-                    BookButtonPopup pop =
-                            new BookButtonPopup(x - width/2, y - height/2, width * 2, height * 2,img,BookButton.this);
-                    //how to make it add to it
+                if (isClickInsideCircle(clickX, clickY)) {
+                    //System.out.println("Button click inside the circle!");
+                    IngredientButtonPopup pop =
+                            new IngredientButtonPopup(x - width/2, y - height/2, width * 2, height * 2,img,IngredientButton.this);
                     Container parent = getParent();
                     parent.add(pop);
-                    parent.setComponentZOrder(pop, 0);
+                    
                     parent.repaint();
                     
                 } else {
@@ -81,35 +85,35 @@ public class BookButton extends JPanel {
     	String path;
     	switch (val) {
     	case 0:
-            path = ".\\\\Images\\\\triangleTable\\\\questionMark.png";
+            path = ".\\Images\\book\\feather.png";
             break;
         case 1:
-            path = ".\\Images\\book\\C1.png";
+            path = ".\\Images\\book\\feet.png";
             break;
         case 2:
-            path = ".\\Images\\book\\C2.png";
+            path = ".\\Images\\book\\flower.png";
             break;
         case 3:
-            path = ".\\Images\\book\\C3.png";
+            path = ".\\Images\\book\\frog.png";
             break;
         case 4:
-            path = ".\\Images\\book\\C4.png";
+            path = ".\\Images\\book\\mandrake.png";
             break;
         case 5:
-            path = ".\\Images\\book\\C5.png";
+            path = ".\\Images\\book\\mushroom.png";
             break;
         case 6:
-            path = ".\\Images\\book\\C6.png";
+            path = ".\\Images\\book\\weed.png";
             break;
         case 7:
-            path = ".\\Images\\book\\C7.png";
+            path = ".\\Images\\book\\scorpion.png";
             break;
         case 8:
-        	path = ".\\Images\\book\\C8.png";
+            path = ".\\Images\\triangleTable\\empty.png";
             break;
-        
         default:
-            path = ".\\Images\\triangleTable\\questionMark.png";
+            path = ".\\Images\\triangleTable\\empty.png";
+            break;
     	}
     	return path;
     }
@@ -129,23 +133,23 @@ public class BookButton extends JPanel {
         frame.getContentPane()
                 .setLayout(null);
         frame.getContentPane().setBackground(Color.red);
-        BookButton book= new BookButton(50,50,100,100,0);
+        IngredientButton book= new IngredientButton(50,50,100,100);
         frame.getContentPane().add(book);
-        BookButton book1= new BookButton(250,50,100,100,1);
+        IngredientButton book1= new IngredientButton(250,50,100,100);
         frame.getContentPane().add(book1);
-        BookButton book2= new BookButton(450,50,100,100,2);
+        IngredientButton book2= new IngredientButton(450,50,100,100);
         frame.getContentPane().add(book2);
-        BookButton book3= new BookButton(650,50,100,100,3);
+        IngredientButton book3= new IngredientButton(650,50,100,100);
         frame.getContentPane().add(book3);
-        BookButton book4= new BookButton(50,250,100,100,4);
+        IngredientButton book4= new IngredientButton(50,250,100,100);
         frame.getContentPane().add(book4);
-        BookButton book5= new BookButton(250,250,100,100,5);
+        IngredientButton book5= new IngredientButton(250,250,100,100);
         frame.getContentPane().add(book5);
-        BookButton book6= new BookButton(450,250,100,100,6);
+        IngredientButton book6= new IngredientButton(450,250,100,100);
         frame.getContentPane().add(book6);
-        BookButton book7= new BookButton(650,250,100,100,7);
+        IngredientButton book7= new IngredientButton(650,250,100,100);
         frame.getContentPane().add(book7);
-        BookButton book8= new BookButton(50,450,100,100,0);
+        IngredientButton book8= new IngredientButton(50,450,100,100);
         frame.getContentPane().add(book8);
         frame.setVisible(true);
         
