@@ -9,7 +9,9 @@ public class BookPopupButton extends JPanel {
     private int diameter, x, y;
     private ImagePanel img;
     
-    public BookPopupButton(int x, int y, int width, int height, int imgVal, ImagePanel panelToChange) {
+
+    public BookPopupButton (int x, int y, int width, int height, int imgVal, ImagePanel panelToChange,BookButton book) {
+
         
         setLayout(null);
         this.setBounds(x - width / 2, y - height / 2, width, height);
@@ -22,16 +24,20 @@ public class BookPopupButton extends JPanel {
         
         this.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+
+            public void mouseClicked (MouseEvent e) {
+            	if(!BookButtonPopup.CheckIfUsed(imgVal)||imgVal==0) {
+
                 int clickX = e.getX();
                 int clickY = e.getY();
                 Container parent = BookPopupButton.this.getParent();
                 Container grandParent = parent.getParent();
                 
                 if (isClickInsideCircle(clickX, clickY)) {
+                	
                     
-                    panelToChange.changeImage(TriangleTableButton.chooseImg(imgVal));
-                    
+                    panelToChange.changeImage(BookButton.chooseImg(imgVal));
+                    book.setCurrentValue(imgVal);
                     if (grandParent != null) {
                         
                         grandParent.remove(parent);
@@ -51,6 +57,7 @@ public class BookPopupButton extends JPanel {
                     }
                     
                 }
+            }
             }
         });
         
