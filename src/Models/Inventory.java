@@ -49,6 +49,6 @@ public class Inventory {
     }
     
     public void addGold(Integer num) {
-        this.Gold = this.Gold + num;
+        setGold(getGold() + num);
     }
 }
