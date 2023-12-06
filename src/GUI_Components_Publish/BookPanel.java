@@ -32,12 +32,12 @@ public class BookPanel extends JPanel {
 		book.add(panel);
 		
 		ImagePanel endorsePanel = new ImagePanel("./Images/triangleTable/empty.png");
-		endorsePanel.setBounds(160, 5, 120, 100);
+		endorsePanel.setBounds(160, 5, 120, 90);
 		book.add(endorsePanel);
 		
-		ImageChangingPanel confirmButton = new ImageChangingPanel("./Images/book/book.png","./Images/book/feet.png");
+		ImageChangingPanel confirmButton = new ImageChangingPanel("./Images/book/envelope.png","./Images/book/publish.png");
 		
-		confirmButton.setBounds(160, 105, 120, 50);
+		confirmButton.setBounds(160, 95, 120, 50);
 		book.add(confirmButton);
 		BookButton CircleButton = new BookButton(35, 90, 65, 65,index);
 		
@@ -54,6 +54,10 @@ public class BookPanel extends JPanel {
 					System.out.print(val);
 					traitUsed[index]=val;
 					published[index]=true;
+					confirmButton.setDefImage("./Images/book/published.png");
+					confirmButton.setHoverImage("./Images/book/published.png");
+					BookPanel.this.revalidate();
+					BookPanel.this.repaint();
 				}
 			}
 		});

@@ -16,7 +16,7 @@ import java.awt.GridBagConstraints;
 public class ImageChangingPanel extends JPanel {
     private BufferedImage defImage;
     private BufferedImage hoverImage;
-    
+    private ImagePanel image;
     // Constructor that takes a Color parameter
     /**
      * @wbp.parser.constructor
@@ -28,14 +28,15 @@ public class ImageChangingPanel extends JPanel {
         gridBagLayout.rowWeights = new double[]{1.0};
         gridBagLayout.columnWeights = new double[]{1.0};
         this.setLayout(gridBagLayout);
+        setOpaque(false);
         
-        ImagePanel image= new ImagePanel(defImage);
+        image= new ImagePanel(defImage);
         GridBagConstraints gbc_panel = new GridBagConstraints();
         gbc_panel.fill = GridBagConstraints.BOTH;
         gbc_panel.gridx = 0;
         gbc_panel.gridy = 0;
         add(image, gbc_panel);
-        this.addMouseListener(new ImageChangeListener(image, this.defImage, this.hoverImage));
+        this.addMouseListener(new ImageChangeListener(this.image, this.defImage, this.hoverImage));
     }
     
     public ImageChangingPanel (String defImage, String hoverImage) {
@@ -46,8 +47,9 @@ public class ImageChangingPanel extends JPanel {
         gridBagLayout.rowWeights = new double[]{1.0};
         gridBagLayout.columnWeights = new double[]{1.0};
         this.setLayout(gridBagLayout);
+        setOpaque(false);
         
-        ImagePanel image= new ImagePanel(defImage);
+        image= new ImagePanel(defImage);
         GridBagConstraints gbc_panel = new GridBagConstraints();
         gbc_panel.fill = GridBagConstraints.BOTH;
         gbc_panel.gridx = 0;
@@ -77,5 +79,46 @@ public class ImageChangingPanel extends JPanel {
         public void mouseExited (MouseEvent e) {
             panel.changeImage(defImage);
         }
+    }
+    
+    public BufferedImage getDefImage() {
+        return defImage;
+    }
+
+    // Setter for defImage
+    public void setDefImage(BufferedImage defImage) {
+        this.defImage = defImage;
+        this.addMouseListener(new ImageChangeListener(this.image, this.defImage, this.hoverImage));
+        this.image.changeImage(this.defImage);
+        this.revalidate();
+        this.repaint();
+    }
+    
+    public void setDefImage(String defImage) {
+        this.defImage = GUtil.fetchImage(defImage);
+        this.addMouseListener(new ImageChangeListener(this.image, this.defImage, this.hoverImage));
+        this.image.changeImage(this.defImage);
+        this.revalidate();
+        this.repaint();
+    }
+    
+    // Getter for hoverImage
+    public BufferedImage getHoverImage() {
+        return hoverImage;
+    }
+
+    // Setter for hoverImage
+    public void setHoverImage(BufferedImage hoverImage) {
+        this.hoverImage = hoverImage;
+        this.addMouseListener(new ImageChangeListener(this.image, this.defImage, this.hoverImage));
+        this.revalidate();
+        this.repaint();
+    }
+    
+    public void setHoverImage(String hoverImage) {
+        this.hoverImage = GUtil.fetchImage(hoverImage);
+        this.addMouseListener(new ImageChangeListener(this.image, this.defImage, this.hoverImage));
+        this.revalidate();
+        this.repaint();
     }
 }
