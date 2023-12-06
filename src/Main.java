@@ -3,7 +3,7 @@ import UI.ViewFactory;
 
 
 public class Main {
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         LoginView loginView = ViewFactory.getInstance().getLoginView();
         loginView.setVisible(true);
     }

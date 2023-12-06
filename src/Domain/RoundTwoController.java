@@ -4,10 +4,10 @@ import Models.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import Domain.RoundOneController;
+
 public class RoundTwoController {
     
-    public Potion sellPotion (Inventory inventory, Potion potion, Guarantee guarantee) {
+    public Potion sellPotion(Inventory inventory, Potion potion, Guarantee guarantee) {
         Potion removed_potion = removePotion(inventory.getPotions(), potion);
         
         if (removed_potion != null) {
@@ -29,7 +29,7 @@ public class RoundTwoController {
         return null;
     }
     
-    public Potion removePotion (HashMap<Potion, Integer> Potions, Potion potion) {
+    public Potion removePotion(HashMap<Potion, Integer> Potions, Potion potion) {
         
         if (Potions.isEmpty()) {
             return null;
@@ -46,11 +46,10 @@ public class RoundTwoController {
         }
     }
     
-    public boolean publishTheory (Player currentPlayer, Ingredient selectedIngredient, ArrayList<Aspect> alchemyMarker) {
+    public boolean publishTheory(Player currentPlayer, Ingredient selectedIngredient, ArrayList<Aspect> alchemyMarker) {
         if (selectedIngredient != null && alchemyMarker != null) {
             // Check if the selected ingredient has an available alchemy marker and does not have a published theory
-            if (!PublicationTrack.getInstance()
-                    .isInPublicationTrack(selectedIngredient, alchemyMarker)) {
+            if (!PublicationTrack.getInstance().isInPublicationTrack(selectedIngredient, alchemyMarker)) {
                 // Assign the marker to the selected ingredient
                 PublicationCard new_Theory = new PublicationCard(selectedIngredient, alchemyMarker, 1);
                 // Mark the marker as used

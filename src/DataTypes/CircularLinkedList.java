@@ -5,12 +5,12 @@ public class CircularLinkedList<T> {
     private Node selected;
     private Node first;
     
-    public CircularLinkedList () {
+    public CircularLinkedList() {
         selected = null;
         first    = null;
     }
     
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         // TODO Auto-generated method stub
         CircularLinkedList<Integer> lis = new CircularLinkedList<Integer>();
         lis.add(1);
@@ -23,7 +23,7 @@ public class CircularLinkedList<T> {
         
     }
     
-    public void add (T value) {
+    public void add(T value) {
         Node node = new Node(value);
         if (first == null) {
             first     = node;
@@ -39,12 +39,12 @@ public class CircularLinkedList<T> {
         node.prev    = oldPrev;
     }
     
-    public T getNext () {
+    public T getNext() {
         selected = selected.next;
         return selected.value;
     }
     
-    public T delete () {
+    public T delete() {
         T val;
         if (selected == first) {
             if (first == first.next) {
@@ -65,11 +65,11 @@ public class CircularLinkedList<T> {
         return val;
     }
     
-    public T get () {
+    public T get() {
         return selected.value;
     }
     
-    public T getPrev () {
+    public T getPrev() {
         selected = selected.prev;
         return selected.value;
     }
@@ -80,7 +80,7 @@ public class CircularLinkedList<T> {
         Node next = null;
         Node prev = null;
         
-        public Node (T value) {
+        public Node(T value) {
             this.value = value;
         }
     }

@@ -1,32 +1,28 @@
 package GUI_Components;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Graphics;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class BookPopupButton extends JPanel {
     private int diameter, x, y;
     private ImagePanel img;
     
-    public BookPopupButton (int x, int y, int width, int height, int imgVal, ImagePanel panelToChange) {
+    public BookPopupButton(int x, int y, int width, int height, int imgVal, ImagePanel panelToChange) {
         
         setLayout(null);
         this.setBounds(x - width / 2, y - height / 2, width, height);
         
         img = new ImagePanel(BookButton.chooseImg(imgVal));
-        img.setBounds(width/4, width/4, width/2, height/2);
+        img.setBounds(width / 4, width / 4, width / 2, height / 2);
         add(img);
         this.setOpaque(false);
         
         
         this.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 int clickX = e.getX();
                 int clickY = e.getY();
                 Container parent = BookPopupButton.this.getParent();
@@ -61,7 +57,7 @@ public class BookPopupButton extends JPanel {
         
     }
     
-    private boolean isClickInsideCircle (int clickX, int clickY) {
+    private boolean isClickInsideCircle(int clickX, int clickY) {
         int radius = diameter / 2;
         int centerX = x + radius;
         int centerY = y + radius;
@@ -71,26 +67,25 @@ public class BookPopupButton extends JPanel {
         return distance <= radius;
     }
     
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         // TODO Auto-generated method stub
         
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 900);
-        frame.getContentPane()
-                .setLayout(null);
+        frame.getContentPane().setLayout(null);
         //CircleImgButton login = new CircleImgButton(100, 100, 100, 100, ".\\Images\\triangleTable\\plusRed.png", null);
         
         
         //frame.getContentPane()
-          //      .add(login);
+        //      .add(login);
         frame.setVisible(true);
         
         
     }
     
     @Override
-    protected void paintComponent (Graphics g) {
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
         int originalDiameter = Math.min(getWidth(), getHeight());

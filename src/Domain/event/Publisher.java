@@ -11,7 +11,7 @@ public interface Publisher {
      *
      * @param type The type of the event to publish.
      */
-    void publishEvent (Type type);
+    void publishEvent(Type type);
     
     /**
      * Adds a new listener to the publisher.
@@ -19,5 +19,5 @@ public interface Publisher {
      *
      * @param lis The listener to be added.
      */
-    void addListener (Listener lis);
+    void addListener(Listener lis);
 }
