@@ -44,15 +44,45 @@ public class Player {
         return Avatar;
     }
     
-    public Inventory getPlayerInventory () {
-        return PlayerInventory;
-    }
-    
     public Integer getReputation () {
         return Reputation;
     }
     
     public void setReputation (Integer reputation) {
         Reputation = reputation;
+<<<<<<< HEAD
+=======
+        publishEvent(Type.REPUTATION);
+    }
+    
+    @Override
+    public void publishEvent (Type type) {
+        for (Listener listener : listeners) {
+            listener.onEvent(type);
+        }
+    }
+    
+    @Override
+    public void addListener (Listener lis) {
+        listeners.add(lis);
+    }
+    
+    public Integer getSickness () {
+        return Sickness;
+    }
+    
+    public void setSickness (Integer sickness) {
+        Sickness = sickness;
+        publishEvent(Type.SICKNESS);
+    }
+    
+    public void getSurgery () {
+        getPlayerInventory().setGold(0);
+        setSickness(0);
+>>>>>>> 2eaf161 (Attempting to fix github issues)
+    }
+    
+    public Inventory getPlayerInventory () {
+        return PlayerInventory;
     }
 }
