@@ -1,4 +1,4 @@
-package GUI_Components;
+package GUI_Components_Potion;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -9,16 +9,21 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class BookPopupButton extends JPanel {
+import GUI_Components.BookButton;
+import GUI_Components.BookButtonPopup;
+import GUI_Components.BookPopupButton;
+import GUI_Components.ImagePanel;
+
+public class IngredientPopupButton extends JPanel {
     private int diameter, x, y;
     private ImagePanel img;
     
-    public BookPopupButton (int x, int y, int width, int height, int imgVal, ImagePanel panelToChange,BookButton book) {
+    public IngredientPopupButton (int x, int y, int width, int height, int imgVal, ImagePanel panelToChange,IngredientButton book) {
         
         setLayout(null);
         this.setBounds(x - width / 2, y - height / 2, width, height);
         
-        img = new ImagePanel(BookButton.ChooseImg(imgVal));
+        img = new ImagePanel(IngredientButton.ChooseImg(imgVal));
         img.setBounds(width/4, width/4, width/2, height/2);
         add(img);
         this.setOpaque(false);
@@ -30,13 +35,13 @@ public class BookPopupButton extends JPanel {
             	if(!BookButtonPopup.CheckIfUsed(imgVal)||imgVal==0) {
                 int clickX = e.getX();
                 int clickY = e.getY();
-                Container parent = BookPopupButton.this.getParent();
+                Container parent = IngredientPopupButton.this.getParent();
                 Container grandParent = parent.getParent();
                 
                 if (isClickInsideCircle(clickX, clickY)) {
                 	
                     
-                    panelToChange.changeImage(BookButton.ChooseImg(imgVal));
+                    panelToChange.changeImage(IngredientButton.ChooseImg(imgVal));
                     book.setCurrentValue(imgVal);
                     if (grandParent != null) {
                         

@@ -23,7 +23,7 @@ public class BookPanel extends JPanel {
 		book.setLayout(null);
 		
 		
-		ImagePanel panel = new ImagePanel(BookPanel.chooseImg(index));
+		ImagePanel panel = new ImagePanel(BookPanel.ChooseImg(index));
 		panel.setBounds(30, 5, 80, 80);
 		book.add(panel);
 		
@@ -62,7 +62,7 @@ public class BookPanel extends JPanel {
 	
 	
 	
-	 public static String chooseImg(int val) {
+	 public static String ChooseImg(int val) {
 	    	String path;
 	    	switch (val) {
 	    	case 0:
