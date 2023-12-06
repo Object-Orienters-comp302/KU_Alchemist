@@ -195,13 +195,12 @@ public class LoginView extends JPanel implements Publisher {
                     LoginView.iter += 1;
                     //System.out.print(LoginView.iter);
                     if (NextPanel_Label.getText() == "START") {
-                        publishEvent(Type.START_MENUVIEW);
+                        publishEvent(Type.START_MENUVIEW); // Handled by GamePage
                     }
                     if ((LoginView.iter) == playerAmount - 1) {
                         NextPanel_Label.setText("START");
                     }
                 }
-                
             }
         });
         
