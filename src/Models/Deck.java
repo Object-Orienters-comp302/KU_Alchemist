@@ -37,10 +37,20 @@ public class Deck implements Publisher {
     }
     
     public void addIngredient (Ingredient ingredient, int quantity) {
-        Ingredients.merge(ingredient, quantity, Integer::sum); }
+        Ingredients.merge(ingredient, quantity, Integer::sum);
+        publishEvent(Type.DECK_INGREDIENT);
+    }
+    
+    @Override
+    public void publishEvent (Type type) {
+        for (Listener listener : listeners) {
+            listener.onEvent(type);
+        }
+    }
     
     public void addArtifactCard (Artifact artifact, int quantity) {
         Artifacts.merge(artifact, quantity, Integer::sum);
+        publishEvent(Type.DECK_ARTIFACT);
     }
     
     public Ingredient popIngredient () {
@@ -57,13 +67,6 @@ public class Deck implements Publisher {
         }
         
         return null;
-    }
-    
-    @Override
-    public void publishEvent (Type type) {
-        for (Listener listener : listeners) {
-            listener.onEvent(type);
-        }
     }
     
     public Artifact popArtifact () {
