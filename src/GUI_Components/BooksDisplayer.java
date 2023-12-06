@@ -25,14 +25,14 @@ public class BooksDisplayer extends JPanel {
 		BookPanel B6 = new BookPanel(6);
 		BookPanel B7 = new BookPanel(7);
 		
-		B0.setBounds(10,10,400,200);
-		B1.setBounds(335,10,400,200);
-		B2.setBounds(670,10,400,200);
-		B3.setBounds(10,170,400,200);
-		B4.setBounds(670,170,400,200);
-		B5.setBounds(10,330,400,200);
-		B6.setBounds(335,330,400,200);
-		B7.setBounds(670,330,400,200);
+		B0.setBounds(10,5,400,200);
+		B1.setBounds(335,5,400,200);
+		B2.setBounds(670,5,400,200);
+		B3.setBounds(10,160,400,200);
+		B4.setBounds(670,160,400,200);
+		B5.setBounds(10,315,400,200);
+		B6.setBounds(335,315,400,200);
+		B7.setBounds(670,315,400,200);
 		Background.add(B0);
 		Background.add(B1);
 		Background.add(B2);
