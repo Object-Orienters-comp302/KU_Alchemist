@@ -1,4 +1,4 @@
-package UI;
+package UI.View;
 
 import DataTypes.CircularLinkedList;
 import Domain.GameController;
@@ -16,7 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class LoginPage extends JPanel {
+public class LoginView extends JPanel {
     static int iter = 0;
     int                               playerAmount;
     String                            TriColor;
@@ -42,7 +42,7 @@ public class LoginPage extends JPanel {
     private JTextField textField;
     
     
-    protected LoginPage() {
+    protected LoginView() {
         new Token("khorne", AssetLoader.getAssetPath(AssetLoader.Tokens.KHORNE),
                   AssetLoader.getAssetPath(AssetLoader.Backgrounds.KHORNE));
         new Token("nurgle", AssetLoader.getAssetPath(AssetLoader.Tokens.NURGLE),
@@ -191,12 +191,12 @@ public class LoginPage extends JPanel {
                     textField.setText("");
                     TokenSelectorPanel_Displayer.changeImage(tokenList.get());
                     MainPanel.changeImage(backgroundList.get());
-                    LoginPage.iter += 1;
-                    //System.out.print(LoginPage.iter);
+                    LoginView.iter += 1;
+                    //System.out.print(LoginView.iter);
                     if (NextPanel_Label.getText() == "START") {
                         System.exit(0);
                     }
-                    if ((LoginPage.iter) == playerAmount - 1) {
+                    if ((LoginView.iter) == playerAmount - 1) {
                         NextPanel_Label.setText("START");
                     }
                 }
@@ -241,7 +241,7 @@ public class LoginPage extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 900);
         frame.getContentPane().setLayout(new GridBagLayout());
-        JPanel login = new LoginPage();
+        JPanel login = new LoginView();
         frame.getContentPane().add(login);
         frame.setVisible(true);
     }

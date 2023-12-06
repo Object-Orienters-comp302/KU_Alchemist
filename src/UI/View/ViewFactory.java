@@ -1,4 +1,4 @@
-package UI;
+package UI.View;
 
 public class ViewFactory {
     
@@ -7,9 +7,9 @@ public class ViewFactory {
     private BoardView      boardView;
     private DashboardView  dashboardView;
     private HelpScreenView helpScreenView;
-    private LoginView      loginView;
     private MenuView       menuView;
     private PauseView      pauseView;
+    private LoginView      loginView;
     
     
     private ViewFactory() {
@@ -17,9 +17,9 @@ public class ViewFactory {
         boardView      = new BoardView();
         dashboardView  = new DashboardView();
         helpScreenView = new HelpScreenView();
-        loginView      = new LoginView();
         menuView       = new MenuView();
         pauseView      = new PauseView();
+        loginView      = new LoginView();
         
         ViewFactory.single_instance = this;
     }
@@ -44,16 +44,16 @@ public class ViewFactory {
         return helpScreenView;
     }
     
-    public LoginView getLoginView() {
-        return loginView;
-    }
-    
     public MenuView getMenuView() {
         return menuView;
     }
     
     public PauseView getPauseView() {
         return pauseView;
+    }
+    
+    public LoginView getLoginView() {
+        return loginView;
     }
 }
 
