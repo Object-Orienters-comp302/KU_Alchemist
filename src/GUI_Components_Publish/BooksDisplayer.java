@@ -1,10 +1,12 @@
-package GUI_Components;
+package GUI_Components_Publish;
 
 import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import GUI_Components.ImagePanel;
 
 public class BooksDisplayer extends JPanel {
 	

@@ -9,10 +9,10 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import GUI_Components.BookButton;
-import GUI_Components.BookButtonPopup;
-import GUI_Components.BookPopupButton;
 import GUI_Components.ImagePanel;
+import GUI_Components_Publish.BookButton;
+import GUI_Components_Publish.BookButtonPopup;
+import GUI_Components_Publish.BookPopupButton;
 
 public class IngredientPopupButton extends JPanel {
     private int diameter, x, y;

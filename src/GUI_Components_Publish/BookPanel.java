@@ -1,4 +1,4 @@
-package GUI_Components;
+package GUI_Components_Publish;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -6,6 +6,10 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import GUI_Components.ImageChangingPanel;
+import GUI_Components.ImagePanel;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 

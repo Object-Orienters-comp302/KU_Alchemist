@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import GUI_Components.BookButton;
-import GUI_Components.BookButtonPopup;
-import GUI_Components.BookPanel;
 import GUI_Components.ImagePanel;
+import GUI_Components_Publish.BookButton;
+import GUI_Components_Publish.BookButtonPopup;
+import GUI_Components_Publish.BookPanel;
 //ToDo:invantory checks
 public class IngredientButton extends JPanel {
 	private int diameter, x, y,currentValue;
