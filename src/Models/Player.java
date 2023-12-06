@@ -20,7 +20,6 @@ public class Player implements Publisher {
     Integer Sickness;
     
     private ArrayList<Listener> listeners;
-    private Integer             Sickness;
     
     public Player (String PlayerID, Image Avatar) {// ToDo: Delete this. It is only to support gorkemsPackage
         this.PlayerID        = PlayerID;
@@ -91,17 +90,5 @@ public class Player implements Publisher {
     
     public Inventory getPlayerInventory () {
         return PlayerInventory;
-    }
-    
-    public Integer getSickness () {
-        return Sickness;
-    }
-    
-    public void setSickness (Integer sickness) {
-        Sickness = sickness;
-    }
-    public void getSurgery(){
-        getPlayerInventory().setGold(0);
-        setSickness(0);
     }
 }
