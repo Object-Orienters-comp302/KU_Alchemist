@@ -13,7 +13,7 @@ public class AssetLoader {
         SLAANESH("Images/backgrounds/slaanesh_background.png"),
         TZEENTCH("Images/backgrounds/tzeentch_background.png"),
         BLUE("Images/backgrounds/blueBackground.png"),
-        RED("Images/backgrounds/greenBackground.png"),
+        RED("Images/backgrounds/redBackground.png"),
         GREEN("Images/backgrounds/greenBackground.png"),
         YELLOW("Images/backgrounds/yellowBackground.png"),
         PURPLE("Images/backgrounds/purpleBackground.png");
@@ -38,7 +38,7 @@ public class AssetLoader {
         SLAANESH("Images/tokens/slaanesh.png"),
         TZEENTCH("Images/tokens/tzeentch.png"),
         BLUE("Images/tokens/bluePortrait.png"),
-        RED("Images/tokens/greenPortrait.png"),
+        RED("Images/tokens/redPortrait.png"),
         GREEN("Images/tokens/greenPortrait.png"),
         YELLOW("Images/tokens/yellowPortrait.png"),
         PURPLE("Images/tokens/purplePortrait.png");
