@@ -56,6 +56,16 @@ public class LoginView extends JPanel implements Publisher {
                   AssetLoader.getAssetPath(AssetLoader.Backgrounds.SLAANESH));
         new Token("tzeentch", AssetLoader.getAssetPath(AssetLoader.Tokens.TZEENTCH),
                   AssetLoader.getAssetPath(AssetLoader.Backgrounds.TZEENTCH));
+        new Token("blue", AssetLoader.getAssetPath(AssetLoader.Tokens.BLUE),
+                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE));
+        new Token("red", AssetLoader.getAssetPath(AssetLoader.Tokens.RED),
+                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.RED));
+        new Token("green", AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN),
+                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.GREEN));
+        new Token("purple", AssetLoader.getAssetPath(AssetLoader.Tokens.PURPLE),
+                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.PURPLE));
+        new Token("yellow", AssetLoader.getAssetPath(AssetLoader.Tokens.YELLOW),
+                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
         this.Listeners = new ArrayList<>();
         
         
