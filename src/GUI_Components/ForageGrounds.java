@@ -1,11 +1,15 @@
 package GUI_Components;
 
-import Utils.AssetLoader;
-
-import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.*;
+
+import Domain.RoundOneController;
+import Models.Ingredient;
+import Models.Player;
+import Utils.AssetLoader;
 public class ForageGrounds extends JPanel {
     
     /**
@@ -13,25 +17,75 @@ public class ForageGrounds extends JPanel {
      */
     ImagePanel Background;
     ImagePanel Card;
+    JTextField textField;
+    RoundOneController roundOneController;
+    Player player;
     
-    public ForageGrounds() {
-        this.setSize(1000, 500);
+    public ForageGrounds(Player player, RoundOneController roundOneController) {
+        this.roundOneController = roundOneController;
+        this.player = player;
+        
+        this.setSize(1000,500);
         setLayout(null);
         
         Card = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Background));
-        Card.setBounds(832, 240, 158, 250);
+        Card.setBounds(773, 223 ,158, 250);
         this.add(Card);
         
         Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Card));
         Background.setBounds(0, 0, 1000, 500);
         this.add(Background);
         
+        textField = new JTextField();
+        textField.setForeground(Color.BLACK);
+        textField.setEditable(false);
+        textField.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+        textField.setText(Texts.Start.getText());
+        textField.setFont(new Font("Century Schoolbook", Font.BOLD | Font.ITALIC, 26));
+        textField.setBounds(228, 294, 554, 96);
+        Background.add(textField);
+        textField.setColumns(10);
+        
+        textField.setOpaque(false);
+        
         Card.addMouseMotionListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                //TODO Dummy Code
+                Ingredient.IngredientTypes ingredientType = CardClicked(player, roundOneController);
+                if (ingredientType != null){
+                    textField.setText(String.format(Texts.Success.getText(),ingredientType.getTypeString()));
+                }
+                else {
+                    textField.setText(Texts.Fail.getText());
+                }
             }
         });
         
+        
+    }
+    
+    private enum Texts{
+        Start("To forage press the card!! It costs 1 gold."),
+        Success("Foraging successful!! Spent 1 gold. Ingredient:%s"),
+        Fail("Foraging is not successful!!Need more gold.");
+        
+        private final String Text;
+        
+        Texts (String text) {
+            Text = text;
+        }
+        
+        public String getText () {
+            return Text;
+        }
+    }
+    private Ingredient.IngredientTypes CardClicked (Player player, RoundOneController roundOneController){ //Calls Forage for Ingredient on controller then, returns its type for the function.
+        Ingredient ingredient = roundOneController.ForageForIngredient(player);
+        if(ingredient != null){
+            return ingredient.getType();
+        }
+        else{
+            return null;
+        }
     }
     
 }

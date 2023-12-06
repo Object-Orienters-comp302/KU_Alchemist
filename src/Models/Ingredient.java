@@ -55,14 +55,24 @@ public class Ingredient {
     }
     
     public enum IngredientTypes {
-        Plant,
-        Mandrake,
-        Flower,
-        Mushroom,
-        ChickenLeg,
-        Toad,
-        Feather,
-        Scorpion
+        Plant("Plant"),
+        Mandrake("Mandrake"),
+        Flower("Flower"),
+        Mushroom("Mushroom"),
+        ChickenLeg("Chicken Leg"),
+        Toad("Toad"),
+        Feather("Feather"),
+        Scorpion("Scorpion");
+        private final String TypeString;
+        
+        IngredientTypes (String typeString){
+            
+            this.TypeString = typeString;
+        }
+        
+        public String getTypeString () {
+            return TypeString;
+        }
     }
     
     public enum AspectTrio {
