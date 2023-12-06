@@ -10,7 +10,6 @@ import Domain.RoundOneController;
 import Models.Ingredient;
 import Models.Player;
 import Utils.AssetLoader;
-
 public class ForageGrounds extends JPanel {
     
     /**
@@ -34,7 +33,7 @@ public class ForageGrounds extends JPanel {
         this.add(Card);
         
         Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Card));
-        Background.setBounds(0,0 ,1000, 500);
+        Background.setBounds(0, 0, 1000, 500);
         this.add(Background);
         
         textField = new JTextField();

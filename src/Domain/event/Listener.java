@@ -11,5 +11,5 @@ public interface Listener {
      *
      * @param type The type of the event that occurred.
      */
-    void onEvent (Type type);
+    void onEvent(Type type);
 }

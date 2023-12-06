@@ -21,7 +21,7 @@ public class Player implements Publisher {
     
     private ArrayList<Listener> listeners;
     
-    public Player (String PlayerID, Image Avatar) {// ToDo: Delete this. It is only to support gorkemsPackage
+    public Player(String PlayerID, Image Avatar) {// ToDo: Delete this. It is only to support gorkemsPackage
         this.PlayerID        = PlayerID;
         this.Avatar          = Avatar;
         this.PlayerInventory = new Inventory();
@@ -31,7 +31,7 @@ public class Player implements Publisher {
         instances.add(this);
     }
     
-    public Player (String PlayerID, Image Avatar, Integer StartingGold) {
+    public Player(String PlayerID, Image Avatar, Integer StartingGold) {
         this.PlayerID        = PlayerID;
         this.Avatar          = Avatar;
         this.PlayerInventory = new Inventory();
@@ -41,58 +41,58 @@ public class Player implements Publisher {
     }
     
     
-    public static ArrayList<Player> getInstances () {
+    public static ArrayList<Player> getInstances() {
         return instances;
     }
     
-    public String getPlayerID () {
+    public String getPlayerID() {
         return PlayerID;
     }
     
-    public Image getAvatar () {
+    public Image getAvatar() {
         return Avatar;
     }
     
     @Override
-    public void addListener (Listener lis) {
+    public void addListener(Listener lis) {
         listeners.add(lis);
     }
     
-    public void addReputation (Integer num) {
+    public void addReputation(Integer num) {
         setReputation(getReputation() + num);
     }
     
-    public Integer getReputation () {
+    public Integer getReputation() {
         return Reputation;
     }
     
-    public void setReputation (Integer reputation) {
+    public void setReputation(Integer reputation) {
         Reputation = reputation;
         publishEvent(Type.REPUTATION);
     }
     
     @Override
-    public void publishEvent (Type type) {
+    public void publishEvent(Type type) {
         for (Listener listener : listeners) {
             listener.onEvent(type);
         }
     }
     
-    public Integer getSickness () {
+    public Integer getSickness() {
         return Sickness;
     }
     
-    public void setSickness (Integer sickness) {
+    public void setSickness(Integer sickness) {
         Sickness = sickness;
         publishEvent(Type.SICKNESS);
     }
     
-    public void getSurgery () {
+    public void getSurgery() {
         getPlayerInventory().setGold(0);
         setSickness(0);
     }
     
-    public Inventory getPlayerInventory () {
+    public Inventory getPlayerInventory() {
         return PlayerInventory;
     }
 }

@@ -11,7 +11,7 @@ public class GameController {
     private RoundOneController roundOneController;
     private RoundTwoController roundTwoController;
     
-    private GameController () {
+    private GameController() {
         // Initialize sub-controllers
         loginController    = new LoginController();
         menuController     = new MenuController();
@@ -24,44 +24,44 @@ public class GameController {
         GameController.single_instance = this;
     }
     
-    public static synchronized GameController getInstance () {
+    public static synchronized GameController getInstance() {
         if (single_instance == null) {
             single_instance = new GameController();
         }
         return single_instance;
     }
     
-    public LoginController getLoginController () {
+    public LoginController getLoginController() {
         return loginController;
     }
     
     // Method to change views or states, called by sub-controllers
-    public void changeState (String newState) {
+    public void changeState(String newState) {
         // Handle state change logic
         // For example, switch between different panels/views
     }
     
-    public HelpController getHelpController () {
+    public HelpController getHelpController() {
         return helpController;
     }
     
-    public PauseController getPauseController () {
+    public PauseController getPauseController() {
         return pauseController;
     }
     
-    public MenuController getMenuController () {
+    public MenuController getMenuController() {
         return menuController;
     }
     
-    public RegisterController getRegisterController () {
+    public RegisterController getRegisterController() {
         return registerController;
     }
     
-    public RoundOneController getRoundOneController () {
+    public RoundOneController getRoundOneController() {
         return roundOneController;
     }
     
-    public RoundTwoController getRoundTwoController () {
+    public RoundTwoController getRoundTwoController() {
         return roundTwoController;
     }
 }

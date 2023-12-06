@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 public class KawaseBlur {
     
-    public static BufferedImage applyKawaseBlur (BufferedImage image, int iterations, int blurSize) {
+    public static BufferedImage applyKawaseBlur(BufferedImage image, int iterations, int blurSize) {
         int width = image.getWidth();
         int height = image.getHeight();
         
@@ -20,13 +20,11 @@ public class KawaseBlur {
         
         for (int i = 0; i < iterations; i++) {
             int radius = blurSize * (i + 1);
-            int[] sourcePixels = ((DataBufferInt) currentImage.getRaster()
-                    .getDataBuffer()).getData();
-            int[] destPixels = ((DataBufferInt) blurredImage.getRaster()
-                    .getDataBuffer()).getData();
+            int[] sourcePixels = ((DataBufferInt) currentImage.getRaster().getDataBuffer()).getData();
+            int[] destPixels = ((DataBufferInt) blurredImage.getRaster().getDataBuffer()).getData();
             
-            IntStream range = width * height < 10000 ? IntStream.range(0, height) : IntStream.range(0, height)
-                    .parallel();
+            IntStream range =
+                    width * height < 10000 ? IntStream.range(0, height) : IntStream.range(0, height).parallel();
             range.forEach(y -> {
                 for (int x = 0; x < width; x++) {
                     int sumA = 0, sumR = 0, sumG = 0, sumB = 0, count = 0;
