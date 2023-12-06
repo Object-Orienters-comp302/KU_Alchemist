@@ -1,16 +1,21 @@
 package UI.View;
 
+import Domain.GameController;
+import Domain.MenuController;
 import GUI_Components.*;
 import GUI_Components_Tables.RectangleTable;
 import GUI_Components_Tables.TriangleTableWithImg;
+import Models.Player;
 import UI.GamePage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class MenuView extends JPanel {
+    private MenuController controller;
     JPanel basePanel;
     JPanel topPanel;
     JPanel displayerPanel;
@@ -20,13 +25,13 @@ public class MenuView extends JPanel {
     
     
     public MenuView() {
+        controller = GameController.getInstance().getMenuController();
         setSize(1280, 760);
         setLayout(null);
         CreateObjects();
         ApplyStuff();
         ApplyFuncs();
-        PlacePlayers(3);
-        
+        PlacePlayers();
     }
     
     private void CreateObjects() {
@@ -35,12 +40,9 @@ public class MenuView extends JPanel {
         displayerPanel = new JPanel();
         bottomPanel    = new JPanel();
         sidePanel      = new JPanel();
-        
-        btnNewButton = new JButton("New button");
-        
+
+        btnNewButton = new JButton("Spawn TriTable");
         sidePanel.add(btnNewButton);
-        
-        
     }
     
     private void ApplyStuff() {
@@ -74,11 +76,17 @@ public class MenuView extends JPanel {
         });
     }
     
-    public void PlacePlayers(int playerAmount) {
-        for (int i = 0; i < playerAmount; i++) {
-            PlayerDisplayer comp = new PlayerDisplayer(null);
-            comp.setBounds((i * 240 + 40), 5, 200, 80);
-            topPanel.add(comp);
+    public void PlacePlayers() {
+        ArrayList<Player> playerList = controller.getPlayers();
+        System.out.println(playerList);
+        int playerCount = playerList.size();
+        
+        for (int i = 0; i < playerCount; i++) {
+            PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
+            
+            
+            displayer.setBounds((i * 240 + 40), 5, 200, 80);
+            topPanel.add(displayer);
         }
         
     }
@@ -101,6 +109,8 @@ public class MenuView extends JPanel {
         panel.revalidate();
     }
     public static void main(String[] args) {
+        new Player("01", null);
+        new Player("02", null);
         JFrame frame = new JFrame();
         MenuView menuView = ViewFactory.getInstance().getMenuView();
         frame.setSize(1300,800);

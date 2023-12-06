@@ -55,7 +55,7 @@ public class RoundTwoController {
                 // Mark the marker as used
                 PublicationTrack.getInstance().addPublicationCard(new_Theory);
                 // Pay 1 gold piece to the bank
-                currentPlayer.getPlayerInventory().addGold(-1);
+                currentPlayer.getInventory().addGold(-1);
                 // Gain 1 point of reputation
                 currentPlayer.addReputation(1);
                 return true; // Theory published successfully

@@ -43,7 +43,7 @@ public class RoundThreeController {
     // All of the Functions above is false, and not usable, it is just for practice
     public ArrayList<Artifact> UseArtifactForOnce (Player currentPlayer, Artifact artifactCard){ // This function is not working
         ArrayList<Artifact> topThreeArray = new ArrayList<Artifact>();
-        if(currentPlayer.getPlayerInventory().getArtifacts().containsKey(artifactCard)){
+        if(currentPlayer.getInventory().getArtifacts().containsKey(artifactCard)){
             topThreeArray = artifactCard.elixirOfInsight();
             return topThreeArray;
         }

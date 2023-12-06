@@ -24,8 +24,8 @@ public class RoundZeroController {
     }
     
     public void gold_setup(Player player1, Player player2, int gold) {
-        player1.getPlayerInventory().setGold(gold);
-        player2.getPlayerInventory().setGold(gold);
+        player1.getInventory().setGold(gold);
+        player2.getInventory().setGold(gold);
     }
     
     public void initializeIngredients(int quantity) {
@@ -37,7 +37,7 @@ public class RoundZeroController {
     private void dealIngredientCards(Player player, int count) {
         for (int i = 0; i < count; i++) {
             Ingredient card = deck.popIngredient();
-            player.getPlayerInventory().addIngredient(card, 1);
+            player.getInventory().addIngredient(card, 1);
         }
     }
     

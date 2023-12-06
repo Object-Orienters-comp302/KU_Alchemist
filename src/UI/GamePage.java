@@ -22,7 +22,7 @@ public class GamePage extends JFrame implements Listener {
         cardPanel = new JPanel(cardLayout);
         
         cardPanel.add(ViewFactory.getInstance().getLoginView(), Cards.LoginView.getString());
-        cardPanel.add(ViewFactory.getInstance().getMenuView(), Cards.MenuView.getString());
+        
         
         this.getContentPane().add(cardPanel);
         
@@ -36,6 +36,7 @@ public class GamePage extends JFrame implements Listener {
     @Override
     public void onEvent(Domain.event.Type type) {
         if (type == Domain.event.Type.START_MENUVIEW) {
+            cardPanel.add(ViewFactory.getInstance().getMenuView(), Cards.MenuView.getString());
             cardLayout.show(cardPanel, Cards.MenuView.getString());
         }
     }

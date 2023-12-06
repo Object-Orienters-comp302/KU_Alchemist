@@ -13,15 +13,7 @@ public class ViewFactory {
     
     
     private ViewFactory() {
-        // Initialize sub-controllers
-        boardView      = new BoardView();
-        dashboardView  = new DashboardView();
-        helpScreenView = new HelpScreenView();
-        menuView       = new MenuView();
-        pauseView      = new PauseView();
-        loginView      = new LoginView();
-        
-        ViewFactory.single_instance = this;
+        // Constructor remains empty as views will be created on demand
     }
     
     public static synchronized ViewFactory getInstance() {
@@ -31,29 +23,45 @@ public class ViewFactory {
         return single_instance;
     }
     
-    
     public BoardView getBoardView() {
+        if (boardView == null) {
+            boardView = new BoardView();
+        }
         return boardView;
     }
     
     public DashboardView getDashboardView() {
+        if (dashboardView == null) {
+            dashboardView = new DashboardView();
+        }
         return dashboardView;
     }
     
     public HelpScreenView getHelpScreenView() {
+        if (helpScreenView == null) {
+            helpScreenView = new HelpScreenView();
+        }
         return helpScreenView;
     }
     
     public MenuView getMenuView() {
+        if (menuView == null) {
+            menuView = new MenuView();
+        }
         return menuView;
     }
     
     public PauseView getPauseView() {
+        if (pauseView == null) {
+            pauseView = new PauseView();
+        }
         return pauseView;
     }
     
     public LoginView getLoginView() {
+        if (loginView == null) {
+            loginView = new LoginView();
+        }
         return loginView;
     }
 }
-

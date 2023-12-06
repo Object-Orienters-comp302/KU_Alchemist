@@ -11,21 +11,27 @@ import java.util.ArrayList;
 public class Player implements Publisher {
     private static ArrayList<Player> instances = new ArrayList<>();
     private static int currPlayerIndex = 0;
-    private String    playerID;
-    private Inventory playerInventory;
-    private Integer             playerScore;
-    private Integer             reputation;
+    private String     ID;
+    private Image      avatar;
+    private Inventory inventory;
+    private Integer   score;
+    private Integer   reputation;
+    
+    private Integer             gold;
     private Integer             sicknessLevel;
     private ArrayList<Listener> listeners;
     
-    public Player(String playerID) {
-        this.playerID        = playerID;
-        this.playerInventory = new Inventory();
-        this.playerScore   = 0; // Start from 0
+    public Player(String playerID, Image avatar) {
+        this.ID        = playerID;
+        this.avatar    = avatar;
+        this.inventory = new Inventory();
+        this.score     = 0; // Start from 0
+        this.reputation = 0;
+        this.gold = 0;
         this.sicknessLevel = 0; // Sickness is an integer from 1 to 3 representing how sick the person is
 
         instances.add(this);
-        System.out.print("New Player Created!: "); System.out.println(this.playerID);
+        System.out.print("New Player Created!: "); System.out.println(this.ID);
     }
     
     public static ArrayList<Player> getPlayers() {
@@ -45,25 +51,27 @@ public class Player implements Publisher {
     
     public void haveSurgery() {
         // If the player gets surgery remove all gold and set sickness to 0
-        getPlayerInventory().setGold(0);
+        getInventory().setGold(0);
         setSicknessLevel(0);
     }
     
     // Auto-Generated getter setters
-    public String getPlayerID() {
-        return playerID;
+    public String getID() {
+        return ID;
     }
     
-    public Inventory getPlayerInventory() {
-        return playerInventory;
+    public Image getAvatar() {return avatar;}
+    
+    public Inventory getInventory() {
+        return inventory;
     }
     
-    public Integer getPlayerScore() {
-        return playerScore;
+    public Integer getScore() {
+        return score;
     }
     
-    public void setPlayerScore(Integer playerScore) {
-        this.playerScore = playerScore;
+    public void setScore(Integer score) {
+        this.score = score;
     }
     
     public Integer getReputation() {
@@ -78,7 +86,15 @@ public class Player implements Publisher {
     public void addReputation(Integer num) {
         setReputation(getReputation() + num);
     }
-
+    
+    public Integer getGold() {
+        return gold;
+    }
+    
+    public void setGold(Integer gold) {
+        this.gold = gold;
+    }
+    
     public Integer getSicknessLevel() {
         return sicknessLevel;
     }
@@ -105,9 +121,9 @@ public class Player implements Publisher {
     
     // Testing function
     public static void main(String[] args){
-        new Player("0");
-        new Player("1");
-        new Player("2");
+        new Player("0", null);
+        new Player("1", null);
+        new Player("2", null);
         
         System.out.println(Player.getCurrPlayer());
         System.out.println(Player.getPlayers());
