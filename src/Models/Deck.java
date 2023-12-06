@@ -7,17 +7,18 @@ import Domain.event.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Random;
 
 public class Deck implements Publisher {
-    private static Deck                         single_instance;
-    private        HashMap<Ingredient, Integer> Ingredients;
-    private        HashMap<Artifact, Integer>   Artifacts;
+    private static Deck                  single_instance;
+    private        ArrayList<Ingredient> Ingredients;
+    private        ArrayList<Artifact>   Artifacts;
     
     private ArrayList<Listener> listeners;
     
     private Deck() {
-        Ingredients = new HashMap<>();
-        Artifacts   = new HashMap<>();
+        Ingredients = new ArrayList<>();
+        Artifacts   = new ArrayList<>();
         
         Deck.single_instance = this;
     }
@@ -28,16 +29,18 @@ public class Deck implements Publisher {
         return single_instance;
     }
     
-    public HashMap<Ingredient, Integer> getIngredients() {
+    public ArrayList<Ingredient> getIngredients() {
         return Ingredients;
     }
     
-    public HashMap<Artifact, Integer> getArtifacts() {
+    public ArrayList<Artifact> getArtifacts() {
         return Artifacts;
     }
     
     public void addIngredient(Ingredient ingredient, int quantity) {
-        Ingredients.merge(ingredient, quantity, Integer::sum);
+        for(int i = 0; i < quantity ; i++){
+            Ingredients.add(ingredient);
+        }
         publishEvent(Type.DECK_INGREDIENT);
     }
     
@@ -49,40 +52,40 @@ public class Deck implements Publisher {
     }
     
     public void addArtifactCard(Artifact artifact, int quantity) {
-        Artifacts.merge(artifact, quantity, Integer::sum);
+        for(int i = 0; i < quantity ; i++ ){
+            Artifacts.add(artifact);
+        }
         publishEvent(Type.DECK_ARTIFACT);
     }
     
     public Ingredient popIngredient() {
+        // remove random element from Ingredient list
+        
         if (Ingredients.isEmpty()) {
             return null;
         }
         
-        for (Entry<Ingredient, Integer> entry : Ingredients.entrySet()) {
-            if (entry.getValue() > 0) {
-                Ingredients.put(entry.getKey(), entry.getValue() - 1);
-                publishEvent(Type.DECK_INGREDIENT);
-                return entry.getKey();
-            }
-        }
+        Random random = new Random();
+        int index = random.nextInt(Ingredients.size());
         
-        return null;
+        Ingredient ingredient = Ingredients.remove(index);
+        publishEvent(Type.DECK_INGREDIENT);
+        return ingredient;
     }
     
     public Artifact popArtifact() {
+        // remove random element from Ingredient list
+        
         if (Artifacts.isEmpty()) {
             return null;
         }
         
-        for (Entry<Artifact, Integer> entry : Artifacts.entrySet()) {
-            if (entry.getValue() > 0) {
-                Artifacts.put(entry.getKey(), entry.getValue() - 1);
-                publishEvent(Type.DECK_ARTIFACT);
-                return entry.getKey();
-            }
-        }
+        Random random = new Random();
+        int index = random.nextInt(Ingredients.size());
         
-        return null;
+        Artifact artifact = Artifacts.remove(index);
+        publishEvent(Type.DECK_ARTIFACT);
+        return artifact;
     }
     
     @Override
