@@ -10,7 +10,7 @@ public class ColorChangingPanel extends JPanel {
     private Color hoverColor;
     
     // Constructor that takes a Color parameter
-    public ColorChangingPanel(Color defColor, Color hoverColor) {
+    public ColorChangingPanel (Color defColor, Color hoverColor) {
         this.defColor   = defColor;
         this.hoverColor = hoverColor;
         
@@ -18,7 +18,7 @@ public class ColorChangingPanel extends JPanel {
         this.setBackground(defColor);
     }
     
-    public ColorChangingPanel(String defColorHex, String hoverColorHex) {
+    public ColorChangingPanel (String defColorHex, String hoverColorHex) {
         this.defColor   = Color.decode(defColorHex);
         this.hoverColor = Color.decode(hoverColorHex);
         
@@ -31,19 +31,19 @@ public class ColorChangingPanel extends JPanel {
         private final Color  hoverColor;
         private final Color  originalColor;
         
-        public ColorChangeListener(JPanel panel, Color hoverColor, Color originalColor) {
+        public ColorChangeListener (JPanel panel, Color hoverColor, Color originalColor) {
             this.panel         = panel;
             this.hoverColor    = hoverColor;
             this.originalColor = originalColor;
         }
         
         @Override
-        public void mouseEntered(MouseEvent e) {
+        public void mouseEntered (MouseEvent e) {
             panel.setBackground(hoverColor);
         }
         
         @Override
-        public void mouseExited(MouseEvent e) {
+        public void mouseExited (MouseEvent e) {
             panel.setBackground(originalColor);
         }
     }

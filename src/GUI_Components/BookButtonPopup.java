@@ -1,31 +1,27 @@
 package GUI_Components;
 
-
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridBagLayout;
 import java.awt.Point;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class BookButtonPopup extends JPanel {
     private int width, height, x, y;
     
-
     public BookButtonPopup (int x, int y, int width, int height, ImagePanel imgPanel,BookButton book) {
-
-    public BookButtonPopup(int x, int y, int width, int height, ImagePanel imgPanel) {
-
         this.setBounds(x, y, width, height);
         this.setOpaque(false);
         this.setLayout(null);
-        int[] data = new int[3];
-        int current = 1;
+        int [] data=new int[3];
+        int current=1;
         
         ///did not work when I put the block in another function
         
-
         BookPopupButton B0 = new BookPopupButton(width * 4 / 8, height * 4 / 8, width * 8 / 16, height * 8 / 16,
         		0, imgPanel, book);
         add(B0);
@@ -110,14 +106,13 @@ public class BookButtonPopup extends JPanel {
         add(T8);
         }BookPopupButton B8 = new BookPopupButton(width * 5 / 8, height * 1 / 8, width * 5 / 16, height * 5 / 16,
         		8, imgPanel, book);
-
         add(B8);
         
         
         
         this.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked (MouseEvent e) {
                 Container parent = BookButtonPopup.this.getParent();
                 
                 if (parent != null) {
@@ -131,7 +126,7 @@ public class BookButtonPopup extends JPanel {
             }
             
             @Override
-            public void mouseExited(MouseEvent e) {
+            public void mouseExited (MouseEvent e) {
                 Container parent = BookButtonPopup.this.getParent();
                 if (parent != null) {
                     Point mousePoint = e.getPoint();
@@ -150,7 +145,6 @@ public class BookButtonPopup extends JPanel {
         
     }
     
-
     public static boolean CheckIfUsed(int toCheck) {
     	for(int i=0;i<8;i++) {
     		if(BookPanel.traitUsed[i]==toCheck) {
@@ -207,7 +201,6 @@ public class BookButtonPopup extends JPanel {
     }
     */
     public static void main (String[] args) {
-
         // TODO Auto-generated method stub
         
         JFrame frame = new JFrame("test");
@@ -218,47 +211,10 @@ public class BookButtonPopup extends JPanel {
         BookPanel login = new BookPanel(1);
         frame.getContentPane()
                 .add(login);
-
-
         frame.setVisible(true);
         
     	
         
         
-    }
-    
-    private int select(int current, int desired) {
-        if (current == desired) {
-            return 0;
-        } else {
-            return desired;
-        }
-    }
-    
-    private void Disable() {
-        if (BookButton.taken.contains(1)) {
-            CircleTransparentPanel pan = new CircleTransparentPanel(10, 10, 100, 100);
-        }
-        if (BookButton.taken.contains(1)) {
-            CircleTransparentPanel pan = new CircleTransparentPanel(10, 10, 100, 100);
-        }
-        if (BookButton.taken.contains(1)) {
-            CircleTransparentPanel pan = new CircleTransparentPanel(10, 10, 100, 100);
-        }
-        if (BookButton.taken.contains(1)) {
-            CircleTransparentPanel pan = new CircleTransparentPanel(10, 10, 100, 100);
-        }
-        if (BookButton.taken.contains(1)) {
-            CircleTransparentPanel pan = new CircleTransparentPanel(10, 10, 100, 100);
-        }
-        if (BookButton.taken.contains(1)) {
-            CircleTransparentPanel pan = new CircleTransparentPanel(10, 10, 100, 100);
-        }
-        if (BookButton.taken.contains(1)) {
-            CircleTransparentPanel pan = new CircleTransparentPanel(10, 10, 100, 100);
-        }
-        if (BookButton.taken.contains(1)) {
-            CircleTransparentPanel pan = new CircleTransparentPanel(10, 10, 100, 100);
-        }
     }
 }
