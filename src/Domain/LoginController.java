@@ -4,7 +4,6 @@ import DataTypes.CircularLinkedList;
 import Models.Player;
 import Models.Token;
 
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -18,7 +17,7 @@ public class LoginController {
     public logPlayerInEnums logPlayerIn(String PlayerID) {
         // TODO: Add to event log viewer
         if (isUniquePlayerID(PlayerID)) {
-            new Player(PlayerID);// Later will have shuffle
+            new Player(PlayerID, null);// Later will have shuffle
             return logPlayerInEnums.LogInSuccesful;
         } else if (isUniquePlayerID(PlayerID)) {
             return logPlayerInEnums.PlayerIDTaken;
@@ -30,7 +29,7 @@ public class LoginController {
     public boolean isUniquePlayerID(String PlayerID) {
         ArrayList<Player> arrList = Player.getPlayers();
         for (Player player : arrList) {
-            if (Objects.equals(player.getPlayerID(), PlayerID)) {
+            if (Objects.equals(player.getID(), PlayerID)) {
                 return false;
             }
         }

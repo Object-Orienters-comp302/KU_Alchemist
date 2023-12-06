@@ -9,13 +9,13 @@ public class RoundOneController {
     protected RoundOneController() { }
 
     public Ingredient ForageForIngredient (Player player) {
-        if(player.getPlayerInventory().getGold() >= 1){
+        if(player.getInventory().getGold() >= 1){
             Deck deck = Deck.getInstance();
             Ingredient ingredient = deck.popIngredient();
-            player.getPlayerInventory()
+            player.getInventory()
                     .addIngredient(ingredient, 1);
-            player.getPlayerInventory()
-                    .setGold(player.getPlayerInventory()
+            player.getInventory()
+                    .setGold(player.getInventory()
                                      .getGold()-1);
             return ingredient;
         }
@@ -26,20 +26,20 @@ public class RoundOneController {
     }
     
     public void TransmuteIngredient(Player player, Ingredient ingredient) {
-        HashMap<Ingredient, Integer> ingredients = player.getPlayerInventory().getIngredients();
+        HashMap<Ingredient, Integer> ingredients = player.getInventory().getIngredients();
         if (ingredients.get(ingredient) > 0) {
             
             ingredients.put(ingredient, ingredients.get(ingredient) - 1);
-            player.getPlayerInventory().setGold(player.getPlayerInventory().getGold() + 1);
+            player.getInventory().setGold(player.getInventory().getGold() + 1);
         }
     }
     
     public void BuyArtifacts(Player player, Artifact artifact) {
-        HashMap<Artifact, Integer> artifacts = player.getPlayerInventory().getArtifacts();
-        if (player.getPlayerInventory().getGold() > 3) {
+        HashMap<Artifact, Integer> artifacts = player.getInventory().getArtifacts();
+        if (player.getInventory().getGold() > 3) {
             
             artifacts.put(artifact, artifacts.get(artifact) + 1);
-            player.getPlayerInventory().setGold(player.getPlayerInventory().getGold() - 3);
+            player.getInventory().setGold(player.getInventory().getGold() - 3);
         }
     }
     
@@ -54,7 +54,7 @@ public class RoundOneController {
             }
         } else {// Testing on Student
             if (potion.getSign() == Potion.Signs.Negative) {//If negative lose 1 gold
-                player.getPlayerInventory().setGold(player.getPlayerInventory().getGold() - 1);
+                player.getInventory().setGold(player.getInventory().getGold() - 1);
             }
             
         }
