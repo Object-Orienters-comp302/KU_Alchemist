@@ -6,11 +6,15 @@ import java.awt.GridBagLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class BookPanel extends JPanel {
-	
-	public BookPanel() {
-		setPreferredSize(new Dimension(400, 200));
+	public static Boolean[] published =new Boolean[]{false, false, false, false, false, false, false, false};
+	//public static int[] traitUsed =new int[8];
+	public static int[] traitUsed =new int[] {0,0,0,0,0,0,0,0};
+	public BookPanel(int index) {
+		setPreferredSize(new Dimension(500, 250));
 		setLayout(null);
 		setBackground(Color.red);
 		ImagePanel book= new ImagePanel("./Images/book/book.png");
@@ -18,13 +22,37 @@ public class BookPanel extends JPanel {
 		add(book);
 		book.setLayout(null);
 		
-		ImagePanel panel = new ImagePanel("./Images/book/feet.png");
+		
+		ImagePanel panel = new ImagePanel(BookPanel.chooseImg(index));
 		panel.setBounds(60, 10, 100, 100);
 		book.add(panel);
 		
-		BookButton panel_1 = new BookButton(70, 110, 60, 60,1);
+		ImagePanel endorsePanel = new ImagePanel("./Images/triangleTable/empty.png");
+		endorsePanel.setBounds(220, 10, 140, 120);
+		book.add(endorsePanel);
+		
+		ImageChangingPanel confirmButton = new ImageChangingPanel("./Images/book/book.png","./Images/book/feet.png");
+		
+		confirmButton.setBounds(220, 140, 140, 50);
+		book.add(confirmButton);
+		BookButton CircleButton = new BookButton(70, 120, 65, 65,index);
 		//panel_1.setBounds(70, 110, 80, 80);
-		book.add(panel_1);
+		add(CircleButton);
+		setComponentZOrder(CircleButton, 0);
+		
+		
+		confirmButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int val=CircleButton.getCurrentValue();
+				if(val!=0) {
+					System.out.print(val);
+					traitUsed[index]=val;
+					published[index]=true;
+				}
+			}
+		});
+		
 	}
 	
 	
@@ -33,7 +61,39 @@ public class BookPanel extends JPanel {
 	
 	
 	
-	
+	 public static String chooseImg(int val) {
+	    	String path;
+	    	switch (val) {
+	    	case 0:
+	            path = ".\\Images\\book\\feather.png";
+	            break;
+	        case 1:
+	            path = ".\\Images\\book\\feet.png";
+	            break;
+	        case 2:
+	            path = ".\\Images\\book\\flower.png";
+	            break;
+	        case 3:
+	            path = ".\\Images\\book\\frog.png";
+	            break;
+	        case 4:
+	            path = ".\\Images\\book\\mandrake.png";
+	            break;
+	        case 5:
+	            path = ".\\Images\\book\\mushroom.png";
+	            break;
+	        case 6:
+	            path = ".\\Images\\book\\weed.png";
+	            break;
+	        case 7:
+	            path = ".\\Images\\book\\scorpion.png";
+	            break;
+	        default:
+	            path = ".\\Images\\book\\empty.png";
+	            break;
+	    	}
+	    	return path;
+	    }
 	
 	
 	 public static void main (String[] args) {
@@ -42,7 +102,7 @@ public class BookPanel extends JPanel {
      frame.setSize(1200, 1000);
      frame.getContentPane()
              .setLayout(new GridBagLayout());
-     BookPanel login = new BookPanel();
+     BookPanel login = new BookPanel(1);
      frame.getContentPane()
              .add(login);
      frame.setVisible(true);

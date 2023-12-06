@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class BookButton extends JPanel {
-	private int diameter, x, y;
+	private int diameter, x, y,currentValue;
 	ImagePanel img;
 	public static ArrayList<Integer> taken= new ArrayList<Integer>();
 
@@ -19,9 +19,9 @@ public class BookButton extends JPanel {
         this.setOpaque(false);
         setLayout(null);
         this.setBounds(x, y, width, height);
-        
-        img = new ImagePanel(chooseImg(index));
-        img.setBounds(17, 15, width-35, height-35);
+        currentValue=BookPanel.traitUsed[index];
+        img = new ImagePanel(chooseImg(currentValue));
+        img.setBounds(15, 12, width*11/16, height*11/16);
         add(img);
         
         
@@ -32,10 +32,10 @@ public class BookButton extends JPanel {
                 int clickY = e.getY();
                 //Rectangle bounds = getBounds();
                 
-                if (isClickInsideCircle(clickX, clickY)) {
+                if (isClickInsideCircle(clickX, clickY)&&!BookPanel.published[index]) {
                     System.out.println("Button click inside the circle!");
                     BookButtonPopup pop =
-                            new BookButtonPopup(x - width, y - height, width * 3, height * 3,img);
+                            new BookButtonPopup(x - width, y - height, width * 3, height * 3,img,BookButton.this);
                     //how to make it add to it
                     Container parent = getParent();
                     parent.add(pop);
@@ -64,7 +64,7 @@ public class BookButton extends JPanel {
         int y = (getHeight() - customDiameter) / 2;
         diameter = originalDiameter;
         
-        g.setColor(Color.WHITE);
+        g.setColor(Color.decode("#ebd2a9"));
         g.fillOval(x, y, customDiameter, customDiameter);
     }
     
@@ -81,37 +81,44 @@ public class BookButton extends JPanel {
     	String path;
     	switch (val) {
     	case 0:
-            path = ".\\Images\\book\\C1.png";
+            path = ".\\\\Images\\\\triangleTable\\\\questionMark.png";
             break;
         case 1:
-            path = ".\\Images\\book\\C2.png";
+            path = ".\\Images\\book\\C1.png";
             break;
         case 2:
-            path = ".\\Images\\book\\C3.png";
+            path = ".\\Images\\book\\C2.png";
             break;
         case 3:
-            path = ".\\Images\\book\\C4.png";
+            path = ".\\Images\\book\\C3.png";
             break;
         case 4:
-            path = ".\\Images\\book\\C5.png";
+            path = ".\\Images\\book\\C4.png";
             break;
         case 5:
-            path = ".\\Images\\book\\C6.png";
+            path = ".\\Images\\book\\C5.png";
             break;
         case 6:
-            path = ".\\Images\\book\\C7.png";
+            path = ".\\Images\\book\\C6.png";
             break;
         case 7:
-            path = ".\\Images\\book\\C8.png";
+            path = ".\\Images\\book\\C7.png";
             break;
         case 8:
-        	path = ".\\Images\\triangleTable\\questionMark.png";
+        	path = ".\\Images\\book\\C8.png";
             break;
         
         default:
             path = ".\\Images\\triangleTable\\questionMark.png";
     	}
     	return path;
+    }
+    
+    public void setCurrentValue(int val) {
+    	currentValue=val;
+    }
+    public int getCurrentValue() {
+    	return currentValue;
     }
     public static void main (String[] args) {
         // TODO Auto-generated method stub
@@ -138,7 +145,7 @@ public class BookButton extends JPanel {
         frame.getContentPane().add(book6);
         BookButton book7= new BookButton(650,250,100,100,7);
         frame.getContentPane().add(book7);
-        BookButton book8= new BookButton(50,450,100,100,8);
+        BookButton book8= new BookButton(50,450,100,100,0);
         frame.getContentPane().add(book8);
         frame.setVisible(true);
         
