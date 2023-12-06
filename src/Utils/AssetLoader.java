@@ -70,6 +70,21 @@ public class AssetLoader {
         }
     }
     
+    public enum ForageGroundsAssets implements AssetPath{
+        Background("Images/ForageGroundsAssets/forageGrounds.png"),
+        Card("Images/ForageGroundsAssets/CardSized.png");
+        
+        private final String path;
+        
+        ForageGroundsAssets(String Path){
+            this.path =Path;
+        }
+        
+        @Override
+        public String getPath () {
+            return path;
+        }
+    }
     
     // Interface for asset paths
     public interface AssetPath {
