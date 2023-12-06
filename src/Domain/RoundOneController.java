@@ -7,10 +7,21 @@ import java.util.HashMap;
 public class RoundOneController {
 
     protected RoundOneController() { }
-    public void ForageForIngredient (Player player) {
-        Deck deck = Deck.getInstance();
-        player.getPlayerInventory()
-                .addIngredient(deck.popIngredient(), 1);
+    public Ingredient ForageForIngredient (Player player) {
+        if(player.getPlayerInventory().getGold() >= 1){
+            Deck deck = Deck.getInstance();
+            Ingredient ingredient = deck.popIngredient();
+            player.getPlayerInventory()
+                    .addIngredient(ingredient, 1);
+            player.getPlayerInventory()
+                    .setGold(player.getPlayerInventory()
+                                     .getGold()-1);
+            return ingredient;
+        }
+        else {
+            return null;
+        }
+        
     }
     
     public void TransmuteIngredient (Player player, Ingredient ingredient) {
