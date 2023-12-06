@@ -22,10 +22,8 @@ public class Ingredient {
     public static HashMap<IngredientTypes, AspectTrio> getTypeToAspectTrioMap () {
         if (Ingredient.TypeToAspectTrioMap == null) {
             initializeTypeToAspectTrioMap();
-            return TypeToAspectTrioMap;
-        } else {
-            return TypeToAspectTrioMap;
         }
+        return TypeToAspectTrioMap;
         
     }
     
