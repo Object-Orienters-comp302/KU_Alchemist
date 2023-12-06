@@ -11,7 +11,12 @@ public class AssetLoader {
         KHORNE("Images/backgrounds/khorne_background.png"),
         NURGLE("Images/backgrounds/nurgle_background.png"),
         SLAANESH("Images/backgrounds/slaanesh_background.png"),
-        TZEENTCH("Images/backgrounds/tzeentch_background.png");
+        TZEENTCH("Images/backgrounds/tzeentch_background.png"),
+        BLUE("Images/backgrounds/blueBackground.png"),
+        RED("Images/backgrounds/greenBackground.png"),
+        GREEN("Images/backgrounds/greenBackground.png"),
+        YELLOW("Images/backgrounds/yellowBackground.png"),
+        PURPLE("Images/backgrounds/purpleBackground.png");
         
         private final String path;
         
@@ -31,7 +36,12 @@ public class AssetLoader {
         NURGLE("Images/tokens/nurgle.png"),
         RED_X("Images/tokens/redX.png"),
         SLAANESH("Images/tokens/slaanesh.png"),
-        TZEENTCH("Images/tokens/tzeentch.png");
+        TZEENTCH("Images/tokens/tzeentch.png"),
+        BLUE("Images/tokens/bluePortrait.png"),
+        RED("Images/tokens/greenPortrait.png"),
+        GREEN("Images/tokens/greenPortrait.png"),
+        YELLOW("Images/tokens/yellowPortrait.png"),
+        PURPLE("Images/tokens/purplePortrait.png");
         
         private final String path;
         
