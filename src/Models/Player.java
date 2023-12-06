@@ -9,66 +9,96 @@ import java.util.ArrayList;
 
 
 public class Player implements Publisher {
-    
     private static ArrayList<Player> instances = new ArrayList<>();
-    String    PlayerID;
-    Image     Avatar;
-    Inventory PlayerInventory;
-    
-    Integer PlayerScore;
-    Integer Reputation;
-    Integer Sickness;
-    
+    private static int currPlayerIndex = 0;
+    private String    playerID;
+    private Image     avatar;
+    private Inventory playerInventory;
+    private Integer             playerScore;
+    private Integer             reputation;
+    private Integer             sicknessLevel;
     private ArrayList<Listener> listeners;
     
-    public Player(String PlayerID, Image Avatar) {// ToDo: Delete this. It is only to support gorkemsPackage
-        this.PlayerID        = PlayerID;
-        this.Avatar          = Avatar;
-        this.PlayerInventory = new Inventory();
-        this.PlayerScore     = 0;
-        Reputation           = 0;
-        this.Sickness        = 0;
+    public Player(String playerID, Image avatar) {
+        this.playerID        = playerID;
+        this.avatar          = avatar;
+        this.playerInventory = new Inventory();
+        this.playerScore   = 0; // Start from 0
+        this.sicknessLevel = 0; // Sickness is an integer from 1 to 3 representing how sick the person is
+
         instances.add(this);
     }
     
-    public Player(String PlayerID, Image Avatar, Integer StartingGold) {
-        this.PlayerID        = PlayerID;
-        this.Avatar          = Avatar;
-        this.PlayerInventory = new Inventory();
-        this.PlayerScore     = 0;
-        this.Sickness        = 0;
-        instances.add(this);
-    }
-    
-    
-    public static ArrayList<Player> getInstances() {
+    public static ArrayList<Player> getPlayers() {
         return instances;
     }
     
+    public static Player getCurrPlayer() {
+        return getPlayers().get(currPlayerIndex);
+    }
+    
+    public static Player nextPlayer() {
+        // Increment the current player index, and loop back if it reaches the end of the list
+        currPlayerIndex = (currPlayerIndex + 1) % instances.size();
+        
+        return instances.get(currPlayerIndex);
+    }
+    
+    public void haveSurgery() {
+        // If the player gets surgery remove all gold and set sickness to 0
+        getPlayerInventory().setGold(0);
+        setSicknessLevel(0);
+    }
+    
+    // Auto-Generated getter setters
     public String getPlayerID() {
-        return PlayerID;
+        return playerID;
     }
     
     public Image getAvatar() {
-        return Avatar;
+        return avatar;
     }
     
-    @Override
-    public void addListener(Listener lis) {
-        listeners.add(lis);
+    public Inventory getPlayerInventory() {
+        return playerInventory;
+    }
+    
+    public Integer getPlayerScore() {
+        return playerScore;
+    }
+    
+    public void setPlayerScore(Integer playerScore) {
+        this.playerScore = playerScore;
+    }
+    
+    public Integer getReputation() {
+        return reputation;
+    }
+    
+    public void setReputation(Integer reputation) {
+        this.reputation = reputation;
+        publishEvent(Type.REPUTATION);
     }
     
     public void addReputation(Integer num) {
         setReputation(getReputation() + num);
     }
-    
-    public Integer getReputation() {
-        return Reputation;
+
+    public Integer getSicknessLevel() {
+        return sicknessLevel;
     }
     
-    public void setReputation(Integer reputation) {
-        Reputation = reputation;
-        publishEvent(Type.REPUTATION);
+    public void setSicknessLevel(Integer sicknessLevel) {
+        this.sicknessLevel = sicknessLevel;
+        publishEvent(Type.SICKNESS); // Sickness yerine playerGotSick gibi bisey yapsak daha iyi olmaz mi?
+        // TODO: Refactor the event names
+    }
+    
+    
+    // Listener Functions
+    @Override
+    public void addListener(Listener lis) {
+        listeners.add(lis);
     }
     
     @Override
@@ -78,21 +108,26 @@ public class Player implements Publisher {
         }
     }
     
-    public Integer getSickness() {
-        return Sickness;
-    }
-    
-    public void setSickness(Integer sickness) {
-        Sickness = sickness;
-        publishEvent(Type.SICKNESS);
-    }
-    
-    public void getSurgery() {
-        getPlayerInventory().setGold(0);
-        setSickness(0);
-    }
-    
-    public Inventory getPlayerInventory() {
-        return PlayerInventory;
+    // Testing function
+    public static void main(String[] args){
+        new Player("0", null);
+        new Player("1", null);
+        new Player("2", null);
+        
+        System.out.println(Player.getCurrPlayer());
+        System.out.println(Player.getPlayers());
+        
+        Player.nextPlayer();
+        
+        System.out.println(Player.getCurrPlayer());
+        System.out.println(Player.getPlayers());
+        Player.nextPlayer();
+        
+        System.out.println(Player.getCurrPlayer());
+        System.out.println(Player.getPlayers());
+        Player.nextPlayer();
+        
+        System.out.println(Player.getCurrPlayer());
+        System.out.println(Player.getPlayers());
     }
 }

@@ -17,7 +17,7 @@ public class LoginController {
     
     public logPlayerInEnums logPlayerIn(String PlayerID, Image Avatar) {
         if (isUniquePlayerID(PlayerID) && isUniqueAvatar(Avatar)) {
-            new Player(PlayerID, Avatar, 0);// Later will have shuffle
+            new Player(PlayerID, Avatar);// Later will have shuffle
             return logPlayerInEnums.LogInSuccesful;
         } else if (isUniquePlayerID(PlayerID)) {
             return logPlayerInEnums.PlayerIDTaken;
@@ -27,7 +27,7 @@ public class LoginController {
     }
     
     public boolean isUniquePlayerID(String PlayerID) {
-        ArrayList<Player> arrList = Player.getInstances();
+        ArrayList<Player> arrList = Player.getPlayers();
         for (Player player : arrList) {
             if (Objects.equals(player.getPlayerID(), PlayerID)) {
                 return false;
@@ -37,7 +37,7 @@ public class LoginController {
     }
     
     private boolean isUniqueAvatar(Image Avatar) {
-        ArrayList<Player> arrList = Player.getInstances();
+        ArrayList<Player> arrList = Player.getPlayers();
         for (Player player : arrList) {
             if (player.getAvatar() == Avatar) {
                 return false;

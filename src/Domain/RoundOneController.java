@@ -47,9 +47,9 @@ public class RoundOneController {
                                  Boolean TestOnSelf) {//TODO Other cases will be implemented.
         if (TestOnSelf) {
             if (potion.getSign() == Potion.Signs.Negative) {//If negative get sickness
-                player.setSickness(player.getSickness() + 1);
-                if (player.getSickness() >= 3) {
-                    player.getSurgery();
+                player.setSicknessLevel(player.getSicknessLevel() + 1);
+                if (player.getSicknessLevel() >= 3) {
+                    player.haveSurgery();
                 }
             }
         } else {// Testing on Student
