@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class PublicationCard {
     private final int               pointValue;
-    private final ArrayList<Aspect> Aspects; //3 Aspects.
+    private  ArrayList<Aspect> Aspects; //3 Aspects.
     private final Ingredient        Ingredient;
     
     public PublicationCard(Ingredient Ingredient, ArrayList<Aspect> aspects, int pointValue) {
@@ -20,6 +20,10 @@ public class PublicationCard {
     public int getPointValue()        { return pointValue; }
     
     public Ingredient getIngredient() { return Ingredient; }
+    
+    public void setAspects(ArrayList<Aspect> aspects){ // Todo delete if there is a fault
+        this.Aspects = aspects;
+    }
 }
 
 
