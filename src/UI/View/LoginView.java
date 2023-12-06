@@ -22,8 +22,7 @@ import java.util.ArrayList;
 
 public class LoginView extends JPanel implements Publisher {
     static int iter = 0;
-    int                               playerAmount;
-    String                            TriColor;
+    int                               playerAmount = 2;
     LoginController                   loginControl;
     CircularLinkedList<BufferedImage> tokenList;
     CircularLinkedList<BufferedImage> backgroundList;
@@ -65,9 +64,6 @@ public class LoginView extends JPanel implements Publisher {
         new Token("yellow", AssetLoader.getAssetPath(AssetLoader.Tokens.YELLOW),
                   AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
         this.Listeners = new ArrayList<>();
-        
-        
-        playerAmount = 2;//ToDO: change this
         
         setPreferredSize(new Dimension(1280, 720));
         CreateObjects();
@@ -190,7 +186,8 @@ public class LoginView extends JPanel implements Publisher {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (loginControl.isUniquePlayerID(textField.getText()) && (!textField.getText().isBlank())) {
-                    loginControl.logPlayerIn(textField.getText(), tokenList.delete());
+                    loginControl.logPlayerIn(textField.getText());
+                    tokenList.delete();
                     backgroundList.delete();
                     textField.setText("");
                     TokenSelectorPanel_Displayer.changeImage(tokenList.get());

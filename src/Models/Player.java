@@ -12,16 +12,14 @@ public class Player implements Publisher {
     private static ArrayList<Player> instances = new ArrayList<>();
     private static int currPlayerIndex = 0;
     private String    playerID;
-    private Image     avatar;
     private Inventory playerInventory;
     private Integer             playerScore;
     private Integer             reputation;
     private Integer             sicknessLevel;
     private ArrayList<Listener> listeners;
     
-    public Player(String playerID, Image avatar) {
+    public Player(String playerID) {
         this.playerID        = playerID;
-        this.avatar          = avatar;
         this.playerInventory = new Inventory();
         this.playerScore   = 0; // Start from 0
         this.sicknessLevel = 0; // Sickness is an integer from 1 to 3 representing how sick the person is
@@ -53,10 +51,6 @@ public class Player implements Publisher {
     // Auto-Generated getter setters
     public String getPlayerID() {
         return playerID;
-    }
-    
-    public Image getAvatar() {
-        return avatar;
     }
     
     public Inventory getPlayerInventory() {
@@ -110,9 +104,9 @@ public class Player implements Publisher {
     
     // Testing function
     public static void main(String[] args){
-        new Player("0", null);
-        new Player("1", null);
-        new Player("2", null);
+        new Player("0");
+        new Player("1");
+        new Player("2");
         
         System.out.println(Player.getCurrPlayer());
         System.out.println(Player.getPlayers());
