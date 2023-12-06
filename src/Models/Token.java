@@ -17,7 +17,7 @@ public class Token {
     private       BufferedImage                     background;
     
     
-    public Token (String name, String imgUrl, String backgroundUrl) {
+    public Token(String name, String imgUrl, String backgroundUrl) {
         this.name  = name;
         image      = GUtil.fetchImage(imgUrl);
         background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(backgroundUrl)), 3, 2);
@@ -26,7 +26,7 @@ public class Token {
         tokenBackgrounds.add(background);
     }
     
-    public Token (String name, BufferedImage img, BufferedImage back) {
+    public Token(String name, BufferedImage img, BufferedImage back) {
         this.name  = name;
         image      = img;
         background = back;

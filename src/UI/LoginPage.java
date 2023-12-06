@@ -18,43 +18,43 @@ import java.awt.image.BufferedImage;
 
 public class LoginPage extends JPanel {
     static int iter = 0;
-    int playerAmount;
-    String TriColor;
-    private JTextField textField;
-    LoginController loginControl;
+    int                               playerAmount;
+    String                            TriColor;
+    LoginController                   loginControl;
     CircularLinkedList<BufferedImage> tokenList;
     CircularLinkedList<BufferedImage> backgroundList;
-    GridBagLayout gridBagLayout;
-    ImagePanel MainPanel;
-    GridBagConstraints gbc_MainPanel;
-    JPanel TokenSelectorPanel;
-    JPanel TokenSelectorPanel_Left;
-    JPanel TokenSelectorPanel_Left_Label_Holder;
-    JLabel TokenSelectorPanel_Left_Label;
-    ImagePanel TokenSelectorPanel_Displayer;
-    JPanel TokenSelectorPanel_Right;
-    JPanel TokenSelectorPanel_Right_Label_Holder;
-    JLabel TokenSelectorPanel_Right_Label;
-    JPanel UserNamePanel;
-    JLabel lblNewLabel;
-    ImagePanel UserNamePanel_CheckPanel;
-    JPanel NextPanel;
-    JLabel NextPanel_Label;
-
-
-    protected LoginPage () {
+    GridBagLayout                     gridBagLayout;
+    ImagePanel                        MainPanel;
+    GridBagConstraints                gbc_MainPanel;
+    JPanel                            TokenSelectorPanel;
+    JPanel                            TokenSelectorPanel_Left;
+    JPanel                            TokenSelectorPanel_Left_Label_Holder;
+    JLabel                            TokenSelectorPanel_Left_Label;
+    ImagePanel                        TokenSelectorPanel_Displayer;
+    JPanel                            TokenSelectorPanel_Right;
+    JPanel                            TokenSelectorPanel_Right_Label_Holder;
+    JLabel                            TokenSelectorPanel_Right_Label;
+    JPanel                            UserNamePanel;
+    JLabel                            lblNewLabel;
+    ImagePanel                        UserNamePanel_CheckPanel;
+    JPanel                            NextPanel;
+    JLabel                            NextPanel_Label;
+    private JTextField textField;
+    
+    
+    protected LoginPage() {
         new Token("khorne", AssetLoader.getAssetPath(AssetLoader.Tokens.KHORNE),
-        AssetLoader.getAssetPath(AssetLoader.Backgrounds.KHORNE));
+                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.KHORNE));
         new Token("nurgle", AssetLoader.getAssetPath(AssetLoader.Tokens.NURGLE),
-                AssetLoader.getAssetPath(AssetLoader.Backgrounds.NURGLE));
+                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.NURGLE));
         new Token("slaanesh", AssetLoader.getAssetPath(AssetLoader.Tokens.SLAANESH),
-                AssetLoader.getAssetPath(AssetLoader.Backgrounds.SLAANESH));
+                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.SLAANESH));
         new Token("tzeentch", AssetLoader.getAssetPath(AssetLoader.Tokens.TZEENTCH),
-                AssetLoader.getAssetPath(AssetLoader.Backgrounds.TZEENTCH));
-
-
+                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.TZEENTCH));
+        
+        
         playerAmount = 2;
-
+        
         setPreferredSize(new Dimension(1200, 900));
         CreateObjects();
         SetupObjets();
@@ -62,27 +62,27 @@ public class LoginPage extends JPanel {
     }
     
     private void CreateObjects() {
-    	loginControl = GameController.getInstance().getLoginController();
-    	tokenList = loginControl.getTokenImages();
-    	backgroundList = loginControl.getTokenBackgrounds();
+        loginControl   = GameController.getInstance().getLoginController();
+        tokenList      = loginControl.getTokenImages();
+        backgroundList = loginControl.getTokenBackgrounds();
         
-    	gridBagLayout = new GridBagLayout();
-    	MainPanel = new ImagePanel(backgroundList.get());
-    	gbc_MainPanel = new GridBagConstraints();
-    	TokenSelectorPanel = new JPanel();
-    	TokenSelectorPanel_Left = new ColorChangingPanel("#cf9d15", "#FFD700");
-    	TokenSelectorPanel_Left_Label_Holder = new JPanel();
-    	TokenSelectorPanel_Left_Label = new JLabel("<");
-    	TokenSelectorPanel_Displayer = new ImagePanel(tokenList.get());
-    	TokenSelectorPanel_Right = new ColorChangingPanel("#cf9d15", "#FFD700");
-    	TokenSelectorPanel_Right_Label_Holder = new JPanel();
-    	TokenSelectorPanel_Right_Label = new JLabel(">");
-    	UserNamePanel= new JPanel();
-    	textField = new JTextField();
-    	lblNewLabel = new JLabel("Username:  ");
-    	UserNamePanel_CheckPanel = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
-    	NextPanel = new ColorChangingPanel("#cf9d15", "#FFD700");
-    	NextPanel_Label = new JLabel("NEXT");
+        gridBagLayout                         = new GridBagLayout();
+        MainPanel                             = new ImagePanel(backgroundList.get());
+        gbc_MainPanel                         = new GridBagConstraints();
+        TokenSelectorPanel                    = new JPanel();
+        TokenSelectorPanel_Left               = new ColorChangingPanel("#cf9d15", "#FFD700");
+        TokenSelectorPanel_Left_Label_Holder  = new JPanel();
+        TokenSelectorPanel_Left_Label         = new JLabel("<");
+        TokenSelectorPanel_Displayer          = new ImagePanel(tokenList.get());
+        TokenSelectorPanel_Right              = new ColorChangingPanel("#cf9d15", "#FFD700");
+        TokenSelectorPanel_Right_Label_Holder = new JPanel();
+        TokenSelectorPanel_Right_Label        = new JLabel(">");
+        UserNamePanel                         = new JPanel();
+        textField                             = new JTextField();
+        lblNewLabel                           = new JLabel("Username:  ");
+        UserNamePanel_CheckPanel              = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
+        NextPanel                             = new ColorChangingPanel("#cf9d15", "#FFD700");
+        NextPanel_Label                       = new JLabel("NEXT");
     }
     
     private void SetupObjets() {
@@ -165,9 +165,9 @@ public class LoginPage extends JPanel {
     }
     
     private void SetupListeners() {
-    	TokenSelectorPanel_Left.addMouseListener(new MouseAdapter() {
+        TokenSelectorPanel_Left.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 TokenSelectorPanel_Displayer.changeImage(tokenList.getPrev());
                 MainPanel.changeImage(backgroundList.getPrev());
             }
@@ -175,7 +175,7 @@ public class LoginPage extends JPanel {
         
         TokenSelectorPanel_Right.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 TokenSelectorPanel_Displayer.changeImage(tokenList.getNext());
                 MainPanel.changeImage(backgroundList.getNext());
             }
@@ -184,9 +184,8 @@ public class LoginPage extends JPanel {
         
         NextPanel.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked (MouseEvent e) {
-                if (loginControl.isUniquePlayerID(textField.getText()) && (!textField.getText()
-                        .isBlank())) {
+            public void mouseClicked(MouseEvent e) {
+                if (loginControl.isUniquePlayerID(textField.getText()) && (!textField.getText().isBlank())) {
                     loginControl.logPlayerIn(textField.getText(), tokenList.delete());
                     backgroundList.delete();
                     textField.setText("");
@@ -205,51 +204,45 @@ public class LoginPage extends JPanel {
             }
         });
         
-                
-            textField.getDocument().addDocumentListener(new DocumentListener() {
+        
+        textField.getDocument().addDocumentListener(new DocumentListener() {
             
             
             @Override
-            public void insertUpdate (DocumentEvent e) {
-                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText()
-                        .isBlank())) {
+            public void insertUpdate(DocumentEvent e) {
+                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText().isBlank())) {
                     UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
                     
                 } else {
-                    UserNamePanel_CheckPanel.changeImage(
-                            AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
+                    UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
                 }
             }
             
             @Override
-            public void removeUpdate (DocumentEvent e) {
-                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText()
-                        .isBlank())) {
+            public void removeUpdate(DocumentEvent e) {
+                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText().isBlank())) {
                     UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
                     
                 } else {
-                    UserNamePanel_CheckPanel.changeImage(
-                            AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
+                    UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
                 }
             }
             
             @Override
-            public void changedUpdate (DocumentEvent e) {
+            public void changedUpdate(DocumentEvent e) {
                 // TODO Auto-generated method stub
             }
         });
     }
-
     
-    public static void main (String[] args) { // TODO: Move to UnitTests
+    
+    public static void main(String[] args) { // TODO: Move to UnitTests
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 900);
-        frame.getContentPane()
-                .setLayout(new GridBagLayout());
+        frame.getContentPane().setLayout(new GridBagLayout());
         JPanel login = new LoginPage();
-        frame.getContentPane()
-                .add(login);
+        frame.getContentPane().add(login);
         frame.setVisible(true);
     }
 }

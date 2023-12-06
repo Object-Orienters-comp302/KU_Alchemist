@@ -15,45 +15,45 @@ public class Deck implements Publisher {
     
     private ArrayList<Listener> listeners;
     
-    private Deck () {
+    private Deck() {
         Ingredients = new HashMap<>();
         Artifacts   = new HashMap<>();
         
         Deck.single_instance = this;
     }
     
-    public static synchronized Deck getInstance () {
+    public static synchronized Deck getInstance() {
         if (single_instance == null) { single_instance = new Deck(); }
         
         return single_instance;
     }
     
-    public HashMap<Ingredient, Integer> getIngredients () {
+    public HashMap<Ingredient, Integer> getIngredients() {
         return Ingredients;
     }
     
-    public HashMap<Artifact, Integer> getArtifacts () {
+    public HashMap<Artifact, Integer> getArtifacts() {
         return Artifacts;
     }
     
-    public void addIngredient (Ingredient ingredient, int quantity) {
+    public void addIngredient(Ingredient ingredient, int quantity) {
         Ingredients.merge(ingredient, quantity, Integer::sum);
         publishEvent(Type.DECK_INGREDIENT);
     }
     
     @Override
-    public void publishEvent (Type type) {
+    public void publishEvent(Type type) {
         for (Listener listener : listeners) {
             listener.onEvent(type);
         }
     }
     
-    public void addArtifactCard (Artifact artifact, int quantity) {
+    public void addArtifactCard(Artifact artifact, int quantity) {
         Artifacts.merge(artifact, quantity, Integer::sum);
         publishEvent(Type.DECK_ARTIFACT);
     }
     
-    public Ingredient popIngredient () {
+    public Ingredient popIngredient() {
         if (Ingredients.isEmpty()) {
             return null;
         }
@@ -69,7 +69,7 @@ public class Deck implements Publisher {
         return null;
     }
     
-    public Artifact popArtifact () {
+    public Artifact popArtifact() {
         if (Artifacts.isEmpty()) {
             return null;
         }
@@ -86,7 +86,7 @@ public class Deck implements Publisher {
     }
     
     @Override
-    public void addListener (Listener lis) {
+    public void addListener(Listener lis) {
         listeners.add(lis);
     }
 }

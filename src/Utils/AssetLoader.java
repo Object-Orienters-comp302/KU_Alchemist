@@ -2,7 +2,7 @@ package Utils;
 
 public class AssetLoader {
     // Method to get asset path
-    public static String getAssetPath (AssetPath asset) {
+    public static String getAssetPath(AssetPath asset) {
         return asset.getPath();
     }
     
@@ -15,12 +15,12 @@ public class AssetLoader {
         
         private final String path;
         
-        Backgrounds (String path) {
+        Backgrounds(String path) {
             this.path = path;
         }
         
         @Override
-        public String getPath () {
+        public String getPath() {
             return path;
         }
     }
@@ -35,12 +35,12 @@ public class AssetLoader {
         
         private final String path;
         
-        Tokens (String path) {
+        Tokens(String path) {
             this.path = path;
         }
         
         @Override
-        public String getPath () {
+        public String getPath() {
             return path;
         }
     }
@@ -60,34 +60,34 @@ public class AssetLoader {
         
         private final String path;
         
-        TriangleTable (String path) {
+        TriangleTable(String path) {
             this.path = path;
         }
         
         @Override
-        public String getPath () {
+        public String getPath() {
             return path;
         }
     }
     
-    public enum ForageGroundsAssets implements AssetPath{
+    public enum ForageGroundsAssets implements AssetPath {
         Background("Images/ForageGroundsAssets/forageGrounds.png"),
         Card("Images/ForageGroundsAssets/CardSized.png");
         
         private final String path;
         
-        ForageGroundsAssets(String Path){
-            this.path =Path;
+        ForageGroundsAssets(String Path) {
+            this.path = Path;
         }
         
         @Override
-        public String getPath () {
+        public String getPath() {
             return path;
         }
     }
     
     // Interface for asset paths
     public interface AssetPath {
-        String getPath ();
+        String getPath();
     }
 }

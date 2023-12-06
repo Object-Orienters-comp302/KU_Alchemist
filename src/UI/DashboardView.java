@@ -1,5 +1,5 @@
 package UI;
 
 public class DashboardView {
-    protected DashboardView () { }
+    protected DashboardView() { }
 }

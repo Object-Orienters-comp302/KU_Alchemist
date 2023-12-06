@@ -1,5 +1,5 @@
 package UI;
 
 public class HelpScreenView {
-    protected HelpScreenView () { }
+    protected HelpScreenView() { }
 }
