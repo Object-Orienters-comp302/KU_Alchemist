@@ -47,4 +47,7 @@ public class Inventory {
     public void setGold (Integer gold) {
         Gold = gold;
     }
+    public void addGold (Integer num){
+        this.Gold = this.Gold + num;
+    }
 }

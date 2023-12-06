@@ -30,22 +30,33 @@ public class PublicationTrack {
     public void removePublicationCard(PublicationCard publicationCard) {
         publicationCards.remove(publicationCard);
     }
-    public boolean searchInPublicationTrack(Ingredient ingredient, ArrayList<Aspect> aspects) {
+    public boolean isInPublicationTrack(Ingredient ingredient, ArrayList<Aspect> aspects) {
         List<PublicationCard> publicationCards = getPublicationCards();
-        int flag_ingredient = 0;
-        int flag_aspects = 0;
+        boolean isPublishedIngredient = false; // True if the ingredient has a theory about itself
+        boolean isPublishedAspects = false; // True if the aspect was used to publish an ingredient
+        
         for (PublicationCard card : publicationCards) {
             if (card.getIngredient().equals(ingredient)) {
-                flag_ingredient = 1; // PublicationCard ingredient found in the track
+                isPublishedIngredient = true; // PublicationCard ingredient found in the track
             }
             if (card.getAspects().equals(aspects)) {
-                flag_aspects = 1;  // PublicationCard aspects found in the track
+                isPublishedAspects = true;  // PublicationCard aspects found in the track
             }
         }
-        if (flag_aspects == 0 && flag_ingredient == 0){
+        if (!isPublishedAspects && !isPublishedIngredient){
             return false;
         }
         return true; // PublicationCard found in the track
     }
-    
+    public boolean isPublished(PublicationCard publicationCard) {
+        // Checks if the given pCard is published in publicationTrack
+        List<PublicationCard> publicationCards = getPublicationCards();
+        
+        for (PublicationCard card : publicationCards) {
+            if (card.equals(publicationCard)) {
+                return true; // PublicationCard found in the track
+            }
+        }
+        return false;
+    }
 }

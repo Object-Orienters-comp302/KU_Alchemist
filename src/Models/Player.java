@@ -73,7 +73,9 @@ public class Player implements Publisher {
     public void addListener (Listener lis) {
         listeners.add(lis);
     }
-    
+    public void addReputation (Integer num){
+        this.Reputation = this.Reputation + num;
+    }
     public Integer getSickness () {
         return Sickness;
     }
