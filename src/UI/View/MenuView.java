@@ -147,12 +147,12 @@ public class MenuView extends JPanel {
     }
     
     public void SummonPuzzle(JPanel pan) {// ToDo:button stuff needs to be added
-		int[] testArray = new int[28];
-		TriangleTableWithImg triTable = new TriangleTableWithImg(testArray);
+		
+		TriangleTableWithImg triTable = new TriangleTableWithImg(controller.getCurrentPlayer().getTriangleTableArray());
 		triTable.setBounds(0, 50,400 , 400);
 		pan.add(triTable);
-		int[][] testArr= new int[8][8];
-		RectangleTable rect= new RectangleTable(testArr);
+		
+		RectangleTable rect= new RectangleTable(controller.getCurrentPlayer().getRectangleTableArray());
 		rect.setBounds(400, 100, 600, 300);
 		pan.add(rect);
 		pan.revalidate();

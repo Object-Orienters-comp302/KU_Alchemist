@@ -13,4 +13,7 @@ public class MenuController {
     public int getPlayerCount(){
         return Player.getPlayers().size();
     }
+    public Player getCurrentPlayer() {
+    	return Player.getCurrPlayer();
+    }
 }

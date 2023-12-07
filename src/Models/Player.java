@@ -20,6 +20,8 @@ public class Player implements Publisher {
     private Integer             gold;
     private Integer             sicknessLevel;
     private ArrayList<Listener> listeners;
+    private int[]       triangleTableArray;
+    private int[][]     rectangleTableArray;
     
     public Player(String playerID, Image avatar) {
         this.ID        = playerID;
@@ -29,12 +31,16 @@ public class Player implements Publisher {
         this.reputation = 0;
         this.gold = 0;
         this.sicknessLevel = 0; // Sickness is an integer from 1 to 3 representing how sick the person is
-
+        this.triangleTableArray=new int[28];
+        this.rectangleTableArray=new int[8][8];
+        
+        
         instances.add(this);
         System.out.print("New Player Created!: "); System.out.println(this.ID);
     }
     
-    public static ArrayList<Player> getPlayers() {
+
+	public static ArrayList<Player> getPlayers() {
         return instances;
     }
     
@@ -105,7 +111,23 @@ public class Player implements Publisher {
         // TODO: Refactor the event names
     }
     
-    
+    public int[] getTriangleTableArray() {
+		return triangleTableArray;
+	}
+
+	public void setTriangleTableArray(int[] triangleTableArray) {
+		this.triangleTableArray = triangleTableArray;
+	}
+
+	public int[][] getRectangleTableArray() {
+		return rectangleTableArray;
+	}
+
+	public void setRectangleTableArray(int[][] rectangleTableArray) {
+		this.rectangleTableArray = rectangleTableArray;
+	}
+	
+	
     // Listener Functions
     @Override
     public void addListener(Listener lis) {
