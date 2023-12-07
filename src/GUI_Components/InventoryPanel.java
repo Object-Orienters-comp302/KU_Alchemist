@@ -11,7 +11,7 @@ import java.awt.SystemColor;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-public class EnvanterPanel extends JPanel {
+public class InventoryPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -48,7 +48,7 @@ public class EnvanterPanel extends JPanel {
 	 * Create the panel.
 	 */
 	
-	public EnvanterPanel(Player player) {
+	public InventoryPanel(Player player) {
 		
 		this.player = player;
 	    this.setSize(1000,500);
