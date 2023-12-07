@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
+import Domain.GameController;
 import Domain.RoundOneController;
 import GUI_Components.ImagePanel;
 import Models.Ingredient;
@@ -19,12 +20,9 @@ public class ForageGroundsView extends JPanel {
     ImagePanel Background;
     ImagePanel Card;
     JTextField textField;
-    RoundOneController roundOneController;
-    Player player;
     
-    public ForageGroundsView(Player player, RoundOneController roundOneController) {
-        this.roundOneController = roundOneController;
-        this.player = player;
+    public ForageGroundsView() {
+
         
         this.setSize(1000,500);
         setLayout(null);
@@ -51,7 +49,8 @@ public class ForageGroundsView extends JPanel {
         
         Card.addMouseMotionListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                Ingredient.IngredientTypes ingredientType = CardClicked(player, roundOneController);
+                Ingredient.IngredientTypes ingredientType = CardClicked(Player.getCurrPlayer(), GameController.getInstance()
+                        .getRoundOneController());
                 if (ingredientType != null){
                     textField.setText(String.format(Texts.Success.getText(),ingredientType.getTypeString()));
                 }
