@@ -16,7 +16,7 @@ import java.util.Objects;
 public class LoginController {
     protected LoginController() { }
     public logPlayerInEnums logPlayerIn(String PlayerID){
-        return logPlayerIn(PlayerID, Token.tokenList.getFirst());
+        return logPlayerIn(PlayerID, Token.tokenCircularList.get());
     }
     public logPlayerInEnums logPlayerIn(String PlayerID, Token token) {
         // TODO: Add to event log viewer
