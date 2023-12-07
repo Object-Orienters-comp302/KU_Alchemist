@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 
 import GUI_Components.CircleTransparentPanel;
 import GUI_Components.ImagePanel;
-import Models.Ingredient;
 import Models.Player;
 import Models.Potion;
 import Utils.AssetLoader;

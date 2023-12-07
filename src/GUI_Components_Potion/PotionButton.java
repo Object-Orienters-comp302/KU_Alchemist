@@ -6,11 +6,9 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import GUI_Components.ImagePanel;
-import Models.Ingredient;
 import Models.Potion;
 import Utils.AssetLoader;
 

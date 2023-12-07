@@ -73,6 +73,7 @@ public class InventoryView extends JPanel implements Listener {
         
         for(Player player: Player.getPlayers()){
             player.getInventory().addListener(this);
+            player.addListener(this);
         }
         
 	    this.setSize(1000,500);
@@ -122,27 +123,27 @@ public class InventoryView extends JPanel implements Listener {
         weed = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Weed));
         Ingredient_panel.add(weed);
         
-        
+
         //potion images 
-    	greenPostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.greenPositive));
+    	greenPostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.GREENPOSITIVE));
         Potion_panel.add(greenPostive);
         
-        redPostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.redPositive));
+        redPostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.REDPOSITIVE));
         Potion_panel.add(redPostive);
         
-        bluePostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.bluePositive));
+        bluePostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.BLUEPOSITIVE));
         Potion_panel.add(bluePostive);
 
-        greenNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.greenNegative));
+        greenNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.GREENNEGATIVE));
         Potion_panel.add(greenNegative);
         
-        redNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.redNegative));
+        redNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.REDNEGATIVE));
         Potion_panel.add(redNegative);
         
-        blueNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.blueNegative));
+        blueNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.BLUENEGATIVE));
         Potion_panel.add(blueNegative);
         
-        neutral = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.neutral));
+        neutral = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.NEUTRAL));
         Potion_panel.add(neutral);
         
         
