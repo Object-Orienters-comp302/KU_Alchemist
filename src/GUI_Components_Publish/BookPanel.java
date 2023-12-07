@@ -13,7 +13,16 @@ import java.util.HashMap;
 
 public class BookPanel extends JPanel {
     public static HashMap<AssetLoader.AssetPath, Boolean> published = new HashMap<AssetLoader.AssetPath, Boolean>();
-    
+    static {
+        published.put(AssetLoader.IngredientAssets.Feather, false);
+        published.put(AssetLoader.IngredientAssets.Feet, false);
+        published.put(AssetLoader.IngredientAssets.Flower, false);
+        published.put(AssetLoader.IngredientAssets.Frog, false);
+        published.put(AssetLoader.IngredientAssets.Mandrake, false);
+        published.put(AssetLoader.IngredientAssets.Mushroom, false);
+        published.put(AssetLoader.IngredientAssets.Scorpion, false);
+        published.put(AssetLoader.IngredientAssets.Weed, false);
+    }
     public static ArrayList<AssetLoader.AssetPath> traitUsed = new ArrayList<>();
     
     public BookPanel(AssetLoader.AssetPath path) {

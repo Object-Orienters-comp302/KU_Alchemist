@@ -27,7 +27,7 @@ public class BookPopupButton extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (!BookButtonPopup.CheckIfUsed(imgPath) || imgPath == AssetLoader.TriangleTable.QUESTION_MARK) {
+                if (!BookPanel.traitUsed.contains(imgPath) || imgPath == AssetLoader.TriangleTable.QUESTION_MARK) {
                     int clickX = e.getX();
                     int clickY = e.getY();
                     Container parent = BookPopupButton.this.getParent();

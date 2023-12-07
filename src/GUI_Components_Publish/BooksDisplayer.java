@@ -46,4 +46,26 @@ public class BooksDisplayer extends JPanel {
         
     }
     
+    
+    public static void main (String[] args) {
+        // TODO Auto-generated method stub
+        
+        JFrame frame = new JFrame("test");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1500, 1500);
+        frame.getContentPane()
+                .setLayout(null);
+        frame.getContentPane().setBackground(Color.blue);
+        BooksDisplayer bo= new BooksDisplayer();
+        bo.setBounds(0, 0, 1500, 1500);
+        frame.getContentPane().add(bo);
+        
+        
+        
+        
+        frame.setVisible(true);
+        
+    }
+
+    
 }

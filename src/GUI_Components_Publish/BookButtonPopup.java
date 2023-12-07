@@ -25,7 +25,7 @@ public class BookButtonPopup extends JPanel {
                                                  AssetLoader.TriangleTable.QUESTION_MARK, imgPanel, book);
         add(B0);
         
-        if (CheckIfUsed(AssetLoader.Book.allPositive)) {
+        if (BookPanel.traitUsed.contains(AssetLoader.Book.allPositive)) {
             CircleTransparentPanel T1 = new CircleTransparentPanel((width * 3 / 8) - ((width * 5 / 16) / 2),
                                                                    (height / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
@@ -36,7 +36,7 @@ public class BookButtonPopup extends JPanel {
         add(B1);
         
         
-        if (CheckIfUsed(AssetLoader.Book.allNegative)) {
+        if (BookPanel.traitUsed.contains(AssetLoader.Book.allNegative)) {
             CircleTransparentPanel T2 = new CircleTransparentPanel((width / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 3 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
@@ -47,7 +47,7 @@ public class BookButtonPopup extends JPanel {
         add(B2);
         
         
-        if (CheckIfUsed(AssetLoader.Book.negativeGreen)) {
+        if (BookPanel.traitUsed.contains(AssetLoader.Book.negativeGreen)) {
             CircleTransparentPanel T3 = new CircleTransparentPanel((width / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 5 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
@@ -57,7 +57,7 @@ public class BookButtonPopup extends JPanel {
                                                  AssetLoader.Book.negativeGreen, imgPanel, book);
         add(B3);
         
-        if (CheckIfUsed(AssetLoader.Book.positiveRed)) {
+        if (BookPanel.traitUsed.contains(AssetLoader.Book.positiveRed)) {
             CircleTransparentPanel T4 = new CircleTransparentPanel((width * 3 / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 7 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
@@ -68,7 +68,7 @@ public class BookButtonPopup extends JPanel {
         add(B4);
         
         
-        if (CheckIfUsed(AssetLoader.Book.negativeBlue)) {
+        if (BookPanel.traitUsed.contains(AssetLoader.Book.negativeBlue)) {
             CircleTransparentPanel T5 = new CircleTransparentPanel((width * 5 / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 7 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
@@ -79,7 +79,7 @@ public class BookButtonPopup extends JPanel {
         add(B5);
         
         
-        if (CheckIfUsed(AssetLoader.Book.negativeRed)) {
+        if (BookPanel.traitUsed.contains(AssetLoader.Book.negativeRed)) {
             CircleTransparentPanel T6 = new CircleTransparentPanel((width * 7 / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 5 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
@@ -90,7 +90,7 @@ public class BookButtonPopup extends JPanel {
         add(B6);
         
         
-        if (CheckIfUsed(AssetLoader.Book.positiveGreen)) {
+        if (BookPanel.traitUsed.contains(AssetLoader.Book.positiveGreen)) {
             CircleTransparentPanel T7 = new CircleTransparentPanel((width * 7 / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 3 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
@@ -101,7 +101,7 @@ public class BookButtonPopup extends JPanel {
         add(B7);
         
         
-        if (CheckIfUsed(AssetLoader.Book.positiveBlue)) {
+        if (BookPanel.traitUsed.contains(AssetLoader.Book.positiveBlue)) {
             CircleTransparentPanel T8 = new CircleTransparentPanel((width * 5 / 8) - ((width * 5 / 16) / 2),
                                                                    (height / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
@@ -147,16 +147,7 @@ public class BookButtonPopup extends JPanel {
         
     }
     
-    public static boolean CheckIfUsed(AssetLoader.AssetPath toCheck) {
-        for (int i = 0; i < 8; i++) {
-            if (BookPanel.traitUsed.get(i) == toCheck) {
-                return true;
-            }
-            
-        }
-        return false;
-        
-    }
+    
     
     /*
     private void ApplyBlock() {
