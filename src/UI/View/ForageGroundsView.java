@@ -29,13 +29,14 @@ public class ForageGroundsView extends JPanel {
         this.setSize(1000,500);
         setLayout(null);
         
-        Card = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Background));
+        Card = new ImagePanel("./Images/ForageGroundsAssets/ingredientCard.png");
         Card.setBounds(773, 223 ,158, 250);
         this.add(Card);
         
-        Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Card));
+        Background = new ImagePanel("./Images/ForageGroundsAssets/forageGrounds.png");
         Background.setBounds(0, 0, 1000, 500);
         this.add(Background);
+        Background.setLayout(null);
         
         textField = new JTextField();
         textField.setForeground(Color.BLACK);
@@ -43,7 +44,7 @@ public class ForageGroundsView extends JPanel {
         textField.setBorder(javax.swing.BorderFactory.createEmptyBorder());
         textField.setText(Texts.Start.getText());
         textField.setFont(new Font("Century Schoolbook", Font.BOLD | Font.ITALIC, 26));
-        textField.setBounds(228, 294, 554, 96);
+        textField.setBounds(200, 10, 600, 32);
         Background.add(textField);
         textField.setColumns(10);
         

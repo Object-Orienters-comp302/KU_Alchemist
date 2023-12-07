@@ -26,6 +26,7 @@ public class MenuView extends JPanel {
 		JPanel tablesPanel;
 		BooksDisplayer theoriesPanel;
 		PotionBrewingView PotionBrewingPanel;
+		ForageGroundsView ForagePanel;
 			
 		
 		//other?
@@ -36,6 +37,8 @@ public class MenuView extends JPanel {
 		ImageChangingPanel side1;
 		ImageChangingPanel side2;
 		ImageChangingPanel side3;
+		ImageChangingPanel side4;
+		ImageChangingPanel side5;
     
     
     public MenuView() {
@@ -55,6 +58,7 @@ public class MenuView extends JPanel {
 			tablesPanel= new JPanel();
 			theoriesPanel= new BooksDisplayer();
 			PotionBrewingPanel= new PotionBrewingView();
+			ForagePanel = new ForageGroundsView(controller.getCurrentPlayer(),GameController.getInstance().getRoundOneController());
 		
 		bottomPanel = new JPanel();
 		 
@@ -64,6 +68,7 @@ public class MenuView extends JPanel {
 			side1 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
 			side2 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
 			side3 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
+			side4 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
 
     }
     
@@ -92,6 +97,8 @@ public class MenuView extends JPanel {
 			displayerPanel.add(theoriesPanel,"Theories");
 			
 			displayerPanel.add(PotionBrewingPanel,"Brewing");
+			
+			displayerPanel.add(ForagePanel,"Foraging");
 		
 		bottomPanel.setBounds(0, 590, 1000, 130);
 		basePanel.add(bottomPanel);
@@ -108,6 +115,9 @@ public class MenuView extends JPanel {
 			
 			side3.setBounds(0, 130, 280, 65);
 			sidePanel.add(side3);
+			
+			side4.setBounds(0, 195, 280, 65);
+			sidePanel.add(side4);
     }
     
     private void ApplyFuncs() {
@@ -127,6 +137,12 @@ public class MenuView extends JPanel {
 		 	@Override
 		 	public void mouseClicked(MouseEvent e) {
 		 		cardLay.show(displayerPanel, "Brewing");
+		 	}
+		 });
+		side4.addMouseListener(new MouseAdapter() {
+		 	@Override
+		 	public void mouseClicked(MouseEvent e) {
+		 		cardLay.show(displayerPanel, "Foraging");
 		 	}
 		 });
     }
