@@ -6,6 +6,7 @@ import Domain.event.Type;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Player implements Publisher {
@@ -51,6 +52,27 @@ public class Player implements Publisher {
         currPlayerIndex = (currPlayerIndex + 1) % instances.size();
         
         return instances.get(currPlayerIndex);
+    }
+    
+//    public boolean isInInventory(Ingredient.IngredientTypes ingredient){
+//        HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
+//
+//        if (inventory.containsKey(ingredient)){ // if the ingredient is in the hashmap
+//            if (inventory.get(ingredient) > 0){ // if it is more than one
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+    public boolean isInInventory(Ingredient ingredient){
+        HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
+        
+        if (inventory.containsKey(ingredient)){ // if the ingredient is in the hashmap
+            if (inventory.get(ingredient) > 0){ // if it is more than one
+                return true;
+            }
+        }
+        return false;
     }
     
     public void haveSurgery() {
@@ -133,24 +155,33 @@ public class Player implements Publisher {
     
     // Testing function
     public static void main(String[] args){
-        new Player("0", null);
-        new Player("1", null);
-        new Player("2", null);
+        Player a = new Player("0", null);
+        Player b = new Player("1", null);
+        Player c = new Player("2", null);
         
-        System.out.println(Player.getCurrPlayer());
-        System.out.println(Player.getPlayers());
+        Ingredient ingr1 = new Ingredient(Ingredient.IngredientTypes.Feather);
+        Ingredient ingr2 = new Ingredient(Ingredient.IngredientTypes.Feather);
         
-        Player.nextPlayer();
+        a.getInventory().addIngredient(ingr1, 1);
         
-        System.out.println(Player.getCurrPlayer());
-        System.out.println(Player.getPlayers());
-        Player.nextPlayer();
+        System.out.println(a.isInInventory(ingr2));
         
-        System.out.println(Player.getCurrPlayer());
-        System.out.println(Player.getPlayers());
-        Player.nextPlayer();
         
-        System.out.println(Player.getCurrPlayer());
-        System.out.println(Player.getPlayers());
+        
+//        System.out.println(Player.getCurrPlayer());
+//        System.out.println(Player.getPlayers());
+//
+//        Player.nextPlayer();
+//
+//        System.out.println(Player.getCurrPlayer());
+//        System.out.println(Player.getPlayers());
+//        Player.nextPlayer();
+//
+//        System.out.println(Player.getCurrPlayer());
+//        System.out.println(Player.getPlayers());
+//        Player.nextPlayer();
+//
+//        System.out.println(Player.getCurrPlayer());
+//        System.out.println(Player.getPlayers());
     }
 }

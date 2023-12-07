@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Ingredient {
     
-    private static HashMap<IngredientTypes, AspectTrio> TypeToAspectTrioMap;
+    private static HashMap<IngredientTypes, AspectTrio> ingredientTypeToAspectTrioMap;
     final          IngredientTypes                      Type;
     
     public Ingredient(IngredientTypes type) {
@@ -16,14 +16,14 @@ public class Ingredient {
     }
     
     public AspectTrio getAspects() {
-        return getTypeToAspectTrioMap().get(this.getType());
+        return getIngredientTypeToAspectTrioMap().get(this.getType());
     }
     
-    public static HashMap<IngredientTypes, AspectTrio> getTypeToAspectTrioMap() {
-        if (Ingredient.TypeToAspectTrioMap == null) {
+    public static HashMap<IngredientTypes, AspectTrio> getIngredientTypeToAspectTrioMap() {
+        if (Ingredient.ingredientTypeToAspectTrioMap == null) {
             initializeTypeToAspectTrioMap();
         }
-        return TypeToAspectTrioMap;
+        return ingredientTypeToAspectTrioMap;
         
     }
     
@@ -32,7 +32,7 @@ public class Ingredient {
     }
     
     private static void initializeTypeToAspectTrioMap() {
-        TypeToAspectTrioMap = new HashMap<>();
+        ingredientTypeToAspectTrioMap = new HashMap<>();
         
         IngredientTypes[] types = IngredientTypes.values();
         AspectTrio[] aspectTrios = AspectTrio.values();
@@ -50,7 +50,7 @@ public class Ingredient {
             AspectTrio randomAspectTrio = availableAspectTrios.remove(randomIndex);
             
             // Map the IngredientType to the selected AspectTrio
-            TypeToAspectTrioMap.put(type, randomAspectTrio);
+            ingredientTypeToAspectTrioMap.put(type, randomAspectTrio);
         }
     }
     
