@@ -3,8 +3,9 @@ package Domain;
 import Models.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class RoundThreeController {
+public class RoundThreeController extends RoundTwoController{
     public boolean debunkTheory(Player currentPlayer, PublicationCard publicationCardToDebunk,
                                 Aspect aspectTypeToDebunk) {
         if (publicationCardToDebunk != null && aspectTypeToDebunk != null) {
@@ -42,6 +43,47 @@ public class RoundThreeController {
             }
         }
         return false; // Debunking failed due to invalid inputs or null references
+    }
+    
+    @Override
+    public void TransmuteIngredient(Player player, Ingredient ingredient) {
+        super.TransmuteIngredient(player, ingredient);
+    }
+    
+    @Override
+    public void Make_experiments(Player player, Potion potion, Boolean TestOnSelf) {
+        super.Make_experiments(player, potion, TestOnSelf);
+    }
+    
+    @Override
+    public void BuyArtifacts(Player player, Artifact artifact) {
+        super.BuyArtifacts(player, artifact);
+    }
+    
+    @Override
+    public Potion MakePotion(Ingredient.AspectTrio AspectTrio1, Ingredient.AspectTrio AspectTrio2) {
+        return super.MakePotion(AspectTrio1, AspectTrio2);
+    }
+    
+    @Override
+    public Ingredient ForageForIngredient(Player player) {
+        return super.ForageForIngredient(player);
+    }
+    
+    @Override
+    public boolean publishTheory(Player currentPlayer, Ingredient selectedIngredient, ArrayList<Aspect> alchemyMarker,
+                                 Integer certainityPoint) {
+        return super.publishTheory(currentPlayer, selectedIngredient, alchemyMarker, certainityPoint);
+    }
+    
+    @Override
+    public Potion removePotion(HashMap<Potion, Integer> Potions, Potion potion) {
+        return super.removePotion(Potions, potion);
+    }
+    
+    @Override
+    public Potion sellPotion(Inventory inventory, Potion potion, Guarantee guarantee) {
+        return super.sellPotion(inventory, potion, guarantee);
     }
     
     // All of the Functions above is false, and not usable, it is just for practice
