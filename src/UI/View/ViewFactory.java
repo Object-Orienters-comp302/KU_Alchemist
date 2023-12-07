@@ -10,6 +10,7 @@ public class ViewFactory {
     private MenuView       menuView;
     private PauseView      pauseView;
     private LoginView      loginView;
+    private PlainView plainView;
     
     
     private ViewFactory() {
@@ -63,5 +64,11 @@ public class ViewFactory {
             loginView = new LoginView();
         }
         return loginView;
+    }
+    public PlainView getPlainView() {
+        if (plainView == null) {
+            plainView = new PlainView();
+        }
+        return plainView;
     }
 }
