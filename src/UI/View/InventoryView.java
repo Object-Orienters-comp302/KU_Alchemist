@@ -77,8 +77,7 @@ public class InventoryView extends JPanel implements Listener {
         
 	    this.setSize(1000,500);
         setLayout(null);
-       
-        Background = new ImagePanel("./Images/backgrounds/inventoryBackground.png");
+        Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.INVENTORY));
         Background.setForeground(SystemColor.desktop);
         Background.setLocation(0, 0);
         Background.setSize(1000,500);
