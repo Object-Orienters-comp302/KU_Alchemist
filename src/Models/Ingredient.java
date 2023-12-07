@@ -65,12 +65,12 @@ public class Ingredient {
         Scorpion("Scorpion");
         private final String TypeString;
         
-        IngredientTypes (String typeString){
+        IngredientTypes(String typeString) {
             
             this.TypeString = typeString;
         }
         
-        public String getTypeString () {
+        public String getTypeString() {
             return TypeString;
         }
     }
