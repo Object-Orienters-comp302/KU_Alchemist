@@ -13,20 +13,24 @@ public class RoundThreeController {
                 if (aspectTypeToDebunk.getColor() == Aspect.Colors.Red) {
                     if (aspectTypeToDebunk.isEqual(
                             publicationCardToDebunk.getIngredient().getAspects().getAspectRed())) {
+                        currentPlayer.addReputation(-1);
                         return false; // aspect type is not debunked, because aspect is not false
                     }
                 } else if (aspectTypeToDebunk.getColor() == Aspect.Colors.Green) {
                     if (aspectTypeToDebunk.isEqual(
                             publicationCardToDebunk.getIngredient().getAspects().getAspectGreen())) {
+                        currentPlayer.addReputation(-1);
                         return false; // aspect type is not debunked, because aspect is not false
                     }
                 } else if (aspectTypeToDebunk.getColor() == Aspect.Colors.Blue) {
                     if (aspectTypeToDebunk.isEqual(
                             publicationCardToDebunk.getIngredient().getAspects().getAspectBlue())) {
+                        currentPlayer.addReputation(-1);
                         return false; // aspect type is not debunked, because aspect is not false
                     }
                 } else {
                     currentPlayer.addReputation(2);
+                    publicationCardToDebunk.getOwner().addReputation(-1);
                     return true;
                 }
                 
