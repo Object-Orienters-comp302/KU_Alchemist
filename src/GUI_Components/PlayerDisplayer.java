@@ -38,6 +38,7 @@ public class PlayerDisplayer extends JPanel implements Listener {// ToDo: needs 
 		setBackground(Color.decode("#B87333"));
 		
 		playerIntance.addListener(this);
+		playerIntance.getInventory().addListener(this);
 		CreateObjects();
 		SetupObjects();
 	}
@@ -115,6 +116,7 @@ public class PlayerDisplayer extends JPanel implements Listener {// ToDo: needs 
 	@Override
 	public void onEvent(Type type) {
 		if (type == Type.GOLD) {
+			coinsLabel.setText(String.valueOf(playerIntance.getInventory().getGold()));
 			this.revalidate();
 			this.repaint();
 			
