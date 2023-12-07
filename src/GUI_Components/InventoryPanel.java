@@ -4,12 +4,18 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
+
+import Models.Ingredient;
 import Models.Player;
-import Utils.AssetLoader;
-import java.awt.BorderLayout;
+import Models.Potion;
+
 import java.awt.SystemColor;
+import java.util.HashMap;
+
+
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Color;
 
 public class InventoryPanel extends JPanel {
 
@@ -41,7 +47,16 @@ public class InventoryPanel extends JPanel {
 	JLabel mandrake_quantity;
 	JLabel mushroom_quantity;
 	JLabel scorpion_quantity;
-	JLabel weeed_quantity;
+	JLabel weed_quantity;
+	
+	
+	JLabel greenPostive_quantity;
+	JLabel redPostive_quantity;
+	JLabel bluePostive_quantity;
+	JLabel greenNegative_quantity;
+	JLabel redNegative_quantity;
+	JLabel blueNegative_quantity;
+	JLabel neutral_quantity;
 	
 
 	/**
@@ -55,7 +70,7 @@ public class InventoryPanel extends JPanel {
         setLayout(null);
         this.PlacePlayer();
         
-        Background = new ImagePanel("C:/Users/baris/Documents/GitHub/KU_Alchemist/Images/ForageGroundsAssets/forageGrounds.png");
+        Background = new ImagePanel("./Images/backgrounds/inventoryBackground.png");
         Background.setForeground(SystemColor.desktop);
         Background.setLocation(0, 0);
         Background.setSize(1000,500);
@@ -114,61 +129,193 @@ public class InventoryPanel extends JPanel {
         Potion_title.setBounds(400, 300, 300, 34);
         Background.add(Potion_title);
         
-        //Quantity Labels
+        //Ingredient quantity Labels
         feather_quantity = new JLabel("0");
+        feather_quantity.setForeground(new Color(255, 255, 255));
         feather_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
         feather_quantity.setBounds(140, 210, 45, 50);
         Background.add(feather_quantity);
         
         feet_quantity = new JLabel("0");
+        feet_quantity.setForeground(new Color(255, 255, 255));
         feet_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
         feet_quantity.setBounds(240, 210, 45, 50);
         Background.add(feet_quantity);
         
         flower_quantity = new JLabel("0");
+        flower_quantity.setForeground(new Color(255, 255, 255));
         flower_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
         flower_quantity.setBounds(340, 210, 45, 50);
         Background.add(flower_quantity);
         
         frog_quantity = new JLabel("0");
+        frog_quantity.setForeground(new Color(255, 255, 255));
         frog_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
         frog_quantity.setBounds(440, 210, 45, 50);
         Background.add(frog_quantity);
         
         mandrake_quantity = new JLabel("0");
+        mandrake_quantity.setForeground(new Color(255, 255, 255));
         mandrake_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
         mandrake_quantity.setBounds(540, 210, 45, 50);
         Background.add(mandrake_quantity);
         
         mushroom_quantity = new JLabel("0");
+        mushroom_quantity.setForeground(new Color(255, 255, 255));
         mushroom_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
         mushroom_quantity.setBounds(640, 210, 45, 50);
         Background.add(mushroom_quantity);
         
         scorpion_quantity = new JLabel("0");
+        scorpion_quantity.setForeground(new Color(255, 255, 255));
         scorpion_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
         scorpion_quantity.setBounds(740, 210, 45, 50);
         Background.add(scorpion_quantity);
        
-        weeed_quantity = new JLabel("0");
-        weeed_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
-        weeed_quantity.setBounds(840, 210, 45, 50);
-        Background.add(weeed_quantity);
+        weed_quantity = new JLabel("0");
+        weed_quantity.setForeground(new Color(255, 255, 255));
+        weed_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
+        weed_quantity.setBounds(840, 210, 45, 50);
+        Background.add(weed_quantity);
         
         
+        
+        
+        //Potion quantity Labels
+        greenPostive_quantity = new JLabel("0");
+        greenPostive_quantity.setForeground(new Color(255, 255, 255));
+        greenPostive_quantity.setBackground(new Color(255, 255, 255));
+        greenPostive_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
+        greenPostive_quantity.setBounds(150, 430, 45, 50);
+        Background.add(greenPostive_quantity);
+        
+        redPostive_quantity = new JLabel("0");
+        redPostive_quantity.setForeground(new Color(255, 255, 255));
+        redPostive_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
+        redPostive_quantity.setBounds(260, 430, 45, 50);
+        Background.add(redPostive_quantity);
+        
+        bluePostive_quantity = new JLabel("0");
+        bluePostive_quantity.setForeground(new Color(255, 255, 255));
+        bluePostive_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
+        bluePostive_quantity.setBounds(370, 430, 45, 50);
+        Background.add(bluePostive_quantity);
+        
+        greenNegative_quantity = new JLabel("0");
+        greenNegative_quantity.setForeground(new Color(255, 255, 255));
+        greenNegative_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
+        greenNegative_quantity.setBounds(480, 430, 45, 50);
+        Background.add(greenNegative_quantity);
+        
+        redNegative_quantity = new JLabel("0");
+        redNegative_quantity.setForeground(new Color(255, 255, 255));
+        redNegative_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
+        redNegative_quantity.setBounds(590, 430, 45, 50);
+        Background.add(redNegative_quantity);
+        
+        blueNegative_quantity = new JLabel("0");
+        blueNegative_quantity.setForeground(new Color(255, 255, 255));
+        blueNegative_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
+        blueNegative_quantity.setBounds(700, 430, 45, 50);
+        Background.add(blueNegative_quantity);
+        
+        neutral_quantity = new JLabel("0");
+        neutral_quantity.setForeground(new Color(255, 255, 255));
+        neutral_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
+        neutral_quantity.setBounds(810, 430, 45, 50);
+        Background.add(neutral_quantity);
+       
+
+        this.IngredientsQuantity();
+        this.PotionsQuantity();
         
         this.setVisible(true);
         
-        
+       
 		
 	}
 	
 	public void PlacePlayer() {
-        PlayerDisplayer comp=new PlayerDisplayer(null);
+        PlayerDisplayer comp=new PlayerDisplayer(player);
         comp.setBounds(10, 10, 200, 80);
         this.add(comp);
         comp.setLayout(null);
 	}
 	
 
+	public void IngredientsQuantity() {
+		
+		HashMap<Ingredient, Integer> ingredients = player.getInventory().getIngredients();
+		
+		for(Ingredient ingredient : ingredients.keySet()) {
+			
+			switch(ingredient.getType()) {
+				
+				case Plant -> {
+					weed_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+				}
+				case Mandrake -> {
+					mandrake_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+				}
+				case Flower -> {
+					flower_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+				}
+				case Mushroom -> {
+					mushroom_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+				}
+				case ChickenLeg -> {
+					feet_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+				}
+				case Toad -> {
+					frog_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+				}
+				case Feather -> {
+					feather_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+				}
+				case Scorpion -> {
+					scorpion_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+				}
+			}	
+		}
+	}
+	
+	
+	public void PotionsQuantity() {
+		
+		HashMap<Potion, Integer> potions = player.getInventory().getPotions();
+		
+		for(Potion potion : potions.keySet()) {
+			
+			Potion.Colors color = potion.getColor();
+			Potion.Signs sign = potion.getSign();
+			
+			if(color == Potion.Colors.Blue && sign == Potion.Signs.Positive) {
+				bluePostive_quantity.setText(String.valueOf(potions.get(potion)));
+			}
+			else if(color == Potion.Colors.Red && sign == Potion.Signs.Positive) {
+				redPostive_quantity.setText(String.valueOf(potions.get(potion)));
+			}
+			else if(color == Potion.Colors.Green && sign == Potion.Signs.Positive) {
+				greenPostive_quantity.setText(String.valueOf(potions.get(potion)));
+			}
+			else if(color == Potion.Colors.Blue && sign == Potion.Signs.Negative) {
+				bluePostive_quantity.setText(String.valueOf(potions.get(potion)));
+			}
+			else if(color == Potion.Colors.Red && sign == Potion.Signs.Negative) {
+				redPostive_quantity.setText(String.valueOf(potions.get(potion)));
+			}
+			else if(color == Potion.Colors.Green && sign == Potion.Signs.Negative) {
+				greenPostive_quantity.setText(String.valueOf(potions.get(potion)));
+			}
+			else if(color == Potion.Colors.Colorless && sign == Potion.Signs.Neutral) {
+				neutral_quantity.setText(String.valueOf(potions.get(potion)));
+			}
+			
+		}
+	}
+	
 }
+
+
+
+
