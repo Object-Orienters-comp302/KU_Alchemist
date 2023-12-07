@@ -10,6 +10,7 @@ import javax.swing.*;
 import Domain.GameController;
 import Domain.RoundOneController;
 import GUI_Components.ImagePanel;
+import GUI_Components_Publish.BookPanel;
 import Models.Ingredient;
 import Models.Player;
 import Utils.AssetLoader;
@@ -19,7 +20,6 @@ public class ArtifactMarketplace extends JPanel {
      * Create the panel.
      */
     ImagePanel Background;
-    JTextField txtJesusLovesYou;
     private ImagePanel Card1;
     private ImagePanel Card2;
     private ImagePanel Card3;
@@ -30,32 +30,20 @@ public class ArtifactMarketplace extends JPanel {
         this.setSize(1000,500);
         setLayout(null);
         
-        Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Background));
+        Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.GREEN));
         Background.setBounds(0, 0, 1000, 500);
         this.add(Background);
         Background.setLayout(null);
         
-        txtJesusLovesYou = new JTextField();
-        txtJesusLovesYou.setForeground(Color.BLACK);
-        txtJesusLovesYou.setEditable(false);
-        txtJesusLovesYou.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-        txtJesusLovesYou.setText("JESUS LOVES YOU");
-        txtJesusLovesYou.setFont(new Font("Century Schoolbook", Font.BOLD | Font.ITALIC, 26));
-        txtJesusLovesYou.setBounds(200, 10, 600, 32);
-        Background.add(txtJesusLovesYou);
-        txtJesusLovesYou.setColumns(10);
-        
-        txtJesusLovesYou.setOpaque(false);
-        
-        Card1 = new ImagePanel("Images/ForageGroundsAssets/ingredientCard.png");
+        Card1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Artifacts.ARTIFACTCARD));
         Card1.setBounds(150, 125, 150, 250);
         Background.add(Card1);
         
-        Card2 = new ImagePanel("Images/ForageGroundsAssets/ingredientCard.png");
+        Card2 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Artifacts.ARTIFACTCARD));
         Card2.setBounds(375, 125, 150, 250);
         Background.add(Card2);
         
-        Card3 = new ImagePanel("Images/ForageGroundsAssets/ingredientCard.png");
+        Card3 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Artifacts.ARTIFACTCARD));
         Card3.setBounds(600, 125, 150, 250);
         Background.add(Card3);
         
@@ -85,6 +73,25 @@ public class ArtifactMarketplace extends JPanel {
         else{
             return null;
         }
+    }
+    
+    
+    public static void main (String[] args) {
+        // TODO Auto-generated method stub
+        
+        JFrame frame = new JFrame("test");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1500, 1500);
+        frame.getContentPane()
+                .setLayout(null);
+        ArtifactMarketplace login = new ArtifactMarketplace();
+        frame.getContentPane()
+                .add(login);
+        frame.setVisible(true);
+        
+    	
+        
+        
     }
     
 }
