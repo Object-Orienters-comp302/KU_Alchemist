@@ -8,10 +8,6 @@ public class AssetLoader {
     
     // Enums for asset paths
     public enum Backgrounds implements AssetPath {
-        KHORNE("Images/backgrounds/khorne_background.png"),
-        NURGLE("Images/backgrounds/nurgle_background.png"),
-        SLAANESH("Images/backgrounds/slaanesh_background.png"),
-        TZEENTCH("Images/backgrounds/tzeentch_background.png"),
         BLUE("Images/backgrounds/blueBackground.png"),
         RED("Images/backgrounds/redBackground.png"),
         GREEN("Images/backgrounds/greenBackground.png"),
@@ -32,11 +28,7 @@ public class AssetLoader {
     
     public enum Tokens implements AssetPath {
         GREEN_TICK("Images/tokens/greenTick.png"),
-        KHORNE("Images/tokens/khorne.png"),
-        NURGLE("Images/tokens/nurgle.png"),
         RED_X("Images/tokens/redX.png"),
-        SLAANESH("Images/tokens/slaanesh.png"),
-        TZEENTCH("Images/tokens/tzeentch.png"),
         BLUE("Images/tokens/bluePortrait.png"),
         RED("Images/tokens/redPortrait.png"),
         GREEN("Images/tokens/greenPortrait.png"),
