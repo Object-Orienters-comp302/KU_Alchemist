@@ -49,11 +49,9 @@ public class PotionBrewingView extends JPanel {
         Background.setLayout(null);
         
         
-        IngredientButton B1= new IngredientButton(230,125,200,200,true);
-        B1.setLocation(120, 125);
+        IngredientButton B1= new IngredientButton(120, 125,200,200,true);
         Background.add(B1);
-        IngredientButton B2= new IngredientButton(570,125,200,200,true);
-        B2.setLocation(680, 125);
+        IngredientButton B2= new IngredientButton(680, 125,200,200,true);
         Background.add(B2);
         
         
