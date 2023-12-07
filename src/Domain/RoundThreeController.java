@@ -1,11 +1,11 @@
 package Domain;
 
-import Models.Aspect;
-import Models.Player;
-import Models.PublicationCard;
-import Models.PublicationTrack;
+import Models.*;
 
-public class RoundThreeController extends RoundTwoController {
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class RoundThreeController extends RoundTwoController{
     public boolean debunkTheory(Player currentPlayer, PublicationCard publicationCardToDebunk,
                                 Aspect aspectTypeToDebunk) {
         if (publicationCardToDebunk != null && aspectTypeToDebunk != null) {
@@ -45,5 +45,25 @@ public class RoundThreeController extends RoundTwoController {
         return false; // Debunking failed due to invalid inputs or null references
     }
     
-    
+  
+    public boolean useElixirOfInsight(Player currentPlayer, Artifact artifactCard){
+        if (artifactCard != null && currentPlayer.getInventory().getArtifacts().containsKey(artifactCard)) {
+            if (artifactCard.getAbilityType().equals(Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT)) {
+                Deck.getInstance().getFirstThree();
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+    public boolean elixirRearrange(Ingredient ing1, Ingredient ing2, Ingredient ing3){
+        HashMap<Ingredient, Integer> toSet = new HashMap<>();
+        toSet.put(ing1,0);
+        toSet.put(ing2,1);
+        toSet.put(ing3,2);
+        Deck.getInstance().setFirstThree(toSet);
+        return true;
+    }
+
 }
