@@ -11,6 +11,8 @@ public class ViewFactory {
     private PauseView      pauseView;
     private LoginView      loginView;
     private PlainView plainView;
+    private InventoryView inventoryView;
+    private TransmuteView transmuteView;
     
     
     private ViewFactory() {
@@ -70,5 +72,18 @@ public class ViewFactory {
             plainView = new PlainView();
         }
         return plainView;
+    }
+    
+    public InventoryView getInventoryView() {
+        if (inventoryView == null) {
+            inventoryView = new InventoryView();
+        }
+        return inventoryView;
+    }
+    public TransmuteView getTransmuteView() {
+        if (transmuteView == null) {
+            transmuteView = new TransmuteView();
+        }
+        return transmuteView;
     }
 }

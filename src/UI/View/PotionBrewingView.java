@@ -32,8 +32,6 @@ public class PotionBrewingView extends JPanel {
      * Create the panel.
      */
     ImagePanel Background;
-    IngredientButton ingredientButton1;
-    IngredientButton ingredientButton2;
     ColorChangingPanel makePotionButton;
     ColorChangingPanel TestOnStudentBox;
     Boolean testOnStudent=false;

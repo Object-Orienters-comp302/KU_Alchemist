@@ -166,7 +166,6 @@ public class AssetLoader {
         }
     }
     
-    
     public enum Artifacts implements AssetPath {
         ARTIFACTCARD("Images/artifact/artifactCard.png");
         
@@ -196,7 +195,6 @@ public class AssetLoader {
         
         Potions(String Path) {
             this.path = Path;
-            
         }
         
         @Override
