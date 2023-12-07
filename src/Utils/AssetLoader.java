@@ -82,7 +82,7 @@ public class AssetLoader {
     
     public enum ForageGroundsAssets implements AssetPath {
         Background("Images/ForageGroundsAssets/forageGrounds.png"),
-        Card("Images/ForageGroundsAssets/CardSized.png");
+        Card("Images/ForageGroundsAssets/ingredientCard.png");
         
         private final String path;
         
@@ -96,7 +96,7 @@ public class AssetLoader {
         }
     }
     public enum PotionBrewingViewAssets implements AssetPath {
-        Background("Images/ForageGroundsAssets/forageGrounds.png");
+        Background("Images/PotionBrewingViewAssets/PotionBrewingArea.png");
         
         private final String path;
         
