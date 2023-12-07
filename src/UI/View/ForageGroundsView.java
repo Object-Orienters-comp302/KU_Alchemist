@@ -14,9 +14,6 @@ import Models.Player;
 import Utils.AssetLoader;
 public class ForageGroundsView extends JPanel {
     
-    /**
-     * Create the panel.
-     */
     ImagePanel Background;
     ImagePanel Card;
     JTextField textField;
@@ -42,13 +39,15 @@ public class ForageGroundsView extends JPanel {
         textField.setBorder(javax.swing.BorderFactory.createEmptyBorder());
         textField.setText(Texts.Start.getText());
         textField.setFont(new Font("Century Schoolbook", Font.BOLD | Font.ITALIC, 26));
-        textField.setBounds(200, 10, 600, 32);
+        textField.setBounds(200, 10, 900, 32);
         Background.add(textField);
         textField.setColumns(10);
         
         textField.setOpaque(false);
         
-        Card.addMouseMotionListener(new MouseAdapter() {
+        
+        Card.addMouseListener(new MouseAdapter() {
+            @Override
             public void mouseClicked(MouseEvent e) {
                 Ingredient.IngredientTypes ingredientType = CardClicked(Player.getCurrPlayer(), GameController.getInstance()
                         .getRoundOneController());
@@ -58,8 +57,10 @@ public class ForageGroundsView extends JPanel {
                 else {
                     textField.setText(Texts.Fail.getText());
                 }
+                
             }
         });
+        
         
         
     }
