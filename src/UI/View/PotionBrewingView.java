@@ -8,6 +8,7 @@ import GUI_Components.ColorChangingPanel;
 import GUI_Components.ImagePanel;
 import GUI_Components_Potion.IngredientButton;
 import Models.Ingredient;
+import Models.Inventory;
 import Models.Player;
 import Models.Potion;
 import UI.GamePage;
@@ -59,8 +60,14 @@ public class PotionBrewingView extends JPanel {
         makePotionButton = new ColorChangingPanel("#cf9d15", "#FFD700");
         makePotionButton.setBounds(830, 400, 120, 40);
         makePotionButton.addMouseListener(new MouseAdapter() {
-            public void MouseClicked(MouseEvent e) {
-                //MakeExperiments(B1.getCurrentValue(),B2.getCurrentValue(),Player.getCurrPlayer(),testOnStudent);
+            public void mouseClicked(MouseEvent e) {
+                Inventory inventory = Player.getCurrPlayer().getInventory();
+
+                if(inventory.checkIngredientExists(B1.getType()) && inventory.checkIngredientExists(B2.getType())){
+                    //TODO Make this better currently this maybe problematic
+                    MakeExperiments(new Ingredient(B1.getType()),new Ingredient(B2.getType()),Player.getCurrPlayer(),testOnStudent);
+                }
+                
             }
         });
         Background.add(makePotionButton);

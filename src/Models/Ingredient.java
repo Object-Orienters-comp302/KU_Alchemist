@@ -123,5 +123,6 @@ public class Ingredient {
         public Aspect getAspectRed() {
             return aspectRed;
         }
+        
     }
 }

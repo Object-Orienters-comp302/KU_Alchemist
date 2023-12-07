@@ -14,6 +14,8 @@ import GUI_Components.ImagePanel;
 import GUI_Components_Publish.BookButton;
 import GUI_Components_Publish.BookButtonPopup;
 import GUI_Components_Publish.BookPanel;
+import Models.Ingredient;
+
 //ToDo:invantory checks
 public class IngredientButton extends JPanel {
 	private int diameter, x, y,currentValue;
@@ -158,6 +160,29 @@ public class IngredientButton extends JPanel {
             break;
     	}
     	return path;
+    }
+    public Ingredient.IngredientTypes getType(){
+        switch (this.getCurrentValue()){
+            case 0:
+                return Ingredient.IngredientTypes.Feather;
+            case 1:
+                return Ingredient.IngredientTypes.ChickenLeg;
+            case 2:
+                return Ingredient.IngredientTypes.Flower;
+            case 3:
+                return Ingredient.IngredientTypes.Toad;
+            case 4:
+                return Ingredient.IngredientTypes.Mandrake;
+            case 5:
+                return Ingredient.IngredientTypes.Mushroom;
+            case 6:
+                return Ingredient.IngredientTypes.Plant;
+            case 7:
+                return Ingredient.IngredientTypes.Scorpion;
+            default:
+                return null;
+                
+        }
     }
     
     public void setCurrentValue(int val) {
