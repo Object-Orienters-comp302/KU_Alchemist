@@ -82,7 +82,7 @@ public class AssetLoader {
     
     public enum ForageGroundsAssets implements AssetPath {
         Background("Images/ForageGroundsAssets/forageGrounds.png"),
-        Card("Images/ForageGroundsAssets/CardSized.png");
+        Card("Images/ForageGroundsAssets/ingredientCard.png");
         
         private final String path;
         
