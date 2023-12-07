@@ -2,6 +2,9 @@ package UI.View;
 
 import Domain.GameController;
 import Domain.MenuController;
+import Domain.event.Listener;
+import Domain.event.Publisher;
+import Domain.event.Type;
 import GUI_Components.*;
 import GUI_Components_Publish.BooksDisplayer;
 import GUI_Components_Tables.RectangleTable;
@@ -20,11 +23,13 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class MenuView extends JPanel {
+public class MenuView extends JPanel implements Publisher{
     private MenuController controller;
     JPanel basePanel;
 	JPanel topPanel;
 	HQImagePanel backGroundImage;
+	
+	private ArrayList<Listener> listeners;
 	
 	JPanel displayerPanel;
 	CardLayout cardLay;
@@ -49,9 +54,11 @@ public class MenuView extends JPanel {
 		ImageChangingPanel side4;
 		ImageChangingPanel side5;
 		ImageChangingPanel side6;
-    
-    
-    public MenuView() {
+		ImageChangingPanel side7;
+	
+	
+	
+	public MenuView() {
         controller = GameController.getInstance().getMenuController();
         setLayout(null);
 		CreateObjects();
@@ -61,6 +68,7 @@ public class MenuView extends JPanel {
     }
     
     private void CreateObjects() {
+		this.listeners = new ArrayList<>();
     	basePanel = new JPanel();
 		topPanel = new JPanel();
 		cardLay=new CardLayout();
@@ -84,6 +92,7 @@ public class MenuView extends JPanel {
 			side4 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
 			side5 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
 			side6 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
+			side7 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
 		BufferedImage
 				background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))),3 ,2);
 		backGroundImage = new HQImagePanel(background);
@@ -157,6 +166,9 @@ public class MenuView extends JPanel {
 		
 			side6.setBounds(10, 355, 260, 65);
 			sidePanel.add(side6);
+		
+			side7.setBounds(10, 435, 260, 65);
+			sidePanel.add(side7);
     }
     
     private void ApplyFuncs() {
@@ -194,6 +206,12 @@ public class MenuView extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				cardLay.show(displayerPanel, "Transmute");
+			}
+		});
+		side7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				publishEvent(Type.PAUSE);
 			}
 		});
     }
@@ -240,5 +258,16 @@ public class MenuView extends JPanel {
         menuView.setVisible(true);
         frame.setVisible(true);
     }
-    
+	
+	@Override
+	public void addListener(Listener lis) {
+		listeners.add(lis);
+	}
+	
+	@Override
+	public void publishEvent(Type type) {
+		for (Listener listener : listeners) {
+			listener.onEvent(type);
+		}
+	}
 }
