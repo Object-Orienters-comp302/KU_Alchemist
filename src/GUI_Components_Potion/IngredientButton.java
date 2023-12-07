@@ -16,15 +16,15 @@ public class IngredientButton extends JPanel {
     private int                   diameter;
     private int                   x;
     private int                   y;
-    private AssetLoader.AssetPath currentValue;
+    private AssetLoader.AssetPath currentIngredient;
     
     
     public IngredientButton(int x, int y, int width, int height) {
         this.setOpaque(false);
         setLayout(null);
         this.setBounds(x, y, width, height);
-        currentValue = AssetLoader.TriangleTable.QUESTION_MARK;
-        img          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.TriangleTable.QUESTION_MARK));
+        currentIngredient = AssetLoader.TriangleTable.QUESTION_MARK;
+        img               = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.TriangleTable.QUESTION_MARK));
         img.setBounds(width * 9 / 40, width * 9 / 40, width * 9 / 16, height * 9 / 16);
         add(img);
         
@@ -152,16 +152,16 @@ public class IngredientButton extends JPanel {
         }
     }
     
-    public AssetLoader.AssetPath getCurrentValue() {
-        return currentValue;
+    public AssetLoader.AssetPath getCurrentIngredient() {
+        return currentIngredient;
     }
     
-    public void setCurrentValue(AssetLoader.AssetPath val) {
-        currentValue = val;
+    public void setCurrentIngredient(AssetLoader.AssetPath val) {
+        currentIngredient = val;
     }
     
     public Ingredient.IngredientTypes getType() {
-        return switch (currentValue) {
+        return switch (currentIngredient) {
             case AssetLoader.IngredientAssets.Feather -> Ingredient.IngredientTypes.Feather;
             case AssetLoader.IngredientAssets.Frog -> Ingredient.IngredientTypes.Toad;
             case AssetLoader.IngredientAssets.Mandrake -> Ingredient.IngredientTypes.Mandrake;
@@ -170,7 +170,7 @@ public class IngredientButton extends JPanel {
             case AssetLoader.IngredientAssets.Feet -> Ingredient.IngredientTypes.ChickenLeg;
             case AssetLoader.IngredientAssets.Flower -> Ingredient.IngredientTypes.Flower;
             case AssetLoader.IngredientAssets.Mushroom -> Ingredient.IngredientTypes.Mushroom;
-            default -> throw new IllegalStateException("Unexpected value: " + currentValue);
+            default -> throw new IllegalStateException("Unexpected value: " + currentIngredient);
         };
     }
 }

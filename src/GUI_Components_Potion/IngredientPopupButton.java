@@ -37,7 +37,7 @@ public class IngredientPopupButton extends JPanel {
                         
                         
                         panelToChange.changeImage(AssetLoader.getAssetPath(imgPath));
-                        book.setCurrentValue(imgPath);
+                        book.setCurrentIngredient(imgPath);
                         if (grandParent != null) {
                             
                             grandParent.remove(parent);
