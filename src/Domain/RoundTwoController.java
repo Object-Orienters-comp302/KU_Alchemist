@@ -64,30 +64,7 @@ public class RoundTwoController extends RoundOneController{
         return false; // Publishing theory failed due to invalid inputs or unavailable markers/ingredients
     }
     
-    @Override
-    public Ingredient ForageForIngredient(Player player) {
-        return super.ForageForIngredient(player);
-    }
-    
-    @Override
-    public Potion MakePotion(Ingredient.AspectTrio AspectTrio1, Ingredient.AspectTrio AspectTrio2) {
-        return super.MakePotion(AspectTrio1, AspectTrio2);
-    }
-    
-    @Override
-    public void BuyArtifacts(Player player, Artifact artifact) {
-        super.BuyArtifacts(player, artifact);
-    }
-    
-    @Override
-    public void Make_experiments(Player player, Potion potion, Boolean TestOnSelf) {
-        super.Make_experiments(player, potion, TestOnSelf);
-    }
-    
-    @Override
-    public void TransmuteIngredient(Player player, Ingredient ingredient) {
-        super.TransmuteIngredient(player, ingredient);
-    }
+
     
     public enum Guarantee {
         POSITIVE,
