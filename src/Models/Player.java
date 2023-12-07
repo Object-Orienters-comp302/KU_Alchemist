@@ -3,16 +3,19 @@ package Models;
 import Domain.event.Listener;
 import Domain.event.Publisher;
 import Domain.event.Type;
+import Utils.AssetLoader;
 
+import javax.sound.midi.SysexMessage;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 public class Player implements Publisher {
     private static ArrayList<Player> instances = new ArrayList<>();
     private static int currPlayerIndex = 0;
     private String     ID;
-    private Image      avatar;
+    private Token   token;
     private Inventory inventory;
     private Integer   score;
     private Integer   reputation;
@@ -21,9 +24,9 @@ public class Player implements Publisher {
     private int[]       triangleTableArray;
     private int[][]     rectangleTableArray;
     
-    public Player(String playerID, Image avatar) {
+    public Player(String playerID, Token token) {
         this.ID        = playerID;
-        this.avatar    = avatar;
+        this.token     = token;
         this.inventory = new Inventory();
         this.listeners = new ArrayList<>();
         this.score     = 0; // Start from 0
@@ -53,6 +56,33 @@ public class Player implements Publisher {
         return instances.get(currPlayerIndex);
     }
     
+    public boolean isInInventory(Ingredient.IngredientTypes ingredientType){
+        HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
+        
+        for (Ingredient ingrIter : inventory.keySet()) {
+            Integer quantity = inventory.get(ingrIter);
+            if (ingrIter.getType() == ingredientType && quantity > 0){
+                // TODO: Add this to debug
+                System.out.println("Ingredient: " + "`" + ingredientType + "`" + " is in PlayerID: " + "`" + this.getID() + "`");
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean isInInventory(Ingredient ingredientToCheck){ // This function is horrible because Ingredient implementation is horrible
+        HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
+        
+        for (Ingredient ingrIter : inventory.keySet()) {
+            Integer quantity = inventory.get(ingrIter);
+            if (ingrIter.getType() == ingredientToCheck.getType() && quantity > 0){
+                // TODO: Add this to debug
+                System.out.println("Ingredient: " + "`" + ingredientToCheck.getType() + "`" + " is in PlayerID: " + "`" + this.getID() + "`");
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public void haveSurgery() {
         // If the player gets surgery remove all gold and set sickness to 0
         getInventory().setGold(0);
@@ -64,7 +94,11 @@ public class Player implements Publisher {
         return ID;
     }
     
-    public Image getAvatar() {return avatar;}
+    public Token getToken() {return token;}
+    
+    public void setToken(Token token) {
+        this.token = token;
+    }
     
     public Inventory getInventory() {
         return inventory;
@@ -100,7 +134,12 @@ public class Player implements Publisher {
         publishEvent(Type.SICKNESS); // Sickness yerine playerGotSick gibi bisey yapsak daha iyi olmaz mi?
         // TODO: Refactor the event names
     }
-    
+    public boolean removeFromInventory(Ingredient ingrToRemove){
+        return false;
+    }
+    public boolean removeFromInventory(Ingredient.IngredientTypes ingrtypeToRemove){
+        return false;
+    }
     public int[] getTriangleTableArray() {
 		return triangleTableArray;
 	}
@@ -133,24 +172,35 @@ public class Player implements Publisher {
     
     // Testing function
     public static void main(String[] args){
-        new Player("0", null);
-        new Player("1", null);
-        new Player("2", null);
+        Player a = new Player("0", null);
+        Player b = new Player("1", null);
+        Player c = new Player("2", null);
         
-        System.out.println(Player.getCurrPlayer());
-        System.out.println(Player.getPlayers());
+        Ingredient ingr1 = new Ingredient(Ingredient.IngredientTypes.Feather);
+        Ingredient ingr2 = new Ingredient(Ingredient.IngredientTypes.Feather);
         
-        Player.nextPlayer();
+        a.getInventory().addIngredient(ingr1, 1);
         
-        System.out.println(Player.getCurrPlayer());
-        System.out.println(Player.getPlayers());
-        Player.nextPlayer();
+        System.out.println(a.isInInventory(ingr2));
         
-        System.out.println(Player.getCurrPlayer());
-        System.out.println(Player.getPlayers());
-        Player.nextPlayer();
+        System.out.println(a.isInInventory(Ingredient.IngredientTypes.ChickenLeg));
         
-        System.out.println(Player.getCurrPlayer());
-        System.out.println(Player.getPlayers());
+        
+        
+//        System.out.println(Player.getCurrPlayer());
+//        System.out.println(Player.getPlayers());
+//
+//        Player.nextPlayer();
+//
+//        System.out.println(Player.getCurrPlayer());
+//        System.out.println(Player.getPlayers());
+//        Player.nextPlayer();
+//
+//        System.out.println(Player.getCurrPlayer());
+//        System.out.println(Player.getPlayers());
+//        Player.nextPlayer();
+//
+//        System.out.println(Player.getCurrPlayer());
+//        System.out.println(Player.getPlayers());
     }
 }

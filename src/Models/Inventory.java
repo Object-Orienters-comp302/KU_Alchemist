@@ -65,9 +65,10 @@ public class Inventory implements Publisher {
         Gold = gold;
         publishEvent(Type.GOLD);
     }
-    
-    public void removeIngredient(Ingredient ingredient) {
-        this.getIngredients().put(ingredient, this.getIngredients().get(ingredient) - 1); //TODO Add publisher.
+
+    public void removeIngredient(Ingredient ingredient){
+        this.getIngredients().put(ingredient,this.getIngredients().get(ingredient)-1); //TODO Add publisher.
+        publishEvent(Type.INGREDIENT);
     }
     
     public HashMap<Ingredient, Integer> getIngredients() {

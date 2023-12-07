@@ -32,8 +32,6 @@ public class PotionBrewingView extends JPanel {
      * Create the panel.
      */
     ImagePanel Background;
-    IngredientButton ingredientButton1;
-    IngredientButton ingredientButton2;
     ColorChangingPanel makePotionButton;
     ColorChangingPanel TestOnStudentBox;
     Boolean testOnStudent=false;
@@ -51,9 +49,9 @@ public class PotionBrewingView extends JPanel {
         Background.setLayout(null);
         
         
-        IngredientButton B1= new IngredientButton(280,125,200,200,true);
+        IngredientButton B1= new IngredientButton(230,125,200,200,true);
         Background.add(B1);
-        IngredientButton B2= new IngredientButton(520,125,200,200,true);
+        IngredientButton B2= new IngredientButton(570,125,200,200,true);
         Background.add(B2);
         
         
@@ -62,7 +60,7 @@ public class PotionBrewingView extends JPanel {
         makePotionButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 Inventory inventory = Player.getCurrPlayer().getInventory();
-
+                
                 if(inventory.checkIngredientExists(B1.getType()) && inventory.checkIngredientExists(B2.getType())){
                     //TODO Make this better currently this maybe problematic
                     MakeExperiments(new Ingredient(B1.getType()),new Ingredient(B2.getType()),Player.getCurrPlayer(),testOnStudent);
@@ -95,12 +93,12 @@ public class PotionBrewingView extends JPanel {
         TestOnStudentBox.add(lblNewLabel);
         
         ImagePanel Card1 = new ImagePanel("./Images/ForageGroundsAssets/ingredientCard.png");
-        Card1.setBounds(300, 100 ,160, 250);
+        Card1.setBounds(250, 100 ,160, 250);
         Background.add(Card1);
         Card1.setLayout(null);
         
         ImagePanel Card2 = new ImagePanel("./Images/ForageGroundsAssets/ingredientCard.png");
-        Card2.setBounds(540, 100 ,160, 250);
+        Card2.setBounds(590, 100 ,160, 250);
         Background.add(Card2);
         Card2.setLayout(null);
         

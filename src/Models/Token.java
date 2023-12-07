@@ -10,10 +10,9 @@ import java.util.Objects;
 
 public class Token {
     public static ArrayList<Token>                  tokenList        = new ArrayList<Token>();
-    public static CircularLinkedList<BufferedImage> tokenImages      = new CircularLinkedList<BufferedImage>();
-    public static CircularLinkedList<BufferedImage> tokenBackgrounds = new CircularLinkedList<BufferedImage>();
+    public static CircularLinkedList<Token> 		tokenCircularList      = new CircularLinkedList<Token>();
     private       String                            name;
-    private       BufferedImage                     image;
+	private       BufferedImage                     image;
     private       BufferedImage                     background;
     
     
@@ -22,8 +21,7 @@ public class Token {
         image      = GUtil.fetchImage(imgUrl);
         background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(backgroundUrl)), 3, 2);
         tokenList.add(this);
-        tokenImages.add(image);
-        tokenBackgrounds.add(background);
+        tokenCircularList.add(this);
     }
     
     public Token(String name, BufferedImage img, BufferedImage back) {
@@ -31,8 +29,32 @@ public class Token {
         image      = img;
         background = back;
         tokenList.add(this);
-        tokenImages.add(image);
-        tokenBackgrounds.add(background);
+        tokenCircularList.add(this);
     }
+    
+    
+    public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public BufferedImage getImage() {
+		return image;
+	}
+
+	public void setImage(BufferedImage image) {
+		this.image = image;
+	}
+
+	public BufferedImage getBackground() {
+		return background;
+	}
+
+	public void setBackground(BufferedImage background) {
+		this.background = background;
+	}
     
 }

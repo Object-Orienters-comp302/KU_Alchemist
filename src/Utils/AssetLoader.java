@@ -1,5 +1,7 @@
 package Utils;
 
+import UI.View.TransmuteView;
+
 public class AssetLoader {
     // Method to get asset path
     public static String getAssetPath(AssetPath asset) {
@@ -13,7 +15,10 @@ public class AssetLoader {
         GREEN("Images/backgrounds/greenBackground.png"),
         YELLOW("Images/backgrounds/yellowBackground.png"),
         PURPLE("Images/backgrounds/purpleBackground.png"),
-        MAIN_BACKGROUND("Images/backgrounds/MainBackground.png");
+        MAIN_BACKGROUND("Images/backgrounds/MainBackground.png"),
+        INVENTORY("Images/backgrounds/inventoryBackground.png"),
+        TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png");
+        
         
         private final String path;
         
@@ -39,6 +44,25 @@ public class AssetLoader {
         private final String path;
         
         Tokens(String path) {
+            this.path = path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
+    public enum Avatars implements AssetPath {
+        BLUE("Images/avatars/blueAvatar.png"),
+        RED("Images/avatars/redAvatar.png"),
+        GREEN("Images/avatars/greenAvatar.png"),
+        YELLOW("Images/avatars/yellowAvatar.png"),
+        PURPLE("Images/avatars/purpleAvatar.png");
+        
+        private final String path;
+        
+        Avatars(String path) {
             this.path = path;
         }
         
@@ -88,6 +112,7 @@ public class AssetLoader {
             return path;
         }
     }
+    
     public enum PotionBrewingViewAssets implements AssetPath {
         Background("Images/PotionBrewingViewAssets/PotionBrewingArea.png");
         
@@ -102,6 +127,7 @@ public class AssetLoader {
             return path;
         }
     }
+    
     public enum PlainViewAssets implements AssetPath {
         Background("Images/PlainViewAssets/PlainViewBackground.png");
         
@@ -118,7 +144,7 @@ public class AssetLoader {
     }
     
     public enum IngredientAssets implements AssetPath {
-    	
+        
         Feather("Images/book/feather.png"),
         Feet("Images/book/feet.png"),
         Flower("Images/book/flower.png"),
@@ -140,6 +166,42 @@ public class AssetLoader {
         }
     }
     
+    public enum Artifacts implements AssetPath {
+        ARTIFACTCARD("Images/artifact/artifactCard.png");
+        
+        private final String path;
+        
+        Artifacts(String path) {
+            this.path = path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
+    public enum Potions implements AssetPath {
+        
+        blueNegative("Images/PotionBrewingViewAssets/bluePotionNegative.png"),
+        bluePositive("Images/PotionBrewingViewAssets/bluePotionPositive.png"),
+        greenNegative("Images/PotionBrewingViewAssets/greenPotionNegative.png"),
+        greenPositive("Images/PotionBrewingViewAssets/greenPotionPositive.png"),
+        redNegative("Images/PotionBrewingViewAssets/redPotionNegative.png"),
+        redPositive("Images/PotionBrewingViewAssets/redPotionPositive.png"),
+        neutral("Images/PotionBrewingViewAssets/neutralPotion.png");
+        
+        private final String path;
+        
+        Potions(String Path) {
+            this.path = Path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
     
     
     
