@@ -12,7 +12,7 @@ public class BooksDisplayer extends JPanel {
         setPreferredSize(new Dimension(1000, 500));
         setLayout(null);
         setBackground(Color.red);
-        ImagePanel Background = new ImagePanel("./Images/backgrounds/publishBackground.png");
+        ImagePanel Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.PUBLISH));
         Background.setBounds(0, 0, 1000, 500);
         add(Background);
         Background.setLayout(null);
