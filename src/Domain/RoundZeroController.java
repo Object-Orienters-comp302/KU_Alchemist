@@ -4,28 +4,35 @@ import Models.Deck;
 import Models.Ingredient;
 import Models.Player;
 
+import java.util.ArrayList;
+
 public class RoundZeroController {
     private final Deck deck;
-    
+    ArrayList<Player> players;
     public RoundZeroController() {
+        this.players = Player.getPlayers();
         this.deck = Deck.getInstance();
     }
     
-    public void gameSetup(Player player1, Player player2) {
-        //Distributes starting gold
-        gold_setup(player1, player2, 10);
+    public void gameSetup() {
         
-        //Creates 4 of each ingredient card
+        //Creates 4 of each ingredient card in deck
         initializeIngredients(4);
         
-        // Deal 2 cards to each player
-        dealIngredientCards(player1, 2);
-        dealIngredientCards(player2, 2);
+        this.deck.shuffleIngredients();
+        
+        for(Player player : players) {
+            
+            //Distributes starting gold
+            gold_setup(player, 10);
+            
+            // Deal 2 cards to each player
+            dealIngredientCards(player, 2);
+        }
     }
     
-    public void gold_setup(Player player1, Player player2, int gold) {
-        player1.getInventory().setGold(gold);
-        player2.getInventory().setGold(gold);
+    public void gold_setup(Player player, int gold) {
+        player.getInventory().setGold(gold);
     }
     
     public void initializeIngredients(int quantity) {
