@@ -13,6 +13,7 @@ public enum Type {
     DECK_INGREDIENT,
     SICKNESS,
     START_MENUVIEW,
-    REPUTATION
+    REPUTATION,
+    FORAGERIGHT
     
 }

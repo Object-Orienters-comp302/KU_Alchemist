@@ -66,9 +66,9 @@ public class ForageGroundsView extends JPanel {
     }
     
     private enum Texts{
-        Start("To forage press the card!! It costs 1 gold."),
-        Success("Foraging successful!! Spent 1 gold. Ingredient:%s"),
-        Fail("Foraging is not successful!!Need more gold.");
+        Start("To forage press the card!! It costs 1 forage right."),
+        Success("Foraging successful!! Ingredient:%s"),
+        Fail("Foraging is not successful!!You can't forage more.");
         
         private final String Text;
         
