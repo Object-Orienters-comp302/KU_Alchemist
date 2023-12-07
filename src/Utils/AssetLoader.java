@@ -12,7 +12,8 @@ public class AssetLoader {
         RED("Images/backgrounds/redBackground.png"),
         GREEN("Images/backgrounds/greenBackground.png"),
         YELLOW("Images/backgrounds/yellowBackground.png"),
-        PURPLE("Images/backgrounds/purpleBackground.png");
+        PURPLE("Images/backgrounds/purpleBackground.png"),
+        MAIN_BACKGROUND("Images/backgrounds/MainBackground.png");
         
         private final String path;
         
