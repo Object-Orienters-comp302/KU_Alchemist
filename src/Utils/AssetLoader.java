@@ -15,7 +15,9 @@ public class AssetLoader {
         PURPLE("Images/backgrounds/purpleBackground.png"),
         MAIN_BACKGROUND("Images/backgrounds/MainBackground.png"),
         INVENTORY("Images/backgrounds/inventoryBackground.png"),
+        PUBLISH("Images/backgrounds/publishBackground.png"),
         TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png");
+    	
         
         
         private final String path;
@@ -61,6 +63,30 @@ public class AssetLoader {
         private final String path;
         
         Avatars(String path) {
+            this.path = path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
+    public enum Potions implements AssetPath {
+        BLUENEGATIVE("Images/PotionBrewingViewAssets/bluePotionNegative.png"),
+        BLUEPOSITIVE("Images/PotionBrewingViewAssets/bluePotionPositive.png"),
+        REDNEGATIVE("Images/PotionBrewingViewAssets/redPotionNegative.png"),
+        REDPOSITIVE("Images/PotionBrewingViewAssets/redPotionPositive.png"),
+        GREENNEGATIVE("Images/PotionBrewingViewAssets/greenPotionNegative.png"),
+        GREENPOSITIVE("Images/PotionBrewingViewAssets/greenPotionPositive.png"),
+        NETURAL("Images/PotionBrewingViewAssets/neturalPotion.png"),
+        UNKNOWN("Images/PotionBrewingViewAssets/unknownPotion.png");
+    	
+        
+        
+        private final String path;
+        
+        Potions(String path) {
             this.path = path;
         }
         
@@ -179,27 +205,7 @@ public class AssetLoader {
         }
     }
     
-    public enum Potions implements AssetPath {
-        
-        blueNegative("Images/PotionBrewingViewAssets/bluePotionNegative.png"),
-        bluePositive("Images/PotionBrewingViewAssets/bluePotionPositive.png"),
-        greenNegative("Images/PotionBrewingViewAssets/greenPotionNegative.png"),
-        greenPositive("Images/PotionBrewingViewAssets/greenPotionPositive.png"),
-        redNegative("Images/PotionBrewingViewAssets/redPotionNegative.png"),
-        redPositive("Images/PotionBrewingViewAssets/redPotionPositive.png"),
-        neutral("Images/PotionBrewingViewAssets/neutralPotion.png");
-        
-        private final String path;
-        
-        Potions(String Path) {
-            this.path = Path;
-        }
-        
-        @Override
-        public String getPath() {
-            return path;
-        }
-    }
+    
     
     public enum Book implements AssetPath {
         allPositive("Images/book/C1.png"),
