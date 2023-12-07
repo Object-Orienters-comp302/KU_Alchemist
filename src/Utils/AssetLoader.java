@@ -48,6 +48,25 @@ public class AssetLoader {
         }
     }
     
+    public enum Avatars implements AssetPath {
+        BLUE("Images/avatars/blueAvatar.png"),
+        RED("Images/avatars/redAvatar.png"),
+        GREEN("Images/avatars/greenAvatar.png"),
+        YELLOW("Images/avatars/yellowAvatar.png"),
+        PURPLE("Images/avatars/purpleAvatar.png");
+        
+        private final String path;
+        
+        Avatars(String path) {
+            this.path = path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
     public enum TriangleTable implements AssetPath {
         TRIANGLE_TABLE("Images/triangleTable/TriangleTable.png"),
         MINUS_BLUE("Images/triangleTable/minusBlue.png"),
