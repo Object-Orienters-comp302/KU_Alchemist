@@ -51,7 +51,7 @@ public class RoundTwoController {
             // Check if the selected ingredient has an available alchemy marker and does not have a published theory
             if (!PublicationTrack.getInstance().isInPublicationTrack(selectedIngredient, alchemyMarker)) {
                 // Assign the marker to the selected ingredient
-                PublicationCard new_Theory = new PublicationCard(selectedIngredient, alchemyMarker, certainityPoint); // Todo: The certainty point is a point that can take the values 1, 2, 3, expressing the player's confidence in the theory. It should be checked again after Phase 1
+                PublicationCard new_Theory = new PublicationCard(selectedIngredient, alchemyMarker, certainityPoint, currentPlayer); // Todo: The certainty point is a point that can take the values 1, 2, 3, expressing the player's confidence in the theory. It should be checked again after Phase 1
                 // Mark the marker as used
                 PublicationTrack.getInstance().addPublicationCard(new_Theory);
                 // Pay 1 gold piece to the bank
