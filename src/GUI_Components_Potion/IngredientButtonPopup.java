@@ -176,7 +176,7 @@ public class IngredientButtonPopup extends JPanel {
             default -> throw new IllegalStateException("Unexpected value: " + toCheck);
         };
         
-        return Player.getCurrPlayer().getInventory().getIngredients().entrySet().stream()
+        return !Player.getCurrPlayer().getInventory().getIngredients().entrySet().stream()
                 .anyMatch(entry -> entry.getKey().getType() == ingredientType && entry.getValue() > 0);
         
     }
