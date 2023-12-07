@@ -8,17 +8,23 @@ import GUI_Components_Tables.RectangleTable;
 import GUI_Components_Tables.TriangleTableWithImg;
 import Models.Player;
 import UI.GamePage;
+import Utils.AssetLoader;
+import Utils.GUtil;
+import Utils.KawaseBlur;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class MenuView extends JPanel {
     private MenuController controller;
     JPanel basePanel;
 	JPanel topPanel;
+	HQImagePanel backGroundImage;
 	
 	JPanel displayerPanel;
 	CardLayout cardLay;
@@ -71,7 +77,10 @@ public class MenuView extends JPanel {
 			side2 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
 			side3 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
 			side4 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
-
+		
+		BufferedImage
+				background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))),3 ,2);
+		backGroundImage = new HQImagePanel(background);
     }
     
     private void ApplyStuff() {
@@ -80,7 +89,9 @@ public class MenuView extends JPanel {
 		basePanel.setBackground(Color.red);
 		basePanel.setLayout(null);
 		
+		
 		topPanel.setBounds(0, 0, 1280, 90);
+		topPanel.setOpaque(false);
 		basePanel.add(topPanel);
 		topPanel.setLayout(null);
 		
@@ -104,8 +115,12 @@ public class MenuView extends JPanel {
 			displayerPanel.add(ForagePanel,"Foraging");
 		
 		bottomPanel.setBounds(0, 590, 1000, 130);
+		bottomPanel.setOpaque(false);
 		basePanel.add(bottomPanel);
 		
+		
+		backGroundImage.setBounds(0,0,1280,720);
+		basePanel.add(backGroundImage);
 		sidePanel.setBounds(1000, 90, 280, 630);
 		basePanel.add(sidePanel);
 		sidePanel.setLayout(null);
