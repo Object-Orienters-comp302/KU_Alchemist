@@ -8,11 +8,15 @@ import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Domain.event.Listener;
+import Domain.event.Type;
 import Models.Player;
+import UI.GamePage;
+import UI.View.ViewFactory;
 import Utils.AssetLoader;
 import javax.swing.JLabel;
 
-public class PlayerDisplayer extends JPanel {// ToDo: needs editing and refactoring
+public class PlayerDisplayer extends JPanel implements Listener {// ToDo: needs editing and refactoring
 	protected Player playerIntance;
 	ImagePanel avatarImgPanel;
 	JPanel     labelPanel_1;
@@ -33,6 +37,7 @@ public class PlayerDisplayer extends JPanel {// ToDo: needs editing and refactor
 		setLayout(null);
 		setBackground(Color.decode("#B87333"));
 		
+		playerIntance.addListener(this);
 		CreateObjects();
 		SetupObjects();
 	}
@@ -44,7 +49,7 @@ public class PlayerDisplayer extends JPanel {// ToDo: needs editing and refactor
 		labelPanel_2 = new JPanel();
 		labelPanel_2_1 = new ImagePanel("./Images/triangleTable/minusBlue.png");
 		labelPanel_2_2 = new JPanel();
-		coinsLabel = new JLabel(String.valueOf(playerIntance.getGold()));
+		coinsLabel = new JLabel(String.valueOf(playerIntance.getInventory().getGold()));
 		labelPanel_3 = new JPanel();
 		labelPanel_3_1 = new ImagePanel("./Images/triangleTable/minusBlue.png");
 		labelPanel_3_2 = new JPanel();
@@ -105,5 +110,14 @@ public class PlayerDisplayer extends JPanel {// ToDo: needs editing and refactor
         frame.getContentPane()
                 .add(login);
         frame.setVisible(true);
+	}
+	
+	@Override
+	public void onEvent(Type type) {
+		if (type == Type.GOLD) {
+			this.revalidate();
+			this.repaint();
+			
+		}
 	}
 }

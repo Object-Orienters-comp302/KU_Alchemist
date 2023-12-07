@@ -20,6 +20,7 @@ public class Deck implements Publisher {
     private Deck() {
         Ingredients = new ArrayList<>();
         Artifacts   = new ArrayList<>();
+        listeners   = new ArrayList<>();//TODO add an initializer
         
         Deck.single_instance = this;
     }

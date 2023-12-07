@@ -8,6 +8,7 @@ public class GameController {
     private PauseController    pauseController;
     private MenuController     menuController;
     private RegisterController registerController;
+    private RoundZeroController roundZeroController;
     private RoundOneController roundOneController;
     private RoundTwoController roundTwoController;
     
@@ -18,6 +19,7 @@ public class GameController {
         helpController     = new HelpController();
         pauseController    = new PauseController();
         registerController = new RegisterController();
+        roundZeroController= new RoundZeroController();
         roundOneController = new RoundOneController();
         roundTwoController = new RoundTwoController();
         
@@ -55,6 +57,10 @@ public class GameController {
     
     public RegisterController getRegisterController() {
         return registerController;
+    }
+    
+    public RoundZeroController getRoundZeroController() {
+        return roundZeroController;
     }
     
     public RoundOneController getRoundOneController() {

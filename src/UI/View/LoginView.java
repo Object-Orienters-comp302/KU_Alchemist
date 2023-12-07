@@ -8,6 +8,7 @@ import Domain.event.Publisher;
 import Domain.event.Type;
 import GUI_Components.ColorChangingPanel;
 import GUI_Components.ImagePanel;
+import Models.Player;
 import Models.Token;
 import Utils.AssetLoader;
 
@@ -195,7 +196,10 @@ public class LoginView extends JPanel implements Publisher {
                     LoginView.iter += 1;
                     //System.out.print(LoginView.iter);
                     if (NextPanel_Label.getText() == "START") {
+                        //TODO MAKE A NEW GENERIC GAMESETUP THAT TAKES AN ARRAYLIST.
+                        GameController.getInstance().getRoundZeroController().gameSetup(Player.getPlayers().get(0),Player.getPlayers().get(1));
                         publishEvent(Type.START_MENUVIEW); // Handled by GamePage
+                        
                     }
                     if ((LoginView.iter) == playerAmount - 1) {
                         NextPanel_Label.setText("START");
