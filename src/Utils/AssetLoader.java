@@ -166,6 +166,22 @@ public class AssetLoader {
         }
     }
     
+    
+    public enum Artifacts implements AssetPath {
+        ARTIFACTCARD("Images/artifact/artifactCard.png");
+        
+        private final String path;
+        
+        Artifacts(String path) {
+            this.path = path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
     public enum Potions implements AssetPath {
         
         blueNegative("Images/PotionBrewingViewAssets/bluePotionNegative.png"),
@@ -180,6 +196,7 @@ public class AssetLoader {
         
         Potions(String Path) {
             this.path = Path;
+            
         }
         
         @Override
