@@ -2,9 +2,14 @@ package UI.View;
 
 import javax.swing.JPanel;
 
+import Domain.GameController;
+import Domain.RoundOneController;
 import GUI_Components.ColorChangingPanel;
 import GUI_Components.ImagePanel;
 import GUI_Components_Potion.IngredientButton;
+import Models.Ingredient;
+import Models.Player;
+import Models.Potion;
 import UI.GamePage;
 import Utils.AssetLoader;
 
@@ -55,7 +60,7 @@ public class PotionBrewingView extends JPanel {
         makePotionButton.setBounds(830, 400, 120, 40);
         makePotionButton.addMouseListener(new MouseAdapter() {
             public void MouseClicked(MouseEvent e) {
-                System.out.println("mouseclicked");
+                //MakeExperiments(B1.getCurrentValue(),B2.getCurrentValue(),Player.getCurrPlayer(),testOnStudent);
             }
         });
         Background.add(makePotionButton);
@@ -102,7 +107,7 @@ public class PotionBrewingView extends JPanel {
         		else {
         			TickPanel.changeImage("./Images/tokens/greenTick.png");
         		}
-        		PotionBrewingView.this.testOnStudent=!PotionBrewingView.this.testOnStudent;
+        		PotionBrewingView.this.testOnStudent=!PotionBrewingView.this.testOnStudent;//Sets it to it's negative
         		
         	}
         });
@@ -110,6 +115,16 @@ public class PotionBrewingView extends JPanel {
         
         
         this.setVisible(true);
+    }
+    
+    private void MakeExperiments(Ingredient ingredient1, Ingredient ingredient2, Player player, boolean testOnStudent){
+        RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
+        Potion potion = roundOneController.MakePotion(ingredient1.getAspects(),ingredient2.getAspects());
+       
+        roundOneController.removeIngredient(player,ingredient1);
+        roundOneController.removeIngredient(player,ingredient2);
+        
+        roundOneController.Make_experiments(player,potion,testOnStudent);
     }
     public static void main(String[] args) {
         JFrame frame = new JFrame();
