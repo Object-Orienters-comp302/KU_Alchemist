@@ -3,6 +3,7 @@ package Models;
 import Domain.event.Listener;
 import Domain.event.Publisher;
 import Domain.event.Type;
+import Utils.AssetLoader;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class Player implements Publisher {
     private static ArrayList<Player> instances = new ArrayList<>();
     private static int currPlayerIndex = 0;
     private String     ID;
-    private Image      avatar;
+    private Token   token;
     private Inventory inventory;
     private Integer   score;
     private Integer   reputation;
@@ -21,9 +22,9 @@ public class Player implements Publisher {
     private int[]       triangleTableArray;
     private int[][]     rectangleTableArray;
     
-    public Player(String playerID, Image avatar) {
+    public Player(String playerID, Token token) {
         this.ID        = playerID;
-        this.avatar    = avatar;
+        this.token     = token;
         this.inventory = new Inventory();
         this.listeners = new ArrayList<>();
         this.score     = 0; // Start from 0
@@ -64,7 +65,11 @@ public class Player implements Publisher {
         return ID;
     }
     
-    public Image getAvatar() {return avatar;}
+    public Token getToken() {return token;}
+    
+    public void setToken(Token token) {
+        this.token = token;
+    }
     
     public Inventory getInventory() {
         return inventory;
