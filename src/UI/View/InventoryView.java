@@ -1,9 +1,12 @@
-package GUI_Components;
+package UI.View;
 
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
+import Domain.event.Listener;
+import Domain.event.Type;
+import GUI_Components.ImagePanel;
 import Models.Ingredient;
 import Models.Player;
 import Models.Potion;
@@ -16,11 +19,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 
-public class InventoryPanel extends JPanel {
+public class InventoryView extends JPanel implements Listener {
 
 	private static final long serialVersionUID = 1L;
-	
-	Player player;
+ 
 	
 	ImagePanel Background;
 	
@@ -67,9 +69,12 @@ public class InventoryPanel extends JPanel {
 	 * Create the panel.
 	 */
 	
-	public InventoryPanel(Player player) {
-		
-		this.player = player;
+	public InventoryView() {
+        
+        for(Player player: Player.getPlayers()){
+            player.getInventory().addListener(this);
+        }
+        
 	    this.setSize(1000,500);
         setLayout(null);
        
@@ -260,7 +265,7 @@ public class InventoryPanel extends JPanel {
 
 	public void IngredientsQuantity() {
 		
-		HashMap<Ingredient, Integer> ingredients = player.getInventory().getIngredients();
+		HashMap<Ingredient, Integer> ingredients = Player.getCurrPlayer().getInventory().getIngredients();
 		
 		for(Ingredient ingredient : ingredients.keySet()) {
 			
@@ -296,7 +301,7 @@ public class InventoryPanel extends JPanel {
 	
 	public void PotionsQuantity() {
 		
-		HashMap<Potion, Integer> potions = player.getInventory().getPotions();
+		HashMap<Potion, Integer> potions = Player.getCurrPlayer().getInventory().getPotions();
 		
 		for(Potion potion : potions.keySet()) {
 			
@@ -326,6 +331,20 @@ public class InventoryPanel extends JPanel {
 			}		
 		}
 	}
+    
+    @Override
+    public void onEvent(Type type) {
+        if (type == Type.INGREDIENT) {
+            IngredientsQuantity();
+            this.revalidate();
+            this.repaint();
+        }
+        if (type == Type.POTION) {
+            PotionsQuantity();
+            this.revalidate();
+            this.repaint();
+        }
+    }
 }
 
 

@@ -34,6 +34,8 @@ public class MenuView extends JPanel {
 		PotionBrewingView PotionBrewingPanel;
 		ForageGroundsView ForagePanel;
 		PlainView PlainPanel;
+		InventoryView InventoryPanel;
+		TransmuteView TransmutePanel;
 			
 		
 		//other?
@@ -46,6 +48,7 @@ public class MenuView extends JPanel {
 		ImageChangingPanel side3;
 		ImageChangingPanel side4;
 		ImageChangingPanel side5;
+		ImageChangingPanel side6;
     
     
     public MenuView() {
@@ -67,17 +70,20 @@ public class MenuView extends JPanel {
 			PotionBrewingPanel= new PotionBrewingView();
 			ForagePanel = new ForageGroundsView();
 			PlainPanel = new PlainView();
+			InventoryPanel = new InventoryView();
+			TransmutePanel = new TransmuteView();
 		
 		bottomPanel = new JPanel();
 		 
 		
 		sidePanel = new JPanel(); 
-			
+			//Add assetloader when a new asset is given.
 			side1 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
 			side2 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
 			side3 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
 			side4 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
-		
+			side5 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
+			side6 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
 		BufferedImage
 				background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))),3 ,2);
 		backGroundImage = new HQImagePanel(background);
@@ -107,6 +113,7 @@ public class MenuView extends JPanel {
 			SummonPuzzle(tablesPanel);
 			
 			displayerPanel.add(PlainPanel,"Plain");
+			
 			displayerPanel.add(tablesPanel,"Tables");
 			
 			displayerPanel.add(theoriesPanel,"Theories");
@@ -114,6 +121,10 @@ public class MenuView extends JPanel {
 			displayerPanel.add(PotionBrewingPanel,"Brewing");
 			
 			displayerPanel.add(ForagePanel,"Foraging");
+			
+			displayerPanel.add(InventoryPanel,"Inventory");
+			
+			displayerPanel.add(TransmutePanel,"Transmute");
 		
 		bottomPanel.setBounds(0, 590, 1000, 130);
 		bottomPanel.setOpaque(false);
@@ -138,6 +149,12 @@ public class MenuView extends JPanel {
 			
 			side4.setBounds(10, 215, 260, 65);
 			sidePanel.add(side4);
+			
+			side5.setBounds(10, 285, 260, 65);
+			sidePanel.add(side5);
+		
+			side6.setBounds(10, 355, 260, 65);
+			sidePanel.add(side6);
     }
     
     private void ApplyFuncs() {
@@ -165,6 +182,18 @@ public class MenuView extends JPanel {
 		 		cardLay.show(displayerPanel, "Foraging");
 		 	}
 		 });
+		side5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLay.show(displayerPanel, "Inventory");
+			}
+		});
+		side6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLay.show(displayerPanel, "Transmute");
+			}
+		});
     }
     
     public void PlacePlayers() {

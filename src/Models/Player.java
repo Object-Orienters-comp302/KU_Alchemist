@@ -105,7 +105,12 @@ public class Player implements Publisher {
         publishEvent(Type.SICKNESS); // Sickness yerine playerGotSick gibi bisey yapsak daha iyi olmaz mi?
         // TODO: Refactor the event names
     }
-    
+    public boolean removeFromInventory(Ingredient ingrToRemove){
+        return false
+    }
+    public boolean removeFromInventory(Ingredient.IngredientTypes ingrtypeToRemove){
+        return false
+    }
     public int[] getTriangleTableArray() {
 		return triangleTableArray;
 	}

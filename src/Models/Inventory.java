@@ -66,6 +66,7 @@ public class Inventory implements Publisher {
     
     public void removeIngredient(Ingredient ingredient){
         this.getIngredients().put(ingredient,this.getIngredients().get(ingredient)-1); //TODO Add publisher.
+        publishEvent(Type.INGREDIENT);
     }
     public boolean checkIngredientExists(Ingredient.IngredientTypes Type){
         return this.getIngredients().get(new Ingredient(Type)) > 0;

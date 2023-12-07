@@ -25,11 +25,11 @@ public class RoundOneController {
         
     }
     
-    public void TransmuteIngredient(Player player, Ingredient ingredient) {
-        HashMap<Ingredient, Integer> ingredients = player.getInventory().getIngredients();
-        if (ingredients.get(ingredient) > 0) {
+    public void TransmuteIngredient(Player player, Ingredient.IngredientTypes ingredientTypes) {
+        
+        if (player.getInventory().getIngredients().get(ingredient) > 0) {
             
-            ingredients.put(ingredient, ingredients.get(ingredient) - 1);
+            player.getInventory().getIngredients().put(ingredient, player.getInventory().getIngredients().get(ingredient) - 1);
             player.getInventory().setGold(player.getInventory().getGold() + 1);
         }
     }
