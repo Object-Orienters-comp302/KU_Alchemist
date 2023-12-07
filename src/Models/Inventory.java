@@ -51,4 +51,11 @@ public class Inventory {
     public void addGold(Integer num) {
         setGold(getGold() + num);
     }
+    
+    public void removeIngredient(Ingredient ingredient){
+        this.getIngredients().put(ingredient,this.getIngredients().get(ingredient)-1); //TODO Add publisher.
+    }
+    public boolean checkIngredientExists(Ingredient.IngredientTypes Type){
+        return this.getIngredients().get(new Ingredient(Type)) > 0;
+    }
 }
