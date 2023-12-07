@@ -189,7 +189,7 @@ public class LoginView extends JPanel implements Publisher {
                     //System.out.print(LoginView.iter);
                     if (NextPanel_Label.getText() == "START") {
                         //TODO MAKE A NEW GENERIC GAMESETUP THAT TAKES AN ARRAYLIST.
-                        GameController.getInstance().getRoundZeroController().gameSetup(Player.getPlayers().get(0),Player.getPlayers().get(1));
+                        GameController.getInstance().getRoundZeroController().gameSetup();
                         publishEvent(Type.START_MENUVIEW); // Handled by GamePage
                         
                     }
