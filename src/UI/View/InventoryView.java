@@ -142,7 +142,7 @@ public class InventoryView extends JPanel implements Listener {
         blueNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.BLUENEGATIVE));
         Potion_panel.add(blueNegative);
         
-        neutral = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.NETURAL));
+        neutral = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.NEUTRAL));
         Potion_panel.add(neutral);
         
         

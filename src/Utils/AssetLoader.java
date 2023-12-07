@@ -79,7 +79,7 @@ public class AssetLoader {
         REDPOSITIVE("Images/PotionBrewingViewAssets/redPotionPositive.png"),
         GREENNEGATIVE("Images/PotionBrewingViewAssets/greenPotionNegative.png"),
         GREENPOSITIVE("Images/PotionBrewingViewAssets/greenPotionPositive.png"),
-        NETURAL("Images/PotionBrewingViewAssets/neturalPotion.png"),
+        NEUTRAL("Images/PotionBrewingViewAssets/neutralPotion.png"),
         UNKNOWN("Images/PotionBrewingViewAssets/unknownPotion.png");
     	
         

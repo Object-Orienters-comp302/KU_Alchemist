@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 
 import GUI_Components.CircleTransparentPanel;
 import GUI_Components.ImagePanel;
-import Models.Ingredient;
 import Models.Player;
 import Models.Potion;
 import Utils.AssetLoader;
@@ -118,15 +117,15 @@ public class PotionButtonPopup extends JPanel {
         add(B7);
         
         
-        if (CheckIfInventory(AssetLoader.Potions.NETURAL)) {
+        if (CheckIfInventory(AssetLoader.Potions.NEUTRAL)) {
             CircleTransparentPanel T8 = new CircleTransparentPanel((width * 5 / 8) - ((width * 5 / 16) / 2),
                                                                    (height / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
             add(T8);
         }
         PotionPopupButton B8 = new PotionPopupButton(width * 5 / 8, height / 8, width * 5 / 16, height * 5 / 16,
-                                                             AssetLoader.Potions.NETURAL, imgPanel, ingre,
-                                                             !CheckIfInventory(AssetLoader.Potions.NETURAL));
+                                                     AssetLoader.Potions.NEUTRAL, imgPanel, ingre,
+                                                     !CheckIfInventory(AssetLoader.Potions.NEUTRAL));
         add(B8);
         
         
@@ -173,7 +172,7 @@ public class PotionButtonPopup extends JPanel {
             case AssetLoader.Potions.REDPOSITIVE -> Potion.Identity.REDPOSITIVE;
             case AssetLoader.Potions.GREENNEGATIVE -> Potion.Identity.GREENNEGATIVE;
             case AssetLoader.Potions.GREENPOSITIVE -> Potion.Identity.GREENPOSITIVE;
-            case AssetLoader.Potions.NETURAL -> Potion.Identity.NETURAL;
+            case AssetLoader.Potions.NEUTRAL -> Potion.Identity.NETURAL;
             case AssetLoader.Potions.UNKNOWN -> Potion.Identity.UNKNOWN;
             default -> throw new IllegalStateException("Unexpected value: " + toCheck);
         };
