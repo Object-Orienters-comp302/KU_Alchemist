@@ -29,7 +29,7 @@ public class PlayerDisplayer extends JPanel implements Listener {// ToDo: needs 
         setLayout(null);
         setBackground(Color.decode("#B87333"));
         
-        playerIntance.addListener(this);
+        playerIntance.getInventory().addListener(this);
         CreateObjects();
         SetupObjects();
     }
