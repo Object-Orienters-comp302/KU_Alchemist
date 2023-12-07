@@ -40,8 +40,8 @@ public class Player implements Publisher {
         System.out.print("New Player Created!: "); System.out.println(this.ID);
     }
     
-
-	public static ArrayList<Player> getPlayers() {
+    
+    public static ArrayList<Player> getPlayers() {
         return instances;
     }
     
@@ -70,17 +70,38 @@ public class Player implements Publisher {
         return false;
     }
     public boolean isInInventory(Ingredient ingredientToCheck){ // This function is horrible because Ingredient implementation is horrible
+        return isInInventory(ingredientToCheck.getType());
+    }
+    
+    public boolean removeFromInventory(Ingredient.IngredientTypes ingrtypeToRemove, int amount){
+        if (!this.isInInventory(ingrtypeToRemove)){return false;}
         HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
         
         for (Ingredient ingrIter : inventory.keySet()) {
             Integer quantity = inventory.get(ingrIter);
-            if (ingrIter.getType() == ingredientToCheck.getType() && quantity > 0){
-                // TODO: Add this to debug
-                System.out.println("Ingredient: " + "`" + ingredientToCheck.getType() + "`" + " is in PlayerID: " + "`" + this.getID() + "`");
-                return true;
+            if (ingrIter.getType() == ingrtypeToRemove){
+                if (amount > quantity){
+                    System.out.println("Amount is greater than the players Ingredient amount! Not removing Ingredient");
+                    return false;
+                }
+                else {
+                    quantity = quantity-amount;
+                    System.out.println("Removing " + amount + " " + ingrtypeToRemove + ". From PlayerID: " + this.getID());
+                    return true;
+                }
             }
         }
-        return false;
+        return false; // Ingredient wasn't found, which shouldn't happen.
+    }
+    public boolean removeFromInventory(Ingredient ingrToRemove, int amount){
+        return this.removeFromInventory(ingrToRemove.getType(), amount);
+    }
+    
+    public boolean removeFromInventory(Ingredient.IngredientTypes ingrtypeToRemove){ // Deletes 1 unit of the specified ingredient
+        return this.removeFromInventory(ingrtypeToRemove, 1);
+    }
+    public boolean removeFromInventory(Ingredient ingrToRemove){ // Deletes 1 unit of the specified ingredient
+        return this.removeFromInventory(ingrToRemove.getType(), 1);
     }
     
     public void haveSurgery() {
@@ -134,29 +155,24 @@ public class Player implements Publisher {
         publishEvent(Type.SICKNESS); // Sickness yerine playerGotSick gibi bisey yapsak daha iyi olmaz mi?
         // TODO: Refactor the event names
     }
-    public boolean removeFromInventory(Ingredient ingrToRemove){
-        return false;
-    }
-    public boolean removeFromInventory(Ingredient.IngredientTypes ingrtypeToRemove){
-        return false;
-    }
+    
     public int[] getTriangleTableArray() {
-		return triangleTableArray;
-	}
-
-	public void setTriangleTableArray(int[] triangleTableArray) {
-		this.triangleTableArray = triangleTableArray;
-	}
-
-	public int[][] getRectangleTableArray() {
-		return rectangleTableArray;
-	}
-
-	public void setRectangleTableArray(int[][] rectangleTableArray) {
-		this.rectangleTableArray = rectangleTableArray;
-	}
-	
-	
+        return triangleTableArray;
+    }
+    
+    public void setTriangleTableArray(int[] triangleTableArray) {
+        this.triangleTableArray = triangleTableArray;
+    }
+    
+    public int[][] getRectangleTableArray() {
+        return rectangleTableArray;
+    }
+    
+    public void setRectangleTableArray(int[][] rectangleTableArray) {
+        this.rectangleTableArray = rectangleTableArray;
+    }
+    
+    
     // Listener Functions
     @Override
     public void addListener(Listener lis) {
@@ -172,35 +188,37 @@ public class Player implements Publisher {
     
     // Testing function
     public static void main(String[] args){
-        Player a = new Player("0", null);
-        Player b = new Player("1", null);
-        Player c = new Player("2", null);
+        Player a = new Player("CoolPlayer", null);
         
-        Ingredient ingr1 = new Ingredient(Ingredient.IngredientTypes.Feather);
-        Ingredient ingr2 = new Ingredient(Ingredient.IngredientTypes.Feather);
         
-        a.getInventory().addIngredient(ingr1, 1);
+        Ingredient feather1 = new Ingredient(Ingredient.IngredientTypes.Feather);
+        Ingredient feather2 = new Ingredient(Ingredient.IngredientTypes.Feather);
         
-        System.out.println(a.isInInventory(ingr2));
+        a.getInventory().addIngredient(feather1, 1);
+        a.getInventory().addIngredient(feather2, 3);
+        
+        System.out.println(a.isInInventory(feather1));
+        System.out.println(a.isInInventory(feather2));
+        
         
         System.out.println(a.isInInventory(Ingredient.IngredientTypes.ChickenLeg));
         
         
         
-//        System.out.println(Player.getCurrPlayer());
-//        System.out.println(Player.getPlayers());
-//
-//        Player.nextPlayer();
-//
-//        System.out.println(Player.getCurrPlayer());
-//        System.out.println(Player.getPlayers());
-//        Player.nextPlayer();
-//
-//        System.out.println(Player.getCurrPlayer());
-//        System.out.println(Player.getPlayers());
-//        Player.nextPlayer();
-//
-//        System.out.println(Player.getCurrPlayer());
-//        System.out.println(Player.getPlayers());
+        //        System.out.println(Player.getCurrPlayer());
+        //        System.out.println(Player.getPlayers());
+        //
+        //        Player.nextPlayer();
+        //
+        //        System.out.println(Player.getCurrPlayer());
+        //        System.out.println(Player.getPlayers());
+        //        Player.nextPlayer();
+        //
+        //        System.out.println(Player.getCurrPlayer());
+        //        System.out.println(Player.getPlayers());
+        //        Player.nextPlayer();
+        //
+        //        System.out.println(Player.getCurrPlayer());
+        //        System.out.println(Player.getPlayers());
     }
 }
