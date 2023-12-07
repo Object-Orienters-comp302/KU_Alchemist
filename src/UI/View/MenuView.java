@@ -82,6 +82,7 @@ public class MenuView extends JPanel {
 		
 		topPanel.setBounds(0, 0, 1280, 90);
 		basePanel.add(topPanel);
+		topPanel.setBackground(Color.black);
 		topPanel.setLayout(null);
 		
 		displayerPanel.setBounds(0, 90, 1000, 500);
@@ -109,17 +110,18 @@ public class MenuView extends JPanel {
 		sidePanel.setBounds(1000, 90, 280, 630);
 		basePanel.add(sidePanel);
 		sidePanel.setLayout(null);
+		sidePanel.setBackground(Color.black);
 		
-			side1.setBounds(0, 0, 280, 65);
+			side1.setBounds(10, 5, 260, 65);
 			sidePanel.add(side1);
 			
-			side2.setBounds(0, 65, 280, 65);
+			side2.setBounds(10, 75, 260, 65);
 			sidePanel.add(side2);
 			
-			side3.setBounds(0, 130, 280, 65);
+			side3.setBounds(10, 145, 260, 65);
 			sidePanel.add(side3);
 			
-			side4.setBounds(0, 195, 280, 65);
+			side4.setBounds(10, 215, 260, 65);
 			sidePanel.add(side4);
     }
     
