@@ -106,10 +106,10 @@ public class Player implements Publisher {
         // TODO: Refactor the event names
     }
     public boolean removeFromInventory(Ingredient ingrToRemove){
-        return false
+        return false;
     }
     public boolean removeFromInventory(Ingredient.IngredientTypes ingrtypeToRemove){
-        return false
+        return false;
     }
     public int[] getTriangleTableArray() {
 		return triangleTableArray;
