@@ -42,8 +42,8 @@ public class Player implements Publisher {
         System.out.print("New Player Created!: "); System.out.println(this.ID);
     }
     
-
-	public static ArrayList<Player> getPlayers() {
+    
+    public static ArrayList<Player> getPlayers() {
         return instances;
     }
     
@@ -97,6 +97,13 @@ public class Player implements Publisher {
     }
     public boolean removeFromInventory(Ingredient ingrToRemove, int amount){
         return this.removeFromInventory(ingrToRemove.getType(), amount);
+    }
+    
+    public boolean removeFromInventory(Ingredient.IngredientTypes ingrtypeToRemove){ // Deletes 1 unit of the specified ingredient
+        return this.removeFromInventory(ingrtypeToRemove, 1);
+    }
+    public boolean removeFromInventory(Ingredient ingrToRemove){ // Deletes 1 unit of the specified ingredient
+        return this.removeFromInventory(ingrToRemove.getType(), 1);
     }
     
     public void haveSurgery() {
@@ -194,13 +201,20 @@ public class Player implements Publisher {
     // Testing function
     public static void main(String[] args){
         Player a = new Player("CoolPlayer", null);
-
         
+        
+        Ingredient feather1 = new Ingredient(Ingredient.IngredientTypes.Feather);
+        Ingredient feather2 = new Ingredient(Ingredient.IngredientTypes.Feather);
         Ingredient feather1 = new Ingredient(Ingredient.IngredientTypes.Feather);
         Ingredient feather2 = new Ingredient(Ingredient.IngredientTypes.Feather);
         
         a.getInventory().addIngredient(feather1, 1);
         a.getInventory().addIngredient(feather2, 3);
+        a.getInventory().addIngredient(feather1, 1);
+        a.getInventory().addIngredient(feather2, 3);
+        
+        System.out.println(a.isInInventory(feather1));
+        System.out.println(a.isInInventory(feather2));
         
         System.out.println(a.isInInventory(feather1));
         System.out.println(a.isInInventory(feather2));
@@ -210,20 +224,20 @@ public class Player implements Publisher {
         
         
         
-//        System.out.println(Player.getCurrPlayer());
-//        System.out.println(Player.getPlayers());
-//
-//        Player.nextPlayer();
-//
-//        System.out.println(Player.getCurrPlayer());
-//        System.out.println(Player.getPlayers());
-//        Player.nextPlayer();
-//
-//        System.out.println(Player.getCurrPlayer());
-//        System.out.println(Player.getPlayers());
-//        Player.nextPlayer();
-//
-//        System.out.println(Player.getCurrPlayer());
-//        System.out.println(Player.getPlayers());
+        //        System.out.println(Player.getCurrPlayer());
+        //        System.out.println(Player.getPlayers());
+        //
+        //        Player.nextPlayer();
+        //
+        //        System.out.println(Player.getCurrPlayer());
+        //        System.out.println(Player.getPlayers());
+        //        Player.nextPlayer();
+        //
+        //        System.out.println(Player.getCurrPlayer());
+        //        System.out.println(Player.getPlayers());
+        //        Player.nextPlayer();
+        //
+        //        System.out.println(Player.getCurrPlayer());
+        //        System.out.println(Player.getPlayers());
     }
 }
