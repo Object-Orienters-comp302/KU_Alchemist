@@ -138,6 +138,5 @@ public class PotionBrewingView extends JPanel {
         frame.setSize(1020,520);
         frame.getContentPane().add(new PotionBrewingView());
         frame.setVisible(true);
-        
     }
 }

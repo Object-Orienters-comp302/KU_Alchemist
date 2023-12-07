@@ -27,6 +27,7 @@ public class MenuView extends JPanel {
 		BooksDisplayer theoriesPanel;
 		PotionBrewingView PotionBrewingPanel;
 		ForageGroundsView ForagePanel;
+		PlainView PlainPanel;
 			
 		
 		//other?
@@ -59,6 +60,7 @@ public class MenuView extends JPanel {
 			theoriesPanel= new BooksDisplayer();
 			PotionBrewingPanel= new PotionBrewingView();
 			ForagePanel = new ForageGroundsView();
+			PlainPanel = new PlainView();
 		
 		bottomPanel = new JPanel();
 		 
@@ -89,9 +91,10 @@ public class MenuView extends JPanel {
 		
 			tablesPanel.setBounds(0,0,1000,500);
 			tablesPanel.setLayout(null);
+			
 			SummonPuzzle(tablesPanel);
 			
-			
+			displayerPanel.add(PlainPanel,"Plain");
 			displayerPanel.add(tablesPanel,"Tables");
 			
 			displayerPanel.add(theoriesPanel,"Theories");
