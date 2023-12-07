@@ -1,5 +1,7 @@
 package Utils;
 
+import UI.View.TransmuteView;
+
 public class AssetLoader {
     // Method to get asset path
     public static String getAssetPath(AssetPath asset) {
@@ -13,7 +15,9 @@ public class AssetLoader {
         GREEN("Images/backgrounds/greenBackground.png"),
         YELLOW("Images/backgrounds/yellowBackground.png"),
         PURPLE("Images/backgrounds/purpleBackground.png"),
-        MAIN_BACKGROUND("Images/backgrounds/MainBackground.png");
+        MAIN_BACKGROUND("Images/backgrounds/MainBackground.png"),
+        TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png");
+        
         
         private final String path;
         
