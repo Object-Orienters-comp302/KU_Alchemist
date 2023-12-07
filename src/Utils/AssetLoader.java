@@ -159,6 +159,27 @@ public class AssetLoader {
         }
     }
     
+    public enum Potions implements AssetPath {
+        
+        blueNegative("Images/PotionBrewingViewAssets/bluePotionNegative.png"),
+        bluePositive("Images/PotionBrewingViewAssets/bluePotionPositive.png"),
+        greenNegative("Images/PotionBrewingViewAssets/greenPotionNegative.png"),
+        greenPositive("Images/PotionBrewingViewAssets/greenPotionPositive.png"),
+        redNegative("Images/PotionBrewingViewAssets/redPotionNegative.png"),
+        redPositive("Images/PotionBrewingViewAssets/redPotionPositive.png"),
+        neutral("Images/PotionBrewingViewAssets/neutralPotion.png");
+        
+        private final String path;
+        
+        Potions(String Path) {
+            this.path = Path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
     
     
     
