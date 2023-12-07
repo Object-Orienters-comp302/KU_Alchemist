@@ -36,13 +36,11 @@ public class LoginController {
         return true;
     }
     
-    public CircularLinkedList<BufferedImage> getTokenImages() {
-        return Token.tokenImages;
+    public CircularLinkedList<Token> getCirularTokens() {
+        return Token.tokenCircularList;
     }
     
-    public CircularLinkedList<BufferedImage> getTokenBackgrounds() {
-        return Token.tokenBackgrounds;
-    }
+    
     
     public enum logPlayerInEnums {
         LogInSuccesful,

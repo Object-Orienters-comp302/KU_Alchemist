@@ -24,8 +24,7 @@ public class LoginView extends JPanel implements Publisher {
     static int iter = 0;
     int                               playerAmount = 2;
     LoginController                   loginControl;
-    CircularLinkedList<BufferedImage> tokenList;
-    CircularLinkedList<BufferedImage> backgroundList;
+    CircularLinkedList<Token> 		  tokenList;
     ImagePanel                        MainPanel;
     JPanel                            TokenSelectorPanel;
     JPanel                            TokenSelectorPanel_Left;
@@ -73,15 +72,14 @@ public class LoginView extends JPanel implements Publisher {
     
     private void CreateObjects() {
         loginControl   = GameController.getInstance().getLoginController();
-        tokenList      = loginControl.getTokenImages();
-        backgroundList = loginControl.getTokenBackgrounds();
-        MainPanel                             = new ImagePanel(backgroundList.get());
+        tokenList      = loginControl.getCirularTokens();
+        MainPanel                             = new ImagePanel(tokenList.get().getBackground());
         MainPanel.setBounds(0, 0, 1280, 720);
         TokenSelectorPanel                    = new JPanel();
         TokenSelectorPanel_Left               = new ColorChangingPanel("#cf9d15", "#FFD700");
         TokenSelectorPanel_Left_Label_Holder  = new JPanel();
         TokenSelectorPanel_Left_Label         = new JLabel("<");
-        TokenSelectorPanel_Displayer          = new ImagePanel(tokenList.get());
+        TokenSelectorPanel_Displayer          = new ImagePanel(tokenList.get().getImage());
         TokenSelectorPanel_Right              = new ColorChangingPanel("#cf9d15", "#FFD700");
         TokenSelectorPanel_Right_Label_Holder = new JPanel();
         TokenSelectorPanel_Right_Label        = new JLabel(">");
@@ -168,16 +166,18 @@ public class LoginView extends JPanel implements Publisher {
         TokenSelectorPanel_Left.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                TokenSelectorPanel_Displayer.changeImage(tokenList.getPrev());
-                MainPanel.changeImage(backgroundList.getPrev());
+            	tokenList.getPrev();
+                TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
+                MainPanel.changeImage(tokenList.get().getBackground());
             }
         });
         
         TokenSelectorPanel_Right.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                TokenSelectorPanel_Displayer.changeImage(tokenList.getNext());
-                MainPanel.changeImage(backgroundList.getNext());
+            	tokenList.getNext();
+                TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
+                MainPanel.changeImage(tokenList.get().getBackground());
             }
         });
         
@@ -186,12 +186,11 @@ public class LoginView extends JPanel implements Publisher {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (loginControl.isUniquePlayerID(textField.getText()) && (!textField.getText().isBlank())) {
-                    loginControl.logPlayerIn(textField.getText());
+                    loginControl.logPlayerIn(textField.getText()); //tokenList.get() should be used
                     tokenList.delete();
-                    backgroundList.delete();
                     textField.setText("");
-                    TokenSelectorPanel_Displayer.changeImage(tokenList.get());
-                    MainPanel.changeImage(backgroundList.get());
+                    TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
+                    MainPanel.changeImage(tokenList.get().getBackground());
                     LoginView.iter += 1;
                     //System.out.print(LoginView.iter);
                     if (NextPanel_Label.getText() == "START") {
