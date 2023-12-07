@@ -58,7 +58,7 @@ public class MenuView extends JPanel {
 			tablesPanel= new JPanel();
 			theoriesPanel= new BooksDisplayer();
 			PotionBrewingPanel= new PotionBrewingView();
-			ForagePanel = new ForageGroundsView(controller.getCurrentPlayer(),GameController.getInstance().getRoundOneController());
+			ForagePanel = new ForageGroundsView();
 		
 		bottomPanel = new JPanel();
 		 
