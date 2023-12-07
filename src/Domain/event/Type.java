@@ -14,6 +14,7 @@ public enum Type {
     SICKNESS,
     START_MENUVIEW,
     REPUTATION,
-    FORAGERIGHT
+    FORAGERIGHT,
+    PAUSE
     
 }

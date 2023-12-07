@@ -205,8 +205,6 @@ public class Player implements Publisher {
         
         Ingredient feather1 = new Ingredient(Ingredient.IngredientTypes.Feather);
         Ingredient feather2 = new Ingredient(Ingredient.IngredientTypes.Feather);
-        Ingredient feather1 = new Ingredient(Ingredient.IngredientTypes.Feather);
-        Ingredient feather2 = new Ingredient(Ingredient.IngredientTypes.Feather);
         
         a.getInventory().addIngredient(feather1, 1);
         a.getInventory().addIngredient(feather2, 3);
