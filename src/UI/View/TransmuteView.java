@@ -35,6 +35,7 @@ public class TransmuteView extends JPanel {
     ImagePanel Background;
     IngredientButton B1;
     ImagePanel   Card;
+    ColorChangingPanel transmuteIngredient;
     
     public TransmuteView() {
         this.setSize(1000,500);
@@ -49,6 +50,23 @@ public class TransmuteView extends JPanel {
         Card.setBounds(421, 125 ,158, 250);
         this.add(Card);
         
+        
+        transmuteIngredient = new ColorChangingPanel("#cf9d15", "#FFD700");
+        transmuteIngredient.setBounds(830, 400, 120, 40);
+        transmuteIngredient.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
+                roundOneController.TransmuteIngredient(Player.getCurrPlayer(),new Ingredient(B1.getType()));
+            }
+        });
+        this.add(transmuteIngredient);
+        transmuteIngredient.setLayout(null);
+        JLabel transmuteIngredientLbl = new JLabel("Transmute");
+        transmuteIngredientLbl.setFont(new Font("Tahoma", Font.BOLD, 14));
+        transmuteIngredientLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        transmuteIngredientLbl.setBounds(0, 0, 120, 40);
+        transmuteIngredient.add(transmuteIngredientLbl);
+     
         
         Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.TRANSMUTE_BACKGROUND));
         Background.setBounds(0,0,1000,500);
