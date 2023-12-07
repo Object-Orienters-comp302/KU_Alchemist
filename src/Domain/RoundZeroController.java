@@ -7,37 +7,43 @@ import Models.Player;
 public class RoundZeroController {
     private final Deck deck;
     
-    public RoundZeroController() {
+    public RoundZeroController () {
         this.deck = Deck.getInstance();
     }
     
-    public void gameSetup(Player player1, Player player2) {
-        //Distributes starting gold
-        gold_setup(player1, player2, 10);
+    public void gameSetup () {
         
-        //Creates 4 of each ingredient card
+        //Creates 4 of each ingredient card in deck
         initializeIngredients(4);
         
-        // Deal 2 cards to each player
-        dealIngredientCards(player1, 2);
-        dealIngredientCards(player2, 2);
+        this.deck.shuffleIngredients();
+        
+        for (Player player : Player.getPlayers()) {
+            
+            //Distributes starting gold
+            gold_setup(player, 10);
+            
+            // Deal 2 cards to each player
+            dealIngredientCards(player, 2);
+        }
     }
     
-    public void gold_setup(Player player1, Player player2, int gold) {
-        player1.getInventory().setGold(gold);
-        player2.getInventory().setGold(gold);
-    }
-    
-    public void initializeIngredients(int quantity) {
+    public void initializeIngredients (int quantity) {
         for (Ingredient.IngredientTypes type : Ingredient.IngredientTypes.values()) {
             deck.addIngredient(new Ingredient(type), quantity);
         }
     }
     
-    private void dealIngredientCards(Player player, int count) {
+    public void gold_setup (Player player, int gold) {
+        player.getInventory()
+                .setGold(gold);
+    }
+    
+    private void dealIngredientCards (Player player, int count) {
         for (int i = 0; i < count; i++) {
             Ingredient card = deck.popIngredient();
-            player.getInventory().addIngredient(card, 1);
+            player.getInventory()
+                    .addIngredient(card, 1);
         }
     }
     
