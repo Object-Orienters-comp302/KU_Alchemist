@@ -153,7 +153,7 @@ public class IngredientButton extends JPanel {
             path = ".\\Images\\book\\scorpion.png";
             break;
         case 8:
-            path = ".\\Images\\triangleTable\\empty.png";
+            path = ".\\Images\\triangleTable\\questionMark.png";
             break;
         default:
             path = ".\\Images\\triangleTable\\empty.png";
