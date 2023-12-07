@@ -16,6 +16,7 @@ public class AssetLoader {
         YELLOW("Images/backgrounds/yellowBackground.png"),
         PURPLE("Images/backgrounds/purpleBackground.png"),
         MAIN_BACKGROUND("Images/backgrounds/MainBackground.png"),
+        INVENTORY("Images/backgrounds/inventoryBackground.png"),
         TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png");
         
         
@@ -111,6 +112,7 @@ public class AssetLoader {
             return path;
         }
     }
+    
     public enum PotionBrewingViewAssets implements AssetPath {
         Background("Images/PotionBrewingViewAssets/PotionBrewingArea.png");
         
@@ -125,6 +127,7 @@ public class AssetLoader {
             return path;
         }
     }
+    
     public enum PlainViewAssets implements AssetPath {
         Background("Images/PlainViewAssets/PlainViewBackground.png");
         
@@ -141,7 +144,7 @@ public class AssetLoader {
     }
     
     public enum IngredientAssets implements AssetPath {
-    	
+        
         Feather("Images/book/feather.png"),
         Feet("Images/book/feet.png"),
         Flower("Images/book/flower.png"),
