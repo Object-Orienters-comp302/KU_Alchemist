@@ -179,7 +179,7 @@ public class LoginView extends JPanel implements Publisher {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (loginControl.isUniquePlayerID(textField.getText()) && (!textField.getText().isBlank())) {
-                    loginControl.logPlayerIn(textField.getText()); //tokenList.get() should be used
+                    loginControl.logPlayerIn(textField.getText(),tokenList.get()); //tokenList.get() should be used
                     tokenList.delete();
                     textField.setText("");
                     TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
