@@ -16,8 +16,6 @@ public class Player implements Publisher {
     private Inventory inventory;
     private Integer   score;
     private Integer   reputation;
-    
-    private Integer             gold;
     private Integer             sicknessLevel;
     private ArrayList<Listener> listeners;
     private int[]       triangleTableArray;
@@ -27,9 +25,9 @@ public class Player implements Publisher {
         this.ID        = playerID;
         this.avatar    = avatar;
         this.inventory = new Inventory();
+        this.listeners = new ArrayList<>();
         this.score     = 0; // Start from 0
         this.reputation = 0;
-        this.gold = 0;
         this.sicknessLevel = 0; // Sickness is an integer from 1 to 3 representing how sick the person is
         this.triangleTableArray=new int[28];
         this.rectangleTableArray=new int[8][8];
@@ -91,14 +89,6 @@ public class Player implements Publisher {
     
     public void addReputation(Integer num) {
         setReputation(getReputation() + num);
-    }
-    
-    public Integer getGold() {
-        return gold;
-    }
-    
-    public void setGold(Integer gold) {
-        this.gold = gold;
     }
     
     public Integer getSicknessLevel() {
