@@ -16,6 +16,7 @@ public class AssetLoader {
         MAIN_BACKGROUND("Images/backgrounds/MainBackground.png"),
         INVENTORY("Images/backgrounds/inventoryBackground.png"),
         PUBLISH("Images/backgrounds/publishBackground.png"),
+        BLANK("Images/backgrounds/blank.png"),
         TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png");
     	
         
@@ -79,7 +80,7 @@ public class AssetLoader {
         REDPOSITIVE("Images/PotionBrewingViewAssets/redPotionPositive.png"),
         GREENNEGATIVE("Images/PotionBrewingViewAssets/greenPotionNegative.png"),
         GREENPOSITIVE("Images/PotionBrewingViewAssets/greenPotionPositive.png"),
-        NETURAL("Images/PotionBrewingViewAssets/neturalPotion.png"),
+        NEUTRAL("Images/PotionBrewingViewAssets/neutralPotion.png"),
         UNKNOWN("Images/PotionBrewingViewAssets/unknownPotion.png");
     	
         

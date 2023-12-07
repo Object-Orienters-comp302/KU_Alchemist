@@ -144,7 +144,7 @@ public class PotionButton extends JPanel {
         case AssetLoader.Potions.REDPOSITIVE -> Potion.Identity.REDPOSITIVE;
         case AssetLoader.Potions.GREENNEGATIVE -> Potion.Identity.GREENNEGATIVE;
         case AssetLoader.Potions.GREENPOSITIVE -> Potion.Identity.GREENPOSITIVE;
-        case AssetLoader.Potions.NETURAL -> Potion.Identity.NETURAL;
+        case AssetLoader.Potions.NEUTRAL -> Potion.Identity.NETURAL;
         case AssetLoader.Potions.UNKNOWN -> Potion.Identity.UNKNOWN;
             default -> throw new IllegalStateException("Unexpected value: " + currentPotion);
         };
