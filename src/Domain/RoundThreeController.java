@@ -3,8 +3,9 @@ package Domain;
 import Models.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class RoundThreeController {
+public class RoundThreeController extends RoundTwoController{
     public boolean debunkTheory(Player currentPlayer, PublicationCard publicationCardToDebunk,
                                 Aspect aspectTypeToDebunk) {
         if (publicationCardToDebunk != null && aspectTypeToDebunk != null) {
@@ -44,7 +45,9 @@ public class RoundThreeController {
         return false; // Debunking failed due to invalid inputs or null references
     }
     
-    // All of the Functions above is false, and not usable, it is just for practice
+  
+    
+    // All of the Functions under is false, and not usable, it is just for practice
     public ArrayList<Artifact> UseArtifactForOnce (Player currentPlayer, Artifact artifactCard){ // This function is not working
         ArrayList<Artifact> topThreeArray = new ArrayList<Artifact>();
         if(currentPlayer.getInventory().getArtifacts().containsKey(artifactCard)){

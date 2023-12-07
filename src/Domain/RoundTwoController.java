@@ -5,7 +5,7 @@ import Models.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class RoundTwoController {
+public class RoundTwoController extends RoundOneController{
     
     public Potion sellPotion(Inventory inventory, Potion potion, Guarantee guarantee) {
         Potion removed_potion = removePotion(inventory.getPotions(), potion);
@@ -63,6 +63,8 @@ public class RoundTwoController {
         }
         return false; // Publishing theory failed due to invalid inputs or unavailable markers/ingredients
     }
+    
+
     
     public enum Guarantee {
         POSITIVE,
