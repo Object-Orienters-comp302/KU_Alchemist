@@ -181,16 +181,18 @@ public class Player implements Publisher {
     
     // Testing function
     public static void main(String[] args){
-        Player a = new Player("0", null);
-        Player b = new Player("1", null);
-        Player c = new Player("2", null);
+        Player a = new Player("CoolPlayer", null);
+
         
-        Ingredient ingr1 = new Ingredient(Ingredient.IngredientTypes.Feather);
-        Ingredient ingr2 = new Ingredient(Ingredient.IngredientTypes.Feather);
+        Ingredient feather1 = new Ingredient(Ingredient.IngredientTypes.Feather);
+        Ingredient feather2 = new Ingredient(Ingredient.IngredientTypes.Feather);
         
-        a.getInventory().addIngredient(ingr1, 1);
+        a.getInventory().addIngredient(feather1, 1);
+        a.getInventory().addIngredient(feather2, 3);
         
-        System.out.println(a.isInInventory(ingr2));
+        System.out.println(a.isInInventory(feather1));
+        System.out.println(a.isInInventory(feather2));
+        
         
         System.out.println(a.isInInventory(Ingredient.IngredientTypes.ChickenLeg));
         
