@@ -75,7 +75,7 @@ public class Player implements Publisher {
         return isInInventory(ingredientToCheck.getType());
     }
     
-    public boolean removeFromInventory(Ingredient.IngredientTypes ingrtypeToRemove, int amount){
+    public boolean removeFromInventory(Ingredient.IngredientTypes ingrtypeToRemove, int amount){//this won't work
         if (!this.isInInventory(ingrtypeToRemove)){return false;}
         HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
         
@@ -99,11 +99,20 @@ public class Player implements Publisher {
         return this.removeFromInventory(ingrToRemove.getType(), amount);
     }
     
-    public boolean removeFromInventory(Ingredient.IngredientTypes ingrtypeToRemove){ // Deletes 1 unit of the specified ingredient
-        return this.removeFromInventory(ingrtypeToRemove, 1);
-    }
-    public boolean removeFromInventory(Ingredient ingrToRemove){ // Deletes 1 unit of the specified ingredient
-        return this.removeFromInventory(ingrToRemove.getType(), 1);
+    public boolean removeFromInventory(Ingredient.IngredientTypes ingredientType){ // Deletes 1 unit of the specified ingredient
+            if (!this.isInInventory(ingredientType)){return false;}
+        HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
+        for (Ingredient ingrIter : inventory.keySet()){
+            if(ingrIter.getType() == ingredientType){
+                if(inventory.get(ingrIter) > 0){
+                    inventory.put(ingrIter,inventory.get(ingrIter) -1);
+                    publishEvent(Type.INGREDIENT);
+                    return true;
+                }
+            }
+        }
+        
+        return false;
     }
     
     public void haveSurgery() {

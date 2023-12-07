@@ -73,6 +73,7 @@ public class InventoryView extends JPanel implements Listener {
         
         for(Player player: Player.getPlayers()){
             player.getInventory().addListener(this);
+            player.addListener(this);
         }
         
 	    this.setSize(1000,500);
