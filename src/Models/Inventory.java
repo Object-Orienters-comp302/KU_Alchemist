@@ -18,26 +18,28 @@ public class Inventory implements Publisher {
     public Inventory() {
         Ingredients = new HashMap<Ingredient, Integer>();
         Artifacts   = new HashMap<Artifact, Integer>();
-        Potions = new HashMap<Potion, Integer>();
+        Potions     = new HashMap<Potion, Integer>();
         Gold        = 0;
         listeners   = new ArrayList<>();
-    }
-    
-    public HashMap<Ingredient, Integer> getIngredients() {
-        return Ingredients;
     }
     
     public HashMap<Potion, Integer> getPotions() {
         return Potions;
     }
     
-    
-    public void addIngredient (Ingredient ingredient, int quantity) {
+    public void addIngredient(Ingredient ingredient, int quantity) {
         Ingredients.merge(ingredient, quantity, Integer::sum);
         publishEvent(Type.INGREDIENT);
     }
     
-    public void addPotions (Potion potion, int quantity) {
+    @Override
+    public void publishEvent(Type type) {
+        for (Listener listener : listeners) {
+            listener.onEvent(type);
+        }
+    }
+    
+    public void addPotions(Potion potion, int quantity) {
         Potions.merge(potion, quantity, Integer::sum);
         publishEvent(Type.POTION);
     }
@@ -46,37 +48,35 @@ public class Inventory implements Publisher {
         return Artifacts;
     }
     
-    public void addArtifactCard (Artifact artifact, int quantity) {
+    public void addArtifactCard(Artifact artifact, int quantity) {
         Artifacts.merge(artifact, quantity, Integer::sum);
         publishEvent(Type.ARTIFACT);
-    }
-    
-    public Integer getGold() {
-        return Gold;
-    }
-    
-    public void setGold (Integer gold) {
-        Gold = gold;
-        publishEvent(Type.GOLD);
     }
     
     public void addGold(Integer num) {
         setGold(getGold() + num);
     }
     
+    public Integer getGold() {
+        return Gold;
+    }
+    
+    public void setGold(Integer gold) {
+        Gold = gold;
+        publishEvent(Type.GOLD);
+    }
+
     public void removeIngredient(Ingredient ingredient){
         this.getIngredients().put(ingredient,this.getIngredients().get(ingredient)-1); //TODO Add publisher.
         publishEvent(Type.INGREDIENT);
     }
-    public boolean checkIngredientExists(Ingredient.IngredientTypes Type){
-        return this.getIngredients().get(new Ingredient(Type)) > 0;
+    
+    public HashMap<Ingredient, Integer> getIngredients() {
+        return Ingredients;
     }
     
-    @Override
-    public void publishEvent(Type type) {
-        for (Listener listener : listeners) {
-            listener.onEvent(type);
-        }
+    public boolean checkIngredientExists(Ingredient.IngredientTypes Type) {
+        return this.getIngredients().get(new Ingredient(Type)) > 0;
     }
     
     @Override

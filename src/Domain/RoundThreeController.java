@@ -46,28 +46,24 @@ public class RoundThreeController extends RoundTwoController{
     }
     
   
-    
-    // All of the Functions under is false, and not usable, it is just for practice
-    public ArrayList<Artifact> UseArtifactForOnce (Player currentPlayer, Artifact artifactCard){ // This function is not working
-        ArrayList<Artifact> topThreeArray = new ArrayList<Artifact>();
-        if(currentPlayer.getInventory().getArtifacts().containsKey(artifactCard)){
-            topThreeArray = artifactCard.elixirOfInsight();
-            return topThreeArray;
+    public boolean useElixirOfInsight(Player currentPlayer, Artifact artifactCard){
+        if (artifactCard != null && currentPlayer.getInventory().getArtifacts().containsKey(artifactCard)) {
+            if (artifactCard.getAbilityType().equals(Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT)) {
+                Deck.getInstance().getFirstThree();
+                return true;
+            } else {
+                return false;
+            }
         }
-        return topThreeArray; // Todo raise error
+        return false;
     }
-    public ArrayList<Artifact> reArrange(ArrayList<Artifact> firstThreeCard){  // This function is not working
-        ArrayList<Artifact> reArrangedfirstThreeCard = new ArrayList<Artifact>();
-        reArrangedfirstThreeCard.add(firstThreeCard.get(1));
-        reArrangedfirstThreeCard.add(firstThreeCard.get(2));
-        reArrangedfirstThreeCard.add(firstThreeCard.get(0));
-        return reArrangedfirstThreeCard;
-    }
-    public boolean UseArtifactEveryRound(PublicationCard pubCard1, PublicationCard pubCard2){ // This function is not working
-        ArrayList<Aspect> aspect_1 = pubCard1.getAspects();
-        ArrayList<Aspect> aspect_2 = pubCard2.getAspects();
-        pubCard1.setAspects(aspect_2);
-        pubCard2.setAspects(aspect_1);
+    public boolean elixirRearrange(Ingredient ing1, Ingredient ing2, Ingredient ing3){
+        HashMap<Ingredient, Integer> toSet = new HashMap<>();
+        toSet.put(ing1,0);
+        toSet.put(ing2,1);
+        toSet.put(ing3,2);
+        Deck.getInstance().setFirstThree(toSet);
         return true;
     }
+
 }
