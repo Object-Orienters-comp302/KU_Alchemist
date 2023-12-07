@@ -3,7 +3,9 @@ package Domain;
 import DataTypes.CircularLinkedList;
 import Models.Player;
 import Models.Token;
+import Utils.AssetLoader;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -13,11 +15,13 @@ import java.util.Objects;
 
 public class LoginController {
     protected LoginController() { }
-    
-    public logPlayerInEnums logPlayerIn(String PlayerID) {
+    public logPlayerInEnums logPlayerIn(String PlayerID){
+        return logPlayerIn(PlayerID, Token.tokenCircularList.get());
+    }
+    public logPlayerInEnums logPlayerIn(String PlayerID, Token token) {
         // TODO: Add to event log viewer
         if (isUniquePlayerID(PlayerID)) {
-            new Player(PlayerID, null);// Later will have shuffle
+            new Player(PlayerID, token);
             return logPlayerInEnums.LogInSuccesful;
         } else if (isUniquePlayerID(PlayerID)) {
             return logPlayerInEnums.PlayerIDTaken;
@@ -36,13 +40,11 @@ public class LoginController {
         return true;
     }
     
-    public CircularLinkedList<BufferedImage> getTokenImages() {
-        return Token.tokenImages;
+    public CircularLinkedList<Token> getCirularTokens() {
+        return Token.tokenCircularList;
     }
     
-    public CircularLinkedList<BufferedImage> getTokenBackgrounds() {
-        return Token.tokenBackgrounds;
-    }
+    
     
     public enum logPlayerInEnums {
         LogInSuccesful,

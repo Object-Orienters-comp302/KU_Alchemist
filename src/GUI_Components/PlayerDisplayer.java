@@ -101,14 +101,15 @@ public class PlayerDisplayer extends JPanel implements Listener {// ToDo: needs 
         PlayerDisplayer login = new PlayerDisplayer(null);
         frame.getContentPane().add(login);
         frame.setVisible(true);
-    }
-    
-    @Override
-    public void onEvent(Type type) {
-        if (type == Type.GOLD) {
-            this.revalidate();
-            this.repaint();
-            
-        }
-    }
+	}
+	
+	@Override
+	public void onEvent(Type type) {
+		if (type == Type.GOLD) {
+			coinsLabel.setText(String.valueOf(playerIntance.getInventory().getGold()));
+			this.revalidate();
+			this.repaint();
+			
+		}
+	}
 }
