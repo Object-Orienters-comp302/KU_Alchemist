@@ -124,8 +124,8 @@ public class PotionButtonPopup extends JPanel {
             add(T8);
         }
         PotionPopupButton B8 = new PotionPopupButton(width * 5 / 8, height / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.NEUTRAL, imgPanel, ingre,
-                                                     !CheckIfInventory(AssetLoader.Potions.NEUTRAL));
+                                                             AssetLoader.Potions.NEUTRAL, imgPanel, ingre,
+                                                             !CheckIfInventory(AssetLoader.Potions.NEUTRAL));
         add(B8);
         
         

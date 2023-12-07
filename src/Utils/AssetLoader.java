@@ -16,6 +16,7 @@ public class AssetLoader {
         MAIN_BACKGROUND("Images/backgrounds/MainBackground.png"),
         INVENTORY("Images/backgrounds/inventoryBackground.png"),
         PUBLISH("Images/backgrounds/publishBackground.png"),
+        BLANK("Images/backgrounds/blank.png"),
         TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png");
     	
         

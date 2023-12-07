@@ -50,8 +50,10 @@ public class PotionBrewingView extends JPanel {
         
         
         IngredientButton B1= new IngredientButton(230,125,200,200,true);
+        B1.setLocation(120, 125);
         Background.add(B1);
         IngredientButton B2= new IngredientButton(570,125,200,200,true);
+        B2.setLocation(680, 125);
         Background.add(B2);
         
         
@@ -79,11 +81,11 @@ public class PotionBrewingView extends JPanel {
         
         TestOnStudentBox = new ColorChangingPanel("#cf9d15", "#FFD700");
         
-        TestOnStudentBox.setBounds(20, 400, 150, 40);
+        TestOnStudentBox.setBounds(425, 375, 150, 40);
         Background.add(TestOnStudentBox);
         TestOnStudentBox.setLayout(null);
         
-        ImagePanel TickPanel = new ImagePanel("./Images/tokens/redX.png");
+        ImagePanel TickPanel = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
         TickPanel.setBounds(0, 0, 40, 40);
         TestOnStudentBox.add(TickPanel);
         
@@ -92,25 +94,40 @@ public class PotionBrewingView extends JPanel {
         lblNewLabel.setBounds(40, 5, 110, 30);
         TestOnStudentBox.add(lblNewLabel);
         
-        ImagePanel Card1 = new ImagePanel("./Images/ForageGroundsAssets/ingredientCard.png");
-        Card1.setBounds(250, 100 ,160, 250);
+        ImagePanel Card1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Card));
+        Card1.setBounds(140, 100 ,160, 250);
         Background.add(Card1);
         Card1.setLayout(null);
         
-        ImagePanel Card2 = new ImagePanel("./Images/ForageGroundsAssets/ingredientCard.png");
-        Card2.setBounds(590, 100 ,160, 250);
+        ImagePanel Card2 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Card));
+        Card2.setBounds(700, 100 ,160, 250);
         Background.add(Card2);
         Card2.setLayout(null);
+        
+        ImagePanel PotionDisplayer = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLANK));
+        PotionDisplayer.setLayout(null);
+        PotionDisplayer.setBounds(375, 100, 250, 250);
+        Background.add(PotionDisplayer);
+        
+        ColorChangingPanel DrinkButton = new ColorChangingPanel("#cf9d15", "#FFD700");
+        DrinkButton.setLayout(null);
+        DrinkButton.setBounds(475, 425, 50, 40);
+        Background.add(DrinkButton);
+        
+        JLabel lblDrink = new JLabel("DRINK");
+        lblDrink.setFont(new Font("Tahoma", Font.PLAIN, 12));
+        lblDrink.setBounds(10, 5, 40, 30);
+        DrinkButton.add(lblDrink);
         
         
         TestOnStudentBox.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mouseClicked(MouseEvent e) {
         		if(PotionBrewingView.this.testOnStudent) {
-        			TickPanel.changeImage("./Images/tokens/redX.png");
+        			TickPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
         		}
         		else {
-        			TickPanel.changeImage("./Images/tokens/greenTick.png");
+        			TickPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
         		}
         		PotionBrewingView.this.testOnStudent=!PotionBrewingView.this.testOnStudent;//Sets it to it's negative
         		
