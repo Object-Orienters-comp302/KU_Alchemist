@@ -9,14 +9,12 @@ public class RoundOneController {
     protected RoundOneController() { }
 
     public Ingredient ForageForIngredient (Player player) {
-        if(player.getInventory().getGold() >= 1){
+        if(player.getForageRight() >= 1){
             Deck deck = Deck.getInstance();
             Ingredient ingredient = deck.popIngredient();
             player.getInventory()
                     .addIngredient(ingredient, 1);
-            player.getInventory()
-                    .setGold(player.getInventory()
-                                     .getGold()-1);
+            player.setForageRight(player.getForageRight()-1);
             return ingredient;
         }
         else {
@@ -27,7 +25,7 @@ public class RoundOneController {
     
     public void TransmuteIngredient(Player player, Ingredient.IngredientTypes ingredientType) {
         if (player.isInInventory(ingredientType)) {
-            player.removeFromInventory(ingredientType);
+            player.removeFromInventory(ingredientType,1 );
             player.getInventory().setGold(player.getInventory().getGold() + 1);
         }
     }

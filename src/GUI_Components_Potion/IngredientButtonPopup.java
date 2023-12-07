@@ -176,7 +176,7 @@ public class IngredientButtonPopup extends JPanel {
             default -> throw new IllegalStateException("Unexpected value: " + toCheck);
         };
         
-        return Player.getCurrPlayer().getInventory().getIngredients().entrySet().stream()
+        return !Player.getCurrPlayer().getInventory().getIngredients().entrySet().stream()
                 .anyMatch(entry -> entry.getKey().getType() == ingredientType && entry.getValue() > 0);
         
     }
@@ -184,7 +184,7 @@ public class IngredientButtonPopup extends JPanel {
     
     public static void main(String[] args) {
         // TODO Auto-generated method stub
-        
+        /*
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 1000);
@@ -192,7 +192,7 @@ public class IngredientButtonPopup extends JPanel {
         BookPanel login = new BookPanel(1);
         frame.getContentPane().add(login);
         frame.setVisible(true);
-        
+        */
         
     }
 }

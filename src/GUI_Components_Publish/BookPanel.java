@@ -1,120 +1,86 @@
 package GUI_Components_Publish;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import GUI_Components.ImageChangingPanel;
 import GUI_Components.ImagePanel;
+import Utils.AssetLoader;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BookPanel extends JPanel {
-	public static Boolean[] published =new Boolean[]{false, false, false, false, false, false, false, false};
-	//public static int[] traitUsed =new int[8];
-	public static int[] traitUsed =new int[] {0,0,0,0,0,0,0,0};
-	public BookPanel(int index) {
-		setPreferredSize(new Dimension(500, 250));
-		setLayout(null);
-		setOpaque(false);
-		ImagePanel book= new ImagePanel("./Images/book/book.png");
-		book.setBounds(0, 0, 300, 160);
-		add(book);
-		book.setLayout(null);
-		
-		
-		ImagePanel panel = new ImagePanel(BookPanel.ChooseImg(index));
-		panel.setBounds(30, 5, 80, 80);
-		book.add(panel);
-		
-		ImagePanel endorsePanel = new ImagePanel("./Images/triangleTable/empty.png");
-		endorsePanel.setBounds(160, 5, 120, 90);
-		book.add(endorsePanel);
-		
-		ImageChangingPanel confirmButton = new ImageChangingPanel("./Images/book/envelope.png","./Images/book/publish.png");
-		
-		confirmButton.setBounds(160, 95, 120, 50);
-		book.add(confirmButton);
-		BookButton CircleButton = new BookButton(35, 90, 65, 65,index);
-		
-		//panel_1.setBounds(70, 110, 80, 80);
-		add(CircleButton);
-		setComponentZOrder(CircleButton, 0);
-		
-		
-		confirmButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				int val=CircleButton.getCurrentValue();
-				if(val!=0) {
-					System.out.print(val);
-					traitUsed[index]=val;
-					published[index]=true;
-					confirmButton.setDefImage("./Images/book/published.png");
-					confirmButton.setHoverImage("./Images/book/published.png");
-					BookPanel.this.revalidate();
-					BookPanel.this.repaint();
-				}
-			}
-		});
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	 public static String ChooseImg(int val) {
-	    	String path;
-	    	switch (val) {
-	    	case 0:
-	            path = ".\\Images\\book\\feather.png";
-	            break;
-	        case 1:
-	            path = ".\\Images\\book\\feet.png";
-	            break;
-	        case 2:
-	            path = ".\\Images\\book\\flower.png";
-	            break;
-	        case 3:
-	            path = ".\\Images\\book\\frog.png";
-	            break;
-	        case 4:
-	            path = ".\\Images\\book\\mandrake.png";
-	            break;
-	        case 5:
-	            path = ".\\Images\\book\\mushroom.png";
-	            break;
-	        case 6:
-	            path = ".\\Images\\book\\weed.png";
-	            break;
-	        case 7:
-	            path = ".\\Images\\book\\scorpion.png";
-	            break;
-	        default:
-	            path = ".\\Images\\book\\empty.png";
-	            break;
-	    	}
-	    	return path;
-	    }
-	
-	
-	 public static void main (String[] args) {
-	 JFrame frame = new JFrame("test");
-     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     frame.setSize(1200, 1000);
-     frame.getContentPane()
-             .setLayout(new GridBagLayout());
-     BookPanel login = new BookPanel(1);
-     frame.getContentPane()
-             .add(login);
-     frame.setVisible(true);
-	 }
-
+    public static HashMap<AssetLoader.AssetPath, Boolean> published = new HashMap<AssetLoader.AssetPath, Boolean>();
+    static {
+        published.put(AssetLoader.IngredientAssets.Feather, false);
+        published.put(AssetLoader.IngredientAssets.Feet, false);
+        published.put(AssetLoader.IngredientAssets.Flower, false);
+        published.put(AssetLoader.IngredientAssets.Frog, false);
+        published.put(AssetLoader.IngredientAssets.Mandrake, false);
+        published.put(AssetLoader.IngredientAssets.Mushroom, false);
+        published.put(AssetLoader.IngredientAssets.Scorpion, false);
+        published.put(AssetLoader.IngredientAssets.Weed, false);
+    }
+    public static ArrayList<AssetLoader.AssetPath> traitUsed = new ArrayList<>();
+    
+    public BookPanel(AssetLoader.AssetPath path) {
+        setPreferredSize(new Dimension(500, 250));
+        setLayout(null);
+        setOpaque(false);
+        ImagePanel book = new ImagePanel("./Images/book/book.png");
+        book.setBounds(0, 0, 300, 160);
+        add(book);
+        book.setLayout(null);
+        
+        
+        ImagePanel panel = new ImagePanel(AssetLoader.getAssetPath(path));
+        panel.setBounds(30, 5, 80, 80);
+        book.add(panel);
+        
+        ImagePanel endorsePanel = new ImagePanel("./Images/triangleTable/empty.png");
+        endorsePanel.setBounds(160, 5, 120, 90);
+        book.add(endorsePanel);
+        
+        ImageChangingPanel confirmButton =
+                new ImageChangingPanel("./Images/book/envelope.png", "./Images/book/publish.png");
+        
+        confirmButton.setBounds(160, 95, 120, 50);
+        book.add(confirmButton);
+        BookButton CircleButton = new BookButton(35, 90, 65, 65, path);
+        
+        //panel_1.setBounds(70, 110, 80, 80);
+        add(CircleButton);
+        setComponentZOrder(CircleButton, 0);
+        
+        
+        confirmButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                AssetLoader.AssetPath val = CircleButton.getCurrentPath();
+                if (val != AssetLoader.TriangleTable.QUESTION_MARK) {
+                    System.out.print(val);
+                    traitUsed.add(val);
+                    published.put(path, true);
+                    confirmButton.setDefImage("./Images/book/published.png");
+                    confirmButton.setHoverImage("./Images/book/published.png");
+                    BookPanel.this.revalidate();
+                    BookPanel.this.repaint();
+                }
+            }
+        });
+        
+    }
+    
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("test");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1200, 1000);
+        frame.getContentPane().setLayout(new GridBagLayout());
+        BookPanel login = new BookPanel(AssetLoader.Book.allPositive);
+        frame.getContentPane().add(login);
+        frame.setVisible(true);
+    }
+    
 }

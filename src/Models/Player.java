@@ -23,6 +23,7 @@ public class Player implements Publisher {
     private ArrayList<Listener> listeners;
     private int[]       triangleTableArray;
     private int[][]     rectangleTableArray;
+    private int forageRight;
     
     public Player(String playerID, Token token) {
         this.ID        = playerID;
@@ -34,6 +35,7 @@ public class Player implements Publisher {
         this.sicknessLevel = 0; // Sickness is an integer from 1 to 3 representing how sick the person is
         this.triangleTableArray=new int[28];
         this.rectangleTableArray=new int[8][8];
+        this.forageRight = 2;
         
         
         instances.add(this);
@@ -155,23 +157,31 @@ public class Player implements Publisher {
         publishEvent(Type.SICKNESS); // Sickness yerine playerGotSick gibi bisey yapsak daha iyi olmaz mi?
         // TODO: Refactor the event names
     }
-    
+
     public int[] getTriangleTableArray() {
-        return triangleTableArray;
+		return triangleTableArray;
+	}
+
+	public void setTriangleTableArray(int[] triangleTableArray) {
+		this.triangleTableArray = triangleTableArray;
+	}
+
+	public int[][] getRectangleTableArray() {
+		return rectangleTableArray;
+	}
+
+	public void setRectangleTableArray(int[][] rectangleTableArray) {
+		this.rectangleTableArray = rectangleTableArray;
+	}
+    
+    public int getForageRight() {
+        return forageRight;
     }
     
-    public void setTriangleTableArray(int[] triangleTableArray) {
-        this.triangleTableArray = triangleTableArray;
+    public void setForageRight(int forageRight) {
+        this.forageRight = forageRight;
+        this.publishEvent(Type.FORAGERIGHT);
     }
-    
-    public int[][] getRectangleTableArray() {
-        return rectangleTableArray;
-    }
-    
-    public void setRectangleTableArray(int[][] rectangleTableArray) {
-        this.rectangleTableArray = rectangleTableArray;
-    }
-    
     
     // Listener Functions
     @Override
@@ -186,6 +196,8 @@ public class Player implements Publisher {
         }
     }
     
+    
+    
     // Testing function
     public static void main(String[] args){
         Player a = new Player("CoolPlayer", null);
@@ -193,9 +205,16 @@ public class Player implements Publisher {
         
         Ingredient feather1 = new Ingredient(Ingredient.IngredientTypes.Feather);
         Ingredient feather2 = new Ingredient(Ingredient.IngredientTypes.Feather);
+        Ingredient feather1 = new Ingredient(Ingredient.IngredientTypes.Feather);
+        Ingredient feather2 = new Ingredient(Ingredient.IngredientTypes.Feather);
         
         a.getInventory().addIngredient(feather1, 1);
         a.getInventory().addIngredient(feather2, 3);
+        a.getInventory().addIngredient(feather1, 1);
+        a.getInventory().addIngredient(feather2, 3);
+        
+        System.out.println(a.isInInventory(feather1));
+        System.out.println(a.isInInventory(feather2));
         
         System.out.println(a.isInInventory(feather1));
         System.out.println(a.isInInventory(feather2));

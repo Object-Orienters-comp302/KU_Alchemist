@@ -1,7 +1,5 @@
 package Utils;
 
-import UI.View.TransmuteView;
-
 public class AssetLoader {
     // Method to get asset path
     public static String getAssetPath(AssetPath asset) {
@@ -203,7 +201,27 @@ public class AssetLoader {
         }
     }
     
-    
+    public enum Book implements AssetPath {
+        allPositive("Images/book/C1.png"),
+        allNegative("Images/book/C2.png"),
+        negativeGreen("Images/book/C3.png"),
+        positiveRed("Images/book/C4.png"),
+        negativeBlue("Images/book/C5.png"),
+        negativeRed("Images/book/C6.png"),
+        positiveGreen("Images/book/C7.png"),
+        positiveBlue("Images/book/C8.png");
+        
+        private final String path;
+        
+        Book(String Path) {
+            this.path = Path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
     
     // Interface for asset paths
     public interface AssetPath {

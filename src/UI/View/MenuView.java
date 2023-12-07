@@ -78,12 +78,12 @@ public class MenuView extends JPanel {
 		
 		sidePanel = new JPanel(); 
 			//Add assetloader when a new asset is given.
-			side1 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
-			side2 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
-			side3 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
-			side4 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
-			side5 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
-			side6 = new ImageChangingPanel("./Images/backgrounds/blueBackground.png","./Images/backgrounds/yellowBackground.png");
+			side1 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
+			side2 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
+			side3 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
+			side4 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
+			side5 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
+			side6 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
 		BufferedImage
 				background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))),3 ,2);
 		backGroundImage = new HQImagePanel(background);
@@ -132,9 +132,11 @@ public class MenuView extends JPanel {
 		
 		
 		backGroundImage.setBounds(0,0,1280,720);
+		backGroundImage.setLayout(null);
 		basePanel.add(backGroundImage);
 		sidePanel.setBounds(1000, 90, 280, 630);
-		basePanel.add(sidePanel);
+		sidePanel.setOpaque(false);
+		backGroundImage.add(sidePanel);
 		sidePanel.setLayout(null);
 		sidePanel.setBackground(Color.black);
 		
