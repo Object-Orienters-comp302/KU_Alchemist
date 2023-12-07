@@ -70,17 +70,31 @@ public class Player implements Publisher {
         return false;
     }
     public boolean isInInventory(Ingredient ingredientToCheck){ // This function is horrible because Ingredient implementation is horrible
+        return isInInventory(ingredientToCheck.getType());
+    }
+    
+    public boolean removeFromInventory(Ingredient.IngredientTypes ingrtypeToRemove, int amount){
+        if (!this.isInInventory(ingrtypeToRemove)){return false;}
         HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
         
         for (Ingredient ingrIter : inventory.keySet()) {
             Integer quantity = inventory.get(ingrIter);
-            if (ingrIter.getType() == ingredientToCheck.getType() && quantity > 0){
-                // TODO: Add this to debug
-                System.out.println("Ingredient: " + "`" + ingredientToCheck.getType() + "`" + " is in PlayerID: " + "`" + this.getID() + "`");
-                return true;
+            if (ingrIter.getType() == ingrtypeToRemove){
+                if (amount > quantity){
+                    System.out.println("Amount is greater than the players Ingredient amount! Not removing Ingredient");
+                    return false;
+                }
+                else {
+                    quantity = quantity-amount;
+                    System.out.println("Removing " + amount + " " + ingrtypeToRemove + ". From PlayerID: " + this.getID());
+                    return true;
+                }
             }
         }
-        return false;
+        return false; // Ingredient wasn't found, which shouldn't happen.
+    }
+    public boolean removeFromInventory(Ingredient ingrToRemove, int amount){
+        return this.removeFromInventory(ingrToRemove.getType(), amount);
     }
     
     public void haveSurgery() {
@@ -134,12 +148,7 @@ public class Player implements Publisher {
         publishEvent(Type.SICKNESS); // Sickness yerine playerGotSick gibi bisey yapsak daha iyi olmaz mi?
         // TODO: Refactor the event names
     }
-    public boolean removeFromInventory(Ingredient ingrToRemove){
-        return false;
-    }
-    public boolean removeFromInventory(Ingredient.IngredientTypes ingrtypeToRemove){
-        return false;
-    }
+
     public int[] getTriangleTableArray() {
 		return triangleTableArray;
 	}
