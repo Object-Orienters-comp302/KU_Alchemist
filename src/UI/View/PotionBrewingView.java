@@ -62,7 +62,7 @@ public class PotionBrewingView extends JPanel {
         makePotionButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 Inventory inventory = Player.getCurrPlayer().getInventory();
-
+                
                 if(inventory.checkIngredientExists(B1.getType()) && inventory.checkIngredientExists(B2.getType())){
                     //TODO Make this better currently this maybe problematic
                     MakeExperiments(new Ingredient(B1.getType()),new Ingredient(B2.getType()),Player.getCurrPlayer(),testOnStudent);
