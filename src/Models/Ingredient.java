@@ -27,6 +27,10 @@ public class Ingredient {
         
     }
     
+    public boolean equals(Ingredient ingr) {
+        return (this.getType() == ingr.getType());
+    }
+    
     public IngredientTypes getType() {
         return Type;
     }

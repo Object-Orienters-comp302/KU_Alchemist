@@ -4,6 +4,7 @@ import Domain.event.Listener;
 import Domain.event.Publisher;
 import Domain.event.Type;
 
+import javax.sound.midi.SysexMessage;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,21 +55,27 @@ public class Player implements Publisher {
         return instances.get(currPlayerIndex);
     }
     
-//    public boolean isInInventory(Ingredient.IngredientTypes ingredient){
-//        HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
-//
-//        if (inventory.containsKey(ingredient)){ // if the ingredient is in the hashmap
-//            if (inventory.get(ingredient) > 0){ // if it is more than one
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-    public boolean isInInventory(Ingredient ingredient){
+    public boolean isInInventory(Ingredient.IngredientTypes ingredientType){
         HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
         
-        if (inventory.containsKey(ingredient)){ // if the ingredient is in the hashmap
-            if (inventory.get(ingredient) > 0){ // if it is more than one
+        for (Ingredient ingrIter : inventory.keySet()) {
+            Integer quantity = inventory.get(ingrIter);
+            if (ingrIter.getType() == ingredientType && quantity > 0){
+                // TODO: Add this to debug
+                System.out.println("Ingredient: " + "`" + ingredientType + "`" + " is in PlayerID: " + "`" + this.getID() + "`");
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean isInInventory(Ingredient ingredientToCheck){ // This function is horrible because Ingredient implementation is horrible
+        HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
+        
+        for (Ingredient ingrIter : inventory.keySet()) {
+            Integer quantity = inventory.get(ingrIter);
+            if (ingrIter.getType() == ingredientToCheck.getType() && quantity > 0){
+                // TODO: Add this to debug
+                System.out.println("Ingredient: " + "`" + ingredientToCheck.getType() + "`" + " is in PlayerID: " + "`" + this.getID() + "`");
                 return true;
             }
         }
@@ -165,6 +172,8 @@ public class Player implements Publisher {
         a.getInventory().addIngredient(ingr1, 1);
         
         System.out.println(a.isInInventory(ingr2));
+        
+        System.out.println(a.isInInventory(Ingredient.IngredientTypes.ChickenLeg));
         
         
         
