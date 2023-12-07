@@ -26,8 +26,8 @@ public class RoundOneController {
     }
     
     public void TransmuteIngredient(Player player, Ingredient.IngredientTypes ingredientType) {
-        if (player.isInInventory(ingredientType) {
-            player.removeFromInventory(ingredientType,1);
+        if (player.isInInventory(ingredientType)) {
+            player.removeFromInventory(ingredientType);
             player.getInventory().setGold(player.getInventory().getGold() + 1);
         }
     }
