@@ -23,6 +23,7 @@ public class Player implements Publisher {
     private ArrayList<Listener> listeners;
     private int[]       triangleTableArray;
     private int[][]     rectangleTableArray;
+    private int forageRight;
     
     public Player(String playerID, Token token) {
         this.ID        = playerID;
@@ -34,6 +35,7 @@ public class Player implements Publisher {
         this.sicknessLevel = 0; // Sickness is an integer from 1 to 3 representing how sick the person is
         this.triangleTableArray=new int[28];
         this.rectangleTableArray=new int[8][8];
+        this.forageRight = 2;
         
         
         instances.add(this);
@@ -164,8 +166,16 @@ public class Player implements Publisher {
 	public void setRectangleTableArray(int[][] rectangleTableArray) {
 		this.rectangleTableArray = rectangleTableArray;
 	}
-	
-	
+    
+    public int getForageRight() {
+        return forageRight;
+    }
+    
+    public void setForageRight(int forageRight) {
+        this.forageRight = forageRight;
+        this.publishEvent(Type.FORAGERIGHT);
+    }
+    
     // Listener Functions
     @Override
     public void addListener(Listener lis) {
@@ -178,6 +188,8 @@ public class Player implements Publisher {
             listener.onEvent(type);
         }
     }
+    
+    
     
     // Testing function
     public static void main(String[] args){
