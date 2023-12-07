@@ -61,9 +61,9 @@ public class PotionBrewingView extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 Inventory inventory = Player.getCurrPlayer().getInventory();
                 
-                if(inventory.checkIngredientExists(B1.getType()) && inventory.checkIngredientExists(B2.getType())){
+                if(Player.getCurrPlayer().isInInventory(B1.getType()) && Player.getCurrPlayer().isInInventory(B2.getType())){
                     //TODO Make this better currently this maybe problematic
-                    MakeExperiments(new Ingredient(B1.getType()),new Ingredient(B2.getType()),Player.getCurrPlayer(),testOnStudent);
+                    MakePotion(new Ingredient(B1.getType()),new Ingredient(B2.getType()),Player.getCurrPlayer());
                 }
                 
             }
@@ -137,13 +137,16 @@ public class PotionBrewingView extends JPanel {
         this.setVisible(true);
     }
     
-    private void MakeExperiments(Ingredient ingredient1, Ingredient ingredient2, Player player, boolean testOnStudent){
+    private void MakePotion(Ingredient ingredient1, Ingredient ingredient2, Player player){
         RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
         Potion potion = roundOneController.MakePotion(ingredient1.getAspects(),ingredient2.getAspects());
-       
+        player.getInventory().addPotions(potion,1);
+        
         roundOneController.removeIngredient(player,ingredient1);
         roundOneController.removeIngredient(player,ingredient2);
-        
+    }
+    private void MakeExperiments(Potion potion, Player player, boolean testOnStudent){
+        RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
         roundOneController.Make_experiments(player,potion,testOnStudent);
     }
     public static void main(String[] args) {
