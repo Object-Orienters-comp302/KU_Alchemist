@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import Models.Ingredient;
 import Models.Player;
 import Models.Potion;
+import Utils.AssetLoader;
 
 import java.awt.SystemColor;
 import java.util.HashMap;
@@ -91,28 +92,28 @@ public class InventoryPanel extends JPanel {
         
 
         // adding Ingredient Images
-        feather = new ImagePanel("./Images/book/flower.png");
+        feather = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Feather));
         Ingredient_panel.add(feather);
         
-        feet = new ImagePanel("./Images/book/feather.png");
+        feet = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Feet));
         Ingredient_panel.add(feet);
         
-        flower = new ImagePanel("./Images/book/feet.png");
+        flower = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Flower));
         Ingredient_panel.add(flower);
 
-        frog = new ImagePanel("./Images/book/frog.png");
+        frog = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Frog));
         Ingredient_panel.add(frog);
         
-        mandrake = new ImagePanel("./Images/book/mandrake.png");
+        mandrake = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Mandrake));
         Ingredient_panel.add(mandrake);
         
-        mushroom = new ImagePanel("./Images/book/mushroom.png");
+        mushroom = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Mushroom));
         Ingredient_panel.add(mushroom);
         
-        scorpion = new ImagePanel("./Images/book/scorpion.png");
+        scorpion = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Scorpion));
         Ingredient_panel.add(scorpion);
         
-        weed = new ImagePanel("./Images/book/weed.png");
+        weed = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Weed));
         Ingredient_panel.add(weed);
         
         
@@ -314,6 +315,8 @@ public class InventoryPanel extends JPanel {
 		}
 	}
 	
+
+
 }
 
 
