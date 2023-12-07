@@ -18,6 +18,7 @@ public class Inventory implements Publisher {
     public Inventory() {
         Ingredients = new HashMap<Ingredient, Integer>();
         Artifacts   = new HashMap<Artifact, Integer>();
+        Potions = new HashMap<Potion, Integer>();
         Gold        = 0;
         listeners   = new ArrayList<>();
     }

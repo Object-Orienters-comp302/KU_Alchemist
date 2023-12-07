@@ -117,6 +117,29 @@ public class AssetLoader {
         }
     }
     
+    public enum IngredientAssets implements AssetPath {
+    	
+        Feather("Images/book/feather.png"),
+        Feet("Images/book/feet.png"),
+        Flower("Images/book/flower.png"),
+        Frog("Images/book/frog.png"),
+        Mandrake("Images/book/mandrake.png"),
+        Mushroom("Images/book/mushroom.png"),
+        Scorpion("Images/book/scorpion.png"),
+        Weed("Images/book/weed.png");
+        
+        private final String path;
+        
+        IngredientAssets(String Path) {
+            this.path = Path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
     
     
     
