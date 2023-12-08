@@ -27,6 +27,7 @@ public class MenuView extends JPanel implements Publisher{
     private MenuController controller;
     JPanel basePanel;
 	JPanel topPanel;
+		ImagePanel pause;
 	HQImagePanel backGroundImage;
 	
 	private ArrayList<Listener> listeners;
@@ -54,7 +55,7 @@ public class MenuView extends JPanel implements Publisher{
 		ImageChangingPanel side4;
 		ImageChangingPanel side5;
 		ImageChangingPanel side6;
-		ImageChangingPanel side7;
+		
 	
 	
 	
@@ -71,6 +72,9 @@ public class MenuView extends JPanel implements Publisher{
 		this.listeners = new ArrayList<>();
     	basePanel = new JPanel();
 		topPanel = new JPanel();
+			pause = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PAUSE));
+		
+			
 		cardLay=new CardLayout();
 		displayerPanel = new JPanel(cardLay);
 			tablesPanel= new JPanel();
@@ -86,13 +90,19 @@ public class MenuView extends JPanel implements Publisher{
 		
 		sidePanel = new JPanel(); 
 			//Add assetloader when a new asset is given.
-			side1 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
-			side2 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
-			side3 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
-			side4 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
-			side5 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
-			side6 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
-			side7 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE),AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
+			side1 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE0),
+					AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE1));
+			side2 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH1),
+					AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH0));
+			side3 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB0),
+					AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB1));
+			side4 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE0),
+					AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE1));
+			side5 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY0),
+					AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY1));
+			side6 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS0),
+					AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS1));
+			
 		BufferedImage
 				background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))),3 ,2);
 		backGroundImage = new HQImagePanel(background);
@@ -110,6 +120,9 @@ public class MenuView extends JPanel implements Publisher{
 		basePanel.add(topPanel);
 		topPanel.setBackground(Color.black);
 		topPanel.setLayout(null);
+		
+			pause.setBounds(1200, 5,80 , 80);
+			topPanel.add(pause);
 		
 		displayerPanel.setBounds(0, 90, 1000, 500);
 		basePanel.add(displayerPanel);
@@ -149,26 +162,55 @@ public class MenuView extends JPanel implements Publisher{
 		sidePanel.setLayout(null);
 		sidePanel.setBackground(Color.black);
 		
-			side1.setBounds(10, 5, 260, 65);
+			
+			ImagePanel sideText1= new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.DEDUCT));
+			sideText1.setBounds(20, 15, 240, 55);
+			sidePanel.add(sideText1);
+		
+			side1.setBounds(10, 5, 260, 75);
 			sidePanel.add(side1);
 			
-			side2.setBounds(10, 75, 260, 65);
+			
+			ImagePanel sideText2= new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.PUBLISH));
+			sideText2.setBounds(20, 95, 240, 55);
+			sidePanel.add(sideText2);
+			
+			side2.setBounds(10, 85, 260, 75);
 			sidePanel.add(side2);
 			
-			side3.setBounds(10, 145, 260, 65);
+			
+			ImagePanel sideText3= new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.EXPERIMENT));
+			sideText3.setBounds(20, 180, 240, 55);
+			sidePanel.add(sideText3);
+			
+			side3.setBounds(10, 170, 260, 75);
 			sidePanel.add(side3);
 			
-			side4.setBounds(10, 215, 260, 65);
+			
+			ImagePanel sideText4= new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.FORAGE));
+			sideText4.setBounds(20, 260, 240, 55);
+			sidePanel.add(sideText4);
+			
+			side4.setBounds(10, 250, 260, 75);
 			sidePanel.add(side4);
 			
-			side5.setBounds(10, 285, 260, 65);
+			
+			ImagePanel sideText5= new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.INVENTORY));
+			sideText5.setBounds(20, 340, 240, 55);
+			sidePanel.add(sideText5);
+			
+			side5.setBounds(10, 330, 260, 75);
 			sidePanel.add(side5);
+			
+			
+			ImagePanel sideText6= new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.TRANSMUTATE));
+			sideText6.setBounds(20, 420, 240, 55);
+			sidePanel.add(sideText6);
 		
-			side6.setBounds(10, 355, 260, 65);
+			side6.setBounds(10, 410, 260, 75);
 			sidePanel.add(side6);
 		
-			side7.setBounds(10, 435, 260, 65);
-			sidePanel.add(side7);
+			
     }
     
     private void ApplyFuncs() {
@@ -208,7 +250,7 @@ public class MenuView extends JPanel implements Publisher{
 				cardLay.show(displayerPanel, "Transmute");
 			}
 		});
-		side7.addMouseListener(new MouseAdapter() {
+		pause.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				publishEvent(Type.PAUSE);

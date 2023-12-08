@@ -3,6 +3,7 @@ package GUI_Components_Tables;
 import javax.swing.*;
 
 import GUI_Components.ImagePanel;
+import Utils.AssetLoader;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -12,16 +13,16 @@ import java.util.Arrays;
 public class TriangleTableWithImg extends JPanel {
     
 	public TriangleTableWithImg(int[] data) {
-        setPreferredSize(new Dimension(425, 425));  // Set preferred size to 450x450
-        setOpaque(true);
+        setPreferredSize(new Dimension(425, 425));  
+        setOpaque(false);
         setLayout(null);
-        ImagePanel table = new ImagePanel(".//Images//triangleTable//TriangleTable.png");
-        table.setLocation(0, 0);  // Adjust the location based on the new size
-        table.setSize(400, 400);    // Adjust the size based on the new size
+        ImagePanel table = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.TriangleTable.TRIANGLE_TABLE));
+        table.setLocation(0, 0);  
+        table.setSize(400, 400);    
         add(table);
         table.setLayout(null);
 
-        // Adjust the location and size of buttons based on the new size
+        
         TriangleTableButton Button1_1 = new TriangleTableButton(185, 65, 30, 30, 0, data);
         TriangleTableButton Button2_1 = new TriangleTableButton(162, 105, 30, 30, 1, data);
         TriangleTableButton Button2_2 = new TriangleTableButton(208, 105, 30, 30, 2, data);

@@ -33,6 +33,62 @@ public class AssetLoader {
         }
     }
     
+    public enum ButtonBackgrounds implements AssetPath {
+        TABLE0("Images/buttonBackgrounds/tablesBackground0.png"),
+        TABLE1("Images/buttonBackgrounds/tablesBackground1.png"),
+        PUBLISH0("Images/buttonBackgrounds/publish0.png"),
+        PUBLISH1("Images/buttonBackgrounds/publish1.png"),
+        LAB0("Images/buttonBackgrounds/lab0.png"),
+        LAB1("Images/buttonBackgrounds/lab1.png"),
+        JUNGLE0("Images/buttonBackgrounds/forage0.png"),
+        JUNGLE1("Images/buttonBackgrounds/forage1.png"),
+        INVENTORY0("Images/buttonBackgrounds/inventory0.png"),
+        INVENTORY1("Images/buttonBackgrounds/inventory1.png"),
+        TRANS0("Images/buttonBackgrounds/transmutate0.png"),
+        TRANS1("Images/buttonBackgrounds/transmutate1.png"),
+        PAUSE("Images/buttonBackgrounds/pause.png"),
+        EU4("Images/buttonBackgrounds/eu4Logo.png")
+        
+        ;
+    	
+        
+        
+        private final String path;
+        
+        ButtonBackgrounds(String path) {
+            this.path = path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
+    public enum ButtonTexts implements AssetPath {
+        DEDUCT("Images/buttonText/deductionText.png"),
+        EXPERIMENT("Images/buttonText/experimentText.png"),
+        PUBLISH("Images/buttonText/publishText.png"),
+        FORAGE("Images/buttonText/forageText.png"),
+        TRANSMUTATE("Images/buttonText/transmutateText.png"),
+        INVENTORY("Images/buttonText/inventoryText.png")
+        
+        ;
+    	
+        
+        
+        private final String path;
+        
+        ButtonTexts(String path) {
+            this.path = path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
     public enum Tokens implements AssetPath {
         GREEN_TICK("Images/tokens/greenTick.png"),
         RED_X("Images/tokens/redX.png"),

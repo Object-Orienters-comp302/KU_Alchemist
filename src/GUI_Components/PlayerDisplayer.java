@@ -39,11 +39,11 @@ public class PlayerDisplayer extends JPanel implements Listener {// ToDo: needs 
         labelPanel_1   = new JPanel();
         nameLabel      = new JLabel(playerIntance.getID());
         labelPanel_2   = new JPanel();
-        labelPanel_2_1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.TriangleTable.MINUS_BLUE));
+        labelPanel_2_1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.EU4));
         labelPanel_2_2 = new JPanel();
         coinsLabel     = new JLabel(String.valueOf(playerIntance.getInventory().getGold()));
         labelPanel_3   = new JPanel();
-        labelPanel_3_1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.TriangleTable.MINUS_BLUE));
+        labelPanel_3_1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.EU4));
         labelPanel_3_2 = new JPanel();
         pointsLabel    = new JLabel(String.valueOf(playerIntance.getReputation()));
     }
