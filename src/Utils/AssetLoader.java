@@ -265,7 +265,7 @@ public class AssetLoader {
         NEGATIVE_RED("Images/book/C6.png"),
         POSITIVE_GREEN("Images/book/C7.png"),
         POSITIVE_BLUE("Images/book/C8.png"),
-        BOOK("Images/book/Book.png"),
+        BOOK("Images/book/book.png"),
         ENVELOPE("Images/book/envelope.png"),
         PUBLISH("Images/book/publish.png"),
         PUBLISHED("Images/book/published.png");
