@@ -24,11 +24,11 @@ public class ForageGroundsView extends JPanel {
         this.setSize(1000, 500);
         setLayout(null);
         
-        Card = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Card));
+        Card = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
         Card.setBounds(773, 223, 158, 250);
         this.add(Card);
         
-        Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Background));
+        Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.BACKGROUND));
         Background.setBounds(0, 0, 1000, 500);
         this.add(Background);
         Background.setLayout(null);

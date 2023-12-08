@@ -132,11 +132,11 @@ public class PotionButton extends JPanel {
     
     public Potion.Identity getType() {
         return switch (currentPotion) {
-            case AssetLoader.Potions.BLUENEGATIVE -> Potion.Identity.BLUENEGATIVE;
-            case AssetLoader.Potions.BLUEPOSITIVE -> Potion.Identity.BLUEPOSITIVE;
-            case AssetLoader.Potions.REDNEGATIVE -> Potion.Identity.REDNEGATIVE;
-            case AssetLoader.Potions.REDPOSITIVE -> Potion.Identity.REDPOSITIVE;
-            case AssetLoader.Potions.GREENNEGATIVE -> Potion.Identity.GREENNEGATIVE;
+            case AssetLoader.Potions.BLUE_NEGATIVE -> Potion.Identity.BLUENEGATIVE;
+            case AssetLoader.Potions.BLUE_POSITIVE -> Potion.Identity.BLUEPOSITIVE;
+            case AssetLoader.Potions.RED_NEGATIVE -> Potion.Identity.REDNEGATIVE;
+            case AssetLoader.Potions.RED_POSITIVE -> Potion.Identity.REDPOSITIVE;
+            case AssetLoader.Potions.GREEN_NEGATIVE -> Potion.Identity.GREENNEGATIVE;
             case AssetLoader.Potions.GREENPOSITIVE -> Potion.Identity.GREENPOSITIVE;
             case AssetLoader.Potions.NEUTRAL -> Potion.Identity.NETURAL;
             case AssetLoader.Potions.UNKNOWN -> Potion.Identity.UNKNOWN;

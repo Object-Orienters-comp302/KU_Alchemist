@@ -85,18 +85,18 @@ public class MenuView extends JPanel implements Publisher {
         
         sidePanel = new JPanel();
         //Add assetloader when a new asset is given.
-        side1 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE1));
-        side2 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH1),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH0));
-        side3 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB1));
-        side4 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE1));
-        side5 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY1));
-        side6 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS1));
+        side1 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE_0),
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE_1));
+        side2 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH_1),
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH_0));
+        side3 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB_0),
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB_1));
+        side4 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE_0),
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE_1));
+        side5 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_0),
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_1));
+        side6 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1));
         
         BufferedImage background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(
                 GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))), 3, 2);
@@ -198,7 +198,7 @@ public class MenuView extends JPanel implements Publisher {
         sidePanel.add(side5);
         
         
-        ImagePanel sideText6 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.TRANSMUTATE));
+        ImagePanel sideText6 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.TRANSMUTE));
         sideText6.setBounds(20, 420, 240, 55);
         sidePanel.add(sideText6);
         

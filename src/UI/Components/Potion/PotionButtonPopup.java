@@ -39,62 +39,62 @@ public class PotionButtonPopup extends JPanel {
         add(B1);
         
         
-        if (CheckIfInventory(AssetLoader.Potions.BLUENEGATIVE)) {
+        if (CheckIfInventory(AssetLoader.Potions.BLUE_NEGATIVE)) {
             CircleTransparentPanel T2 = new CircleTransparentPanel((width / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 3 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
             add(T2);
         }
         PotionPopupButton B2 = new PotionPopupButton(width / 8, height * 3 / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.BLUENEGATIVE, imgPanel, ingre,
-                                                     !CheckIfInventory(AssetLoader.Potions.BLUENEGATIVE));
+                                                     AssetLoader.Potions.BLUE_NEGATIVE, imgPanel, ingre,
+                                                     !CheckIfInventory(AssetLoader.Potions.BLUE_NEGATIVE));
         add(B2);
         
         
-        if (CheckIfInventory(AssetLoader.Potions.BLUEPOSITIVE)) {
+        if (CheckIfInventory(AssetLoader.Potions.BLUE_POSITIVE)) {
             CircleTransparentPanel T3 = new CircleTransparentPanel((width / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 5 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
             add(T3);
         }
         PotionPopupButton B3 = new PotionPopupButton(width / 8, height * 5 / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.BLUEPOSITIVE, imgPanel, ingre,
-                                                     !CheckIfInventory(AssetLoader.Potions.BLUEPOSITIVE));
+                                                     AssetLoader.Potions.BLUE_POSITIVE, imgPanel, ingre,
+                                                     !CheckIfInventory(AssetLoader.Potions.BLUE_POSITIVE));
         add(B3);
         
-        if (CheckIfInventory(AssetLoader.Potions.REDNEGATIVE)) {
+        if (CheckIfInventory(AssetLoader.Potions.RED_NEGATIVE)) {
             CircleTransparentPanel T4 = new CircleTransparentPanel((width * 3 / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 7 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
             add(T4);
         }
         PotionPopupButton B4 = new PotionPopupButton(width * 3 / 8, height * 7 / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.REDNEGATIVE, imgPanel, ingre,
-                                                     !CheckIfInventory(AssetLoader.Potions.REDNEGATIVE));
+                                                     AssetLoader.Potions.RED_NEGATIVE, imgPanel, ingre,
+                                                     !CheckIfInventory(AssetLoader.Potions.RED_NEGATIVE));
         add(B4);
         
         
-        if (CheckIfInventory(AssetLoader.Potions.REDPOSITIVE)) {
+        if (CheckIfInventory(AssetLoader.Potions.RED_POSITIVE)) {
             CircleTransparentPanel T5 = new CircleTransparentPanel((width * 5 / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 7 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
             add(T5);
         }
         PotionPopupButton B5 = new PotionPopupButton(width * 5 / 8, height * 7 / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.REDPOSITIVE, imgPanel, ingre,
-                                                     !CheckIfInventory(AssetLoader.Potions.REDPOSITIVE));
+                                                     AssetLoader.Potions.RED_POSITIVE, imgPanel, ingre,
+                                                     !CheckIfInventory(AssetLoader.Potions.RED_POSITIVE));
         add(B5);
         
         
-        if (CheckIfInventory(AssetLoader.Potions.GREENNEGATIVE)) {
+        if (CheckIfInventory(AssetLoader.Potions.GREEN_NEGATIVE)) {
             CircleTransparentPanel T6 = new CircleTransparentPanel((width * 7 / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 5 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
             add(T6);
         }
         PotionPopupButton B6 = new PotionPopupButton(width * 7 / 8, height * 5 / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.GREENNEGATIVE, imgPanel, ingre,
-                                                     !CheckIfInventory(AssetLoader.Potions.GREENNEGATIVE));
+                                                     AssetLoader.Potions.GREEN_NEGATIVE, imgPanel, ingre,
+                                                     !CheckIfInventory(AssetLoader.Potions.GREEN_NEGATIVE));
         add(B6);
         
         
@@ -159,11 +159,11 @@ public class PotionButtonPopup extends JPanel {
     
     public static boolean CheckIfInventory(AssetLoader.AssetPath toCheck) {
         Potion.Identity potionIdentity = switch (toCheck) {
-            case AssetLoader.Potions.BLUENEGATIVE -> Potion.Identity.BLUENEGATIVE;
-            case AssetLoader.Potions.BLUEPOSITIVE -> Potion.Identity.BLUEPOSITIVE;
-            case AssetLoader.Potions.REDNEGATIVE -> Potion.Identity.REDNEGATIVE;
-            case AssetLoader.Potions.REDPOSITIVE -> Potion.Identity.REDPOSITIVE;
-            case AssetLoader.Potions.GREENNEGATIVE -> Potion.Identity.GREENNEGATIVE;
+            case AssetLoader.Potions.BLUE_NEGATIVE -> Potion.Identity.BLUENEGATIVE;
+            case AssetLoader.Potions.BLUE_POSITIVE -> Potion.Identity.BLUEPOSITIVE;
+            case AssetLoader.Potions.RED_NEGATIVE -> Potion.Identity.REDNEGATIVE;
+            case AssetLoader.Potions.RED_POSITIVE -> Potion.Identity.REDPOSITIVE;
+            case AssetLoader.Potions.GREEN_NEGATIVE -> Potion.Identity.GREENNEGATIVE;
             case AssetLoader.Potions.GREENPOSITIVE -> Potion.Identity.GREENPOSITIVE;
             case AssetLoader.Potions.NEUTRAL -> Potion.Identity.NETURAL;
             case AssetLoader.Potions.UNKNOWN -> Potion.Identity.UNKNOWN;

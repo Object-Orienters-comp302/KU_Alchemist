@@ -32,13 +32,13 @@ public class StartView extends JPanel {
     }
     
     private void CreateObjects() {
-        Background  = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Background));
-        NamePanel   = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.NameText));
+        Background  = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.BACKGROUND));
+        NamePanel   = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.NAME_TEXT));
         ButtonPanel = new JPanel();
-        B1          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FrameGold));
-        B2          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FrameCopper));
-        B3          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FrameCopper));
-        B4          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FrameCopper));
+        B1          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
+        B2          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
+        B3          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
+        B4          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
     }
     
     private void SetupObjects() {
@@ -58,7 +58,7 @@ public class StartView extends JPanel {
         B1.setBounds(0, 0, 200, 200);
         ButtonPanel.add(B1);
         
-        ImagePanel B1_Text = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.Gold2));
+        ImagePanel B1_Text = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.GOLD_2));
         B1_Text.setLayout(null);
         B1_Text.setBounds(10, 10, 180, 180);
         B1.add(B1_Text);
@@ -67,7 +67,7 @@ public class StartView extends JPanel {
         B2.setBounds(200, 0, 200, 200);
         ButtonPanel.add(B2);
         
-        ImagePanel B2_Text = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.Gold3));
+        ImagePanel B2_Text = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.GOLD_3));
         B2_Text.setLayout(null);
         B2_Text.setBounds(10, 10, 180, 180);
         B2.add(B2_Text);
@@ -76,7 +76,7 @@ public class StartView extends JPanel {
         B3.setBounds(400, 0, 200, 200);
         ButtonPanel.add(B3);
         
-        ImagePanel B3_Text = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.Gold4));
+        ImagePanel B3_Text = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.GOLD_4));
         B3_Text.setLayout(null);
         B3_Text.setBounds(10, 10, 180, 180);
         B3.add(B3_Text);
@@ -85,17 +85,17 @@ public class StartView extends JPanel {
         B4.setBounds(600, 0, 200, 200);
         ButtonPanel.add(B4);
         
-        ImagePanel B4_Text = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.Gold5));
+        ImagePanel B4_Text = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.GOLD_5));
         B4_Text.setLayout(null);
         B4_Text.setBounds(10, 10, 180, 180);
         B4.add(B4_Text);
         
-        ImagePanel StartButton = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FrameGold));
+        ImagePanel StartButton = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
         StartButton.setBounds(490, 500, 300, 100);
         StartButton.setLayout(null);
         Background.add(StartButton);
         
-        ImagePanel StartButtonText = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.NameText));
+        ImagePanel StartButtonText = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.NAME_TEXT));
         StartButtonText.setLayout(null);
         StartButtonText.setBounds(30, 20, 240, 60);
         StartButton.add(StartButtonText);
@@ -107,7 +107,7 @@ public class StartView extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (chosen != 2) {
                     ChangeChosen(chosen);
-                    B1.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FrameGold));
+                    B1.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
                     
                     chosen = 2;
                 }
@@ -119,7 +119,7 @@ public class StartView extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (chosen != 3) {
                     ChangeChosen(chosen);
-                    B2.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FrameGold));
+                    B2.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
                     
                     chosen = 3;
                 }
@@ -131,7 +131,7 @@ public class StartView extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (chosen != 4) {
                     ChangeChosen(chosen);
-                    B3.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FrameGold));
+                    B3.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
                     chosen = 4;
                 }
             }
@@ -142,7 +142,7 @@ public class StartView extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (chosen != 5) {
                     ChangeChosen(chosen);
-                    B4.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FrameGold));
+                    B4.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
                     chosen = 5;
                 }
             }
@@ -152,16 +152,16 @@ public class StartView extends JPanel {
     private void ChangeChosen(int i) {
         switch (i) {
             case 2:
-                B1.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FrameCopper));
+                B1.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
                 break;
             case 3:
-                B2.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FrameCopper));
+                B2.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
                 break;
             case 4:
-                B3.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FrameCopper));
+                B3.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
                 break;
             case 5:
-                B4.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FrameCopper));
+                B4.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
                 break;
         }
     }

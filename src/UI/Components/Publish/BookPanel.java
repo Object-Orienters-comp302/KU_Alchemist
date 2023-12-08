@@ -16,21 +16,21 @@ public class BookPanel extends JPanel {
     public static ArrayList<AssetLoader.AssetPath>        traitUsed = new ArrayList<>();
     
     static {
-        published.put(AssetLoader.IngredientAssets.Feather, false);
-        published.put(AssetLoader.IngredientAssets.Feet, false);
-        published.put(AssetLoader.IngredientAssets.Flower, false);
-        published.put(AssetLoader.IngredientAssets.Frog, false);
-        published.put(AssetLoader.IngredientAssets.Mandrake, false);
-        published.put(AssetLoader.IngredientAssets.Mushroom, false);
-        published.put(AssetLoader.IngredientAssets.Scorpion, false);
-        published.put(AssetLoader.IngredientAssets.Weed, false);
+        published.put(AssetLoader.IngredientAssets.FEATHER, false);
+        published.put(AssetLoader.IngredientAssets.FEET, false);
+        published.put(AssetLoader.IngredientAssets.FLOWER, false);
+        published.put(AssetLoader.IngredientAssets.FROG, false);
+        published.put(AssetLoader.IngredientAssets.MANDRAKE, false);
+        published.put(AssetLoader.IngredientAssets.MUSHROOM, false);
+        published.put(AssetLoader.IngredientAssets.SCORPION, false);
+        published.put(AssetLoader.IngredientAssets.WEED, false);
     }
     
     public BookPanel(AssetLoader.AssetPath path) {
         setPreferredSize(new Dimension(500, 250));
         setLayout(null);
         setOpaque(false);
-        ImagePanel book = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Book.Book));
+        ImagePanel book = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Book.BOOK));
         book.setBounds(0, 0, 300, 160);
         add(book);
         book.setLayout(null);
@@ -44,8 +44,8 @@ public class BookPanel extends JPanel {
         endorsePanel.setBounds(160, 5, 120, 90);
         book.add(endorsePanel);
         
-        ImageChangingPanel confirmButton = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Book.Envelope),
-                                                                  AssetLoader.getAssetPath(AssetLoader.Book.Publish));
+        ImageChangingPanel confirmButton = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Book.ENVELOPE),
+                                                                  AssetLoader.getAssetPath(AssetLoader.Book.PUBLISH));
         
         confirmButton.setBounds(160, 95, 120, 50);
         book.add(confirmButton);
@@ -64,8 +64,8 @@ public class BookPanel extends JPanel {
                     System.out.print(val);
                     traitUsed.add(val);
                     published.put(path, true);
-                    confirmButton.setDefImage(AssetLoader.getAssetPath(AssetLoader.Book.Published));
-                    confirmButton.setHoverImage(AssetLoader.getAssetPath(AssetLoader.Book.Published));
+                    confirmButton.setDefImage(AssetLoader.getAssetPath(AssetLoader.Book.PUBLISHED));
+                    confirmButton.setHoverImage(AssetLoader.getAssetPath(AssetLoader.Book.PUBLISHED));
                     BookPanel.this.revalidate();
                     BookPanel.this.repaint();
                 }
@@ -79,7 +79,7 @@ public class BookPanel extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 1000);
         frame.getContentPane().setLayout(new GridBagLayout());
-        BookPanel login = new BookPanel(AssetLoader.Book.allPositive);
+        BookPanel login = new BookPanel(AssetLoader.Book.ALL_POSITIVE);
         frame.getContentPane().add(login);
         frame.setVisible(true);
     }

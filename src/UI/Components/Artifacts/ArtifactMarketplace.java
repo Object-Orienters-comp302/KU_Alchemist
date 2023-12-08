@@ -30,15 +30,15 @@ public class ArtifactMarketplace extends JPanel {
         this.add(Background);
         Background.setLayout(null);
         
-        Card1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Artifacts.ARTIFACTCARD));
+        Card1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Artifacts.CARD));
         Card1.setBounds(150, 125, 150, 250);
         Background.add(Card1);
         
-        Card2 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Artifacts.ARTIFACTCARD));
+        Card2 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Artifacts.CARD));
         Card2.setBounds(375, 125, 150, 250);
         Background.add(Card2);
         
-        Card3 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Artifacts.ARTIFACTCARD));
+        Card3 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Artifacts.CARD));
         Card3.setBounds(600, 125, 150, 250);
         Background.add(Card3);
         
