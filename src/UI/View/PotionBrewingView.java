@@ -1,57 +1,46 @@
 package UI.View;
 
-import javax.swing.JPanel;
-
 import Domain.GameController;
 import Domain.RoundOneController;
-import GUI_Components.ColorChangingPanel;
-import GUI_Components.ImagePanel;
-import GUI_Components_Potion.IngredientButton;
 import Models.Ingredient;
 import Models.Inventory;
 import Models.Player;
 import Models.Potion;
-import UI.GamePage;
+import UI.Components.ColorChangingPanel;
+import UI.Components.ImagePanel;
+import UI.Components.Potion.IngredientButton;
 import Utils.AssetLoader;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JCheckBox;
-import java.awt.Font;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Color;
 
 public class PotionBrewingView extends JPanel {
     
     /**
      * Create the panel.
      */
-    ImagePanel Background;
+    ImagePanel         Background;
     ColorChangingPanel makePotionButton;
     ColorChangingPanel TestOnStudentBox;
-    Boolean testOnStudent=false;
+    Boolean            testOnStudent = false;
     
     public PotionBrewingView() {
-        this.setSize(1000,500);
+        this.setSize(1000, 500);
         setLayout(null);
-        
         
         
         Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.PotionBrewingViewAssets.Background));
         Background.setLocation(0, 0);
-        Background.setSize(1000,500);
+        Background.setSize(1000, 500);
         this.add(Background);
         Background.setLayout(null);
         
         
-        IngredientButton B1= new IngredientButton(120, 125,200,200,true);
+        IngredientButton B1 = new IngredientButton(120, 125, 200, 200, true);
         Background.add(B1);
-        IngredientButton B2= new IngredientButton(680, 125,200,200,true);
+        IngredientButton B2 = new IngredientButton(680, 125, 200, 200, true);
         Background.add(B2);
         
         
@@ -61,9 +50,10 @@ public class PotionBrewingView extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 Inventory inventory = Player.getCurrPlayer().getInventory();
                 
-                if(Player.getCurrPlayer().isInInventory(B1.getType()) && Player.getCurrPlayer().isInInventory(B2.getType())){
+                if (Player.getCurrPlayer().isInInventory(B1.getType()) && Player.getCurrPlayer()
+                        .isInInventory(B2.getType())) {
                     //TODO Make this better currently this maybe problematic
-                    MakePotion(new Ingredient(B1.getType()),new Ingredient(B2.getType()),Player.getCurrPlayer());
+                    MakePotion(new Ingredient(B1.getType()), new Ingredient(B2.getType()), Player.getCurrPlayer());
                 }
                 
             }
@@ -93,12 +83,12 @@ public class PotionBrewingView extends JPanel {
         TestOnStudentBox.add(lblNewLabel);
         
         ImagePanel Card1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Card));
-        Card1.setBounds(140, 100 ,160, 250);
+        Card1.setBounds(140, 100, 160, 250);
         Background.add(Card1);
         Card1.setLayout(null);
         
         ImagePanel Card2 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Card));
-        Card2.setBounds(700, 100 ,160, 250);
+        Card2.setBounds(700, 100, 160, 250);
         Background.add(Card2);
         Card2.setLayout(null);
         
@@ -119,40 +109,40 @@ public class PotionBrewingView extends JPanel {
         
         
         TestOnStudentBox.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mouseClicked(MouseEvent e) {
-        		if(PotionBrewingView.this.testOnStudent) {
-        			TickPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
-        		}
-        		else {
-        			TickPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
-        		}
-        		PotionBrewingView.this.testOnStudent=!PotionBrewingView.this.testOnStudent;//Sets it to it's negative
-        		
-        	}
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (PotionBrewingView.this.testOnStudent) {
+                    TickPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
+                } else {
+                    TickPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
+                }
+                PotionBrewingView.this.testOnStudent = !PotionBrewingView.this.testOnStudent;//Sets it to it's negative
+                
+            }
         });
-        
         
         
         this.setVisible(true);
     }
     
-    private void MakePotion(Ingredient ingredient1, Ingredient ingredient2, Player player){
+    private void MakePotion(Ingredient ingredient1, Ingredient ingredient2, Player player) {
         RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
-        Potion potion = roundOneController.MakePotion(ingredient1.getAspects(),ingredient2.getAspects());
-        player.getInventory().addPotions(potion,1);
+        Potion potion = roundOneController.MakePotion(ingredient1.getAspects(), ingredient2.getAspects());
+        player.getInventory().addPotions(potion, 1);
         
-        roundOneController.removeIngredient(player,ingredient1);
-        roundOneController.removeIngredient(player,ingredient2);
+        roundOneController.removeIngredient(player, ingredient1);
+        roundOneController.removeIngredient(player, ingredient2);
     }
-    private void MakeExperiments(Potion potion, Player player, boolean testOnStudent){
-        RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
-        roundOneController.Make_experiments(player,potion,testOnStudent);
-    }
+    
     public static void main(String[] args) {
         JFrame frame = new JFrame();
-        frame.setSize(1020,520);
+        frame.setSize(1020, 520);
         frame.getContentPane().add(new PotionBrewingView());
         frame.setVisible(true);
+    }
+    
+    private void MakeExperiments(Potion potion, Player player, boolean testOnStudent) {
+        RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
+        roundOneController.Make_experiments(player, potion, testOnStudent);
     }
 }

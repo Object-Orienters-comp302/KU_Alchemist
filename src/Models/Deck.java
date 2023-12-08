@@ -1,8 +1,8 @@
 package Models;
 
-import Domain.event.Listener;
-import Domain.event.Publisher;
-import Domain.event.Type;
+import Domain.Event.Listener;
+import Domain.Event.Publisher;
+import Domain.Event.Type;
 
 import java.util.ArrayList;
 import java.util.Collections;

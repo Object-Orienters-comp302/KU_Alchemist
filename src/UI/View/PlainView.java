@@ -1,11 +1,9 @@
 package UI.View;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
-import GUI_Components.HQImagePanel;
-import GUI_Components.ImagePanel;
+import UI.Components.HQImagePanel;
 import Utils.AssetLoader;
+
+import javax.swing.*;
 
 public class PlainView extends JPanel {
     
