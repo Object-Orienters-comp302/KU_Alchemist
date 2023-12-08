@@ -18,7 +18,8 @@ public class AssetLoader {
         PUBLISH("Images/backgrounds/publishBackground.png"),
         BLANK("Images/backgrounds/blankPng.png"),
         TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png"),
-        DEDUCTION_BACKGROUND("Images/backgrounds/deductionBackground.png");
+        DEDUCTION_BACKGROUND("Images/backgrounds/deductionBackground.png"),
+        START_BACKGROUND("Images/backgrounds/StartBackground.png");
         
         
         private final String path;
@@ -287,6 +288,8 @@ public class AssetLoader {
         NAME_TEXT("Images/start/alchemistText.png"),
         FRAME_GOLD("Images/start/frameGold.png"),
         FRAME_COPPER("Images/start/frameCopper.png"),
+        FRAME_WHITE("Images/start/frameWhite.png"),
+        FRAME_YELLOW("Images/start/frameYellow.png"),
         GOLD_2("Images/start/goldInt2.png"),
         GOLD_3("Images/start/goldInt3.png"),
         GOLD_4("Images/start/goldInt4.png"),
