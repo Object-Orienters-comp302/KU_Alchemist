@@ -16,14 +16,14 @@ public class BooksDisplayer extends JPanel {
         Background.setBounds(0, 0, 1000, 500);
         add(Background);
         Background.setLayout(null);
-        BookPanel B0 = new BookPanel(AssetLoader.IngredientAssets.Feet);
-        BookPanel B1 = new BookPanel(AssetLoader.IngredientAssets.Frog);
-        BookPanel B2 = new BookPanel(AssetLoader.IngredientAssets.Feather);
-        BookPanel B3 = new BookPanel(AssetLoader.IngredientAssets.Weed);
-        BookPanel B4 = new BookPanel(AssetLoader.IngredientAssets.Mandrake);
-        BookPanel B5 = new BookPanel(AssetLoader.IngredientAssets.Mushroom);
-        BookPanel B6 = new BookPanel(AssetLoader.IngredientAssets.Scorpion);
-        BookPanel B7 = new BookPanel(AssetLoader.IngredientAssets.Flower);
+        BookPanel B0 = new BookPanel(AssetLoader.IngredientAssets.FEET);
+        BookPanel B1 = new BookPanel(AssetLoader.IngredientAssets.FROG);
+        BookPanel B2 = new BookPanel(AssetLoader.IngredientAssets.FEATHER);
+        BookPanel B3 = new BookPanel(AssetLoader.IngredientAssets.WEED);
+        BookPanel B4 = new BookPanel(AssetLoader.IngredientAssets.MANDRAKE);
+        BookPanel B5 = new BookPanel(AssetLoader.IngredientAssets.MUSHROOM);
+        BookPanel B6 = new BookPanel(AssetLoader.IngredientAssets.SCORPION);
+        BookPanel B7 = new BookPanel(AssetLoader.IngredientAssets.FLOWER);
         
         B0.setBounds(10, 5, 400, 200);
         B1.setBounds(335, 5, 400, 200);

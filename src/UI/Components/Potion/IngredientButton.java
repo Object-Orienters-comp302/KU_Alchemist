@@ -162,14 +162,14 @@ public class IngredientButton extends JPanel {
     
     public Ingredient.IngredientTypes getType() {
         return switch (currentIngredient) {
-            case AssetLoader.IngredientAssets.Feather -> Ingredient.IngredientTypes.Feather;
-            case AssetLoader.IngredientAssets.Frog -> Ingredient.IngredientTypes.Toad;
-            case AssetLoader.IngredientAssets.Mandrake -> Ingredient.IngredientTypes.Mandrake;
-            case AssetLoader.IngredientAssets.Weed -> Ingredient.IngredientTypes.Plant;
-            case AssetLoader.IngredientAssets.Scorpion -> Ingredient.IngredientTypes.Scorpion;
-            case AssetLoader.IngredientAssets.Feet -> Ingredient.IngredientTypes.ChickenLeg;
-            case AssetLoader.IngredientAssets.Flower -> Ingredient.IngredientTypes.Flower;
-            case AssetLoader.IngredientAssets.Mushroom -> Ingredient.IngredientTypes.Mushroom;
+            case AssetLoader.IngredientAssets.FEATHER -> Ingredient.IngredientTypes.Feather;
+            case AssetLoader.IngredientAssets.FROG -> Ingredient.IngredientTypes.Toad;
+            case AssetLoader.IngredientAssets.MANDRAKE -> Ingredient.IngredientTypes.Mandrake;
+            case AssetLoader.IngredientAssets.WEED -> Ingredient.IngredientTypes.Plant;
+            case AssetLoader.IngredientAssets.SCORPION -> Ingredient.IngredientTypes.Scorpion;
+            case AssetLoader.IngredientAssets.FEET -> Ingredient.IngredientTypes.ChickenLeg;
+            case AssetLoader.IngredientAssets.FLOWER -> Ingredient.IngredientTypes.Flower;
+            case AssetLoader.IngredientAssets.MUSHROOM -> Ingredient.IngredientTypes.Mushroom;
             default -> throw new IllegalStateException("Unexpected value: " + currentIngredient);
         };
     }

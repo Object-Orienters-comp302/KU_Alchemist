@@ -28,42 +28,42 @@ public class IngredientButtonPopup extends JPanel {
                                           AssetLoader.TriangleTable.QUESTION_MARK, imgPanel, ingre, true);
         add(B0);
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.Feather)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.FEATHER)) {
             CircleTransparentPanel T1 = new CircleTransparentPanel((width * 3 / 8) - ((width * 5 / 16) / 2),
                                                                    (height / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
             add(T1);
         }
         IngredientPopupButton B1 = new IngredientPopupButton(width * 3 / 8, height / 8, width * 5 / 16, height * 5 / 16,
-                                                             AssetLoader.IngredientAssets.Feather, imgPanel, ingre,
-                                                             !CheckIfInventory(AssetLoader.IngredientAssets.Feather));
+                                                             AssetLoader.IngredientAssets.FEATHER, imgPanel, ingre,
+                                                             !CheckIfInventory(AssetLoader.IngredientAssets.FEATHER));
         add(B1);
         
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.Feet)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.FEET)) {
             CircleTransparentPanel T2 = new CircleTransparentPanel((width / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 3 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
             add(T2);
         }
         IngredientPopupButton B2 = new IngredientPopupButton(width / 8, height * 3 / 8, width * 5 / 16, height * 5 / 16,
-                                                             AssetLoader.IngredientAssets.Feet, imgPanel, ingre,
-                                                             !CheckIfInventory(AssetLoader.IngredientAssets.Feet));
+                                                             AssetLoader.IngredientAssets.FEET, imgPanel, ingre,
+                                                             !CheckIfInventory(AssetLoader.IngredientAssets.FEET));
         add(B2);
         
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.Flower)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.FLOWER)) {
             CircleTransparentPanel T3 = new CircleTransparentPanel((width / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 5 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
             add(T3);
         }
         IngredientPopupButton B3 = new IngredientPopupButton(width / 8, height * 5 / 8, width * 5 / 16, height * 5 / 16,
-                                                             AssetLoader.IngredientAssets.Flower, imgPanel, ingre,
-                                                             !CheckIfInventory(AssetLoader.IngredientAssets.Flower));
+                                                             AssetLoader.IngredientAssets.FLOWER, imgPanel, ingre,
+                                                             !CheckIfInventory(AssetLoader.IngredientAssets.FLOWER));
         add(B3);
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.Frog)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.FROG)) {
             CircleTransparentPanel T4 = new CircleTransparentPanel((width * 3 / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 7 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
@@ -71,12 +71,12 @@ public class IngredientButtonPopup extends JPanel {
         }
         IngredientPopupButton B4 =
                 new IngredientPopupButton(width * 3 / 8, height * 7 / 8, width * 5 / 16, height * 5 / 16,
-                                          AssetLoader.IngredientAssets.Frog, imgPanel, ingre,
-                                          !CheckIfInventory(AssetLoader.IngredientAssets.Frog));
+                                          AssetLoader.IngredientAssets.FROG, imgPanel, ingre,
+                                          !CheckIfInventory(AssetLoader.IngredientAssets.FROG));
         add(B4);
         
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.Mandrake)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.MANDRAKE)) {
             CircleTransparentPanel T5 = new CircleTransparentPanel((width * 5 / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 7 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
@@ -84,12 +84,12 @@ public class IngredientButtonPopup extends JPanel {
         }
         IngredientPopupButton B5 =
                 new IngredientPopupButton(width * 5 / 8, height * 7 / 8, width * 5 / 16, height * 5 / 16,
-                                          AssetLoader.IngredientAssets.Mandrake, imgPanel, ingre,
-                                          !CheckIfInventory(AssetLoader.IngredientAssets.Mandrake));
+                                          AssetLoader.IngredientAssets.MANDRAKE, imgPanel, ingre,
+                                          !CheckIfInventory(AssetLoader.IngredientAssets.MANDRAKE));
         add(B5);
         
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.Mushroom)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.MUSHROOM)) {
             CircleTransparentPanel T6 = new CircleTransparentPanel((width * 7 / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 5 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
@@ -97,12 +97,12 @@ public class IngredientButtonPopup extends JPanel {
         }
         IngredientPopupButton B6 =
                 new IngredientPopupButton(width * 7 / 8, height * 5 / 8, width * 5 / 16, height * 5 / 16,
-                                          AssetLoader.IngredientAssets.Mushroom, imgPanel, ingre,
-                                          !CheckIfInventory(AssetLoader.IngredientAssets.Mushroom));
+                                          AssetLoader.IngredientAssets.MUSHROOM, imgPanel, ingre,
+                                          !CheckIfInventory(AssetLoader.IngredientAssets.MUSHROOM));
         add(B6);
         
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.Weed)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.WEED)) {
             CircleTransparentPanel T7 = new CircleTransparentPanel((width * 7 / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 3 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
@@ -110,20 +110,20 @@ public class IngredientButtonPopup extends JPanel {
         }
         IngredientPopupButton B7 =
                 new IngredientPopupButton(width * 7 / 8, height * 3 / 8, width * 5 / 16, height * 5 / 16,
-                                          AssetLoader.IngredientAssets.Weed, imgPanel, ingre,
-                                          !CheckIfInventory(AssetLoader.IngredientAssets.Weed));
+                                          AssetLoader.IngredientAssets.WEED, imgPanel, ingre,
+                                          !CheckIfInventory(AssetLoader.IngredientAssets.WEED));
         add(B7);
         
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.Scorpion)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.SCORPION)) {
             CircleTransparentPanel T8 = new CircleTransparentPanel((width * 5 / 8) - ((width * 5 / 16) / 2),
                                                                    (height / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
             add(T8);
         }
         IngredientPopupButton B8 = new IngredientPopupButton(width * 5 / 8, height / 8, width * 5 / 16, height * 5 / 16,
-                                                             AssetLoader.IngredientAssets.Scorpion, imgPanel, ingre,
-                                                             !CheckIfInventory(AssetLoader.IngredientAssets.Scorpion));
+                                                             AssetLoader.IngredientAssets.SCORPION, imgPanel, ingre,
+                                                             !CheckIfInventory(AssetLoader.IngredientAssets.SCORPION));
         add(B8);
         
         
@@ -164,14 +164,14 @@ public class IngredientButtonPopup extends JPanel {
     
     public static boolean CheckIfInventory(AssetLoader.AssetPath toCheck) {
         Ingredient.IngredientTypes ingredientType = switch (toCheck) {
-            case AssetLoader.IngredientAssets.Feather -> Ingredient.IngredientTypes.Feather;
-            case AssetLoader.IngredientAssets.Frog -> Ingredient.IngredientTypes.Toad;
-            case AssetLoader.IngredientAssets.Mandrake -> Ingredient.IngredientTypes.Mandrake;
-            case AssetLoader.IngredientAssets.Weed -> Ingredient.IngredientTypes.Plant;
-            case AssetLoader.IngredientAssets.Scorpion -> Ingredient.IngredientTypes.Scorpion;
-            case AssetLoader.IngredientAssets.Feet -> Ingredient.IngredientTypes.ChickenLeg;
-            case AssetLoader.IngredientAssets.Flower -> Ingredient.IngredientTypes.Flower;
-            case AssetLoader.IngredientAssets.Mushroom -> Ingredient.IngredientTypes.Mushroom;
+            case AssetLoader.IngredientAssets.FEATHER -> Ingredient.IngredientTypes.Feather;
+            case AssetLoader.IngredientAssets.FROG -> Ingredient.IngredientTypes.Toad;
+            case AssetLoader.IngredientAssets.MANDRAKE -> Ingredient.IngredientTypes.Mandrake;
+            case AssetLoader.IngredientAssets.WEED -> Ingredient.IngredientTypes.Plant;
+            case AssetLoader.IngredientAssets.SCORPION -> Ingredient.IngredientTypes.Scorpion;
+            case AssetLoader.IngredientAssets.FEET -> Ingredient.IngredientTypes.ChickenLeg;
+            case AssetLoader.IngredientAssets.FLOWER -> Ingredient.IngredientTypes.Flower;
+            case AssetLoader.IngredientAssets.MUSHROOM -> Ingredient.IngredientTypes.Mushroom;
             default -> throw new IllegalStateException("Unexpected value: " + toCheck);
         };
         

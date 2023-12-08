@@ -92,28 +92,28 @@ public class InventoryView extends JPanel implements Listener {
         
         
         //Ingredient Images
-        feather = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Feather));
+        feather = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.FEATHER));
         Ingredient_panel.add(feather);
         
-        feet = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Feet));
+        feet = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.FEET));
         Ingredient_panel.add(feet);
         
-        flower = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Flower));
+        flower = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.FLOWER));
         Ingredient_panel.add(flower);
         
-        frog = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Frog));
+        frog = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.FROG));
         Ingredient_panel.add(frog);
         
-        mandrake = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Mandrake));
+        mandrake = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.MANDRAKE));
         Ingredient_panel.add(mandrake);
         
-        mushroom = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Mushroom));
+        mushroom = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.MUSHROOM));
         Ingredient_panel.add(mushroom);
         
-        scorpion = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Scorpion));
+        scorpion = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.SCORPION));
         Ingredient_panel.add(scorpion);
         
-        weed = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Weed));
+        weed = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.WEED));
         Ingredient_panel.add(weed);
         
         
@@ -121,19 +121,19 @@ public class InventoryView extends JPanel implements Listener {
         greenPostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.GREENPOSITIVE));
         Potion_panel.add(greenPostive);
         
-        redPostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.REDPOSITIVE));
+        redPostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.RED_POSITIVE));
         Potion_panel.add(redPostive);
         
-        bluePostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.BLUEPOSITIVE));
+        bluePostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.BLUE_POSITIVE));
         Potion_panel.add(bluePostive);
         
-        greenNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.GREENNEGATIVE));
+        greenNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.GREEN_NEGATIVE));
         Potion_panel.add(greenNegative);
         
-        redNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.REDNEGATIVE));
+        redNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.RED_NEGATIVE));
         Potion_panel.add(redNegative);
         
-        blueNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.BLUENEGATIVE));
+        blueNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.BLUE_NEGATIVE));
         Potion_panel.add(blueNegative);
         
         neutral = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.NEUTRAL));

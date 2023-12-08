@@ -32,7 +32,7 @@ public class TransmuteView extends JPanel {
         this.add(B1);
         
         
-        Card = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Card));
+        Card = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
         Card.setBounds(421, 125, 158, 250);
         this.add(Card);
         

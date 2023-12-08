@@ -31,7 +31,7 @@ public class PotionBrewingView extends JPanel {
         setLayout(null);
         
         
-        Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.PotionBrewingViewAssets.Background));
+        Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.PotionBrewingViewAssets.BACKGROUND));
         Background.setLocation(0, 0);
         Background.setSize(1000, 500);
         this.add(Background);
@@ -82,12 +82,12 @@ public class PotionBrewingView extends JPanel {
         lblNewLabel.setBounds(40, 5, 110, 30);
         TestOnStudentBox.add(lblNewLabel);
         
-        ImagePanel Card1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Card));
+        ImagePanel Card1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
         Card1.setBounds(140, 100, 160, 250);
         Background.add(Card1);
         Card1.setLayout(null);
         
-        ImagePanel Card2 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.Card));
+        ImagePanel Card2 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
         Card2.setBounds(700, 100, 160, 250);
         Background.add(Card2);
         Card2.setLayout(null);

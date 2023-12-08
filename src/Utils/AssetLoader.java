@@ -18,7 +18,6 @@ public class AssetLoader {
         PUBLISH("Images/backgrounds/publishBackground.png"),
         BLANK("Images/backgrounds/blankPng.png"),
         TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png");
-    	
         
         
         private final String path;
@@ -34,23 +33,20 @@ public class AssetLoader {
     }
     
     public enum ButtonBackgrounds implements AssetPath {
-        TABLE0("Images/buttonBackgrounds/tablesBackground0.png"),
-        TABLE1("Images/buttonBackgrounds/tablesBackground1.png"),
-        PUBLISH0("Images/buttonBackgrounds/publish0.png"),
-        PUBLISH1("Images/buttonBackgrounds/publish1.png"),
-        LAB0("Images/buttonBackgrounds/lab0.png"),
-        LAB1("Images/buttonBackgrounds/lab1.png"),
-        JUNGLE0("Images/buttonBackgrounds/forage0.png"),
-        JUNGLE1("Images/buttonBackgrounds/forage1.png"),
-        INVENTORY0("Images/buttonBackgrounds/inventory0.png"),
-        INVENTORY1("Images/buttonBackgrounds/inventory1.png"),
-        TRANS0("Images/buttonBackgrounds/transmutate0.png"),
-        TRANS1("Images/buttonBackgrounds/transmutate1.png"),
+        TABLE_0("Images/buttonBackgrounds/tablesBackground0.png"),
+        TABLE_1("Images/buttonBackgrounds/tablesBackground1.png"),
+        PUBLISH_0("Images/buttonBackgrounds/publish0.png"),
+        PUBLISH_1("Images/buttonBackgrounds/publish1.png"),
+        LAB_0("Images/buttonBackgrounds/lab0.png"),
+        LAB_1("Images/buttonBackgrounds/lab1.png"),
+        JUNGLE_0("Images/buttonBackgrounds/forage0.png"),
+        JUNGLE_1("Images/buttonBackgrounds/forage1.png"),
+        INVENTORY_0("Images/buttonBackgrounds/inventory0.png"),
+        INVENTORY_1("Images/buttonBackgrounds/inventory1.png"),
+        TRANS_0("Images/buttonBackgrounds/transmutate0.png"),
+        TRANS_1("Images/buttonBackgrounds/transmutate1.png"),
         PAUSE("Images/buttonBackgrounds/pause.png"),
-        EU4("Images/buttonBackgrounds/eu4Logo.png")
-        
-        ;
-    	
+        EU4("Images/buttonBackgrounds/eu4Logo.png");
         
         
         private final String path;
@@ -70,11 +66,8 @@ public class AssetLoader {
         EXPERIMENT("Images/buttonText/experimentText.png"),
         PUBLISH("Images/buttonText/publishText.png"),
         FORAGE("Images/buttonText/forageText.png"),
-        TRANSMUTATE("Images/buttonText/transmutateText.png"),
-        INVENTORY("Images/buttonText/inventoryText.png")
-        
-        ;
-    	
+        TRANSMUTE("Images/buttonText/transmutateText.png"),
+        INVENTORY("Images/buttonText/inventoryText.png");
         
         
         private final String path;
@@ -130,15 +123,14 @@ public class AssetLoader {
     }
     
     public enum Potions implements AssetPath {
-        BLUENEGATIVE("Images/PotionBrewingViewAssets/bluePotionNegative.png"),
-        BLUEPOSITIVE("Images/PotionBrewingViewAssets/bluePotionPositive.png"),
-        REDNEGATIVE("Images/PotionBrewingViewAssets/redPotionNegative.png"),
-        REDPOSITIVE("Images/PotionBrewingViewAssets/redPotionPositive.png"),
-        GREENNEGATIVE("Images/PotionBrewingViewAssets/greenPotionNegative.png"),
-        GREENPOSITIVE("Images/PotionBrewingViewAssets/greenPotionPositive.png"),
+        BLUE_NEGATIVE("Images/PotionBrewingViewAssets/bluePotionNegative.png"),
+        BLUE_POSITIVE("Images/PotionBrewingViewAssets/bluePotionPositive.png"),
+        RED_NEGATIVE("Images/PotionBrewingViewAssets/redPotionNegative.png"),
+        RED_POSITIVE("Images/PotionBrewingViewAssets/redPotionPositive.png"),
+        GREEN_NEGATIVE("Images/PotionBrewingViewAssets/greenPotionNegative.png"),
+        GREEN_POSITIVE("Images/PotionBrewingViewAssets/greenPotionPositive.png"),
         NEUTRAL("Images/PotionBrewingViewAssets/neutralPotion.png"),
         UNKNOWN("Images/PotionBrewingViewAssets/unknownPotion.png");
-    	
         
         
         private final String path;
@@ -164,7 +156,8 @@ public class AssetLoader {
         PLUS_RED("Images/triangleTable/plusRed.png"),
         QUESTION_MARK("Images/triangleTable/questionMark.png"),
         QUESTION_MARK_WHITE("Images/triangleTable/questionMarkWhite.png"),
-        RECTANGLE_TABLE("Images/triangleTable/rectangleTable.png");
+        RECTANGLE_TABLE("Images/triangleTable/rectangleTable.png"),
+        Empty("Images/triangleTable/empty.png");
         
         private final String path;
         
@@ -179,8 +172,8 @@ public class AssetLoader {
     }
     
     public enum ForageGroundsAssets implements AssetPath {
-        Background("Images/ForageGroundsAssets/forageGrounds.png"),
-        Card("Images/ForageGroundsAssets/ingredientCard.png");
+        BACKGROUND("Images/ForageGroundsAssets/forageGrounds.png"),
+        CARD("Images/ForageGroundsAssets/ingredientCard.png");
         
         private final String path;
         
@@ -195,7 +188,7 @@ public class AssetLoader {
     }
     
     public enum PotionBrewingViewAssets implements AssetPath {
-        Background("Images/PotionBrewingViewAssets/PotionBrewingArea.png");
+        BACKGROUND("Images/PotionBrewingViewAssets/PotionBrewingArea.png");
         
         private final String path;
         
@@ -210,7 +203,7 @@ public class AssetLoader {
     }
     
     public enum PlainViewAssets implements AssetPath {
-        Background("Images/PlainViewAssets/PlainViewBackground.png");
+        BACKGROUND("Images/PlainViewAssets/PlainViewBackground.png");
         
         private final String path;
         
@@ -226,14 +219,14 @@ public class AssetLoader {
     
     public enum IngredientAssets implements AssetPath {
         
-        Feather("Images/book/feather.png"),
-        Feet("Images/book/feet.png"),
-        Flower("Images/book/flower.png"),
-        Frog("Images/book/frog.png"),
-        Mandrake("Images/book/mandrake.png"),
-        Mushroom("Images/book/mushroom.png"),
-        Scorpion("Images/book/scorpion.png"),
-        Weed("Images/book/weed.png");
+        FEATHER("Images/book/feather.png"),
+        FEET("Images/book/feet.png"),
+        FLOWER("Images/book/flower.png"),
+        FROG("Images/book/frog.png"),
+        MANDRAKE("Images/book/mandrake.png"),
+        MUSHROOM("Images/book/mushroom.png"),
+        SCORPION("Images/book/scorpion.png"),
+        WEED("Images/book/weed.png");
         
         private final String path;
         
@@ -248,7 +241,7 @@ public class AssetLoader {
     }
     
     public enum Artifacts implements AssetPath {
-        ARTIFACTCARD("Images/artifact/artifactCard.png");
+        CARD("Images/artifact/artifactCard.png");
         
         private final String path;
         
@@ -263,20 +256,44 @@ public class AssetLoader {
     }
     
     
-    
     public enum Book implements AssetPath {
-        allPositive("Images/book/C1.png"),
-        allNegative("Images/book/C2.png"),
-        negativeGreen("Images/book/C3.png"),
-        positiveRed("Images/book/C4.png"),
-        negativeBlue("Images/book/C5.png"),
-        negativeRed("Images/book/C6.png"),
-        positiveGreen("Images/book/C7.png"),
-        positiveBlue("Images/book/C8.png");
+        ALL_POSITIVE("Images/book/C1.png"),
+        ALL_NEGATIVE("Images/book/C2.png"),
+        NEGATIVE_GREEN("Images/book/C3.png"),
+        POSITIVE_RED("Images/book/C4.png"),
+        NEGATIVE_BLUE("Images/book/C5.png"),
+        NEGATIVE_RED("Images/book/C6.png"),
+        POSITIVE_GREEN("Images/book/C7.png"),
+        POSITIVE_BLUE("Images/book/C8.png"),
+        BOOK("Images/book/Book.png"),
+        ENVELOPE("Images/book/envelope.png"),
+        PUBLISH("Images/book/publish.png"),
+        PUBLISHED("Images/book/published.png");
         
         private final String path;
         
         Book(String Path) {
+            this.path = Path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
+    public enum Start implements AssetPath {
+        NAME_TEXT("Images/start/alchemistText.png"),
+        FRAME_GOLD("Images/start/frameGold.png"),
+        FRAME_COPPER("Images/start/frameCopper.png"),
+        GOLD_2("Images/start/goldInt2.png"),
+        GOLD_3("Images/start/goldInt3.png"),
+        GOLD_4("Images/start/goldInt4.png"),
+        GOLD_5("Images/start/goldInt5.png");
+        
+        private final String path;
+        
+        Start(String Path) {
             this.path = Path;
         }
         

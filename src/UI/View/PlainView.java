@@ -13,7 +13,7 @@ public class PlainView extends JPanel {
         this.setSize(1000, 500);
         setLayout(null);
         
-        Background = new HQImagePanel(AssetLoader.getAssetPath(AssetLoader.PlainViewAssets.Background));
+        Background = new HQImagePanel(AssetLoader.getAssetPath(AssetLoader.PlainViewAssets.BACKGROUND));
         Background.setVisible(true);
         
         Background.setBounds(0, 0, 1000, 500);
