@@ -35,7 +35,7 @@ public class PlayerDisplayer extends JPanel implements Listener {// ToDo: needs 
     }
     
     private void CreateObjects() {
-        avatarImgPanel = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED));
+        avatarImgPanel = new ImagePanel(playerIntance.getToken().getImage());
         labelPanel_1   = new JPanel();
         nameLabel      = new JLabel(playerIntance.getID());
         labelPanel_2   = new JPanel();

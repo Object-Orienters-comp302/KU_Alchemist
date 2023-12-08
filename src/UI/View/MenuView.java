@@ -11,8 +11,6 @@ import UI.Components.ImageChangingPanel;
 import UI.Components.ImagePanel;
 import UI.Components.PlayerDisplayer;
 import UI.Components.Publish.BooksDisplayer;
-import UI.Components.Tables.RectangleTable;
-import UI.Components.Tables.TriangleTableWithImg;
 import Utils.AssetLoader;
 import Utils.GUtil;
 import Utils.KawaseBlur;
@@ -72,7 +70,7 @@ public class MenuView extends JPanel implements Publisher {
         
         cardLay            = new CardLayout();
         displayerPanel     = new JPanel(cardLay);
-        tablesPanel        = new JPanel();
+        tablesPanel        = new DeductionView();
         theoriesPanel      = new BooksDisplayer();
         PotionBrewingPanel = new PotionBrewingView();
         ForagePanel        = new ForageGroundsView();
@@ -106,7 +104,8 @@ public class MenuView extends JPanel implements Publisher {
     private void ApplyStuff() {
         basePanel.setBounds(0, 0, 1280, 720);
         add(basePanel);
-        basePanel.setBackground(Color.red);
+        //basePanel.setBackground(Color.red);
+        basePanel.setOpaque(false);
         basePanel.setLayout(null);
         
         
@@ -120,14 +119,9 @@ public class MenuView extends JPanel implements Publisher {
         topPanel.add(pause);
         
         displayerPanel.setBounds(0, 90, 1000, 500);
+        displayerPanel.setOpaque(false);
         basePanel.add(displayerPanel);
         displayerPanel.setBackground(Color.red);
-        
-        
-        tablesPanel.setBounds(0, 0, 1000, 500);
-        tablesPanel.setLayout(null);
-        
-        SummonPuzzle(tablesPanel);
         
         displayerPanel.add(PlainPanel, "Plain");
         
@@ -266,19 +260,6 @@ public class MenuView extends JPanel implements Publisher {
             topPanel.add(displayer);
         }
         
-    }
-    
-    public void SummonPuzzle(JPanel pan) {// ToDo:button stuff needs to be added
-        
-        TriangleTableWithImg triTable = new TriangleTableWithImg(controller.getCurrentPlayer().getTriangleTableArray());
-        triTable.setBounds(0, 50, 400, 400);
-        pan.add(triTable);
-        
-        RectangleTable rect = new RectangleTable(controller.getCurrentPlayer().getRectangleTableArray());
-        rect.setBounds(400, 100, 600, 300);
-        pan.add(rect);
-        pan.revalidate();
-        pan.repaint();
     }
     
     @Override
