@@ -1,5 +1,7 @@
 package UI.Components;
 
+import Utils.AssetLoader;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -34,7 +36,7 @@ public class HQImagePanel extends JPanel {
         frame.setSize(new Dimension(800, 600));
         
         // Creating an HQImagePanel with an empty string as the path
-        HQImagePanel hqImagePanel = new HQImagePanel("./Images/backgrounds/slaanesh_background.png");
+        HQImagePanel hqImagePanel = new HQImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.PURPLE));
         frame.getContentPane().add(hqImagePanel);
         
         frame.setVisible(true);

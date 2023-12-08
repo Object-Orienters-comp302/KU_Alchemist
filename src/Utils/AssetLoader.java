@@ -156,7 +156,8 @@ public class AssetLoader {
         PLUS_RED("Images/triangleTable/plusRed.png"),
         QUESTION_MARK("Images/triangleTable/questionMark.png"),
         QUESTION_MARK_WHITE("Images/triangleTable/questionMarkWhite.png"),
-        RECTANGLE_TABLE("Images/triangleTable/rectangleTable.png");
+        RECTANGLE_TABLE("Images/triangleTable/rectangleTable.png"),
+        Empty("Images/triangleTable/empty.png");
         
         private final String path;
         
@@ -263,7 +264,11 @@ public class AssetLoader {
         negativeBlue("Images/book/C5.png"),
         negativeRed("Images/book/C6.png"),
         positiveGreen("Images/book/C7.png"),
-        positiveBlue("Images/book/C8.png");
+        positiveBlue("Images/book/C8.png"),
+        Book("Images/book/Book.png"),
+        Envelope("Images/book/envelope.png"),
+        Publish("Images/book/publish.png"),
+        Published("Images/book/published.png");
         
         private final String path;
         

@@ -1,6 +1,7 @@
 package UI.Components.Tables;
 
 import UI.Components.ImagePanel;
+import Utils.AssetLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +16,7 @@ public class RectangleTableButton extends JPanel {
     public RectangleTableButton(int x, int y, int width, int height, int index, int[] data) {
         setLayout(null);
         setBounds(x, y, width, height);
-        img = new ImagePanel(".//Images//triangleTable//questionMarkWhite.png");
+        img = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.TriangleTable.QUESTION_MARK_WHITE));
         img.setBounds(0, 0, width, height);
         setOpaque(false);
         this.add(img);
@@ -25,15 +26,15 @@ public class RectangleTableButton extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (state == 0) {
-                    img.changeImage(".//Images//tokens//greenTick.png");
+                    img.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
                     state       = 1;
                     data[index] = 1;
                 } else if (state == 1) {
-                    img.changeImage(".//Images//tokens//redX.png");
+                    img.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
                     state       = 2;
                     data[index] = 2;
                 } else if (state == 2) {
-                    img.changeImage(".//Images//triangleTable//questionMarkWhite.png");
+                    img.changeImage(AssetLoader.getAssetPath(AssetLoader.TriangleTable.QUESTION_MARK_WHITE));
                     state       = 0;
                     data[index] = 3;
                 }
