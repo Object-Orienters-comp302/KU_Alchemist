@@ -17,7 +17,8 @@ public class AssetLoader {
         INVENTORY("Images/backgrounds/inventoryBackground.png"),
         PUBLISH("Images/backgrounds/publishBackground.png"),
         BLANK("Images/backgrounds/blankPng.png"),
-        TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png");
+        TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png"),
+        DEDUCTION_BACKGROUND("Images/backgrounds/deductionBackground.png");
         
         
         private final String path;
