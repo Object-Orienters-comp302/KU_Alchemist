@@ -1,6 +1,7 @@
 package UI.Components.Tables;
 
 import UI.Components.ImagePanel;
+import Utils.AssetLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,7 @@ public class RectangleTable extends JPanel {
         setPreferredSize(new Dimension(600, 300));
         setBackground(Color.WHITE);
         setLayout(null);
-        ImagePanel table = new ImagePanel(".//Images//triangleTable//RectangleTable.png");
+        ImagePanel table = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.TriangleTable.RECTANGLE_TABLE));
         table.setLocation(0, 0);
         table.setSize(600, 300);
         add(table);
