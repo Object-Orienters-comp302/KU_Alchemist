@@ -40,7 +40,7 @@ public class PauseView extends JPanel implements Publisher {
         Background.add(resumeButton);
         resumeButton.setLayout(null);
         
-        JLabel MakePotionLbl = new JLabel("ResumeGame");
+        JLabel MakePotionLbl = new JLabel("Resume Game");
         MakePotionLbl.setFont(new Font("Tahoma", Font.BOLD, 20));
         MakePotionLbl.setHorizontalAlignment(SwingConstants.CENTER);
         MakePotionLbl.setBounds(0, 0, 200, 200);
