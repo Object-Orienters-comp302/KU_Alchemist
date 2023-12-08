@@ -1,16 +1,15 @@
 package UI.View;
 
-import DataTypes.CircularLinkedList;
+import Domain.Event.Listener;
+import Domain.Event.Publisher;
+import Domain.Event.Type;
 import Domain.GameController;
 import Domain.LoginController;
-import Domain.event.Listener;
-import Domain.event.Publisher;
-import Domain.event.Type;
-import GUI_Components.ColorChangingPanel;
-import GUI_Components.ImagePanel;
-import Models.Player;
 import Models.Token;
+import UI.Components.ColorChangingPanel;
+import UI.Components.ImagePanel;
 import Utils.AssetLoader;
+import Utils.CircularLinkedList;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -18,29 +17,28 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class LoginView extends JPanel implements Publisher {
     static int iter = 0;
-    int                               playerAmount = 2;
-    LoginController                   loginControl;
-    CircularLinkedList<Token> 		  tokenList;
-    ImagePanel                        MainPanel;
-    JPanel                            TokenSelectorPanel;
-    JPanel                            TokenSelectorPanel_Left;
-    JPanel                            TokenSelectorPanel_Left_Label_Holder;
-    JLabel                            TokenSelectorPanel_Left_Label;
-    ImagePanel                        TokenSelectorPanel_Displayer;
-    JPanel                            TokenSelectorPanel_Right;
-    JPanel                            TokenSelectorPanel_Right_Label_Holder;
-    JLabel                            TokenSelectorPanel_Right_Label;
-    JPanel                            UserNamePanel;
-    JLabel                            lblNewLabel;
-    ImagePanel                        UserNamePanel_CheckPanel;
-    JPanel                            NextPanel;
-    JLabel                            NextPanel_Label;
-    ArrayList<Listener> Listeners;
+    int                       playerAmount = 2;
+    LoginController           loginControl;
+    CircularLinkedList<Token> tokenList;
+    ImagePanel                MainPanel;
+    JPanel                    TokenSelectorPanel;
+    JPanel                    TokenSelectorPanel_Left;
+    JPanel                    TokenSelectorPanel_Left_Label_Holder;
+    JLabel                    TokenSelectorPanel_Left_Label;
+    ImagePanel                TokenSelectorPanel_Displayer;
+    JPanel                    TokenSelectorPanel_Right;
+    JPanel                    TokenSelectorPanel_Right_Label_Holder;
+    JLabel                    TokenSelectorPanel_Right_Label;
+    JPanel                    UserNamePanel;
+    JLabel                    lblNewLabel;
+    ImagePanel                UserNamePanel_CheckPanel;
+    JPanel                    NextPanel;
+    JLabel                    NextPanel_Label;
+    ArrayList<Listener>       Listeners;
     private JTextField textField;
     
     
@@ -64,9 +62,9 @@ public class LoginView extends JPanel implements Publisher {
     }
     
     private void CreateObjects() {
-        loginControl   = GameController.getInstance().getLoginController();
-        tokenList      = loginControl.getCirularTokens();
-        MainPanel                             = new ImagePanel(tokenList.get().getBackground());
+        loginControl = GameController.getInstance().getLoginController();
+        tokenList    = loginControl.getCirularTokens();
+        MainPanel    = new ImagePanel(tokenList.get().getBackground());
         MainPanel.setBounds(0, 0, 1280, 720);
         TokenSelectorPanel                    = new JPanel();
         TokenSelectorPanel_Left               = new ColorChangingPanel("#cf9d15", "#FFD700");
@@ -159,7 +157,7 @@ public class LoginView extends JPanel implements Publisher {
         TokenSelectorPanel_Left.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            	tokenList.getPrev();
+                tokenList.getPrev();
                 TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
                 MainPanel.changeImage(tokenList.get().getBackground());
             }
@@ -168,7 +166,7 @@ public class LoginView extends JPanel implements Publisher {
         TokenSelectorPanel_Right.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            	tokenList.getNext();
+                tokenList.getNext();
                 TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
                 MainPanel.changeImage(tokenList.get().getBackground());
             }
@@ -179,7 +177,7 @@ public class LoginView extends JPanel implements Publisher {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (loginControl.isUniquePlayerID(textField.getText()) && (!textField.getText().isBlank())) {
-                    loginControl.logPlayerIn(textField.getText(),tokenList.get()); //tokenList.get() should be used
+                    loginControl.logPlayerIn(textField.getText(), tokenList.get()); //tokenList.get() should be used
                     tokenList.delete();
                     textField.setText("");
                     TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
@@ -230,6 +228,12 @@ public class LoginView extends JPanel implements Publisher {
         });
     }
     
+    @Override
+    public void publishEvent(Type type) {
+        for (Listener listener : Listeners) {
+            listener.onEvent(type);
+        }
+    }
     
     public static void main(String[] args) { // TODO: Move to UnitTests
         JFrame frame = new JFrame("test");
@@ -242,14 +246,7 @@ public class LoginView extends JPanel implements Publisher {
     }
     
     @Override
-    public void publishEvent (Type type) {
-        for (Listener listener : Listeners) {
-            listener.onEvent(type);
-        }
-    }
-    
-    @Override
-    public void addListener (Listener lis) {
+    public void addListener(Listener lis) {
         this.Listeners.add(lis);
     }
     

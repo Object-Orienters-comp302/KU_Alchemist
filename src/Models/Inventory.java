@@ -1,8 +1,8 @@
 package Models;
 
-import Domain.event.Listener;
-import Domain.event.Publisher;
-import Domain.event.Type;
+import Domain.Event.Listener;
+import Domain.Event.Publisher;
+import Domain.Event.Type;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -65,9 +65,9 @@ public class Inventory implements Publisher {
         Gold = gold;
         publishEvent(Type.GOLD);
     }
-
-    public void removeIngredient(Ingredient ingredient){
-        this.getIngredients().put(ingredient,this.getIngredients().get(ingredient)-1); //TODO Add publisher.
+    
+    public void removeIngredient(Ingredient ingredient) {
+        this.getIngredients().put(ingredient, this.getIngredients().get(ingredient) - 1); //TODO Add publisher.
         publishEvent(Type.INGREDIENT);
     }
     

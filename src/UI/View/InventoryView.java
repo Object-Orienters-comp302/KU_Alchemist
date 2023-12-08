@@ -1,87 +1,80 @@
 package UI.View;
 
-import java.awt.GridLayout;
-
-import javax.swing.JPanel;
-
-import Domain.event.Listener;
-import Domain.event.Type;
-import GUI_Components.ImagePanel;
+import Domain.Event.Listener;
+import Domain.Event.Type;
 import Models.Ingredient;
 import Models.Player;
 import Models.Potion;
+import UI.Components.ImagePanel;
 import Utils.AssetLoader;
 
-import java.awt.SystemColor;
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Color;
-
 public class InventoryView extends JPanel implements Listener {
-
-	private static final long serialVersionUID = 1L;
- 
-	
-	ImagePanel Background;
-	
-	JPanel Ingredient_panel;
-	JPanel Potion_panel;
-	
-	ImagePanel feather;
-	ImagePanel feet;
-	ImagePanel flower;
-	ImagePanel frog;
-	ImagePanel mandrake;
-	ImagePanel mushroom;
-	ImagePanel scorpion;
-	ImagePanel weed;
-	
-	ImagePanel greenPostive;
-	ImagePanel redPostive;
-	ImagePanel bluePostive;
-	ImagePanel greenNegative;
-	ImagePanel redNegative;
-	ImagePanel blueNegative;
-	ImagePanel neutral;
-
-	JLabel title;
-	
-	JLabel feather_quantity;
-	JLabel feet_quantity;
-	JLabel flower_quantity;
-	JLabel frog_quantity;
-	JLabel mandrake_quantity;
-	JLabel mushroom_quantity;
-	JLabel scorpion_quantity;
-	JLabel weed_quantity;
-	
-	JLabel greenPostive_quantity;
-	JLabel redPostive_quantity;
-	JLabel bluePostive_quantity;
-	JLabel greenNegative_quantity;
-	JLabel redNegative_quantity;
-	JLabel blueNegative_quantity;
-	JLabel neutral_quantity;
-
-	/**
-	 * Create the panel.
-	 */
-	
-	public InventoryView() {
+    
+    private static final long serialVersionUID = 1L;
+    
+    
+    ImagePanel Background;
+    
+    JPanel Ingredient_panel;
+    JPanel Potion_panel;
+    
+    ImagePanel feather;
+    ImagePanel feet;
+    ImagePanel flower;
+    ImagePanel frog;
+    ImagePanel mandrake;
+    ImagePanel mushroom;
+    ImagePanel scorpion;
+    ImagePanel weed;
+    
+    ImagePanel greenPostive;
+    ImagePanel redPostive;
+    ImagePanel bluePostive;
+    ImagePanel greenNegative;
+    ImagePanel redNegative;
+    ImagePanel blueNegative;
+    ImagePanel neutral;
+    
+    JLabel title;
+    
+    JLabel feather_quantity;
+    JLabel feet_quantity;
+    JLabel flower_quantity;
+    JLabel frog_quantity;
+    JLabel mandrake_quantity;
+    JLabel mushroom_quantity;
+    JLabel scorpion_quantity;
+    JLabel weed_quantity;
+    
+    JLabel greenPostive_quantity;
+    JLabel redPostive_quantity;
+    JLabel bluePostive_quantity;
+    JLabel greenNegative_quantity;
+    JLabel redNegative_quantity;
+    JLabel blueNegative_quantity;
+    JLabel neutral_quantity;
+    
+    /**
+     * Create the panel.
+     */
+    
+    public InventoryView() {
         
-        for(Player player: Player.getPlayers()){
+        for (Player player : Player.getPlayers()) {
             player.getInventory().addListener(this);
             player.addListener(this);
         }
         
-	    this.setSize(1000,500);
+        this.setSize(1000, 500);
         setLayout(null);
         Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.INVENTORY));
         Background.setForeground(SystemColor.desktop);
         Background.setLocation(0, 0);
-        Background.setSize(1000,500);
+        Background.setSize(1000, 500);
         this.add(Background);
         Background.setLayout(null);
         
@@ -89,15 +82,15 @@ public class InventoryView extends JPanel implements Listener {
         Ingredient_panel.setOpaque(false);
         Ingredient_panel.setBounds(100, 70, 800, 100);
         Background.add(Ingredient_panel);
-        Ingredient_panel.setLayout(new GridLayout(1,8));
-  
+        Ingredient_panel.setLayout(new GridLayout(1, 8));
+        
         JPanel Potion_panel = new JPanel();
         Potion_panel.setOpaque(false);
         Potion_panel.setBounds(100, 260, 800, 180);
         Background.add(Potion_panel);
-        Potion_panel.setLayout(new GridLayout(1,7));
+        Potion_panel.setLayout(new GridLayout(1, 7));
         
-
+        
         //Ingredient Images
         feather = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Feather));
         Ingredient_panel.add(feather);
@@ -107,7 +100,7 @@ public class InventoryView extends JPanel implements Listener {
         
         flower = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Flower));
         Ingredient_panel.add(flower);
-
+        
         frog = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Frog));
         Ingredient_panel.add(frog);
         
@@ -123,9 +116,9 @@ public class InventoryView extends JPanel implements Listener {
         weed = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.IngredientAssets.Weed));
         Ingredient_panel.add(weed);
         
-
+        
         //potion images 
-    	greenPostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.GREENPOSITIVE));
+        greenPostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.GREENPOSITIVE));
         Potion_panel.add(greenPostive);
         
         redPostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.REDPOSITIVE));
@@ -133,7 +126,7 @@ public class InventoryView extends JPanel implements Listener {
         
         bluePostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.BLUEPOSITIVE));
         Potion_panel.add(bluePostive);
-
+        
         greenNegative = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.GREENNEGATIVE));
         Potion_panel.add(greenNegative);
         
@@ -196,14 +189,12 @@ public class InventoryView extends JPanel implements Listener {
         scorpion_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
         scorpion_quantity.setBounds(740, 160, 45, 50);
         Background.add(scorpion_quantity);
-       
+        
         weed_quantity = new JLabel("0");
         weed_quantity.setForeground(new Color(255, 255, 255));
         weed_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
         weed_quantity.setBounds(840, 160, 45, 50);
         Background.add(weed_quantity);
-        
-        
         
         
         //Potion quantity Labels
@@ -249,88 +240,79 @@ public class InventoryView extends JPanel implements Listener {
         neutral_quantity.setFont(new Font("Tahoma", Font.PLAIN, 35));
         neutral_quantity.setBounds(840, 430, 45, 50);
         Background.add(neutral_quantity);
-       
-
+        
+        
         this.IngredientsQuantity();
         this.PotionsQuantity();
         
         this.setVisible(true);
         
-       
-		
-	}
-	
-
-	
-
-	public void IngredientsQuantity() {
-		
-		HashMap<Ingredient, Integer> ingredients = Player.getCurrPlayer().getInventory().getIngredients();
-		
-		for(Ingredient ingredient : ingredients.keySet()) {
-			
-			switch(ingredient.getType()) {
-				
-				case Plant -> {
-					weed_quantity.setText(String.valueOf(ingredients.get(ingredient)));
-				}
-				case Mandrake -> {
-					mandrake_quantity.setText(String.valueOf(ingredients.get(ingredient)));
-				}
-				case Flower -> {
-					flower_quantity.setText(String.valueOf(ingredients.get(ingredient)));
-				}
-				case Mushroom -> {
-					mushroom_quantity.setText(String.valueOf(ingredients.get(ingredient)));
-				}
-				case ChickenLeg -> {
-					feet_quantity.setText(String.valueOf(ingredients.get(ingredient)));
-				}
-				case Toad -> {
-					frog_quantity.setText(String.valueOf(ingredients.get(ingredient)));
-				}
-				case Feather -> {
-					feather_quantity.setText(String.valueOf(ingredients.get(ingredient)));
-				}
-				case Scorpion -> {
-					scorpion_quantity.setText(String.valueOf(ingredients.get(ingredient)));
-				}
-			}	
-		}
-	}
-	
-	public void PotionsQuantity() {
-		
-		HashMap<Potion, Integer> potions = Player.getCurrPlayer().getInventory().getPotions();
-		
-		for(Potion potion : potions.keySet()) {
-			
-			Potion.Colors color = potion.getColor();
-			Potion.Signs sign = potion.getSign();
-			
-			if(color == Potion.Colors.Blue && sign == Potion.Signs.Positive) {
-				bluePostive_quantity.setText(String.valueOf(potions.get(potion)));
-			}
-			else if(color == Potion.Colors.Red && sign == Potion.Signs.Positive) {
-				redPostive_quantity.setText(String.valueOf(potions.get(potion)));
-			}
-			else if(color == Potion.Colors.Green && sign == Potion.Signs.Positive) {
-				greenPostive_quantity.setText(String.valueOf(potions.get(potion)));
-			}
-			else if(color == Potion.Colors.Blue && sign == Potion.Signs.Negative) {
-				bluePostive_quantity.setText(String.valueOf(potions.get(potion)));
-			}
-			else if(color == Potion.Colors.Red && sign == Potion.Signs.Negative) {
-				redPostive_quantity.setText(String.valueOf(potions.get(potion)));
-			}
-			else if(color == Potion.Colors.Green && sign == Potion.Signs.Negative) {
-				greenPostive_quantity.setText(String.valueOf(potions.get(potion)));
-			}
-			else if(color == Potion.Colors.Colorless && sign == Potion.Signs.Neutral) {
-				neutral_quantity.setText(String.valueOf(potions.get(potion)));
-			}		
-		}
-	}
+        
+    }
+    
+    
+    public void IngredientsQuantity() {
+        
+        HashMap<Ingredient, Integer> ingredients = Player.getCurrPlayer().getInventory().getIngredients();
+        
+        for (Ingredient ingredient : ingredients.keySet()) {
+            
+            switch (ingredient.getType()) {
+                
+                case Plant -> {
+                    weed_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+                }
+                case Mandrake -> {
+                    mandrake_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+                }
+                case Flower -> {
+                    flower_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+                }
+                case Mushroom -> {
+                    mushroom_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+                }
+                case ChickenLeg -> {
+                    feet_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+                }
+                case Toad -> {
+                    frog_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+                }
+                case Feather -> {
+                    feather_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+                }
+                case Scorpion -> {
+                    scorpion_quantity.setText(String.valueOf(ingredients.get(ingredient)));
+                }
+            }
+        }
+    }
+    
+    public void PotionsQuantity() {
+        
+        HashMap<Potion, Integer> potions = Player.getCurrPlayer().getInventory().getPotions();
+        
+        for (Potion potion : potions.keySet()) {
+            
+            Potion.Colors color = potion.getColor();
+            Potion.Signs sign = potion.getSign();
+            
+            if (color == Potion.Colors.Blue && sign == Potion.Signs.Positive) {
+                bluePostive_quantity.setText(String.valueOf(potions.get(potion)));
+            } else if (color == Potion.Colors.Red && sign == Potion.Signs.Positive) {
+                redPostive_quantity.setText(String.valueOf(potions.get(potion)));
+            } else if (color == Potion.Colors.Green && sign == Potion.Signs.Positive) {
+                greenPostive_quantity.setText(String.valueOf(potions.get(potion)));
+            } else if (color == Potion.Colors.Blue && sign == Potion.Signs.Negative) {
+                bluePostive_quantity.setText(String.valueOf(potions.get(potion)));
+            } else if (color == Potion.Colors.Red && sign == Potion.Signs.Negative) {
+                redPostive_quantity.setText(String.valueOf(potions.get(potion)));
+            } else if (color == Potion.Colors.Green && sign == Potion.Signs.Negative) {
+                greenPostive_quantity.setText(String.valueOf(potions.get(potion)));
+            } else if (color == Potion.Colors.Colorless && sign == Potion.Signs.Neutral) {
+                neutral_quantity.setText(String.valueOf(potions.get(potion)));
+            }
+        }
+    }
     
     @Override
     public void onEvent(Type type) {
