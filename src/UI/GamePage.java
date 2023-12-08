@@ -1,6 +1,7 @@
 package UI;
 
 import Domain.Event.Listener;
+import Domain.Event.Type;
 import UI.View.ViewFactory;
 
 import javax.swing.*;
@@ -28,6 +29,7 @@ public class GamePage extends JFrame implements Listener {
         
         ViewFactory.getInstance().getLoginView().addListener(this);
         ViewFactory.getInstance().getPauseView().addListener(this);
+        ViewFactory.getInstance().getHelpScreenView().addListener(this);
         cardLayout.show(cardPanel, Cards.LoginView.getString());
         
         setVisible(true);
@@ -44,12 +46,17 @@ public class GamePage extends JFrame implements Listener {
             cardPanel.add(ViewFactory.getInstance().getPauseView(), Cards.PauseView.getString());
             cardLayout.show(cardPanel, Cards.PauseView.getString());
         }
+        if (type == Domain.Event.Type.HELP){
+            cardPanel.add(ViewFactory.getInstance().getHelpScreenView(), Cards.HelpView.getString());
+            cardLayout.show(cardPanel, Cards.HelpView.getString());
+        }
     }
     
     enum Cards {
         LoginView("LoginView"),
         MenuView("MenuView"),
-        PauseView("PauseView");
+        PauseView("PauseView"),
+        HelpView("HelpView");
         private final String string;
         
         Cards(String string) {
