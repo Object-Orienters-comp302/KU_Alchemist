@@ -1,6 +1,7 @@
 package UI.Components.Tables;
 
 import UI.Components.ImagePanel;
+import Utils.AssetLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -51,37 +52,38 @@ public class TriangleTableButton extends JPanel {
     }
     
     public static String chooseImg(int val) {
-        String path;
+        AssetLoader.AssetPath path;
         switch (val) {
             case 0:
-                path = ".\\Images\\triangleTable\\outline.png";
+                path = AssetLoader.TriangleTable.OUTLINE;
                 break;
             case 1:
-                path = ".\\Images\\triangleTable\\plusRed.png";
+                path = AssetLoader.TriangleTable.PLUS_RED;
                 break;
             case 2:
-                path = ".\\Images\\triangleTable\\plusGreen.png";
+                path = AssetLoader.TriangleTable.PLUS_GREEN;
                 break;
             case 3:
-                path = ".\\Images\\triangleTable\\plusBlue.png";
+                path = AssetLoader.TriangleTable.PLUS_BLUE;
                 break;
             case 4:
-                path = ".\\Images\\triangleTable\\minusRed.png";
+                path = AssetLoader.TriangleTable.MINUS_RED;
                 break;
             case 5:
-                path = ".\\Images\\triangleTable\\minusGreen.png";
+                path = AssetLoader.TriangleTable.MINUS_GREEN;
                 break;
             case 6:
-                path = ".\\Images\\triangleTable\\minusBlue.png";
+                path = AssetLoader.TriangleTable.MINUS_BLUE;
                 break;
             case 7:
-                path = ".\\Images\\triangleTable\\empty.png";
+                path = AssetLoader.TriangleTable.Empty;
                 break;
             
             default:
-                path = ".\\Images\\triangleTable\\outline.png";
+                path = AssetLoader.TriangleTable.OUTLINE;
         }
-        return path;
+        
+        return path.getPath();
     }
     
     private boolean isClickInsideCircle(int clickX, int clickY) {

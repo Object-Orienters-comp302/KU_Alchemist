@@ -77,7 +77,6 @@ public class CircleImgButton extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 900);
         frame.getContentPane().setLayout(null);
-        //CircleImgButton login = new CircleImgButton(100, 100, 100, 100, ".\\Images\\triangleTable\\plusRed.png", null);
         
         
         //frame.getContentPane()
