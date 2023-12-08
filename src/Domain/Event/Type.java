@@ -15,6 +15,7 @@ public enum Type {
     START_MENUVIEW,
     REPUTATION,
     FORAGERIGHT,
-    PAUSE
+    PAUSE,
+    HELP
     
 }
