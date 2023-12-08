@@ -48,7 +48,7 @@ public class PotionBrewingView extends JPanel {
     ImagePanel BG5;
     ImagePanel BG5_Text;
     
-    int chosen=1;
+    int chosenbg=1;
     
     
     public PotionBrewingView() {
@@ -82,8 +82,8 @@ public class PotionBrewingView extends JPanel {
     	PotionDisplayer = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLANK));
     	DrinkButton = new ColorChangingPanel("#cf9d15", "#FFD700");
     	lblDrink = new JLabel("DRINK");
-    	ButtonPanel = new JPanel();
     	
+    	ButtonPanel = new JPanel();
     	BG1 = new ImagePanel("Images/start/frameGold.png");
     	BG1_Text = new ImagePanel("Images/start/goldInt1.png");
     	BG2 = new ImagePanel("Images/start/frameCopper.png");
@@ -208,11 +208,11 @@ public class PotionBrewingView extends JPanel {
         BG1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (chosen != 1) {
-                    ChangeChosen(chosen);
+                if (chosenbg != 1) {
+                    ChangeChosen(chosenbg);
                     BG1.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
-                    chosen = 1	;
-                    ChangeBackground(chosen);
+                    chosenbg = 1	;
+                    ChangeBackground(chosenbg);
                 }
             }
         });
@@ -220,11 +220,11 @@ public class PotionBrewingView extends JPanel {
         BG2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (chosen != 2) {
-                    ChangeChosen(chosen);
+                if (chosenbg != 2) {
+                    ChangeChosen(chosenbg);
                     BG2.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
-                    chosen = 2;
-                    ChangeBackground(chosen);
+                    chosenbg = 2;
+                    ChangeBackground(chosenbg);
                 }
             }
         });
@@ -232,11 +232,11 @@ public class PotionBrewingView extends JPanel {
         BG3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (chosen != 3) {
-                    ChangeChosen(chosen);
+                if (chosenbg != 3) {
+                    ChangeChosen(chosenbg);
                     BG3.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
-                    chosen = 3;
-                    ChangeBackground(chosen);
+                    chosenbg = 3;
+                    ChangeBackground(chosenbg);
                 }
             }
         });
@@ -244,11 +244,11 @@ public class PotionBrewingView extends JPanel {
         BG4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (chosen != 4) {
-                    ChangeChosen(chosen);
+                if (chosenbg != 4) {
+                    ChangeChosen(chosenbg);
                     BG4.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
-                    chosen = 4;
-                    ChangeBackground(chosen);
+                    chosenbg = 4;
+                    ChangeBackground(chosenbg);
                 }
             }
         });
@@ -256,11 +256,11 @@ public class PotionBrewingView extends JPanel {
         BG5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (chosen != 5) {
-                    ChangeChosen(chosen);
+                if (chosenbg != 5) {
+                    ChangeChosen(chosenbg);
                     BG5.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
-                    chosen = 5;
-                    ChangeBackground(chosen);
+                    chosenbg = 5;
+                    ChangeBackground(chosenbg);
                 }
             }
         });

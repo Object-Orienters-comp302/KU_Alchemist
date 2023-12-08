@@ -175,7 +175,12 @@ public class AssetLoader {
     
     public enum ForageGroundsAssets implements AssetPath {
         BACKGROUND("Images/ForageGroundsAssets/forageGrounds.png"),
-        CARD("Images/ForageGroundsAssets/ingredientCard.png");
+        CARD("Images/ForageGroundsAssets/ingredientCard.png"),
+        BACKGROUND1("Images/ForageGroundsAssets/forageBackground1.png"),
+        BACKGROUND2("Images/ForageGroundsAssets/forageBackground2.png"),
+        BACKGROUND3("Images/ForageGroundsAssets/forageBackground3.png"),
+        BACKGROUND4("Images/ForageGroundsAssets/forageBackground4.png"),
+        BACKGROUND5("Images/ForageGroundsAssets/forageBackground5.png");
         
         private final String path;
         
