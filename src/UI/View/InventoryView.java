@@ -118,7 +118,7 @@ public class InventoryView extends JPanel implements Listener {
         
         
         //potion images 
-        greenPostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.GREENPOSITIVE));
+        greenPostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.GREEN_POSITIVE));
         Potion_panel.add(greenPostive);
         
         redPostive = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.RED_POSITIVE));

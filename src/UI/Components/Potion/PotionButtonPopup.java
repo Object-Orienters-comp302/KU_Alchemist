@@ -98,15 +98,15 @@ public class PotionButtonPopup extends JPanel {
         add(B6);
         
         
-        if (CheckIfInventory(AssetLoader.Potions.GREENPOSITIVE)) {
+        if (CheckIfInventory(AssetLoader.Potions.GREEN_POSITIVE)) {
             CircleTransparentPanel T7 = new CircleTransparentPanel((width * 7 / 8) - ((width * 5 / 16) / 2),
                                                                    (height * 3 / 8) - ((height * 5 / 16) / 2),
                                                                    width * 5 / 16, height * 5 / 16);
             add(T7);
         }
         PotionPopupButton B7 = new PotionPopupButton(width * 7 / 8, height * 3 / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.GREENPOSITIVE, imgPanel, ingre,
-                                                     !CheckIfInventory(AssetLoader.Potions.GREENPOSITIVE));
+                                                     AssetLoader.Potions.GREEN_POSITIVE, imgPanel, ingre,
+                                                     !CheckIfInventory(AssetLoader.Potions.GREEN_POSITIVE));
         add(B7);
         
         
@@ -164,7 +164,7 @@ public class PotionButtonPopup extends JPanel {
             case AssetLoader.Potions.RED_NEGATIVE -> Potion.Identity.REDNEGATIVE;
             case AssetLoader.Potions.RED_POSITIVE -> Potion.Identity.REDPOSITIVE;
             case AssetLoader.Potions.GREEN_NEGATIVE -> Potion.Identity.GREENNEGATIVE;
-            case AssetLoader.Potions.GREENPOSITIVE -> Potion.Identity.GREENPOSITIVE;
+            case AssetLoader.Potions.GREEN_POSITIVE -> Potion.Identity.GREENPOSITIVE;
             case AssetLoader.Potions.NEUTRAL -> Potion.Identity.NETURAL;
             case AssetLoader.Potions.UNKNOWN -> Potion.Identity.UNKNOWN;
             default -> throw new IllegalStateException("Unexpected value: " + toCheck);
