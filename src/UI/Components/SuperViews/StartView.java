@@ -1,5 +1,9 @@
 package UI.Components.SuperViews;
 
+import Domain.Event.Listener;
+import Domain.Event.Publisher;
+import Domain.Event.Type;
+import UI.Components.HQImagePanel;
 import UI.Components.ImagePanel;
 import Utils.AssetLoader;
 
@@ -7,21 +11,26 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
-public class StartView extends JPanel {
+public class StartView extends JPanel implements Publisher {
     
     int chosen = 2;
     
     ImagePanel Background;
     ImagePanel NamePanel;
+    ImagePanel StartButton;
     JPanel     ButtonPanel;
     
-    ImagePanel B1;
-    ImagePanel B2;
-    ImagePanel B3;
-    ImagePanel B4;
+    HQImagePanel        B1;
+    HQImagePanel        B2;
+    HQImagePanel        B3;
+    HQImagePanel        B4;
+    ArrayList<Listener> Listeners;
+    
     
     public StartView() {
+        this.Listeners = new ArrayList<>();
         setBounds(0, 0, 1280, 720);
         setBackground(Color.BLUE);
         setLayout(null);
@@ -35,10 +44,10 @@ public class StartView extends JPanel {
         Background  = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.START_BACKGROUND));
         NamePanel   = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.NAME_TEXT));
         ButtonPanel = new JPanel();
-        B1          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW));
-        B2          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_WHITE));
-        B3          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_WHITE));
-        B4          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_WHITE));
+        B1          = new HQImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW));
+        B2          = new HQImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_WHITE));
+        B3          = new HQImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_WHITE));
+        B4          = new HQImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_WHITE));
     }
     
     private void SetupObjects() {
@@ -91,9 +100,15 @@ public class StartView extends JPanel {
         B4_Text.setBounds(55, 55, 90, 90);
         B4.add(B4_Text);
         
-        ImagePanel StartButton = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW));
+        StartButton = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW));
         StartButton.setBounds(435, 500, 400, 120);
         StartButton.setLayout(null);
+        StartButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                publishEvent(Type.LOGIN_SCREEN);
+            }
+        });
         Background.add(StartButton);
         
         ImagePanel StartButtonText = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.NAME_TEXT));
@@ -150,6 +165,13 @@ public class StartView extends JPanel {
         });
     }
     
+    @Override
+    public void publishEvent(Type type) {
+        for (Listener listener : Listeners) {
+            listener.onEvent(type);
+        }
+    }
+    
     private void ChangeChosen(int i) {
         switch (i) {
             case 2:
@@ -176,4 +198,10 @@ public class StartView extends JPanel {
         frame.getContentPane().add(login);
         frame.setVisible(true);
     }
+    
+    @Override
+    public void addListener(Listener lis) {
+        this.Listeners.add(lis);
+    }
+    
 }

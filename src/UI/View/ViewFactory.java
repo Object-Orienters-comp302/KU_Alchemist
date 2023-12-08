@@ -1,5 +1,7 @@
 package UI.View;
 
+import UI.Components.SuperViews.StartView;
+
 public class ViewFactory {
     
     private static ViewFactory single_instance;
@@ -10,9 +12,10 @@ public class ViewFactory {
     private MenuView       menuView;
     private PauseView      pauseView;
     private LoginView      loginView;
-    private PlainView plainView;
-    private InventoryView inventoryView;
-    private TransmuteView transmuteView;
+    private PlainView      plainView;
+    private InventoryView  inventoryView;
+    private TransmuteView  transmuteView;
+    private StartView      startView;
     
     
     private ViewFactory() {
@@ -67,6 +70,7 @@ public class ViewFactory {
         }
         return loginView;
     }
+    
     public PlainView getPlainView() {
         if (plainView == null) {
             plainView = new PlainView();
@@ -80,10 +84,18 @@ public class ViewFactory {
         }
         return inventoryView;
     }
+    
     public TransmuteView getTransmuteView() {
         if (transmuteView == null) {
             transmuteView = new TransmuteView();
         }
         return transmuteView;
+    }
+    
+    public StartView getStartView() {
+        if (startView == null) {
+            startView = new StartView();
+        }
+        return startView;
     }
 }
