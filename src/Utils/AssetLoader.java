@@ -18,7 +18,6 @@ public class AssetLoader {
         PUBLISH("Images/backgrounds/publishBackground.png"),
         BLANK("Images/backgrounds/blankPng.png"),
         TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png");
-    	
         
         
         private final String path;
@@ -47,10 +46,7 @@ public class AssetLoader {
         TRANS0("Images/buttonBackgrounds/transmutate0.png"),
         TRANS1("Images/buttonBackgrounds/transmutate1.png"),
         PAUSE("Images/buttonBackgrounds/pause.png"),
-        EU4("Images/buttonBackgrounds/eu4Logo.png")
-        
-        ;
-    	
+        EU4("Images/buttonBackgrounds/eu4Logo.png");
         
         
         private final String path;
@@ -71,10 +67,7 @@ public class AssetLoader {
         PUBLISH("Images/buttonText/publishText.png"),
         FORAGE("Images/buttonText/forageText.png"),
         TRANSMUTATE("Images/buttonText/transmutateText.png"),
-        INVENTORY("Images/buttonText/inventoryText.png")
-        
-        ;
-    	
+        INVENTORY("Images/buttonText/inventoryText.png");
         
         
         private final String path;
@@ -138,7 +131,6 @@ public class AssetLoader {
         GREENPOSITIVE("Images/PotionBrewingViewAssets/greenPotionPositive.png"),
         NEUTRAL("Images/PotionBrewingViewAssets/neutralPotion.png"),
         UNKNOWN("Images/PotionBrewingViewAssets/unknownPotion.png");
-    	
         
         
         private final String path;
@@ -263,7 +255,6 @@ public class AssetLoader {
     }
     
     
-    
     public enum Book implements AssetPath {
         allPositive("Images/book/C1.png"),
         allNegative("Images/book/C2.png"),
@@ -277,6 +268,27 @@ public class AssetLoader {
         private final String path;
         
         Book(String Path) {
+            this.path = Path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
+    public enum Start implements AssetPath {
+        NameText("Images/start/alchemistText.png"),
+        FrameGold("Images/start/frameGold.png"),
+        FrameCopper("Images/start/frameCopper.png"),
+        Gold2("Images/start/goldInt2.png"),
+        Gold3("Images/start/goldInt3.png"),
+        Gold4("Images/start/goldInt4.png"),
+        Gold5("Images/start/goldInt5.png");
+        
+        private final String path;
+        
+        Start(String Path) {
             this.path = Path;
         }
         
