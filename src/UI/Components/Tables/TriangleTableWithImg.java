@@ -18,7 +18,6 @@ public class TriangleTableWithImg extends JPanel {
         add(table);
         table.setLayout(null);
         
-        
         TriangleTableButton Button1_1 = new TriangleTableButton(185, 65, 30, 30, 0, data);
         TriangleTableButton Button2_1 = new TriangleTableButton(162, 105, 30, 30, 1, data);
         TriangleTableButton Button2_2 = new TriangleTableButton(208, 105, 30, 30, 2, data);
