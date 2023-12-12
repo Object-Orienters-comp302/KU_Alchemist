@@ -18,6 +18,7 @@ public class AssetLoader {
         PUBLISH("Images/backgrounds/publishBackground.png"),
         BLANK("Images/backgrounds/blankPng.png"),
         TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png"),
+        START_BACKGROUND("Images/backgrounds/startBackground0.png"),
         DEDUCTION_BACKGROUND("Images/backgrounds/deductionBackground.png");
         
         
@@ -174,7 +175,12 @@ public class AssetLoader {
     
     public enum ForageGroundsAssets implements AssetPath {
         BACKGROUND("Images/ForageGroundsAssets/forageGrounds.png"),
-        CARD("Images/ForageGroundsAssets/ingredientCard.png");
+        CARD("Images/ForageGroundsAssets/ingredientCard.png"),
+        BACKGROUND1("Images/ForageGroundsAssets/forageBackground1.png"),
+        BACKGROUND2("Images/ForageGroundsAssets/forageBackground2.png"),
+        BACKGROUND3("Images/ForageGroundsAssets/forageBackground3.png"),
+        BACKGROUND4("Images/ForageGroundsAssets/forageBackground4.png"),
+        BACKGROUND5("Images/ForageGroundsAssets/forageBackground5.png");
         
         private final String path;
         
@@ -189,7 +195,13 @@ public class AssetLoader {
     }
     
     public enum PotionBrewingViewAssets implements AssetPath {
-        BACKGROUND("Images/PotionBrewingViewAssets/PotionBrewingArea.png");
+        BACKGROUND("Images/PotionBrewingViewAssets/PotionBrewingArea.png"),
+    	BACKGROUND1("Images/PotionBrewingViewAssets/brewBackground1.png"),
+    	BACKGROUND2("Images/PotionBrewingViewAssets/brewBackground2.png"),
+    	BACKGROUND3("Images/PotionBrewingViewAssets/brewBackground3.png"),
+    	BACKGROUND4("Images/PotionBrewingViewAssets/brewBackground4.png"),
+    	BACKGROUND5("Images/PotionBrewingViewAssets/brewBackground5.png")
+    	;
         
         private final String path;
         
@@ -285,6 +297,7 @@ public class AssetLoader {
     
     public enum Start implements AssetPath {
         NAME_TEXT("Images/start/alchemistText.png"),
+        START_TEXT("Images/start/startText.png"),
         FRAME_GOLD("Images/start/frameGold.png"),
         FRAME_COPPER("Images/start/frameCopper.png"),
         GOLD_2("Images/start/goldInt2.png"),

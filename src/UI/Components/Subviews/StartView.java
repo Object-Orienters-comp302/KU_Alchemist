@@ -32,7 +32,7 @@ public class StartView extends JPanel {
     }
     
     private void CreateObjects() {
-        Background  = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.BACKGROUND));
+        Background  = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.START_BACKGROUND));
         NamePanel   = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.NAME_TEXT));
         ButtonPanel = new JPanel();
         B1          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
@@ -95,7 +95,7 @@ public class StartView extends JPanel {
         StartButton.setLayout(null);
         Background.add(StartButton);
         
-        ImagePanel StartButtonText = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.NAME_TEXT));
+        ImagePanel StartButtonText = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.START_TEXT));
         StartButtonText.setLayout(null);
         StartButtonText.setBounds(30, 20, 240, 60);
         StartButton.add(StartButtonText);
