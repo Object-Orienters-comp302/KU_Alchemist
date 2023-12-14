@@ -6,10 +6,10 @@ import Domain.Event.Type;
 import Domain.GameController;
 import Domain.MenuController;
 import Models.Player;
-import UI.Components.HQImagePanel;
-import UI.Components.ImageChangingPanel;
-import UI.Components.ImagePanel;
 import UI.Components.PlayerDisplayer;
+import UI.Components.ImagePanels.HQImagePanel;
+import UI.Components.ImagePanels.ImageChangingPanel;
+import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.Publish.BooksDisplayer;
 import Utils.AssetLoader;
 import Utils.GUtil;
@@ -84,17 +84,17 @@ public class MenuView extends JPanel implements Publisher {
         sidePanel = new JPanel();
         //Add assetloader when a new asset is given.
         side1 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE_1));
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE_1),1);
         side2 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH_1),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH_0));
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH_0),1);
         side3 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB_1));
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB_1),1);
         side4 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE_1));
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE_1),1);
         side5 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_1));
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_1),1);
         side6 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1));
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1),1);
         
         BufferedImage background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(
                 GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))), 3, 2);

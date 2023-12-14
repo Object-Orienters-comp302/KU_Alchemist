@@ -1,7 +1,7 @@
 package UI.View;
 
 import Domain.GameController;
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.Tables.RectangleTable;
 import UI.Components.Tables.TriangleTableWithImg;
 import Utils.AssetLoader;

@@ -5,7 +5,7 @@ import Domain.Event.Type;
 import Models.Ingredient;
 import Models.Player;
 import Models.Potion;
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;

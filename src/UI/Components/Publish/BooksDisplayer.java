@@ -1,9 +1,11 @@
 package UI.Components.Publish;
 
-import UI.Components.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
+
+import UI.Components.ImagePanels.ImagePanel;
+
 import java.awt.*;
 
 public class BooksDisplayer extends JPanel {

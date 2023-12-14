@@ -1,4 +1,4 @@
-package UI.Components;
+package UI.Components.ImagePanels;
 
 import Utils.AssetLoader;
 

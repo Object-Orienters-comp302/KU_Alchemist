@@ -1,9 +1,10 @@
 package UI.View;
 
-import UI.Components.HQImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
+
+import UI.Components.ImagePanels.HQImagePanel;
 
 public class PlainView extends JPanel {
     

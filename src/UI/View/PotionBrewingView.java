@@ -7,7 +7,7 @@ import Models.Inventory;
 import Models.Player;
 import Models.Potion;
 import UI.Components.ColorChangingPanel;
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.Potion.IngredientButton;
 import Utils.AssetLoader;
 

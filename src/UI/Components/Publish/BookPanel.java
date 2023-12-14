@@ -1,10 +1,12 @@
 package UI.Components.Publish;
 
-import UI.Components.ImageChangingPanel;
-import UI.Components.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
+
+import UI.Components.ImagePanels.ImageChangingPanel;
+import UI.Components.ImagePanels.ImagePanel;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

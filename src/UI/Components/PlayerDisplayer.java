@@ -3,6 +3,7 @@ package UI.Components;
 import Domain.Event.Listener;
 import Domain.Event.Type;
 import Models.Player;
+import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;

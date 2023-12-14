@@ -7,7 +7,7 @@ import Domain.GameController;
 import Domain.LoginController;
 import Models.Token;
 import UI.Components.ColorChangingPanel;
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 import Utils.CircularLinkedList;
 

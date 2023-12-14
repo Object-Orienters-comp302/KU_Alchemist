@@ -4,7 +4,7 @@ import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
 import UI.Components.ColorChangingPanel;
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
