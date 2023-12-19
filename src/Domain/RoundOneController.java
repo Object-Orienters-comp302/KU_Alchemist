@@ -111,11 +111,17 @@ public class RoundOneController {
     public boolean PrintingPress(Player current, Artifact artifact){
         if(current.getInventory().getArtifacts().containsKey(artifact)){
             if(artifact.getName().equals("Printing Press")){
-                current.getInventory().getArtifacts().remove(artifact);
                 current.getInventory().addGold(1);
                 return true;
             }
             return false;
+        }
+        return false;
+    }
+    public boolean WisdomIdol(Player current){
+        if(current.getInventory().checkArtifactExists("Wisdom Idol")){
+                current.getInventory().removeArtifact("Wisdom Idol");
+                return true;
         }
         return false;
     }

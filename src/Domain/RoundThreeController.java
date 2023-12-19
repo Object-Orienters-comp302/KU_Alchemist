@@ -8,6 +8,10 @@ import java.util.HashMap;
 public class RoundThreeController extends RoundTwoController{
     public boolean debunkTheory(Player currentPlayer, PublicationCard publicationCardToDebunk,
                                 Aspect aspectTypeToDebunk) {
+        boolean WisdomIdolFlag = false;
+        if(WisdomIdol(publicationCardToDebunk.getOwner())){
+            WisdomIdolFlag = true;
+        }
         if (publicationCardToDebunk != null && aspectTypeToDebunk != null) {
             // Check if the ingredient has a published theory
             if (PublicationTrack.getInstance().isPublished(publicationCardToDebunk)) {
@@ -32,6 +36,9 @@ public class RoundThreeController extends RoundTwoController{
                 } else {
                     currentPlayer.addReputation(2);
                     publicationCardToDebunk.getOwner().addReputation(-1);
+                    if (WisdomIdolFlag == true){
+                        publicationCardToDebunk.getOwner().addReputation(1);
+                    }
                     return true;
                 }
                 
@@ -65,5 +72,6 @@ public class RoundThreeController extends RoundTwoController{
         Deck.getInstance().setFirstThree(toSet);
         return true;
     }
+    
 
 }
