@@ -48,6 +48,8 @@ public class MenuView extends JPanel implements Publisher {
     ImageChangingPanel side4;
     ImageChangingPanel side5;
     ImageChangingPanel side6;
+    ImageChangingPanel nextPlayerButton;
+    
     private MenuController      controller;
     private ArrayList<Listener> listeners;
     
@@ -95,6 +97,9 @@ public class MenuView extends JPanel implements Publisher {
                                        AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_1));
         side6 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),
                                        AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1));
+        nextPlayerButton = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1));
+        
         
         BufferedImage background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(
                 GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))), 3, 2);
@@ -199,6 +204,9 @@ public class MenuView extends JPanel implements Publisher {
         side6.setBounds(10, 410, 260, 75);
         sidePanel.add(side6);
         
+        nextPlayerButton.setBounds(10, 490, 260, 75);
+        sidePanel.add(nextPlayerButton);
+        
         
     }
     
@@ -243,6 +251,12 @@ public class MenuView extends JPanel implements Publisher {
             @Override
             public void mouseClicked(MouseEvent e) {
                 publishEvent(Type.PAUSE);
+            }
+        });
+        nextPlayerButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                GameController.getInstance().getRoundOneController().nextPlayer();
             }
         });
     }

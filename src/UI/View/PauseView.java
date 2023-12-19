@@ -52,13 +52,13 @@ public class PauseView extends JPanel implements Publisher {
         Background.add(goToHelpScreen);
         goToHelpScreen.setLayout(null);
         
-        JLabel goToHelpScreenLbl = new JLabel("Resume Game");
+        JLabel goToHelpScreenLbl = new JLabel("Go to Help");
         goToHelpScreenLbl.setFont(new Font("Tahoma", Font.BOLD, 20));
         goToHelpScreenLbl.setHorizontalAlignment(SwingConstants.CENTER);
         goToHelpScreenLbl.setBounds(0, 0, 200, 200);
         goToHelpScreen.add(goToHelpScreenLbl);
         
-        JLabel goToHelpLbl = new JLabel("Go To Help");
+        JLabel goToHelpLbl = new JLabel("Resume Game");
         goToHelpLbl.setFont(new Font("Tahoma", Font.BOLD, 20));
         goToHelpLbl.setHorizontalAlignment(SwingConstants.CENTER);
         goToHelpLbl.setBounds(0, 0, 200, 200);
