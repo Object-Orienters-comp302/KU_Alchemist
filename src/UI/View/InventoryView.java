@@ -286,6 +286,16 @@ public class InventoryView extends JPanel implements Listener {
             }
         }
     }
+    private void IngredientsQuantityReset(){
+        feather_quantity.setText("0");
+        feet_quantity.setText("0");
+        flower_quantity.setText("0");
+        frog_quantity.setText("0");
+        mandrake_quantity.setText("0");
+        mushroom_quantity.setText("0");
+        scorpion_quantity.setText("0");
+        weed_quantity.setText("0");
+    }
     
     public void PotionsQuantity() {
         
@@ -317,6 +327,7 @@ public class InventoryView extends JPanel implements Listener {
     @Override
     public void onEvent(Type type) {
         if (type == Type.INGREDIENT) {
+            IngredientsQuantityReset();
             IngredientsQuantity();
             this.revalidate();
             this.repaint();
