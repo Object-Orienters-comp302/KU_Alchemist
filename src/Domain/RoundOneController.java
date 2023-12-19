@@ -96,4 +96,28 @@ public class RoundOneController {
         return aspect1.getPositivity() == aspect2.getPositivity();
     }
     
+    public boolean MagicMortar(Player current, Artifact artifact, Ingredient ingredient){
+        if(current.getInventory().getArtifacts().containsKey(artifact)){
+            if (artifact.getName().equals("Magic Mortar")){
+                current.getInventory().getArtifacts().remove(artifact);
+                current.getInventory().addIngredient(ingredient, 1);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+    
+    public boolean PrintingPress(Player current, Artifact artifact){
+        if(current.getInventory().getArtifacts().containsKey(artifact)){
+            if(artifact.getName().equals("Printing Press")){
+                current.getInventory().getArtifacts().remove(artifact);
+                current.getInventory().addGold(1);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+    
 }
