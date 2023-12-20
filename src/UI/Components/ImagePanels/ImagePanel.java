@@ -21,7 +21,7 @@ public class ImagePanel extends JPanel {
     
     private BufferedImage image;
     private int shape=0;
-    private int cornerVal=10;
+    private int cornerVal=20;
     
     public ImagePanel(String source) {
         loadImage(source);

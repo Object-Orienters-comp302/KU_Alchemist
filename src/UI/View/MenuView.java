@@ -174,7 +174,7 @@ public class MenuView extends JPanel implements Publisher {
         sideText3.setBounds(20, 180, 240, 55);
         sidePanel.add(sideText3);
         
-        side3.setBounds(10, 170, 260, 75);
+        side3.setBounds(10, 165, 260, 75);
         sidePanel.add(side3);
         
         
@@ -182,7 +182,7 @@ public class MenuView extends JPanel implements Publisher {
         sideText4.setBounds(20, 260, 240, 55);
         sidePanel.add(sideText4);
         
-        side4.setBounds(10, 250, 260, 75);
+        side4.setBounds(10, 245, 260, 75);
         sidePanel.add(side4);
         
         
@@ -190,7 +190,7 @@ public class MenuView extends JPanel implements Publisher {
         sideText5.setBounds(20, 340, 240, 55);
         sidePanel.add(sideText5);
         
-        side5.setBounds(10, 330, 260, 75);
+        side5.setBounds(10, 325, 260, 75);
         sidePanel.add(side5);
         
         
@@ -198,7 +198,7 @@ public class MenuView extends JPanel implements Publisher {
         sideText6.setBounds(20, 420, 240, 55);
         sidePanel.add(sideText6);
         
-        side6.setBounds(10, 410, 260, 75);
+        side6.setBounds(10, 405, 260, 75);
         sidePanel.add(side6);
         
         
