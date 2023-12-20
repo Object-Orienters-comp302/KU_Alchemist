@@ -86,18 +86,21 @@ public class ColorChangingPanel extends JPanel {
     }
     
     private void drawBothRounded(Path2D.Float path) {
-        path.moveTo(cornerRadius, 0);
-        path.lineTo(getWidth() - cornerRadius, 0);
-        path.curveTo(getWidth() - cornerRadius, 0, getWidth(), 0, getWidth(), cornerRadius);
-        path.lineTo(getWidth(), getHeight() - cornerRadius);
-        path.curveTo(getWidth(), getHeight() - cornerRadius, getWidth(), getHeight(), getWidth() - cornerRadius,
-                     getHeight());
-        path.lineTo(cornerRadius, getHeight());
-        path.curveTo(cornerRadius, getHeight(), 0, getHeight(), 0, getHeight() - cornerRadius);
-        path.lineTo(0, cornerRadius);
-        path.curveTo(0, cornerRadius, 0, 0, cornerRadius, 0);
+        float width = getWidth();
+        float height = getHeight();
+        float radius = 40; // Adjust the radius as needed
+        
+        path.moveTo(0, radius);
+        path.quadTo(0, 0, radius, 0);
+        path.lineTo(width - radius, 0);
+        path.quadTo(width, 0, width, radius);
+        path.lineTo(width, height - radius);
+        path.quadTo(width, height, width - radius, height);
+        path.lineTo(radius, height);
+        path.quadTo(0, height, 0, height - radius);
         path.closePath();
     }
+    
     
     private void drawNoRounded(Path2D.Float path) {
         path.moveTo(0, 0);
