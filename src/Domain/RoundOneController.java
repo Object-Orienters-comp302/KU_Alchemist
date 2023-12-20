@@ -2,8 +2,6 @@ package Domain;
 
 import Models.*;
 
-import java.util.HashMap;
-
 public class RoundOneController {
     
     protected RoundOneController() { }
@@ -33,13 +31,15 @@ public class RoundOneController {
         }
     }
     
-    public void BuyArtifacts(Player player, Artifact artifact) {
-        HashMap<Artifact, Integer> artifacts = player.getInventory().getArtifacts();
+    public Artifact BuyArtifacts(Player player) {
+
         if (player.getInventory().getGold() > 3) {
-            
-            artifacts.put(artifact, artifacts.get(artifact) + 1);
+            Artifact artifact =Deck.getInstance().popArtifact();
+            player.getInventory().addArtifactCard(artifact, 1);
             player.getInventory().setGold(player.getInventory().getGold() - 3);
+            return artifact;
         }
+        return null;
     }
     
     public void Make_experiments(Player player, Potion potion,

@@ -13,6 +13,7 @@ public class ViewFactory {
     private PlainView plainView;
     private InventoryView inventoryView;
     private TransmuteView transmuteView;
+    private BuyArtifactView buyArtifactView;
     
     
     private ViewFactory() {
@@ -85,5 +86,11 @@ public class ViewFactory {
             transmuteView = new TransmuteView();
         }
         return transmuteView;
+    }
+    public BuyArtifactView getBuyArtifactView() {
+        if (buyArtifactView == null) {
+            buyArtifactView = new BuyArtifactView();
+        }
+        return buyArtifactView;
     }
 }
