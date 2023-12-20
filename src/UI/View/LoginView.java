@@ -7,6 +7,7 @@ import Domain.GameController;
 import Domain.LoginController;
 import Models.Token;
 import UI.Components.ColorChangingPanel;
+import UI.Components.RoundedPanel;
 import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 import Utils.CircularLinkedList;
@@ -33,7 +34,7 @@ public class LoginView extends JPanel implements Publisher {
     JPanel                    TokenSelectorPanel_Right;
     JPanel                    TokenSelectorPanel_Right_Label_Holder;
     JLabel                    TokenSelectorPanel_Right_Label;
-    JPanel                    UserNamePanel;
+    RoundedPanel                    UserNamePanel;
     JLabel                    lblNewLabel;
     ImagePanel                UserNamePanel_CheckPanel;
     JPanel                    NextPanel;
@@ -74,7 +75,7 @@ public class LoginView extends JPanel implements Publisher {
         TokenSelectorPanel_Right              = new ColorChangingPanel("#cf9d15", "#FFD700");
         TokenSelectorPanel_Right_Label_Holder = new JPanel();
         TokenSelectorPanel_Right_Label        = new JLabel(">");
-        UserNamePanel                         = new JPanel();
+        UserNamePanel                         = new RoundedPanel(50);
         textField                             = new JTextField();
         lblNewLabel                           = new JLabel("Username:  ");
         UserNamePanel_CheckPanel              = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
@@ -129,7 +130,7 @@ public class LoginView extends JPanel implements Publisher {
         MainPanel.add(UserNamePanel);
         UserNamePanel.setLayout(null);
         
-        textField.setBounds(75, 0, 175, 50);
+        textField.setBounds(75, 2, 175, 46);
         UserNamePanel.add(textField);
         textField.setBorder(null);
         textField.setColumns(10);
@@ -138,7 +139,7 @@ public class LoginView extends JPanel implements Publisher {
         lblNewLabel.setBounds(0, 0, 75, 50);
         UserNamePanel.add(lblNewLabel);
         
-        UserNamePanel_CheckPanel.setBounds(255, 5, 40, 40);
+        UserNamePanel_CheckPanel.setBounds(255, 10, 30, 30);
         UserNamePanel_CheckPanel.setBackground(Color.decode("#FFD700"));
         UserNamePanel.add(UserNamePanel_CheckPanel);
         

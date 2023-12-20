@@ -83,29 +83,30 @@ public class ImagePanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        
-        
-        if (image != null && shape==0) {
-            int panelWidth = getWidth();
-            int panelHeight = getHeight();
-            
-            g.drawImage(image, 0, 0, panelWidth, panelHeight, this);
-        }
-        
-        if (image != null && shape==1) {
-            int panelWidth = getWidth();
-            int panelHeight = getHeight();
 
+        if (image != null) {
+            Graphics2D g2d = (Graphics2D) g.create();
 
-            // Create a rounded rectangle as the clipping area
-            RoundRectangle2D.Double roundedRect = new RoundRectangle2D.Double(0, 0, panelWidth, panelHeight, cornerVal, cornerVal);
-            ((Graphics2D) g).setClip(roundedRect);
+            if (shape == 0) {
+                int panelWidth = getWidth();
+                int panelHeight = getHeight();
+                g2d.drawImage(image, 0, 0, panelWidth, panelHeight, this);
+            } else if (shape == 1) {
+                int panelWidth = getWidth();
+                int panelHeight = getHeight();
 
-            // Draw the image within the rounded rectangle clipping area
-            g.drawImage(image, 0, 0, panelWidth, panelHeight, this);
+                // Create a rounded rectangle as the clipping area
+                RoundRectangle2D.Double roundedRect = new RoundRectangle2D.Double(0, 0, panelWidth, panelHeight, cornerVal, cornerVal);
+                g2d.setClip(roundedRect);
 
-            // Reset the clip to avoid affecting subsequent drawings
-            ((Graphics2D) g).setClip(null);
+                // Draw the image within the rounded rectangle clipping area
+                g2d.drawImage(image, 0, 0, panelWidth, panelHeight, this);
+
+                // Reset the clip to avoid affecting subsequent drawings
+                g2d.setClip(null);
+            }
+
+            g2d.dispose();
         }
     }
     

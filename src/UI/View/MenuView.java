@@ -6,10 +6,11 @@ import Domain.Event.Type;
 import Domain.GameController;
 import Domain.MenuController;
 import Models.Player;
-import UI.Components.PlayerDisplayer;
+import UI.Components.CutRoundedPanel;
 import UI.Components.ImagePanels.HQImagePanel;
 import UI.Components.ImagePanels.ImageChangingPanel;
 import UI.Components.ImagePanels.ImagePanel;
+import UI.Components.Player.PlayerDisplayer;
 import UI.Components.Publish.BooksDisplayer;
 import Utils.AssetLoader;
 import Utils.GUtil;
@@ -28,7 +29,7 @@ public class MenuView extends JPanel implements Publisher {
     JPanel             topPanel;
     ImagePanel         pause;
     HQImagePanel       backGroundImage;
-    JPanel             displayerPanel;
+    CutRoundedPanel    displayerPanel;
     CardLayout         cardLay;
     //tables
     JPanel             tablesPanel;
@@ -69,7 +70,7 @@ public class MenuView extends JPanel implements Publisher {
         
         
         cardLay            = new CardLayout();
-        displayerPanel     = new JPanel(cardLay);
+        displayerPanel     = new CutRoundedPanel(10);
         tablesPanel        = new DeductionView();
         theoriesPanel      = new BooksDisplayer();
         PotionBrewingPanel = new PotionBrewingView();
@@ -118,10 +119,11 @@ public class MenuView extends JPanel implements Publisher {
         pause.setBounds(1200, 5, 80, 80);
         topPanel.add(pause);
         
-        displayerPanel.setBounds(0, 90, 1000, 500);
+        displayerPanel.setBounds(5, 90, 1000, 500);
         displayerPanel.setOpaque(false);
         basePanel.add(displayerPanel);
         displayerPanel.setBackground(Color.red);
+        displayerPanel.setLayout(cardLay);
         
         displayerPanel.add(PlainPanel, "Plain");
         
@@ -256,7 +258,7 @@ public class MenuView extends JPanel implements Publisher {
             PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
             
             
-            displayer.setBounds((i * 240 + 40), 5, 200, 80);
+            displayer.setBounds((i * 265 + 40), 5, 260, 80);
             topPanel.add(displayer);
         }
         
