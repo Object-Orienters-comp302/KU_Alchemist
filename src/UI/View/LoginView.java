@@ -38,7 +38,7 @@ public class LoginView extends JPanel implements Publisher {
     RoundedPanel              UserNamePanel;
     JLabel                    lblNewLabel;
     ImagePanel                UserNamePanel_CheckPanel;
-    CutRoundedPanel           NextPanelContainer;
+    JPanel                    NextPanelContainer;
     ColorChangingPanel        NextPanel;
     JLabel                    NextPanel_Label;
     
@@ -84,9 +84,9 @@ public class LoginView extends JPanel implements Publisher {
         textField                             = new JTextField();
         lblNewLabel                           = new JLabel("Username:  ");
         UserNamePanel_CheckPanel              = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
-        NextPanelContainer                    = new CutRoundedPanel(50, true);
+        NextPanelContainer                    = new JPanel();
         NextPanel                             =
-                new ColorChangingPanel("#cf9d15", "#FFD700", 60, ColorChangingPanel.RoundingStyle.BOTH);
+                new ColorChangingPanel("#cf9d15", "#FFD700", 40, ColorChangingPanel.RoundingStyle.BOTH);
         NextPanel_Label                       = new JLabel("NEXT");
     }
     
@@ -153,6 +153,7 @@ public class LoginView extends JPanel implements Publisher {
         NextPanelContainer.setBounds(449, 599, 302, 77);
         MainPanel.add(NextPanelContainer);
         NextPanelContainer.setLayout(null);
+        NextPanelContainer.setOpaque(false);
         
         
         NextPanel.setLayout(null);

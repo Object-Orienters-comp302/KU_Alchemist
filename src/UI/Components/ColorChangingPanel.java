@@ -29,7 +29,7 @@ public class ColorChangingPanel extends JPanel {
     }
     
     public ColorChangingPanel(String defColorHex, String hoverColorHex) {
-        this(Color.decode(defColorHex), Color.decode(hoverColorHex), 0, RoundingStyle.NONE);
+        this(Color.decode(defColorHex), Color.decode(hoverColorHex), 10, RoundingStyle.BOTH);
     }
     
     @Override
@@ -88,19 +88,18 @@ public class ColorChangingPanel extends JPanel {
     private void drawBothRounded(Path2D.Float path) {
         float width = getWidth();
         float height = getHeight();
-        float radius = 40; // Adjust the radius as needed
+        float radiusPercentage = ((float) cornerRadius / 100) * Math.min(width, height);
         
-        path.moveTo(0, radius);
-        path.quadTo(0, 0, radius, 0);
-        path.lineTo(width - radius, 0);
-        path.quadTo(width, 0, width, radius);
-        path.lineTo(width, height - radius);
-        path.quadTo(width, height, width - radius, height);
-        path.lineTo(radius, height);
-        path.quadTo(0, height, 0, height - radius);
+        path.moveTo(0, radiusPercentage);
+        path.quadTo(0, 0, radiusPercentage, 0);
+        path.lineTo(width - radiusPercentage, 0);
+        path.quadTo(width, 0, width, radiusPercentage);
+        path.lineTo(width, height - radiusPercentage);
+        path.quadTo(width, height, width - radiusPercentage, height);
+        path.lineTo(radiusPercentage, height);
+        path.quadTo(0, height, 0, height - radiusPercentage);
         path.closePath();
     }
-    
     
     private void drawNoRounded(Path2D.Float path) {
         path.moveTo(0, 0);
