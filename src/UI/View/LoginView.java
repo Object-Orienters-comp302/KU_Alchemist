@@ -7,6 +7,7 @@ import Domain.GameController;
 import Domain.LoginController;
 import Models.Token;
 import UI.Components.ColorChangingPanel;
+import UI.Components.CutRoundedPanel;
 import UI.Components.RoundedPanel;
 import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
@@ -26,7 +27,7 @@ public class LoginView extends JPanel implements Publisher {
     LoginController           loginControl;
     CircularLinkedList<Token> tokenList;
     ImagePanel                MainPanel;
-    JPanel                    TokenSelectorPanel;
+    CutRoundedPanel                    TokenSelectorPanel;
     JPanel                    TokenSelectorPanel_Left;
     JPanel                    TokenSelectorPanel_Left_Label_Holder;
     JLabel                    TokenSelectorPanel_Left_Label;
@@ -37,10 +38,13 @@ public class LoginView extends JPanel implements Publisher {
     RoundedPanel                    UserNamePanel;
     JLabel                    lblNewLabel;
     ImagePanel                UserNamePanel_CheckPanel;
-    JPanel                    NextPanel;
-    JLabel                    NextPanel_Label;
+    CutRoundedPanel           NextPanelContainer;
+    ColorChangingPanel		  NextPanel;
+    JLabel					  NextPanel_Label;
+    
     ArrayList<Listener>       Listeners;
     private JTextField textField;
+    
     
     
     protected LoginView() {
@@ -67,7 +71,7 @@ public class LoginView extends JPanel implements Publisher {
         tokenList    = loginControl.getCirularTokens();
         MainPanel    = new ImagePanel(tokenList.get().getBackground());
         MainPanel.setBounds(0, 0, 1280, 720);
-        TokenSelectorPanel                    = new JPanel();
+        TokenSelectorPanel                    = new CutRoundedPanel(60,true);
         TokenSelectorPanel_Left               = new ColorChangingPanel("#cf9d15", "#FFD700");
         TokenSelectorPanel_Left_Label_Holder  = new JPanel();
         TokenSelectorPanel_Left_Label         = new JLabel("<");
@@ -79,8 +83,9 @@ public class LoginView extends JPanel implements Publisher {
         textField                             = new JTextField();
         lblNewLabel                           = new JLabel("Username:  ");
         UserNamePanel_CheckPanel              = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
-        NextPanel                             = new ColorChangingPanel("#cf9d15", "#FFD700");
-        NextPanel_Label                       = new JLabel("NEXT");
+        NextPanelContainer                             = new CutRoundedPanel(50,true);
+        NextPanel = new ColorChangingPanel("#cf9d15", "#FFD700");
+        NextPanel_Label = new JLabel("NEXT");
     }
     
     private void SetupObjets() {
@@ -89,11 +94,11 @@ public class LoginView extends JPanel implements Publisher {
         
         MainPanel.setLayout(null);
         
-        TokenSelectorPanel.setBounds(225, 75, 750, 400);
+        TokenSelectorPanel.setBounds(223, 73, 754, 404);
         MainPanel.add(TokenSelectorPanel);
         TokenSelectorPanel.setLayout(null);
         
-        TokenSelectorPanel_Left.setBounds(0, 0, 75, 400);
+        TokenSelectorPanel_Left.setBounds(2, 2, 75, 400);
         TokenSelectorPanel.add(TokenSelectorPanel_Left);
         TokenSelectorPanel_Left.setLayout(null);
         
@@ -107,11 +112,11 @@ public class LoginView extends JPanel implements Publisher {
         TokenSelectorPanel_Left_Label.setBounds(0, 0, 30, 60);
         TokenSelectorPanel_Left_Label_Holder.add(TokenSelectorPanel_Left_Label);
         
-        TokenSelectorPanel_Displayer.setBounds(75, 0, 600, 400);
+        TokenSelectorPanel_Displayer.setBounds(77, 2, 600, 400);
         TokenSelectorPanel.add(TokenSelectorPanel_Displayer);
         TokenSelectorPanel_Displayer.setLayout(null);
         
-        TokenSelectorPanel_Right.setBounds(675, 0, 75, 400);
+        TokenSelectorPanel_Right.setBounds(677, 2, 75, 400);
         TokenSelectorPanel.add(TokenSelectorPanel_Right);
         TokenSelectorPanel_Right.setLayout(null);
         
@@ -143,13 +148,19 @@ public class LoginView extends JPanel implements Publisher {
         UserNamePanel_CheckPanel.setBackground(Color.decode("#FFD700"));
         UserNamePanel.add(UserNamePanel_CheckPanel);
         
-        NextPanel.setBounds(450, 600, 300, 75);
-        MainPanel.add(NextPanel);
-        NextPanel.setLayout(null);
+        NextPanelContainer.setBounds(449, 599, 302, 77);
+        MainPanel.add(NextPanelContainer);
+        NextPanelContainer.setLayout(null);
         
-        NextPanel_Label.setBounds(105, 8, 90, 60);
+        
+        NextPanel.setLayout(null);
+        NextPanel.setBounds(1, 1, 300, 75);
+        NextPanelContainer.add(NextPanel);
+        
+        
         NextPanel_Label.setHorizontalAlignment(SwingConstants.CENTER);
         NextPanel_Label.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        NextPanel_Label.setBounds(105, 8, 90, 60);
         NextPanel.add(NextPanel_Label);
         
     }
@@ -227,6 +238,10 @@ public class LoginView extends JPanel implements Publisher {
                 // TODO Auto-generated method stub
             }
         });
+        
+        
+        
+        
     }
     
     @Override

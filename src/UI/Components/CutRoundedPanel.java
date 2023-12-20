@@ -2,6 +2,8 @@ package UI.Components;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.JPanel;
@@ -19,6 +21,13 @@ public class CutRoundedPanel extends JPanel {
         this.cornerRadius = cornerRadius;
         setOpaque(false);
     }
+    public CutRoundedPanel(int cornerRadius, boolean addEnterListener) {
+        this.cornerRadius = cornerRadius;
+        setOpaque(false);
+        if(addEnterListener) {
+        	this.addMouseListener(new EnterListener(this));
+        }
+    }
     
     @Override
     protected void paintChildren(Graphics g) {
@@ -27,4 +36,26 @@ public class CutRoundedPanel extends JPanel {
         super.paintChildren(g2);
         g2.dispose();
     }
+    
+    static class EnterListener extends MouseAdapter {
+    	CutRoundedPanel self;
+    	public EnterListener(CutRoundedPanel self) {
+    		this.self=self;
+    	}
+    	
+    	@Override
+        public void mouseEntered(MouseEvent e) {
+        	self.repaint();
+        	self.revalidate();
+        }
+        
+        @Override
+        public void mouseExited(MouseEvent e) {
+        	self.repaint();
+        	self.revalidate();
+        }
+    	
+    }
+    
+    
 }

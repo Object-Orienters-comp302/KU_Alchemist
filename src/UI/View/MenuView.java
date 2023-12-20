@@ -116,7 +116,7 @@ public class MenuView extends JPanel implements Publisher {
         topPanel.setBackground(Color.black);
         topPanel.setLayout(null);
         
-        pause.setBounds(1200, 5, 80, 80);
+        pause.setBounds(1170, 5, 80, 80);
         topPanel.add(pause);
         
         displayerPanel.setBounds(5, 90, 1000, 500);
