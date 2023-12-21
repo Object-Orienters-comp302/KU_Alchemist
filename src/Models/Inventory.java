@@ -78,6 +78,23 @@ public class Inventory implements Publisher {
     public boolean checkIngredientExists(Ingredient.IngredientTypes Type) {
         return this.getIngredients().get(new Ingredient(Type)) > 0;
     }
+    public boolean checkArtifactExists(String artifactName){
+        for (Artifact artifact1: Artifacts.keySet()){
+            if(artifact1.getName().equals(artifactName)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public void removeArtifact(String artifactName){
+        boolean deleted = false;
+        for (Artifact artifact1: Artifacts.keySet()){
+            if(artifact1.getName().equals(artifactName) && !deleted){
+                getArtifacts().remove(artifact1);
+                deleted = true;
+            }
+        }
+    }
     
     @Override
     public void addListener(Listener lis) {

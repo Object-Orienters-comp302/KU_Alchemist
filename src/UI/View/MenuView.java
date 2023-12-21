@@ -39,6 +39,7 @@ public class MenuView extends JPanel implements Publisher {
     PlainView          PlainPanel;
     InventoryView      InventoryPanel;
     TransmuteView      TransmutePanel;
+    BuyArtifactView    BuyArtifactPanel;
     //other?
     JPanel             bottomPanel;
     JPanel             sidePanel;
@@ -49,6 +50,9 @@ public class MenuView extends JPanel implements Publisher {
     ImageChangingPanel side4;
     ImageChangingPanel side5;
     ImageChangingPanel side6;
+    ImageChangingPanel side7;
+    ImageChangingPanel nextPlayerButton;
+    
     private MenuController      controller;
     private ArrayList<Listener> listeners;
     
@@ -78,6 +82,7 @@ public class MenuView extends JPanel implements Publisher {
         PlainPanel         = new PlainView();
         InventoryPanel     = new InventoryView();
         TransmutePanel     = new TransmuteView();
+        BuyArtifactPanel    = new BuyArtifactView();
         
         bottomPanel = new JPanel();
         
@@ -95,7 +100,11 @@ public class MenuView extends JPanel implements Publisher {
         side5 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_0),
                                        AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_1),1);
         side6 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1),1);
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1));
+        side7 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1));
+        nextPlayerButton = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1));
         
         BufferedImage background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(
                 GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))), 3, 2);
@@ -138,6 +147,8 @@ public class MenuView extends JPanel implements Publisher {
         displayerPanel.add(InventoryPanel, "Inventory");
         
         displayerPanel.add(TransmutePanel, "Transmute");
+        
+        displayerPanel.add(BuyArtifactPanel, "BuyArtifact");
         
         bottomPanel.setBounds(0, 590, 1000, 130);
         bottomPanel.setOpaque(false);
@@ -201,6 +212,12 @@ public class MenuView extends JPanel implements Publisher {
         side6.setBounds(10, 405, 260, 75);
         sidePanel.add(side6);
         
+        side7.setBounds(10, 490, 260, 75);
+        sidePanel.add(side7);
+        
+        nextPlayerButton.setBounds(10, 570, 260, 75);
+        sidePanel.add(nextPlayerButton);
+        
         
     }
     
@@ -241,10 +258,22 @@ public class MenuView extends JPanel implements Publisher {
                 cardLay.show(displayerPanel, "Transmute");
             }
         });
+        side7.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                cardLay.show(displayerPanel, "BuyArtifact");
+            }
+        });
         pause.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 publishEvent(Type.PAUSE);
+            }
+        });
+        nextPlayerButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                GameController.getInstance().getRoundOneController().nextPlayer();
             }
         });
     }
