@@ -1,7 +1,7 @@
 package UI.Components.Potion;
 
 import Models.Ingredient;
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;

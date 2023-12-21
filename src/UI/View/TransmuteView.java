@@ -4,7 +4,7 @@ import Domain.GameController;
 import Domain.RoundOneController;
 import Models.Player;
 import UI.Components.ColorChangingPanel;
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.Potion.IngredientButton;
 import Utils.AssetLoader;
 

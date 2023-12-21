@@ -6,10 +6,11 @@ import Domain.Event.Type;
 import Domain.GameController;
 import Domain.MenuController;
 import Models.Player;
-import UI.Components.HQImagePanel;
-import UI.Components.ImageChangingPanel;
-import UI.Components.ImagePanel;
-import UI.Components.PlayerDisplayer;
+import UI.Components.CutRoundedPanel;
+import UI.Components.ImagePanels.HQImagePanel;
+import UI.Components.ImagePanels.ImageChangingPanel;
+import UI.Components.ImagePanels.ImagePanel;
+import UI.Components.Player.PlayerDisplayer;
 import UI.Components.Publish.BooksDisplayer;
 import Utils.AssetLoader;
 import Utils.GUtil;
@@ -28,7 +29,7 @@ public class MenuView extends JPanel implements Publisher {
     JPanel             topPanel;
     ImagePanel         pause;
     HQImagePanel       backGroundImage;
-    JPanel             displayerPanel;
+    CutRoundedPanel    displayerPanel;
     CardLayout         cardLay;
     //tables
     JPanel             tablesPanel;
@@ -73,7 +74,7 @@ public class MenuView extends JPanel implements Publisher {
         
         
         cardLay            = new CardLayout();
-        displayerPanel     = new JPanel(cardLay);
+        displayerPanel     = new CutRoundedPanel(10);
         tablesPanel        = new DeductionView();
         theoriesPanel      = new BooksDisplayer();
         PotionBrewingPanel = new PotionBrewingView();
@@ -89,22 +90,21 @@ public class MenuView extends JPanel implements Publisher {
         sidePanel = new JPanel();
         //Add assetloader when a new asset is given.
         side1 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE_1));
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE_1),1);
         side2 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH_1),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH_0));
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH_0),1);
         side3 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB_1));
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB_1),1);
         side4 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE_1));
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE_1),1);
         side5 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_1));
+                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_1),1);
         side6 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),
                                        AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1));
         side7 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),
                                        AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1));
         nextPlayerButton = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),
                                        AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1));
-        
         
         BufferedImage background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(
                 GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))), 3, 2);
@@ -125,13 +125,14 @@ public class MenuView extends JPanel implements Publisher {
         topPanel.setBackground(Color.black);
         topPanel.setLayout(null);
         
-        pause.setBounds(1200, 5, 80, 80);
+        pause.setBounds(1170, 5, 80, 80);
         topPanel.add(pause);
         
-        displayerPanel.setBounds(0, 90, 1000, 500);
+        displayerPanel.setBounds(5, 90, 1000, 500);
         displayerPanel.setOpaque(false);
         basePanel.add(displayerPanel);
         displayerPanel.setBackground(Color.red);
+        displayerPanel.setLayout(cardLay);
         
         displayerPanel.add(PlainPanel, "Plain");
         
@@ -184,7 +185,7 @@ public class MenuView extends JPanel implements Publisher {
         sideText3.setBounds(20, 180, 240, 55);
         sidePanel.add(sideText3);
         
-        side3.setBounds(10, 170, 260, 75);
+        side3.setBounds(10, 165, 260, 75);
         sidePanel.add(side3);
         
         
@@ -192,7 +193,7 @@ public class MenuView extends JPanel implements Publisher {
         sideText4.setBounds(20, 260, 240, 55);
         sidePanel.add(sideText4);
         
-        side4.setBounds(10, 250, 260, 75);
+        side4.setBounds(10, 245, 260, 75);
         sidePanel.add(side4);
         
         
@@ -200,7 +201,7 @@ public class MenuView extends JPanel implements Publisher {
         sideText5.setBounds(20, 340, 240, 55);
         sidePanel.add(sideText5);
         
-        side5.setBounds(10, 330, 260, 75);
+        side5.setBounds(10, 325, 260, 75);
         sidePanel.add(side5);
         
         
@@ -208,7 +209,7 @@ public class MenuView extends JPanel implements Publisher {
         sideText6.setBounds(20, 420, 240, 55);
         sidePanel.add(sideText6);
         
-        side6.setBounds(10, 410, 260, 75);
+        side6.setBounds(10, 405, 260, 75);
         sidePanel.add(side6);
         
         side7.setBounds(10, 490, 260, 75);
@@ -286,7 +287,7 @@ public class MenuView extends JPanel implements Publisher {
             PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
             
             
-            displayer.setBounds((i * 240 + 40), 5, 200, 80);
+            displayer.setBounds((i * 265 + 40), 5, 260, 80);
             topPanel.add(displayer);
         }
         

@@ -3,7 +3,7 @@ package UI.Components.Potion;
 import Models.Player;
 import Models.Potion;
 import UI.Components.CircleTransparentPanel;
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;

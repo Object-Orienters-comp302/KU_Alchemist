@@ -1,9 +1,11 @@
 package UI.Components.Potion;
 
-import UI.Components.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
+
+import UI.Components.ImagePanels.ImagePanel;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -74,21 +76,7 @@ public class PotionPopupButton extends JPanel {
         return distance <= radius;
     }
     
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        
-        JFrame frame = new JFrame("test");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1200, 900);
-        frame.getContentPane().setLayout(null);
-        
-        
-        //frame.getContentPane()
-        //      .add(login);
-        frame.setVisible(true);
-        
-        
-    }
+    
     
     @Override
     protected void paintComponent(Graphics g) {

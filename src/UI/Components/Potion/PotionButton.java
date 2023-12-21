@@ -1,7 +1,7 @@
 package UI.Components.Potion;
 
 import Models.Potion;
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
@@ -142,5 +142,22 @@ public class PotionButton extends JPanel {
             case AssetLoader.Potions.UNKNOWN -> Potion.Identity.UNKNOWN;
             default -> throw new IllegalStateException("Unexpected value: " + currentPotion);
         };
+    }
+    
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        
+        JFrame frame = new JFrame("test");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1200, 900);
+        frame.getContentPane().setLayout(null);
+
+        PotionButton po= new PotionButton(100,100,50,50);
+        
+        frame.getContentPane()
+              .add(po);
+        frame.setVisible(true);
+        
+        
     }
 }
