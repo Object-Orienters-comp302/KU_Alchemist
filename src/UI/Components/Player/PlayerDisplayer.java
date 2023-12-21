@@ -63,14 +63,14 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         avatarImgPanel.setBounds(0, 0, 70, 70);
         container.add(avatarImgPanel);
 
-        labelPanel_1.setBounds(70, 0, 125, 30);
+        labelPanel_1.setBounds(70, 0, 126, 30);
         container.add(labelPanel_1);
         labelPanel_1.setLayout(null);
 
         nameLabel.setBounds(5, 0, 115, 30);
         labelPanel_1.add(nameLabel);
 
-        labelPanel_2.setBounds(195, 0, 55, 35);
+        labelPanel_2.setBounds(195, 0, 55, 36);
         container.add(labelPanel_2);
         labelPanel_2.setLayout(null);
 
@@ -101,7 +101,7 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         labelPanel_3_2.add(pointsLabel);
 
         potionsPanel.setLayout(null);
-        potionsPanel.setBounds(70, 30, 125, 40);
+        potionsPanel.setBounds(70, 30, 126, 40);
         container.add(potionsPanel);
 
         add(container); 
