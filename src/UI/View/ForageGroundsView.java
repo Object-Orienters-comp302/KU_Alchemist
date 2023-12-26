@@ -129,10 +129,7 @@ public class ForageGroundsView extends JPanel {
         BG5_Text.setLayout(null);
         BG5_Text.setBounds(5, 5, 40, 40);
         BG5.add(BG5_Text);
-        
-        PotionButton panel = new PotionButton(500,250,200,200);
-        
-        Background.add(panel);
+
 
     	
     }
