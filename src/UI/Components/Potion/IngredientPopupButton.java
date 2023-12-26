@@ -24,7 +24,7 @@ public class IngredientPopupButton extends JPanel {
         img.setBounds(width / 10, width / 10, width*4 / 5, height*4 / 5);
         add(img);
         this.setOpaque(false);
-        setBackground(Color.red);
+        
         
         
         this.addMouseListener(new MouseAdapter() {
