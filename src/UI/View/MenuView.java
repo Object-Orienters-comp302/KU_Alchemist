@@ -52,6 +52,9 @@ public class MenuView extends JPanel implements Publisher,Listener {
     ImageChangingPanel side6;
     ImageChangingPanel side7;
     ImageChangingPanel nextPlayerButton;
+    private JPanel RoundCounterPanel;
+    private JLabel roundLabel;
+    
     
     private MenuController      controller;
     private ArrayList<Listener> listeners;
@@ -111,6 +114,11 @@ public class MenuView extends JPanel implements Publisher,Listener {
         BufferedImage background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(
                 GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))), 3, 2);
         backGroundImage = new HQImagePanel(background);
+        
+        RoundCounterPanel = new JPanel();
+
+        
+        roundLabel = new JLabel("1");
     }
     
     private void ApplyStuff() {
@@ -127,7 +135,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
         topPanel.setBackground(Color.black);
         topPanel.setLayout(null);
         
-        pause.setBounds(1170, 5, 80, 80);
+        pause.setBounds(1200, 5, 80, 80);
         topPanel.add(pause);
         
         displayerPanel.setBounds(5, 90, 1000, 500);
@@ -220,6 +228,16 @@ public class MenuView extends JPanel implements Publisher,Listener {
         nextPlayerButton.setBounds(10, 570, 260, 75);
         sidePanel.add(nextPlayerButton);
         
+        RoundCounterPanel.setBounds(1133, 1, 57, 90);
+        RoundCounterPanel.setOpaque(false);
+        topPanel.add(RoundCounterPanel);
+        RoundCounterPanel.setLayout(null);
+        
+        roundLabel.setFont(new Font("Tahoma", Font.PLAIN, 99));
+        roundLabel.setForeground(Color.WHITE);
+        roundLabel.setBounds(2, 0, 57, 89);
+        RoundCounterPanel.add(roundLabel);
+
         
     }
     
@@ -276,6 +294,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 GameController.getInstance().nextPlayer();
+                roundLabel.setText(GameController.getInstance().getRound().toString());
             }
         });
     }
@@ -287,7 +306,6 @@ public class MenuView extends JPanel implements Publisher,Listener {
         
         for (int i = 0; i < playerCount; i++) {
             PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
-            
             
             displayer.setBounds((i * 265 + 40), 5, 260, 80);
             topPanel.add(displayer);

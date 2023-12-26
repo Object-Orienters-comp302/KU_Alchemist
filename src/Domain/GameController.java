@@ -88,7 +88,7 @@ public class GameController implements Publisher {
         Player.nextPlayer();
     }
     public Integer getRound(){
-        return TotalNextTurns/Player.getPlayers().size() + 1;
+        return (TotalNextTurns/(Player.getPlayers().size()*3)) + 1;
     }
     
     public void publishEvent(Type type) {
