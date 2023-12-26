@@ -42,7 +42,7 @@ public class CircleTransparentPanel extends JPanel {
         super.paintComponent(g);
         
         int originalDiameter = Math.min(getWidth(), getHeight());
-        int customDiameter = originalDiameter * 3 / 4;
+        int customDiameter = originalDiameter * 1;
         
         int x = (getWidth() - customDiameter) / 2;
         int y = (getHeight() - customDiameter) / 2;
