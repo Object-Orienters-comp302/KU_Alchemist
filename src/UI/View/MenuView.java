@@ -262,6 +262,7 @@ public class MenuView extends JPanel implements Publisher {
             @Override
             public void mouseClicked(MouseEvent e) {
                 cardLay.show(displayerPanel, "BuyArtifact");
+                
             }
         });
         pause.addMouseListener(new MouseAdapter() {
@@ -274,6 +275,7 @@ public class MenuView extends JPanel implements Publisher {
             @Override
             public void mouseClicked(MouseEvent e) {
                 GameController.getInstance().getRoundOneController().nextPlayer();
+                PlayerDisplayer.repaintAll();
             }
         });
     }
@@ -284,7 +286,7 @@ public class MenuView extends JPanel implements Publisher {
         int playerCount = playerList.size();
         
         for (int i = 0; i < playerCount; i++) {
-            PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
+            PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i),controller);
             
             
             displayer.setBounds((i * 265 + 40), 5, 260, 80);
