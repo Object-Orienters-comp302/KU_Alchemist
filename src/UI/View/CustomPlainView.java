@@ -6,11 +6,11 @@ import javax.swing.*;
 
 import UI.Components.ImagePanels.HQImagePanel;
 
-public class PlainView extends JPanel {
+public class    CustomPlainView extends JPanel {
     
     HQImagePanel Background;
     
-    public PlainView() {
+    public CustomPlainView() {
         this.setSize(1000, 500);
         setLayout(null);
         
@@ -26,7 +26,7 @@ public class PlainView extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         frame.setSize(1020, 520);
-        frame.getContentPane().add(new PlainView());
+        frame.getContentPane().add(new CustomPlainView());
         frame.setVisible(true);
         
     }

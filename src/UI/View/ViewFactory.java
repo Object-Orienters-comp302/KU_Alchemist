@@ -10,7 +10,7 @@ public class ViewFactory {
     private MenuView       menuView;
     private PauseView      pauseView;
     private LoginView      loginView;
-    private PlainView plainView;
+    private CustomPlainView customPlainView;
     private InventoryView inventoryView;
     private TransmuteView transmuteView;
     private BuyArtifactView buyArtifactView;
@@ -68,11 +68,11 @@ public class ViewFactory {
         }
         return loginView;
     }
-    public PlainView getPlainView() {
-        if (plainView == null) {
-            plainView = new PlainView();
+    public CustomPlainView getPlainView() {
+        if (customPlainView == null) {
+            customPlainView = new CustomPlainView();
         }
-        return plainView;
+        return customPlainView;
     }
     
     public InventoryView getInventoryView() {
