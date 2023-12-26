@@ -1,6 +1,14 @@
 package Domain;
 
-public class GameController {
+import Domain.Event.Listener;
+import Domain.Event.Publisher;
+import Domain.Event.Type;
+import Models.Player;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+public class GameController implements Publisher {
     private static GameController single_instance;
     
     private LoginController    loginController;
@@ -11,6 +19,8 @@ public class GameController {
     private RoundZeroController roundZeroController;
     private RoundOneController roundOneController;
     private RoundTwoController roundTwoController;
+    private Integer TotalNextTurns;
+    ArrayList<Listener> listeners;
     
     private GameController() {
         // Initialize sub-controllers
@@ -22,6 +32,9 @@ public class GameController {
         roundZeroController= new RoundZeroController();
         roundOneController = new RoundOneController();
         roundTwoController = new RoundTwoController();
+        
+        TotalNextTurns = 0;
+        listeners = new ArrayList<>();
         
         GameController.single_instance = this;
     }
@@ -69,5 +82,18 @@ public class GameController {
     
     public RoundTwoController getRoundTwoController() {
         return roundTwoController;
+    }
+    public void nextPlayer(){
+        TotalNextTurns +=1;
+        Player.nextPlayer();
+    }
+    
+    public void publishEvent(Type type) {
+        for (Listener listener : listeners) {
+            listener.onEvent(type);
+        }
+    }
+    public void addListener(Listener lis) {
+        listeners.add(lis);
     }
 }

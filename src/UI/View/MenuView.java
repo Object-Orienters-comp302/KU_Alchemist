@@ -24,7 +24,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class MenuView extends JPanel implements Publisher {
+public class MenuView extends JPanel implements Publisher,Listener {
     JPanel             basePanel;
     JPanel             topPanel;
     ImagePanel         pause;
@@ -64,6 +64,8 @@ public class MenuView extends JPanel implements Publisher {
         ApplyStuff();
         ApplyFuncs();
         PlacePlayers();
+        
+        GameController.getInstance().addListener(this);
     }
     
     private void CreateObjects() {
@@ -273,7 +275,7 @@ public class MenuView extends JPanel implements Publisher {
         nextPlayerButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                GameController.getInstance().getRoundOneController().nextPlayer();
+                GameController.getInstance().nextPlayer();
             }
         });
     }
@@ -319,5 +321,12 @@ public class MenuView extends JPanel implements Publisher {
     @Override
     public void addListener(Listener lis) {
         listeners.add(lis);
+    }
+    
+    @Override
+    public void onEvent(Type type) {
+        if (type == Type.INGREDIENT) {
+        }
+
     }
 }

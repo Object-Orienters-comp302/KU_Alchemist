@@ -6,9 +6,7 @@ public class RoundOneController {
     
     protected RoundOneController() { }
 
-    public void nextPlayer(){
-        Player.nextPlayer();
-    }
+
     public Ingredient ForageForIngredient (Player player) {
         if(player.getForageRight() >= 1){
             Deck deck = Deck.getInstance();
