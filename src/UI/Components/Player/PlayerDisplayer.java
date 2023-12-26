@@ -2,6 +2,7 @@ package UI.Components.Player;
 
 import Domain.Event.Listener;
 import Domain.Event.Type;
+import Domain.GameController;
 import Domain.MenuController;
 import Models.Player;
 import UI.Components.CutRoundedPanel;
@@ -35,11 +36,11 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
     JLabel pointsLabel;
     PlayerPotionsDisplayer potionsPanel;
 
-    public PlayerDisplayer(Player player, MenuController controller) {
+    public PlayerDisplayer(Player player) {
         super(20);
         displayers.add(this);
         this.playerInstance = player;
-        this.controller= controller;
+        this.controller= GameController.getInstance().getMenuController();;
         setPreferredSize(new Dimension(260, 80));
         setLayout(null);
         setPlayerBackground(player); // Sets a different border if player is the current player
