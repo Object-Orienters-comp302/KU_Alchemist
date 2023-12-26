@@ -3,16 +3,15 @@ package Models;
 import java.util.ArrayList;
 
 public class PublicationCard {
-    private final int               pointValue;
+
     private  ArrayList<Aspect> Aspects; //3 Aspects.
     private final Ingredient        Ingredient;
     
     private final Player Owner;
     
-    public PublicationCard(Ingredient Ingredient, ArrayList<Aspect> aspects, int pointValue, Player owner) {
+    public PublicationCard(Ingredient Ingredient, ArrayList<Aspect> aspects, Player owner) {
         this.Ingredient = Ingredient;
         Aspects         = aspects;
-        this.pointValue = pointValue;
         this.Owner = owner;
     }
     
@@ -20,7 +19,7 @@ public class PublicationCard {
         return Aspects;
     }
     
-    public int getPointValue()        { return pointValue; }
+   
     
     public Ingredient getIngredient() { return Ingredient; }
     
