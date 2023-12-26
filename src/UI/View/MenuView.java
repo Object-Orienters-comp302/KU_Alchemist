@@ -17,6 +17,9 @@ import Utils.GUtil;
 import Utils.KawaseBlur;
 
 import javax.swing.*;
+import javax.swing.text.PlainView;
+import javax.swing.text.ViewFactory;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -24,7 +27,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class MenuView extends JPanel implements Publisher {
+public class MenuView extends JPanel implements Publisher,Listener {
     JPanel             basePanel;
     JPanel             topPanel;
     ImagePanel         pause;
@@ -52,6 +55,9 @@ public class MenuView extends JPanel implements Publisher {
     ImageChangingPanel side6;
     ImageChangingPanel side7;
     ImageChangingPanel nextPlayerButton;
+    private JPanel RoundCounterPanel;
+    private JLabel roundLabel;
+    
     
     private MenuController      controller;
     private ArrayList<Listener> listeners;
@@ -64,6 +70,8 @@ public class MenuView extends JPanel implements Publisher {
         ApplyStuff();
         ApplyFuncs();
         PlacePlayers();
+        
+        GameController.getInstance().addListener(this);
     }
     
     private void CreateObjects() {
@@ -109,6 +117,11 @@ public class MenuView extends JPanel implements Publisher {
         BufferedImage background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(
                 GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))), 3, 2);
         backGroundImage = new HQImagePanel(background);
+        
+        RoundCounterPanel = new JPanel();
+
+        
+        roundLabel = new JLabel("1");
     }
     
     private void ApplyStuff() {
@@ -125,7 +138,7 @@ public class MenuView extends JPanel implements Publisher {
         topPanel.setBackground(Color.black);
         topPanel.setLayout(null);
         
-        pause.setBounds(1170, 5, 80, 80);
+        pause.setBounds(1200, 5, 80, 80);
         topPanel.add(pause);
         
         displayerPanel.setBounds(5, 90, 1000, 500);
@@ -218,6 +231,16 @@ public class MenuView extends JPanel implements Publisher {
         nextPlayerButton.setBounds(10, 570, 260, 75);
         sidePanel.add(nextPlayerButton);
         
+        RoundCounterPanel.setBounds(1133, 1, 57, 90);
+        RoundCounterPanel.setOpaque(false);
+        topPanel.add(RoundCounterPanel);
+        RoundCounterPanel.setLayout(null);
+        
+        roundLabel.setFont(new Font("Tahoma", Font.PLAIN, 99));
+        roundLabel.setForeground(Color.WHITE);
+        roundLabel.setBounds(2, 0, 57, 89);
+        RoundCounterPanel.add(roundLabel);
+
         
     }
     
@@ -274,7 +297,8 @@ public class MenuView extends JPanel implements Publisher {
         nextPlayerButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                GameController.getInstance().getRoundOneController().nextPlayer();
+                GameController.getInstance().nextPlayer();
+                roundLabel.setText(GameController.getInstance().getRound().toString());
                 PlayerDisplayer.repaintAll();
             }
         });
@@ -286,7 +310,7 @@ public class MenuView extends JPanel implements Publisher {
         int playerCount = playerList.size();
         
         for (int i = 0; i < playerCount; i++) {
-            PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i),controller);
+            PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
             
             
             displayer.setBounds((i * 265 + 40), 5, 260, 80);
@@ -321,5 +345,12 @@ public class MenuView extends JPanel implements Publisher {
     @Override
     public void addListener(Listener lis) {
         listeners.add(lis);
+    }
+    
+    @Override
+    public void onEvent(Type type) {
+        if (type == Type.INGREDIENT) {
+        }
+
     }
 }
