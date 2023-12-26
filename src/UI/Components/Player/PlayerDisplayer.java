@@ -2,6 +2,7 @@ package UI.Components.Player;
 
 import Domain.Event.Listener;
 import Domain.Event.Type;
+import Domain.GameController;
 import Domain.MenuController;
 import Models.Player;
 import UI.Components.CutRoundedPanel;
@@ -17,8 +18,10 @@ import java.util.ArrayList;
 public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: needs editing and refactoring
     private static ArrayList<PlayerDisplayer> displayers=new ArrayList<>();
     protected Player playerInstance;
-    
     protected MenuController controller;
+    String activeColor = "#D4AF37";
+    String inactiveColor = "#B87333";
+    
     CutRoundedPanel container;
     ImagePanel avatarImgPanel;
     JPanel labelPanel_1;
@@ -33,15 +36,15 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
     JLabel pointsLabel;
     PlayerPotionsDisplayer potionsPanel;
 
-    public PlayerDisplayer(Player player, MenuController controller) {
+    public PlayerDisplayer(Player player) {
         super(20);
         displayers.add(this);
-        playerInstance = player;
-        this.controller= controller;
+        this.playerInstance = player;
+        this.controller= GameController.getInstance().getMenuController();;
         setPreferredSize(new Dimension(260, 80));
         setLayout(null);
-        setBg(player,controller);
-        playerInstance.getInventory().addListener(this);
+        setPlayerBackground(player); // Sets a different border if player is the current player
+        this.playerInstance.getInventory().addListener(this);
         CreateObjects();
         SetupObjects();
     }
@@ -113,19 +116,19 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         add(container); 
     }
     
-    public void setBg(Player player, MenuController controller){
-        if(controller.getCurrentPlayer()==player){
-            this.setBackground(Color.decode("#D4AF37"));
+    public void setPlayerBackground(Player player){
+        if(this.controller.getCurrentPlayer()==player){
+            this.setBackground(Color.decode(this.activeColor)); //"#D4AF37"
         }
         else {
-            this.setBackground(Color.decode("#B87333"));
+            this.setBackground(Color.decode(this.inactiveColor)); //"#B87333"
         }
     }
+
     
     public static void repaintAll(){
         for (PlayerDisplayer i:displayers){
-           
-            i.setBg(i.playerInstance,i.controller);
+            i.setPlayerBackground(i.playerInstance);
         }
     }
     

@@ -17,8 +17,6 @@ import Utils.GUtil;
 import Utils.KawaseBlur;
 
 import javax.swing.*;
-import javax.swing.text.PlainView;
-import javax.swing.text.ViewFactory;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -38,9 +36,9 @@ public class MenuView extends JPanel implements Publisher,Listener {
     JPanel             tablesPanel;
     BooksDisplayer     theoriesPanel;
     PotionBrewingView  PotionBrewingPanel;
-    ForageGroundsView  ForagePanel;
-    PlainView          PlainPanel;
-    InventoryView      InventoryPanel;
+    ForageGroundsView ForagePanel;
+    CustomPlainView         CustomPlainPanel;
+    InventoryView     InventoryPanel;
     TransmuteView      TransmutePanel;
     BuyArtifactView    BuyArtifactPanel;
     //other?
@@ -86,9 +84,9 @@ public class MenuView extends JPanel implements Publisher,Listener {
         tablesPanel        = new DeductionView();
         theoriesPanel      = new BooksDisplayer();
         PotionBrewingPanel = new PotionBrewingView();
-        ForagePanel        = new ForageGroundsView();
-        PlainPanel         = new PlainView();
-        InventoryPanel     = new InventoryView();
+        ForagePanel      = new ForageGroundsView();
+        CustomPlainPanel = new CustomPlainView();
+        InventoryPanel   = new InventoryView();
         TransmutePanel     = new TransmuteView();
         BuyArtifactPanel    = new BuyArtifactView();
         
@@ -147,7 +145,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
         displayerPanel.setBackground(Color.red);
         displayerPanel.setLayout(cardLay);
         
-        displayerPanel.add(PlainPanel, "Plain");
+        displayerPanel.add(CustomPlainPanel, "Plain");
         
         displayerPanel.add(tablesPanel, "Tables");
         
