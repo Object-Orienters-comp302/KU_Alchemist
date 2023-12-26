@@ -17,6 +17,9 @@ import Utils.GUtil;
 import Utils.KawaseBlur;
 
 import javax.swing.*;
+import javax.swing.text.PlainView;
+import javax.swing.text.ViewFactory;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -282,6 +285,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 cardLay.show(displayerPanel, "BuyArtifact");
+                
             }
         });
         pause.addMouseListener(new MouseAdapter() {
@@ -295,6 +299,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
             public void mouseClicked(MouseEvent e) {
                 GameController.getInstance().nextPlayer();
                 roundLabel.setText(GameController.getInstance().getRound().toString());
+                PlayerDisplayer.repaintAll();
             }
         });
     }
@@ -306,6 +311,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
         
         for (int i = 0; i < playerCount; i++) {
             PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
+            
             
             displayer.setBounds((i * 265 + 40), 5, 260, 80);
             topPanel.add(displayer);

@@ -42,8 +42,8 @@ public class PotionButton extends JPanel {
                                                   PotionButton.this);
                     Container parent = getParent();
                     parent.add(pop);
-                    parent.setComponentZOrder(pop, 1);
-                    
+                    parent.setComponentZOrder(pop, 0);
+                    parent.setComponentZOrder(PotionButton.this, 1);
                     parent.repaint();
                     
                 } else {
@@ -91,8 +91,8 @@ public class PotionButton extends JPanel {
                                                   PotionButton.this);
                     Container parent = getParent();
                     parent.add(pop);
-                    parent.setComponentZOrder(pop, 1);
-                    
+                    parent.setComponentZOrder(pop, 0);
+                    parent.setComponentZOrder(PotionButton.this, 1);
                     parent.repaint();
                     
                 } else {
@@ -126,8 +126,15 @@ public class PotionButton extends JPanel {
         return currentPotion;
     }
     
-    public void setCurrentIngredient(AssetLoader.AssetPath val) {
+    public void setCurrentPotion(AssetLoader.AssetPath val) {
         currentPotion = val;
+    }
+    
+    public void reset(){
+        this.setCurrentPotion(AssetLoader.TriangleTable.QUESTION_MARK);
+        this.img.changeImage(AssetLoader.getAssetPath(AssetLoader.TriangleTable.QUESTION_MARK));
+        this.revalidate();
+        this.repaint();
     }
     
     public Potion.Identity getType() {
@@ -161,3 +168,25 @@ public class PotionButton extends JPanel {
         
     }
 }
+
+
+/*
+
+PotionButtonPopup pop =
+                            new PotionButtonPopup(x - width / 2, y - height / 2, width * 2, height * 2, img,
+                                                  PotionButton.this);
+
+public Potion.Identity getType() {
+        return switch (currentPotion) {
+            case AssetLoader.Potions.BLUE_NEGATIVE -> Potion.Identity.BLUENEGATIVE;
+            case AssetLoader.Potions.BLUE_POSITIVE -> Potion.Identity.BLUEPOSITIVE;
+            case AssetLoader.Potions.RED_NEGATIVE -> Potion.Identity.REDNEGATIVE;
+            case AssetLoader.Potions.RED_POSITIVE -> Potion.Identity.REDPOSITIVE;
+            case AssetLoader.Potions.GREEN_NEGATIVE -> Potion.Identity.GREENNEGATIVE;
+            case AssetLoader.Potions.GREEN_POSITIVE -> Potion.Identity.GREENPOSITIVE;
+            case AssetLoader.Potions.NEUTRAL -> Potion.Identity.NETURAL;
+            case AssetLoader.Potions.UNKNOWN -> Potion.Identity.UNKNOWN;
+            default -> throw new IllegalStateException("Unexpected value: " + currentPotion);
+        };
+    }
+ */

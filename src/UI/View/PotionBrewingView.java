@@ -27,6 +27,7 @@ public class PotionBrewingView extends JPanel {
     Boolean            testOnStudent = false;
     IngredientButton IngredientB1;
     IngredientButton IngredientB2;
+    IngredientButton IngredientB3;
     JLabel MakePotionLbl;
     ImagePanel TickPanel;
     JLabel lblNewLabel;
@@ -72,6 +73,7 @@ public class PotionBrewingView extends JPanel {
     	Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.PotionBrewingViewAssets.BACKGROUND1));
     	IngredientB1 = new IngredientButton(120, 125, 200, 200, true);
     	IngredientB2 = new IngredientButton(680, 125, 200, 200, true);
+        IngredientB3 = new IngredientButton(480, 125, 200, 200, true);
     	MakePotionButton = new ColorChangingPanel("#cf9d15", "#FFD700");
     	MakePotionLbl = new JLabel("Make Potion");
     	TestOnStudentBox = new ColorChangingPanel("#cf9d15", "#FFD700");
@@ -102,8 +104,11 @@ public class PotionBrewingView extends JPanel {
         this.add(Background);
         Background.setLayout(null);
         
-        Background.add(IngredientB1);
+        
         Background.add(IngredientB2);
+        Background.add(IngredientB1);
+        
+        Background.add(IngredientB3);
         
         MakePotionButton.setBounds(830, 400, 120, 40);
         Background.add(MakePotionButton);
@@ -200,6 +205,8 @@ public class PotionBrewingView extends JPanel {
                         .isInInventory(IngredientB2.getType())) {
                     //TODO Make this better currently this maybe problematic
                     MakePotion(new Ingredient(IngredientB1.getType()), new Ingredient(IngredientB2.getType()), Player.getCurrPlayer());
+                    IngredientB1.reset();
+                    IngredientB2.reset();
                 }
                 
             }

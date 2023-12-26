@@ -43,8 +43,8 @@ public class IngredientButton extends JPanel {
                                                       IngredientButton.this);
                     Container parent = getParent();
                     parent.add(pop);
-                    parent.setComponentZOrder(pop, 1);
-                    
+                    parent.setComponentZOrder(pop, 0);
+                    parent.setComponentZOrder(IngredientButton.this, 1);
                     parent.repaint();
                     
                 } else {
@@ -92,8 +92,8 @@ public class IngredientButton extends JPanel {
                                                       IngredientButton.this);
                     Container parent = getParent();
                     parent.add(pop);
-                    parent.setComponentZOrder(pop, 1);
-                    
+                    parent.setComponentZOrder(pop, 0);
+                    parent.setComponentZOrder(IngredientButton.this, 1);
                     parent.repaint();
                     
                 } else {
@@ -160,6 +160,12 @@ public class IngredientButton extends JPanel {
         currentIngredient = val;
     }
     
+    public void reset(){
+        this.setCurrentIngredient(AssetLoader.TriangleTable.QUESTION_MARK);
+        this.img.changeImage(AssetLoader.getAssetPath(AssetLoader.TriangleTable.QUESTION_MARK));
+        this.revalidate();
+        this.repaint();
+    }
     public Ingredient.IngredientTypes getType() {
         return switch (currentIngredient) {
             case AssetLoader.IngredientAssets.FEATHER -> Ingredient.IngredientTypes.Feather;

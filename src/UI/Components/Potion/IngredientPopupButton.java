@@ -21,9 +21,10 @@ public class IngredientPopupButton extends JPanel {
         this.setBounds(x - width / 2, y - height / 2, width, height);
         
         img = new ImagePanel(AssetLoader.getAssetPath(imgPath));
-        img.setBounds(width / 4, width / 4, width / 2, height / 2);
+        img.setBounds(width / 10, width / 10, width*4 / 5, height*4 / 5);
         add(img);
         this.setOpaque(false);
+        
         
         
         this.addMouseListener(new MouseAdapter() {
@@ -97,7 +98,7 @@ public class IngredientPopupButton extends JPanel {
         super.paintComponent(g);
         
         int originalDiameter = Math.min(getWidth(), getHeight());
-        int customDiameter = originalDiameter * 3 / 4;
+        int customDiameter = originalDiameter * 1;
         
         int x = (getWidth() - customDiameter) / 2;
         int y = (getHeight() - customDiameter) / 2;

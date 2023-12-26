@@ -2,6 +2,7 @@ package UI.Components.Player;
 
 import Domain.Event.Listener;
 import Domain.Event.Type;
+import Domain.MenuController;
 import Models.Player;
 import UI.Components.CutRoundedPanel;
 import UI.Components.ImagePanels.ImagePanel;
@@ -11,9 +12,13 @@ import Utils.AssetLoader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: needs editing and refactoring
+    private static ArrayList<PlayerDisplayer> displayers=new ArrayList<>();
     protected Player playerInstance;
+    
+    protected MenuController controller;
     CutRoundedPanel container;
     ImagePanel avatarImgPanel;
     JPanel labelPanel_1;
@@ -28,13 +33,14 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
     JLabel pointsLabel;
     PlayerPotionsDisplayer potionsPanel;
 
-    public PlayerDisplayer(Player player) {
+    public PlayerDisplayer(Player player, MenuController controller) {
         super(20);
+        displayers.add(this);
         playerInstance = player;
+        this.controller= controller;
         setPreferredSize(new Dimension(260, 80));
         setLayout(null);
-        this.setBackground(Color.decode("#B87333"));//TODO:add color change for current player
-
+        setBg(player,controller);
         playerInstance.getInventory().addListener(this);
         CreateObjects();
         SetupObjects();
@@ -107,7 +113,21 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         add(container); 
     }
     
+    public void setBg(Player player, MenuController controller){
+        if(controller.getCurrentPlayer()==player){
+            this.setBackground(Color.decode("#D4AF37"));
+        }
+        else {
+            this.setBackground(Color.decode("#B87333"));
+        }
+    }
     
+    public static void repaintAll(){
+        for (PlayerDisplayer i:displayers){
+           
+            i.setBg(i.playerInstance,i.controller);
+        }
+    }
     
 
     @Override
