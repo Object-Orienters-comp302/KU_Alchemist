@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.ArrayList;
+
 public class Potion {//creating function is in the GameController for now
     final Colors Color;
     final Signs  Sign;
@@ -81,5 +83,28 @@ public class Potion {//creating function is in the GameController for now
     }
     return Identity.UNKNOWN;
     	
+    }
+    public static Potion deIdentify(Identity identity){
+        switch (identity){
+            case NETURAL:
+                return new Potion(Colors.Colorless, Signs.Neutral);
+            case REDNEGATIVE:
+                return new Potion(Colors.Red,Signs.Negative);
+            case BLUENEGATIVE:
+                return new Potion(Colors.Blue, Signs.Negative);
+            case GREENNEGATIVE:
+                return new Potion(Colors.Green,Signs.Negative);
+            case REDPOSITIVE:
+                return new Potion(Colors.Red, Signs.Positive);
+            case BLUEPOSITIVE:
+                return new Potion(Colors.Blue, Signs.Positive);
+            case GREENPOSITIVE:
+                return new Potion(Colors.Green, Signs.Positive);
+            case UNKNOWN:
+                return new Potion(Colors.Colorless, Signs.Neutral);
+        }
+        
+        return new Potion(Colors.Colorless, Signs.Neutral);
+        
     }
 }
