@@ -16,15 +16,15 @@ public class GamePage extends JFrame implements Listener {
         GamePage is our main JFrame which we put other JPanels into. It uses CardLayout.
          */
         
-        createObjects();
-        configureView();
+        createPage();
+        configurePage();
         addListeners();
     }
-    private void createObjects(){
+    private void createPage(){
         cardLayout = new CardLayout();
         cardPanel  = new JPanel(cardLayout);
     }
-    private void configureView(){
+    private void configurePage(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1290, 750);
         cardPanel.add(ViewFactory.getInstance().getLoginView(), Cards.LoginView.getString());
