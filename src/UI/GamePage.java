@@ -8,13 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePage extends JFrame implements Listener {
-    public enum DebuggingMode {
-        OFF,
-        BASIC,
-        VERBOSE
-    }
-    
-    
     private CardLayout cardLayout;
     private JPanel     cardPanel;
     
