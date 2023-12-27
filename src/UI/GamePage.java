@@ -8,31 +8,41 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePage extends JFrame implements Listener {
+    public enum DebuggingMode {
+        OFF,
+        BASIC,
+        VERBOSE
+    }
     
-    private JPanel     cardPanel;
+    
     private CardLayout cardLayout;
+    private JPanel     cardPanel;
     
     public GamePage() {
         /*
         GamePage is our main JFrame which we put other JPanels into. It uses CardLayout.
          */
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1290, 750);
         
+        createObjects();
+        configureView();
+        addListeners();
+    }
+    private void createObjects(){
         cardLayout = new CardLayout();
         cardPanel  = new JPanel(cardLayout);
-        
+    }
+    private void configureView(){
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(1290, 750);
         cardPanel.add(ViewFactory.getInstance().getLoginView(), Cards.LoginView.getString());
-        
-        
         this.getContentPane().add(cardPanel);
-        
+        cardLayout.show(cardPanel, Cards.LoginView.getString());
+        setVisible(true);
+    }
+    private void addListeners(){
         ViewFactory.getInstance().getLoginView().addListener(this);
         ViewFactory.getInstance().getPauseView().addListener(this);
         ViewFactory.getInstance().getHelpScreenView().addListener(this);
-        cardLayout.show(cardPanel, Cards.LoginView.getString());
-        
-        setVisible(true);
     }
     
     @Override

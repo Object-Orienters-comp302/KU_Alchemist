@@ -4,7 +4,7 @@ import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
 
-import javax.lang.model.element.TypeElement;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -55,6 +55,7 @@ public class Player implements Publisher {
         Player.getCurrPlayer().publishEvent(Type.GOLD);//This has to update inventory thus to publish event I get the current instance.
         Player.getCurrPlayer().publishEvent(Type.INGREDIENT);
         Player.getCurrPlayer().publishEvent(Type.POTION);
+        
         
         return instances.get(currPlayerIndex);
     }
