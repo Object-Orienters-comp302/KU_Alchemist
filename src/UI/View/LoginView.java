@@ -17,6 +17,8 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ public class LoginView extends JPanel implements Publisher {
     JLabel                    NextPanel_Label;
     
     ArrayList<Listener> Listeners;
-    private JTextField textField;
+    private JTextField TextField;
     
     
     protected LoginView() {
@@ -80,9 +82,9 @@ public class LoginView extends JPanel implements Publisher {
                 new ColorChangingPanel("#cf9d15", "#FFD700", 60, ColorChangingPanel.RoundingStyle.RIGHT);
         TokenSelectorPanel_Right_Label_Holder = new JPanel();
         TokenSelectorPanel_Right_Label        = new JLabel(">");
-        UserNamePanel                         = new RoundedPanel(50);
-        textField                             = new JTextField();
-        lblNewLabel                           = new JLabel("Username:  ");
+        UserNamePanel = new RoundedPanel(50);
+        TextField     = new JTextField();
+        lblNewLabel   = new JLabel("Username:  ");
         UserNamePanel_CheckPanel              = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
         NextPanelContainer                    = new JPanel();
         NextPanel                             =
@@ -137,10 +139,10 @@ public class LoginView extends JPanel implements Publisher {
         MainPanel.add(UserNamePanel);
         UserNamePanel.setLayout(null);
         
-        textField.setBounds(75, 2, 175, 46);
-        UserNamePanel.add(textField);
-        textField.setBorder(null);
-        textField.setColumns(10);
+        TextField.setBounds(75, 2, 175, 46);
+        UserNamePanel.add(TextField);
+        TextField.setBorder(null);
+        TextField.setColumns(10);
         
         lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         lblNewLabel.setBounds(0, 0, 75, 50);
@@ -159,7 +161,8 @@ public class LoginView extends JPanel implements Publisher {
         NextPanel.setLayout(null);
         NextPanel.setBounds(1, 1, 300, 75);
         NextPanelContainer.add(NextPanel);
-        
+        NextPanel.setFocusable(true);
+        NextPanel.requestFocus();
         
         NextPanel_Label.setHorizontalAlignment(SwingConstants.CENTER);
         NextPanel_Label.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -191,34 +194,32 @@ public class LoginView extends JPanel implements Publisher {
         NextPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (loginControl.isUniquePlayerID(textField.getText()) && (!textField.getText().isBlank())) {
-                    loginControl.logPlayerIn(textField.getText(), tokenList.get()); //tokenList.get() should be used
-                    tokenList.delete();
-                    textField.setText("");
-                    TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
-                    MainPanel.changeImage(tokenList.get().getBackground());
-                    LoginView.iter += 1;
-                    //System.out.print(LoginView.iter);
-                    if (NextPanel_Label.getText() == "START") {
-                        //TODO MAKE A NEW GENERIC GAMESETUP THAT TAKES AN ARRAYLIST.
-                        GameController.getInstance().getRoundZeroController().gameSetup();
-                        publishEvent(Type.START_MENUVIEW); // Handled by GamePage
-                        
-                    }
-                    if ((LoginView.iter) == playerAmount - 1) {
-                        NextPanel_Label.setText("START");
-                    }
+                NextButtonPress();
+            }
+        });
+        
+        NextPanel.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    NextButtonPress();
                 }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
             }
         });
         
         
-        textField.getDocument().addDocumentListener(new DocumentListener() {
+        TextField.getDocument().addDocumentListener(new DocumentListener() {
             
             
             @Override
             public void insertUpdate(DocumentEvent e) {
-                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText().isBlank())) {
+                if (!loginControl.isUniquePlayerID(TextField.getText()) || (TextField.getText().isBlank())) {
                     UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
                     
                 } else {
@@ -228,7 +229,7 @@ public class LoginView extends JPanel implements Publisher {
             
             @Override
             public void removeUpdate(DocumentEvent e) {
-                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText().isBlank())) {
+                if (!loginControl.isUniquePlayerID(TextField.getText()) || (TextField.getText().isBlank())) {
                     UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
                     
                 } else {
@@ -242,7 +243,43 @@ public class LoginView extends JPanel implements Publisher {
             }
         });
         
-        
+        TextField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    NextButtonPress();
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+    }
+    
+    
+    
+    private void NextButtonPress(){
+        if (loginControl.isUniquePlayerID(TextField.getText()) && (!TextField.getText().isBlank())) {
+            loginControl.logPlayerIn(TextField.getText(), tokenList.get()); //tokenList.get() should be used
+            tokenList.delete();
+            TextField.setText("");
+            TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
+            MainPanel.changeImage(tokenList.get().getBackground());
+            LoginView.iter += 1;
+            //System.out.print(LoginView.iter);
+            if (NextPanel_Label.getText() == "START") {
+                //TODO MAKE A NEW GENERIC GAMESETUP THAT TAKES AN ARRAYLIST.
+                GameController.getInstance().getRoundZeroController().gameSetup();
+                publishEvent(Type.START_MENUVIEW); // Handled by GamePage
+                
+            }
+            if ((LoginView.iter) == playerAmount - 1) {
+                NextPanel_Label.setText("START");
+            }
+        }
     }
     
     @Override
