@@ -6,6 +6,7 @@ import Domain.Event.Type;
 import Domain.GameController;
 import Domain.MenuController;
 import Models.Player;
+import UI.Components.ColorChangingPanel;
 import UI.Components.CutRoundedPanel;
 import UI.Components.ImagePanels.HQImagePanel;
 import UI.Components.ImagePanels.ImageChangingPanel;
@@ -26,6 +27,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class MenuView extends JPanel implements Publisher,Listener {
+    
+    ColorChangingPanel TESTBUTTON;
+    
     JPanel             basePanel;
     JPanel             topPanel;
     ImagePanel         pause;
@@ -73,6 +77,8 @@ public class MenuView extends JPanel implements Publisher,Listener {
     }
     
     private void CreateObjects() {
+        TESTBUTTON = new ColorChangingPanel("#fcbe03","#a9fc03");
+        
         this.listeners = new ArrayList<>();
         basePanel      = new JPanel();
         topPanel       = new JPanel();
@@ -238,11 +244,16 @@ public class MenuView extends JPanel implements Publisher,Listener {
         roundLabel.setForeground(Color.WHITE);
         roundLabel.setBounds(2, 0, 57, 89);
         RoundCounterPanel.add(roundLabel);
-
         
+        bottomPanel.setLayout(null);
+        TESTBUTTON.setBounds(20,20,200,100);
+        bottomPanel.add(TESTBUTTON);
     }
     
     private void ApplyFuncs() {
+        
+        getClass().getResource("/artifact/artifactCard.png");
+        
         side1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
