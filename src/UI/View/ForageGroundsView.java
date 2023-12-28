@@ -14,6 +14,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ForageGroundsView extends JPanel {
+	
+	
     
     ImagePanel Background;
     ImagePanel Card;
@@ -32,6 +34,12 @@ public class ForageGroundsView extends JPanel {
     ImagePanel BG5_Text;
     
     int chosenbg=1;
+    private ImagePanel SwitchButton_Forage;
+    private ImagePanel Forage_Text;
+    private ImagePanel SwitchButton_Transmutate;
+    private ImagePanel Transmutate_Text;
+    
+   
     
     
     public ForageGroundsView() {
@@ -43,9 +51,11 @@ public class ForageGroundsView extends JPanel {
         CreateObjects();
         SetupObjects();
         SetupListeners();
+        
 
         
     }
+    
     
     private void CreateObjects() {
     	Card = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
@@ -67,7 +77,7 @@ public class ForageGroundsView extends JPanel {
     }
     
     private void SetupObjects() {
-    	Card.setBounds(773, 223, 158, 250);
+    	Card.setBounds(421, 100, 158, 250);
         this.add(Card);
     	
         Background.setBounds(0, 0, 1000, 500);
@@ -129,6 +139,26 @@ public class ForageGroundsView extends JPanel {
         BG5_Text.setLayout(null);
         BG5_Text.setBounds(5, 5, 40, 40);
         BG5.add(BG5_Text);
+        
+        SwitchButton_Forage = new ImagePanel("Images/start/frameGold.png");
+        SwitchButton_Forage.setLayout(null);
+        SwitchButton_Forage.setBounds(290, 380, 200, 100);
+        Background.add(SwitchButton_Forage);
+        
+        Forage_Text = new ImagePanel("Images/buttonText/forageText.png");
+        Forage_Text.setLayout(null);
+        Forage_Text.setBounds(30, 25, 145, 50);
+        SwitchButton_Forage.add(Forage_Text);
+        
+        SwitchButton_Transmutate = new ImagePanel("Images/start/frameCopper2.png");
+        SwitchButton_Transmutate.setLayout(null);
+        SwitchButton_Transmutate.setBounds(510, 380, 200, 100);
+        Background.add(SwitchButton_Transmutate);
+        
+        Transmutate_Text = new ImagePanel("Images/buttonText/transmutateText.png");
+        Transmutate_Text.setLayout(null);
+        Transmutate_Text.setBounds(25, 20, 150, 60);
+        SwitchButton_Transmutate.add(Transmutate_Text);
 
 
     	
@@ -146,6 +176,15 @@ public class ForageGroundsView extends JPanel {
                  } else {
                      textField.setText(Texts.Fail.getText());
                  }
+                 
+             }
+         });
+    	 
+    	 SwitchButton_Transmutate.addMouseListener(new MouseAdapter() {
+             @Override
+             public void mouseClicked(MouseEvent e) {
+                 MenuView menu= GameController.getInstance().getMenuController().getMenuView();
+                 menu.cardLay.show(menu.displayerPanel,"Transmute");
                  
              }
          });

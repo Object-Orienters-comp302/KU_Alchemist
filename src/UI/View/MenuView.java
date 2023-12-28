@@ -5,6 +5,8 @@ import Domain.Event.Publisher;
 import Domain.Event.Type;
 import Domain.GameController;
 import Domain.MenuController;
+import Models.Deck;
+import Models.Ingredient;
 import Models.Player;
 import UI.Components.ColorChangingPanel;
 import UI.Components.CutRoundedPanel;
@@ -67,6 +69,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
     
     public MenuView() {
         controller = GameController.getInstance().getMenuController();
+        GameController.getInstance().getMenuController().setMenuView(this);
         setLayout(null);
         CreateObjects();
         ApplyStuff();
@@ -248,6 +251,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
         bottomPanel.setLayout(null);
         TESTBUTTON.setBounds(20,20,200,100);
         bottomPanel.add(TESTBUTTON);
+        
     }
     
     private void ApplyFuncs() {
@@ -309,6 +313,15 @@ public class MenuView extends JPanel implements Publisher,Listener {
                 GameController.getInstance().nextPlayer();
                 roundLabel.setText(GameController.getInstance().getRound().toString());
                 PlayerDisplayer.repaintAll();
+            }
+        });
+        
+        
+        TESTBUTTON.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ArrayList<Ingredient> vari = Deck.getInstance().getIngredients();
+                System.out.println(vari);
             }
         });
     }

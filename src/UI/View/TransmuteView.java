@@ -24,36 +24,29 @@ public class TransmuteView extends JPanel {
     ImagePanel         Background;
     IngredientButton   B1;
     ImagePanel         Card;
-    ImagePanel         Card_1;
     ColorChangingPanel transmuteIngredient;
-    ColorChangingPanel sellPotion;
-    
-    PotionButton B2;
+    private ImagePanel SwitchButton_Forage;
+    private ImagePanel Forage_Text;
+    private ImagePanel SwitchButton_Transmutate;
+    private ImagePanel Transmutate_Text;
     
     public TransmuteView() {
         this.setSize(1000, 500);
         setLayout(null);
         
         
-        B1 = new IngredientButton(425, 175, 150, 150, true);
+        B1 = new IngredientButton(425, 100, 150, 150, true);
+        
         this.add(B1);
         
         
         Card = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
-        Card.setBounds(421, 125, 158, 250);
+        Card.setBounds(420, 50, 160, 250);
         this.add(Card);
-        
-        B2 = new PotionButton(200, 175, 150, 150, true);
-        this.add(B2);
-        
-        
-        Card_1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
-        Card_1.setBounds(200, 125, 158, 250);
-        this.add(Card_1);
         
         
         transmuteIngredient = new ColorChangingPanel("#cf9d15", "#FFD700");
-        transmuteIngredient.setBounds(830, 400, 120, 40);
+        transmuteIngredient.setBounds(440, 320, 120, 40);
         transmuteIngredient.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
@@ -70,31 +63,40 @@ public class TransmuteView extends JPanel {
         transmuteIngredient.add(transmuteIngredientLbl);
         
         
-        sellPotion = new ColorChangingPanel("#cf9d15", "#FFD700");
-        sellPotion.setBounds(600, 400, 120, 40);
-        sellPotion.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                RoundTwoController roundTwoController = GameController.getInstance().getRoundTwoController();
-                Models.Potion.Identity identity = B2.getType();
-                roundTwoController.sellPotion(Player.getCurrPlayer().getInventory(), Potion.deIdentify(identity),
-                                              RoundTwoController.Guarantee.POSITIVE);
-            }
-        });
-        this.add(sellPotion);
-        sellPotion.setLayout(null);
-        JLabel sellPotionLbl = new JLabel("Sell Potion");
-        sellPotionLbl.setFont(new Font("Tahoma", Font.BOLD, 14));
-        sellPotionLbl.setHorizontalAlignment(SwingConstants.CENTER);
-        sellPotionLbl.setBounds(0, 0, 120, 40);
-        sellPotion.add(sellPotionLbl);
-        
-        
         
         Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.TRANSMUTE_BACKGROUND));
         Background.setBounds(0, 0, 1000, 500);
         this.add(Background);
         Background.setLayout(null);
         
+        SwitchButton_Forage = new ImagePanel("Images/start/frameCopper2.png");
+        SwitchButton_Forage.setLayout(null);
+        SwitchButton_Forage.setBounds(290, 380, 200, 100);
+        Background.add(SwitchButton_Forage);
+        
+        Forage_Text = new ImagePanel("Images/buttonText/forageText.png");
+        Forage_Text.setLayout(null);
+        Forage_Text.setBounds(30, 25, 145, 50);
+        SwitchButton_Forage.add(Forage_Text);
+        
+        SwitchButton_Transmutate = new ImagePanel("Images/start/frameGold.png");
+        SwitchButton_Transmutate.setLayout(null);
+        SwitchButton_Transmutate.setBounds(510, 380, 200, 100);
+        Background.add(SwitchButton_Transmutate);
+        
+        Transmutate_Text = new ImagePanel("Images/buttonText/transmutateText.png");
+        Transmutate_Text.setLayout(null);
+        Transmutate_Text.setBounds(25, 20, 150, 60);
+        SwitchButton_Transmutate.add(Transmutate_Text);
+        
+        SwitchButton_Forage.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                MenuView menu= GameController.getInstance().getMenuController().getMenuView();
+                menu.cardLay.show(menu.displayerPanel,"Foraging");
+                
+            }
+        });
         
         this.setVisible(true);
     }
