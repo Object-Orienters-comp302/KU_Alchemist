@@ -166,17 +166,7 @@ public class IngredientButtonPopup extends JPanel {
     }
     
     public static boolean CheckIfInventory(AssetLoader.AssetPath toCheck) {
-        Ingredient.IngredientTypes ingredientType = switch (toCheck) {
-            case AssetLoader.IngredientAssets.FEATHER -> Ingredient.IngredientTypes.Feather;
-            case AssetLoader.IngredientAssets.FROG -> Ingredient.IngredientTypes.Toad;
-            case AssetLoader.IngredientAssets.MANDRAKE -> Ingredient.IngredientTypes.Mandrake;
-            case AssetLoader.IngredientAssets.WEED -> Ingredient.IngredientTypes.Plant;
-            case AssetLoader.IngredientAssets.SCORPION -> Ingredient.IngredientTypes.Scorpion;
-            case AssetLoader.IngredientAssets.FEET -> Ingredient.IngredientTypes.ChickenLeg;
-            case AssetLoader.IngredientAssets.FLOWER -> Ingredient.IngredientTypes.Flower;
-            case AssetLoader.IngredientAssets.MUSHROOM -> Ingredient.IngredientTypes.Mushroom;
-            default -> throw new IllegalStateException("Unexpected value: " + toCheck);
-        };
+        Ingredient.IngredientTypes ingredientType = Ingredient.getTypeFromPath(toCheck);
         
         return !Player.getCurrPlayer().getInventory().getIngredients().entrySet().stream()
                 .anyMatch(entry -> entry.getKey().getType() == ingredientType && entry.getValue() > 0);

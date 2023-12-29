@@ -37,9 +37,10 @@ public class BookPopupButton extends JPanel {
                     
                     if (isClickInsideCircle(clickX, clickY)) {
                         
-                        
+                        BookPanel.traitUsed.remove(book.getCurrentPath());
                         panelToChange.changeImage(AssetLoader.getAssetPath(imgPath));
                         book.setCurrentPath(imgPath);
+                        BookPanel.traitUsed.add(imgPath);
                         if (grandParent != null) {
                             
                             grandParent.remove(parent);

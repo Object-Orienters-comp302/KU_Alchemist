@@ -6,6 +6,7 @@ import Domain.Event.Type;
 import Domain.GameController;
 import Domain.MenuController;
 import Models.Player;
+import UI.Components.ColorChangingPanel;
 import UI.Components.CutRoundedPanel;
 import UI.Components.ImagePanels.HQImagePanel;
 import UI.Components.ImagePanels.ImageChangingPanel;
@@ -26,6 +27,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class MenuView extends JPanel implements Publisher,Listener {
+    
+    ColorChangingPanel TESTBUTTON;
+    
+    JPanel             Block;
+    
     JPanel             basePanel;
     JPanel             topPanel;
     ImagePanel         pause;
@@ -63,6 +69,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
     
     public MenuView() {
         controller = GameController.getInstance().getMenuController();
+        GameController.getInstance().getMenuController().setMenuView(this);
         setLayout(null);
         CreateObjects();
         ApplyStuff();
@@ -73,10 +80,13 @@ public class MenuView extends JPanel implements Publisher,Listener {
     }
     
     private void CreateObjects() {
+        TESTBUTTON = new ColorChangingPanel("#fcbe03","#a9fc03");
+        
         this.listeners = new ArrayList<>();
         basePanel      = new JPanel();
         topPanel       = new JPanel();
         pause          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PAUSE));
+        Block          = new JPanel();
         
         
         cardLay            = new CardLayout();
@@ -123,6 +133,9 @@ public class MenuView extends JPanel implements Publisher,Listener {
     }
     
     private void ApplyStuff() {
+        Block.setBackground(new Color(255,255,255,0));
+        Block.setBounds(0,0,1280,720);
+        
         basePanel.setBounds(0, 0, 1280, 720);
         add(basePanel);
         //basePanel.setBackground(Color.red);
@@ -138,6 +151,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
         
         pause.setBounds(1200, 5, 80, 80);
         topPanel.add(pause);
+        
         
         displayerPanel.setBounds(5, 90, 1000, 500);
         displayerPanel.setOpaque(false);
@@ -238,11 +252,17 @@ public class MenuView extends JPanel implements Publisher,Listener {
         roundLabel.setForeground(Color.WHITE);
         roundLabel.setBounds(2, 0, 57, 89);
         RoundCounterPanel.add(roundLabel);
-
+        
+        bottomPanel.setLayout(null);
+        TESTBUTTON.setBounds(20,20,200,100);
+        bottomPanel.add(TESTBUTTON);
         
     }
     
     private void ApplyFuncs() {
+        
+        getClass().getResource("/artifact/artifactCard.png");
+        
         side1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -300,6 +320,21 @@ public class MenuView extends JPanel implements Publisher,Listener {
                 PlayerDisplayer.repaintAll();
             }
         });
+        
+        Block.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                e.consume();
+            }
+        });
+        
+        TESTBUTTON.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Blockade();
+                    System.out.println("sxe");
+            }
+        });
     }
     
     public void PlacePlayers() {
@@ -351,4 +386,16 @@ public class MenuView extends JPanel implements Publisher,Listener {
         }
 
     }
+    
+    public void Blockade(){
+        this.basePanel.add(this.Block);
+        this.basePanel.setComponentZOrder(this.Block,0);
+        this.repaint();
+    }
+    
+    public void LiftBlockade(){
+        this.basePanel.remove(this.Block);
+        this.repaint();
+    }
+    
 }

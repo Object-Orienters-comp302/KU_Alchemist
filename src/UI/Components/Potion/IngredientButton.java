@@ -1,6 +1,7 @@
 package UI.Components.Potion;
 
 import Models.Ingredient;
+import UI.Components.ImagePanels.GifPanel;
 import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 
@@ -10,7 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 //ToDo:invantory checks
-public class IngredientButton extends JPanel {
+public class IngredientButton extends GifPanel {
     ImagePanel img;
     boolean    transparent = false;
     private int                   diameter;
@@ -20,12 +21,13 @@ public class IngredientButton extends JPanel {
     
     
     public IngredientButton(int x, int y, int width, int height) {
-        this.setOpaque(false);
+        super(x,y,width,height,"Gifs/Animations/glowCircularBlue.gif");
+        
         setLayout(null);
-        this.setBounds(x, y, width, height);
+        
         currentIngredient = AssetLoader.TriangleTable.QUESTION_MARK;
         img               = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.TriangleTable.QUESTION_MARK));
-        img.setBounds(width * 9 / 40, width * 9 / 40, width * 9 / 16, height * 9 / 16);
+        img.setBounds(width * 2 / 40, width * 2 / 40, width * 36 / 40, height * 36 / 40);
         add(img);
         
         
@@ -68,12 +70,13 @@ public class IngredientButton extends JPanel {
     }
     
     public IngredientButton(int x, int y, int width, int height, boolean transparent) {
-        this.setOpaque(false);
+        super(x,y,width,height,"Gifs/Animations/glowCircularBlue.gif");
+        
         setLayout(null);
-        this.setBounds(x, y, width, height);
+        
         AssetLoader.AssetPath currentValue = AssetLoader.TriangleTable.QUESTION_MARK;
         img = new ImagePanel(AssetLoader.getAssetPath(currentValue));
-        img.setBounds(width * 9 / 40, width * 9 / 40, width * 9 / 16, height * 9 / 16);
+        img.setBounds(width * 2 / 40, width * 2 / 40, width * 36 / 40, height * 36 / 40);
         add(img);
         this.transparent = transparent;
         
@@ -136,6 +139,7 @@ public class IngredientButton extends JPanel {
         
     }
     
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -146,11 +150,16 @@ public class IngredientButton extends JPanel {
         int x = (getWidth() - customDiameter) / 2;
         int y = (getHeight() - customDiameter) / 2;
         diameter = originalDiameter;
+        /*
         if (!this.transparent) {
             g.setColor(Color.decode("#ebd2a9"));
             g.fillOval(x, y, customDiameter, customDiameter);
         }
+        
+         */
     }
+    
+    
     
     public AssetLoader.AssetPath getCurrentIngredient() {
         return currentIngredient;
@@ -167,16 +176,9 @@ public class IngredientButton extends JPanel {
         this.repaint();
     }
     public Ingredient.IngredientTypes getType() {
-        return switch (currentIngredient) {
-            case AssetLoader.IngredientAssets.FEATHER -> Ingredient.IngredientTypes.Feather;
-            case AssetLoader.IngredientAssets.FROG -> Ingredient.IngredientTypes.Toad;
-            case AssetLoader.IngredientAssets.MANDRAKE -> Ingredient.IngredientTypes.Mandrake;
-            case AssetLoader.IngredientAssets.WEED -> Ingredient.IngredientTypes.Plant;
-            case AssetLoader.IngredientAssets.SCORPION -> Ingredient.IngredientTypes.Scorpion;
-            case AssetLoader.IngredientAssets.FEET -> Ingredient.IngredientTypes.ChickenLeg;
-            case AssetLoader.IngredientAssets.FLOWER -> Ingredient.IngredientTypes.Flower;
-            case AssetLoader.IngredientAssets.MUSHROOM -> Ingredient.IngredientTypes.Mushroom;
-            default -> throw new IllegalStateException("Unexpected value: " + currentIngredient);
-        };
+        return Ingredient.getTypeFromPath(currentIngredient);
+        
     }
+    
+    
 }

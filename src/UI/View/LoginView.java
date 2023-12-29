@@ -8,6 +8,7 @@ import Domain.LoginController;
 import Models.Token;
 import UI.Components.ColorChangingPanel;
 import UI.Components.CutRoundedPanel;
+import UI.Components.ImagePanels.GifPanel;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.RoundedPanel;
 import Utils.AssetLoader;
@@ -17,9 +18,12 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class LoginView extends JPanel implements Publisher {
     static int iter = 0;
@@ -42,8 +46,10 @@ public class LoginView extends JPanel implements Publisher {
     ColorChangingPanel        NextPanel;
     JLabel                    NextPanel_Label;
     
+    
+    
     ArrayList<Listener> Listeners;
-    private JTextField textField;
+    private JTextField TextField;
     
     
     protected LoginView() {
@@ -80,14 +86,16 @@ public class LoginView extends JPanel implements Publisher {
                 new ColorChangingPanel("#cf9d15", "#FFD700", 60, ColorChangingPanel.RoundingStyle.RIGHT);
         TokenSelectorPanel_Right_Label_Holder = new JPanel();
         TokenSelectorPanel_Right_Label        = new JLabel(">");
-        UserNamePanel                         = new RoundedPanel(50);
-        textField                             = new JTextField();
-        lblNewLabel                           = new JLabel("Username:  ");
+        UserNamePanel = new RoundedPanel(50);
+        TextField     = new JTextField();
+        lblNewLabel   = new JLabel("Username:  ");
         UserNamePanel_CheckPanel              = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
         NextPanelContainer                    = new JPanel();
         NextPanel                             =
                 new ColorChangingPanel("#cf9d15", "#FFD700", 40, ColorChangingPanel.RoundingStyle.BOTH);
         NextPanel_Label                       = new JLabel("NEXT");
+        
+        
     }
     
     private void SetupObjets() {
@@ -96,7 +104,7 @@ public class LoginView extends JPanel implements Publisher {
         
         MainPanel.setLayout(null);
         
-        TokenSelectorPanel.setBounds(223, 73, 754, 404);
+        TokenSelectorPanel.setBounds(243, 73, 754, 404);
         MainPanel.add(TokenSelectorPanel);
         TokenSelectorPanel.setLayout(null);
         
@@ -132,15 +140,15 @@ public class LoginView extends JPanel implements Publisher {
         TokenSelectorPanel_Right_Label.setBounds(0, 0, 30, 60);
         TokenSelectorPanel_Right_Label_Holder.add(TokenSelectorPanel_Right_Label);
         
-        UserNamePanel.setBounds(450, 525, 300, 50);
+        UserNamePanel.setBounds(470, 525, 300, 50);
         UserNamePanel.setBackground(Color.decode("#FFD700"));
         MainPanel.add(UserNamePanel);
         UserNamePanel.setLayout(null);
         
-        textField.setBounds(75, 2, 175, 46);
-        UserNamePanel.add(textField);
-        textField.setBorder(null);
-        textField.setColumns(10);
+        TextField.setBounds(75, 2, 175, 46);
+        UserNamePanel.add(TextField);
+        TextField.setBorder(null);
+        TextField.setColumns(10);
         
         lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         lblNewLabel.setBounds(0, 0, 75, 50);
@@ -150,7 +158,7 @@ public class LoginView extends JPanel implements Publisher {
         UserNamePanel_CheckPanel.setBackground(Color.decode("#FFD700"));
         UserNamePanel.add(UserNamePanel_CheckPanel);
         
-        NextPanelContainer.setBounds(449, 599, 302, 77);
+        NextPanelContainer.setBounds(469, 599, 302, 77);
         MainPanel.add(NextPanelContainer);
         NextPanelContainer.setLayout(null);
         NextPanelContainer.setOpaque(false);
@@ -159,12 +167,15 @@ public class LoginView extends JPanel implements Publisher {
         NextPanel.setLayout(null);
         NextPanel.setBounds(1, 1, 300, 75);
         NextPanelContainer.add(NextPanel);
-        
+        NextPanel.setFocusable(true);
+        NextPanel.requestFocus();
         
         NextPanel_Label.setHorizontalAlignment(SwingConstants.CENTER);
         NextPanel_Label.setFont(new Font("Tahoma", Font.PLAIN, 20));
         NextPanel_Label.setBounds(105, 8, 90, 60);
         NextPanel.add(NextPanel_Label);
+        
+        
         
     }
     
@@ -191,34 +202,32 @@ public class LoginView extends JPanel implements Publisher {
         NextPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (loginControl.isUniquePlayerID(textField.getText()) && (!textField.getText().isBlank())) {
-                    loginControl.logPlayerIn(textField.getText(), tokenList.get()); //tokenList.get() should be used
-                    tokenList.delete();
-                    textField.setText("");
-                    TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
-                    MainPanel.changeImage(tokenList.get().getBackground());
-                    LoginView.iter += 1;
-                    //System.out.print(LoginView.iter);
-                    if (NextPanel_Label.getText() == "START") {
-                        //TODO MAKE A NEW GENERIC GAMESETUP THAT TAKES AN ARRAYLIST.
-                        GameController.getInstance().getRoundZeroController().gameSetup();
-                        publishEvent(Type.START_MENUVIEW); // Handled by GamePage
-                        
-                    }
-                    if ((LoginView.iter) == playerAmount - 1) {
-                        NextPanel_Label.setText("START");
-                    }
+                NextButtonPress();
+            }
+        });
+        
+        NextPanel.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    NextButtonPress();
                 }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
             }
         });
         
         
-        textField.getDocument().addDocumentListener(new DocumentListener() {
+        TextField.getDocument().addDocumentListener(new DocumentListener() {
             
             
             @Override
             public void insertUpdate(DocumentEvent e) {
-                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText().isBlank())) {
+                if (!loginControl.isUniquePlayerID(TextField.getText()) || (TextField.getText().isBlank())) {
                     UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
                     
                 } else {
@@ -228,7 +237,7 @@ public class LoginView extends JPanel implements Publisher {
             
             @Override
             public void removeUpdate(DocumentEvent e) {
-                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText().isBlank())) {
+                if (!loginControl.isUniquePlayerID(TextField.getText()) || (TextField.getText().isBlank())) {
                     UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
                     
                 } else {
@@ -242,7 +251,59 @@ public class LoginView extends JPanel implements Publisher {
             }
         });
         
-        
+        TextField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    NextButtonPress();
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+    }
+    
+    
+    
+    private void NextButtonPress(){
+        if (loginControl.isUniquePlayerID(TextField.getText()) && (!TextField.getText().isBlank())) {
+            loginControl.logPlayerIn(TextField.getText(), tokenList.get()); //tokenList.get() should be used
+            tokenList.delete();
+            TextField.setText("");
+            TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
+            MainPanel.changeImage(tokenList.get().getBackground());
+            LoginView.iter += 1;
+            
+            
+            //System.out.print(LoginView.iter);
+            if (NextPanel_Label.getText() == "START") {
+                //TODO MAKE A NEW GENERIC GAMESETUP THAT TAKES AN ARRAYLIST.
+                ThrowLoadingGif();
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        GameController.getInstance().getRoundZeroController().gameSetup();
+                        publishEvent(Type.START_MENUVIEW);
+                        return null;
+                    }
+                    
+                    @Override
+                    protected void done() {
+                    
+                    }
+                };
+                
+                worker.execute();
+                
+            }
+            if ((LoginView.iter) == playerAmount - 1) {
+                NextPanel_Label.setText("START");
+            }
+        }
     }
     
     @Override
@@ -265,6 +326,40 @@ public class LoginView extends JPanel implements Publisher {
     @Override
     public void addListener(Listener lis) {
         this.Listeners.add(lis);
+    }
+    
+    private void ThrowLoadingGif(){
+        JPanel blurPanel = new JPanel();
+        
+        blurPanel.setBackground(new Color(255,255,255,125));
+  
+        blurPanel.setBounds(0,0,1280,720);
+        blurPanel.setLayout(null);
+        
+        
+        blurPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                e.consume();
+            }
+        });
+        
+        
+        
+        
+        
+        GifPanel LoadingGif = new GifPanel(540,260,200,200,"Gifs/Loading/loadingPotion.gif");
+        
+        this.add(blurPanel);
+        this.setComponentZOrder(blurPanel,0);
+        
+        this.add(LoadingGif);
+        this.grabFocus();
+
+        this.setComponentZOrder(LoadingGif,0);
+        
+        this.repaint();
+        
     }
     
 }
