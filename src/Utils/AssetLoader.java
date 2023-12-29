@@ -19,7 +19,7 @@ public class AssetLoader {
         BLANK("Images/backgrounds/blankPng.png"),
         TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png"),
         START_BACKGROUND("Images/backgrounds/startBackground0.png"),
-        DEDUCTION_BACKGROUND("Images/backgrounds/deductionBackground.png"),
+        DEDUCTION_BACKGROUND("Images/backgrounds/deductionBackground.png");
         
         
         private final String path;
@@ -196,12 +196,12 @@ public class AssetLoader {
     
     public enum PotionBrewingViewAssets implements AssetPath {
         BACKGROUND("Images/PotionBrewingViewAssets/PotionBrewingArea.png"),
-    	BACKGROUND1("Images/PotionBrewingViewAssets/brewBackground1.png"),
-    	BACKGROUND2("Images/PotionBrewingViewAssets/brewBackground2.png"),
-    	BACKGROUND3("Images/PotionBrewingViewAssets/brewBackground3.png"),
-    	BACKGROUND4("Images/PotionBrewingViewAssets/brewBackground4.png"),
-    	BACKGROUND5("Images/PotionBrewingViewAssets/brewBackground5.png")
-    	;
+        BACKGROUND1("Images/PotionBrewingViewAssets/brewBackground1.png"),
+        BACKGROUND2("Images/PotionBrewingViewAssets/brewBackground2.png"),
+        BACKGROUND3("Images/PotionBrewingViewAssets/brewBackground3.png"),
+        BACKGROUND4("Images/PotionBrewingViewAssets/brewBackground4.png"),
+        BACKGROUND5("Images/PotionBrewingViewAssets/brewBackground5.png")
+        ;
         
         private final String path;
         

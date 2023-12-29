@@ -3,8 +3,8 @@ package UI.Components.SuperViews;
 import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
-import UI.Components.HQImagePanel;
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.HQImagePanel;
+import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;

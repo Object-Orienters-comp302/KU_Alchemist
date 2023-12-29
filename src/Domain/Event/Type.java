@@ -18,5 +18,6 @@ public enum Type {
     PAUSE,
     START_LOGIN_SCREEN,
     HELP,
+    START_START_VIEW,
     
 }
