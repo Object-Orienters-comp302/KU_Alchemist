@@ -69,22 +69,22 @@ public class TransmuteView extends JPanel {
         this.add(Background);
         Background.setLayout(null);
         
-        SwitchButton_Forage = new ImagePanel("Images/start/frameCopper2.png");
+        SwitchButton_Forage = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
         SwitchButton_Forage.setLayout(null);
         SwitchButton_Forage.setBounds(290, 380, 200, 100);
         Background.add(SwitchButton_Forage);
         
-        Forage_Text = new ImagePanel("Images/buttonText/forageText.png");
+        Forage_Text = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.FORAGE));
         Forage_Text.setLayout(null);
         Forage_Text.setBounds(30, 25, 145, 50);
         SwitchButton_Forage.add(Forage_Text);
         
-        SwitchButton_Transmutate = new ImagePanel("Images/start/frameGold.png");
+        SwitchButton_Transmutate = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
         SwitchButton_Transmutate.setLayout(null);
         SwitchButton_Transmutate.setBounds(510, 380, 200, 100);
         Background.add(SwitchButton_Transmutate);
         
-        Transmutate_Text = new ImagePanel("Images/buttonText/transmutateText.png");
+        Transmutate_Text = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.TRANSMUTE));
         Transmutate_Text.setLayout(null);
         Transmutate_Text.setBounds(25, 20, 150, 60);
         SwitchButton_Transmutate.add(Transmutate_Text);

@@ -1,5 +1,7 @@
 package UI.Components.ImagePanels;
 
+import Utils.AssetLoader;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -55,7 +57,7 @@ public class GifPanel extends JPanel {
             JPanel pane= new JPanel();
             pane.setLayout(null);
             pane.setBounds(0,0,200,200);
-            GifPanel gifPanel = new GifPanel(0,0,100,100,"Gifs/Loading/loadingPotion.gif");
+            GifPanel gifPanel = new GifPanel(0, 0, 100, 100, AssetLoader.getAssetPath(AssetLoader.Gifs.HOURGLASS));
             
             frame.getContentPane().add(pane);
             pane.setBackground(Color.blue);
