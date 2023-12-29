@@ -322,7 +322,7 @@ public class AssetLoader {
         CIRCLE_BLUE("Gifs/Animations/glowCircularBlue.gif"),
         LEAVES("Gifs/Animations/leaves.gif"),
         HOURGLASS("Gifs/Loading/hourglass.gif"),
-        POTION("Gifs/Animations/loadingPotion.gif");
+        POTION("Gifs/Loading/loadingPotion.gif");
         
         private final String path;
         
