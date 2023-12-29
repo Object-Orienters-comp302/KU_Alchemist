@@ -27,7 +27,7 @@ public class PotionBrewingView extends JPanel {
     Boolean            testOnStudent = false;
     IngredientButton IngredientB1;
     IngredientButton IngredientB2;
-    IngredientButton IngredientB3;
+    
     JLabel MakePotionLbl;
     ImagePanel TickPanel;
     JLabel lblNewLabel;
@@ -71,9 +71,10 @@ public class PotionBrewingView extends JPanel {
     
     private void CreateObjects() {
     	Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.PotionBrewingViewAssets.BACKGROUND1));
-    	IngredientB1 = new IngredientButton(120, 125, 200, 200, true);
-    	IngredientB2 = new IngredientButton(680, 125, 200, 200, true);
-        IngredientB3 = new IngredientButton(480, 125, 200, 200, true);
+    	IngredientB1 = new IngredientButton(150, 155, 140, 140, true);
+    	
+    	IngredientB2 = new IngredientButton(710, 155, 140, 140, true);
+        
     	MakePotionButton = new ColorChangingPanel("#cf9d15", "#FFD700");
     	MakePotionLbl = new JLabel("Make Potion");
     	TestOnStudentBox = new ColorChangingPanel("#cf9d15", "#FFD700");
@@ -108,7 +109,7 @@ public class PotionBrewingView extends JPanel {
         Background.add(IngredientB2);
         Background.add(IngredientB1);
         
-        Background.add(IngredientB3);
+        
         
         MakePotionButton.setBounds(830, 400, 120, 40);
         Background.add(MakePotionButton);

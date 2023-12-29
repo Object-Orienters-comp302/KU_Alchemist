@@ -35,7 +35,7 @@ public class TransmuteView extends JPanel {
         setLayout(null);
         
         
-        B1 = new IngredientButton(425, 100, 150, 150, true);
+        B1 = new IngredientButton(430, 105, 140, 140, true);
         
         this.add(B1);
         

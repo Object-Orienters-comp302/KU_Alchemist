@@ -27,7 +27,7 @@ public class IngredientButton extends GifPanel {
         
         currentIngredient = AssetLoader.TriangleTable.QUESTION_MARK;
         img               = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.TriangleTable.QUESTION_MARK));
-        img.setBounds(width * 9 / 40, width * 9 / 40, width * 9 / 16, height * 9 / 16);
+        img.setBounds(width * 2 / 40, width * 2 / 40, width * 36 / 40, height * 36 / 40);
         add(img);
         
         
@@ -76,7 +76,7 @@ public class IngredientButton extends GifPanel {
         
         AssetLoader.AssetPath currentValue = AssetLoader.TriangleTable.QUESTION_MARK;
         img = new ImagePanel(AssetLoader.getAssetPath(currentValue));
-        img.setBounds(width * 9 / 40, width * 9 / 40, width * 9 / 16, height * 9 / 16);
+        img.setBounds(width * 2 / 40, width * 2 / 40, width * 36 / 40, height * 36 / 40);
         add(img);
         this.transparent = transparent;
         
@@ -150,10 +150,13 @@ public class IngredientButton extends GifPanel {
         int x = (getWidth() - customDiameter) / 2;
         int y = (getHeight() - customDiameter) / 2;
         diameter = originalDiameter;
+        /*
         if (!this.transparent) {
             g.setColor(Color.decode("#ebd2a9"));
             g.fillOval(x, y, customDiameter, customDiameter);
         }
+        
+         */
     }
     
     

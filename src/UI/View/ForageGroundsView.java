@@ -17,9 +17,13 @@ import java.awt.event.MouseEvent;
 public class ForageGroundsView extends JPanel {
 	
 	
+    Boolean    showsActiveResult=false;
+    GifPanel circleGif;
+    ImagePanel ingreImg;
     
     ImagePanel Background;
     ImagePanel Card;
+    
     JTextField textField;
     
     JPanel     ButtonPanel;
@@ -341,15 +345,22 @@ public class ForageGroundsView extends JPanel {
                 SwingUtilities.invokeLater(() -> {
                     Background.remove(gif);
                     
+                    if(!showsActiveResult){
+                        showsActiveResult=true;
+                        circleGif = new GifPanel(26,75,100,100,"Gifs/Animations/glowCircularBlue.gif");
+                        circleGif.setLayout(null);
+                        Card.add(circleGif);
+                        
+                        ingreImg = new ImagePanel(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
+                        ingreImg.setBounds(20,20,60,60);
+                        circleGif.add(ingreImg);
+                        Background.repaint();
+                    }
+                    else{
+                        ingreImg.changeImage(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
+                    }
                     
-                    GifPanel circleGif = new GifPanel(26,75,100,100,"Gifs/Animations/glowCircularBlue.gif");
-                    circleGif.setLayout(null);
-                    Card.add(circleGif);
                     
-                    ImagePanel ingreImg = new ImagePanel(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
-                    ingreImg.setBounds(20,20,60,60);
-                    circleGif.add(ingreImg);
-                    Background.repaint();
                     GameController.getInstance().getMenuController().getMenuView().LiftBlockade();
                     
                 });
