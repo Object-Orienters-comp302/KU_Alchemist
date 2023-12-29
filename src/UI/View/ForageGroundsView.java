@@ -4,6 +4,7 @@ import Domain.GameController;
 import Domain.RoundOneController;
 import Models.Ingredient;
 import Models.Player;
+import UI.Components.ImagePanels.GifPanel;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.Potion.PotionButton;
 import Utils.AssetLoader;
@@ -77,12 +78,15 @@ public class ForageGroundsView extends JPanel {
     }
     
     private void SetupObjects() {
-    	Card.setBounds(421, 100, 158, 250);
-        this.add(Card);
+    	
     	
         Background.setBounds(0, 0, 1000, 500);
         this.add(Background);
         Background.setLayout(null);
+        
+        Card.setBounds(421, 100, 158, 250);
+        Card.setLayout(null);
+        Background.add(Card);
         
         textField.setForeground(Color.BLACK);
         textField.setEditable(false);
@@ -173,6 +177,7 @@ public class ForageGroundsView extends JPanel {
                          CardClicked(Player.getCurrPlayer(), GameController.getInstance().getRoundOneController());
                  if (ingredientType != null) {
                      textField.setText(String.format(Texts.Success.getText(), ingredientType.getTypeString()));
+                     RunForageAnimation(ingredientType);
                  } else {
                      textField.setText(Texts.Fail.getText());
                  }
@@ -321,6 +326,38 @@ public class ForageGroundsView extends JPanel {
         			AssetLoader.ForageGroundsAssets.BACKGROUND5));
             break;
     }
-        
+    }
+    
+    public void RunForageAnimation(Ingredient.IngredientTypes ingre){
+        GameController.getInstance().getMenuController().getMenuView().Blockade();
+        GifPanel gif = new GifPanel(0,0,1000,500,"Gifs/Animations/leaves.gif");
+        Background.add(gif);
+        Background.setComponentZOrder(gif,0);
+        Background.repaint();
+        new Thread(() -> {
+            try {
+                Thread.sleep(1530);
+                
+                SwingUtilities.invokeLater(() -> {
+                    Background.remove(gif);
+                    
+                    
+                    GifPanel circleGif = new GifPanel(26,75,100,100,"Gifs/Animations/glowCircularBlue.gif");
+                    circleGif.setLayout(null);
+                    Card.add(circleGif);
+                    
+                    ImagePanel ingreImg = new ImagePanel(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
+                    ingreImg.setBounds(20,20,60,60);
+                    circleGif.add(ingreImg);
+                    Background.repaint();
+                    GameController.getInstance().getMenuController().getMenuView().LiftBlockade();
+                    
+                });
+                
+                
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 }

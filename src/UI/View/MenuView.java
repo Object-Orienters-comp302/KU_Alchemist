@@ -5,8 +5,6 @@ import Domain.Event.Publisher;
 import Domain.Event.Type;
 import Domain.GameController;
 import Domain.MenuController;
-import Models.Deck;
-import Models.Ingredient;
 import Models.Player;
 import UI.Components.ColorChangingPanel;
 import UI.Components.CutRoundedPanel;
@@ -31,6 +29,8 @@ import java.util.Objects;
 public class MenuView extends JPanel implements Publisher,Listener {
     
     ColorChangingPanel TESTBUTTON;
+    
+    JPanel             Block;
     
     JPanel             basePanel;
     JPanel             topPanel;
@@ -86,6 +86,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
         basePanel      = new JPanel();
         topPanel       = new JPanel();
         pause          = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PAUSE));
+        Block          = new JPanel();
         
         
         cardLay            = new CardLayout();
@@ -132,6 +133,9 @@ public class MenuView extends JPanel implements Publisher,Listener {
     }
     
     private void ApplyStuff() {
+        Block.setBackground(new Color(255,255,255,0));
+        Block.setBounds(0,0,1280,720);
+        
         basePanel.setBounds(0, 0, 1280, 720);
         add(basePanel);
         //basePanel.setBackground(Color.red);
@@ -147,6 +151,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
         
         pause.setBounds(1200, 5, 80, 80);
         topPanel.add(pause);
+        
         
         displayerPanel.setBounds(5, 90, 1000, 500);
         displayerPanel.setOpaque(false);
@@ -316,12 +321,18 @@ public class MenuView extends JPanel implements Publisher,Listener {
             }
         });
         
+        Block.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                e.consume();
+            }
+        });
         
         TESTBUTTON.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                ArrayList<Ingredient> vari = Deck.getInstance().getIngredients();
-                System.out.println(vari);
+                Blockade();
+                    System.out.println("sxe");
             }
         });
     }
@@ -375,4 +386,16 @@ public class MenuView extends JPanel implements Publisher,Listener {
         }
 
     }
+    
+    public void Blockade(){
+        this.basePanel.add(this.Block);
+        this.basePanel.setComponentZOrder(this.Block,0);
+        this.repaint();
+    }
+    
+    public void LiftBlockade(){
+        this.basePanel.remove(this.Block);
+        this.repaint();
+    }
+    
 }

@@ -177,7 +177,6 @@ public class LoginView extends JPanel implements Publisher {
         
         
         
-        
     }
     
     private void SetupListeners() {
@@ -341,7 +340,6 @@ public class LoginView extends JPanel implements Publisher {
         blurPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Consume the mouse click event
                 e.consume();
             }
         });
