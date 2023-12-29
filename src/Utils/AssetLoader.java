@@ -300,6 +300,7 @@ public class AssetLoader {
         START_TEXT("Images/start/startText.png"),
         FRAME_GOLD("Images/start/frameGold.png"),
         FRAME_COPPER("Images/start/frameCopper.png"),
+        GOLD_1("Images/start/goldInt1.png"),
         GOLD_2("Images/start/goldInt2.png"),
         GOLD_3("Images/start/goldInt3.png"),
         GOLD_4("Images/start/goldInt4.png"),
@@ -309,6 +310,24 @@ public class AssetLoader {
         
         Start(String Path) {
             this.path = Path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
+    public enum Gifs implements AssetPath {
+        CIRCLE_BLUE("Gifs/Animations/glowCircularBlue.gif"),
+        LEAVES("Gifs/Animations/leaves.gif"),
+        HOURGLASS("Gifs/Loading/hourglass.gif"),
+        POTION("Gifs/Animations/loadingPotion.gif");
+        
+        private final String path;
+        
+        Gifs(String path) {
+            this.path = path;
         }
         
         @Override

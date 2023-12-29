@@ -348,7 +348,7 @@ public class LoginView extends JPanel implements Publisher {
         
         
         
-        GifPanel LoadingGif = new GifPanel(540,260,200,200,"Gifs/Loading/loadingPotion.gif");
+        GifPanel LoadingGif = new GifPanel(540,260,200,200,AssetLoader.getAssetPath(AssetLoader.Gifs.POTION));
         
         this.add(blurPanel);
         this.setComponentZOrder(blurPanel,0);
