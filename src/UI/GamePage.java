@@ -18,7 +18,10 @@ public class GamePage extends JFrame implements Listener {
         
         createPage();
         configurePage();
+        onEvent(Domain.Event.Type.START_START_VIEW);
         addListeners();
+        // Manually trigger the event to start START_VIEW
+        //
     }
     private void createPage(){
         cardLayout = new CardLayout();
@@ -27,35 +30,44 @@ public class GamePage extends JFrame implements Listener {
     private void configurePage(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1290, 750);
-        cardPanel.add(ViewFactory.getInstance().getLoginView(), Cards.LoginView.getString());
-        this.getContentPane().add(cardPanel);
-        cardLayout.show(cardPanel, Cards.LoginView.getString());
         setVisible(true);
+        this.getContentPane().add(cardPanel);
+        
     }
     private void addListeners(){
+        //ViewFactory.getInstance().getMenuView().addListener(this);
         ViewFactory.getInstance().getLoginView().addListener(this);
         ViewFactory.getInstance().getPauseView().addListener(this);
         ViewFactory.getInstance().getHelpScreenView().addListener(this);
+        ViewFactory.getInstance().getStartView().addListener(this);
     }
     
     @Override
     public void onEvent(Domain.Event.Type type) {
-        if (type == Domain.Event.Type.START_MENUVIEW) {
-            cardPanel.add(ViewFactory.getInstance().getMenuView(), Cards.MenuView.getString());
-            cardLayout.show(cardPanel, Cards.MenuView.getString());
-            ViewFactory.getInstance().getMenuView().addListener(this);
-        }
-        if (type == Domain.Event.Type.PAUSE) {
-            cardPanel.add(ViewFactory.getInstance().getPauseView(), Cards.PauseView.getString());
-            cardLayout.show(cardPanel, Cards.PauseView.getString());
+        if (type == Domain.Event.Type.START_START_VIEW){
+            cardPanel.add(ViewFactory.getInstance().getStartView(), Cards.StartView.getString());
+            cardLayout.show(cardPanel, Cards.StartView.getString());
+            setVisible(true);
         }
         if (type == Domain.Event.Type.START_LOGIN_SCREEN) {
             cardPanel.add(ViewFactory.getInstance().getLoginView(), Cards.LoginView.getString());
             cardLayout.show(cardPanel, Cards.LoginView.getString());
+            setVisible(true);
+        }
+        if (type == Domain.Event.Type.START_MENUVIEW) {
+            cardPanel.add(ViewFactory.getInstance().getMenuView(), Cards.MenuView.getString());
+            cardLayout.show(cardPanel, Cards.MenuView.getString());
+            setVisible(true);
+        }
+        if (type == Domain.Event.Type.PAUSE) {
+            cardPanel.add(ViewFactory.getInstance().getPauseView(), Cards.PauseView.getString());
+            cardLayout.show(cardPanel, Cards.PauseView.getString());
+            setVisible(true);
         }
         if (type == Domain.Event.Type.HELP){
             cardPanel.add(ViewFactory.getInstance().getHelpScreenView(), Cards.HelpView.getString());
             cardLayout.show(cardPanel, Cards.HelpView.getString());
+            setVisible(true);
         }
     }
     
