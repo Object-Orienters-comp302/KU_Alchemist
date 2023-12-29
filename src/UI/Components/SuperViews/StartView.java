@@ -103,12 +103,7 @@ public class StartView extends JPanel implements Publisher {
         StartButton = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW));
         StartButton.setBounds(435, 500, 400, 120);
         StartButton.setLayout(null);
-        StartButton.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                publishEvent(Type.LOGIN_SCREEN);
-            }
-        });
+        
         Background.add(StartButton);
         
         ImagePanel StartButtonText = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.NAME_TEXT));
@@ -118,6 +113,12 @@ public class StartView extends JPanel implements Publisher {
     }
     
     private void SetupListeners() {
+        StartButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                publishEvent(Type.START_LOGIN_SCREEN);
+            }
+        });
         B1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

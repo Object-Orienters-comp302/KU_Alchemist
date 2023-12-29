@@ -1,6 +1,7 @@
 package UI;
 
 import Domain.Event.Listener;
+import Domain.Event.Type;
 import UI.View.ViewFactory;
 
 import javax.swing.*;
@@ -45,8 +46,8 @@ public class GamePage extends JFrame implements Listener {
             cardPanel.add(ViewFactory.getInstance().getPauseView(), Cards.PauseView.getString());
             cardLayout.show(cardPanel, Cards.PauseView.getString());
         }
-        if (type == Domain.Event.Type.LOGIN_SCREEN) {
-            cardPanel.add(ViewFactory.getInstance().getPauseView(), Cards.LoginView.getString());
+        if (type == Domain.Event.Type.START_LOGIN_SCREEN) {
+            cardPanel.add(ViewFactory.getInstance().getLoginView(), Cards.LoginView.getString());
             cardLayout.show(cardPanel, Cards.LoginView.getString());
         }
     }
