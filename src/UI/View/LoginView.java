@@ -7,7 +7,10 @@ import Domain.GameController;
 import Domain.LoginController;
 import Models.Token;
 import UI.Components.ColorChangingPanel;
-import UI.Components.ImagePanel;
+import UI.Components.CutRoundedPanel;
+import UI.Components.ImagePanels.GifPanel;
+import UI.Components.ImagePanels.ImagePanel;
+import UI.Components.RoundedPanel;
 import Utils.AssetLoader;
 import Utils.CircularLinkedList;
 
@@ -15,9 +18,12 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class LoginView extends JPanel implements Publisher {
     static int iter = 0;
@@ -25,7 +31,7 @@ public class LoginView extends JPanel implements Publisher {
     LoginController           loginControl;
     CircularLinkedList<Token> tokenList;
     ImagePanel                MainPanel;
-    JPanel                    TokenSelectorPanel;
+    CutRoundedPanel           TokenSelectorPanel;
     JPanel                    TokenSelectorPanel_Left;
     JPanel                    TokenSelectorPanel_Left_Label_Holder;
     JLabel                    TokenSelectorPanel_Left_Label;
@@ -33,13 +39,17 @@ public class LoginView extends JPanel implements Publisher {
     JPanel                    TokenSelectorPanel_Right;
     JPanel                    TokenSelectorPanel_Right_Label_Holder;
     JLabel                    TokenSelectorPanel_Right_Label;
-    JPanel                    UserNamePanel;
+    RoundedPanel              UserNamePanel;
     JLabel                    lblNewLabel;
     ImagePanel                UserNamePanel_CheckPanel;
-    JPanel                    NextPanel;
+    JPanel                    NextPanelContainer;
+    ColorChangingPanel        NextPanel;
     JLabel                    NextPanel_Label;
-    ArrayList<Listener>       Listeners;
-    private JTextField textField;
+    
+    
+    
+    ArrayList<Listener> Listeners;
+    private JTextField TextField;
     
     
     protected LoginView() {
@@ -66,20 +76,26 @@ public class LoginView extends JPanel implements Publisher {
         tokenList    = loginControl.getCirularTokens();
         MainPanel    = new ImagePanel(tokenList.get().getBackground());
         MainPanel.setBounds(0, 0, 1280, 720);
-        TokenSelectorPanel                    = new JPanel();
-        TokenSelectorPanel_Left               = new ColorChangingPanel("#cf9d15", "#FFD700");
+        TokenSelectorPanel                    = new CutRoundedPanel(60, true);
+        TokenSelectorPanel_Left               =
+                new ColorChangingPanel("#cf9d15", "#FFD700", 60, ColorChangingPanel.RoundingStyle.LEFT);
         TokenSelectorPanel_Left_Label_Holder  = new JPanel();
         TokenSelectorPanel_Left_Label         = new JLabel("<");
         TokenSelectorPanel_Displayer          = new ImagePanel(tokenList.get().getImage());
-        TokenSelectorPanel_Right              = new ColorChangingPanel("#cf9d15", "#FFD700");
+        TokenSelectorPanel_Right              =
+                new ColorChangingPanel("#cf9d15", "#FFD700", 60, ColorChangingPanel.RoundingStyle.RIGHT);
         TokenSelectorPanel_Right_Label_Holder = new JPanel();
         TokenSelectorPanel_Right_Label        = new JLabel(">");
-        UserNamePanel                         = new JPanel();
-        textField                             = new JTextField();
-        lblNewLabel                           = new JLabel("Username:  ");
+        UserNamePanel = new RoundedPanel(50);
+        TextField     = new JTextField();
+        lblNewLabel   = new JLabel("Username:  ");
         UserNamePanel_CheckPanel              = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
-        NextPanel                             = new ColorChangingPanel("#cf9d15", "#FFD700");
+        NextPanelContainer                    = new JPanel();
+        NextPanel                             =
+                new ColorChangingPanel("#cf9d15", "#FFD700", 40, ColorChangingPanel.RoundingStyle.BOTH);
         NextPanel_Label                       = new JLabel("NEXT");
+        
+        
     }
     
     private void SetupObjets() {
@@ -88,11 +104,11 @@ public class LoginView extends JPanel implements Publisher {
         
         MainPanel.setLayout(null);
         
-        TokenSelectorPanel.setBounds(225, 75, 750, 400);
+        TokenSelectorPanel.setBounds(243, 73, 754, 404);
         MainPanel.add(TokenSelectorPanel);
         TokenSelectorPanel.setLayout(null);
         
-        TokenSelectorPanel_Left.setBounds(0, 0, 75, 400);
+        TokenSelectorPanel_Left.setBounds(2, 2, 75, 400);
         TokenSelectorPanel.add(TokenSelectorPanel_Left);
         TokenSelectorPanel_Left.setLayout(null);
         
@@ -106,11 +122,11 @@ public class LoginView extends JPanel implements Publisher {
         TokenSelectorPanel_Left_Label.setBounds(0, 0, 30, 60);
         TokenSelectorPanel_Left_Label_Holder.add(TokenSelectorPanel_Left_Label);
         
-        TokenSelectorPanel_Displayer.setBounds(75, 0, 600, 400);
+        TokenSelectorPanel_Displayer.setBounds(77, 2, 600, 400);
         TokenSelectorPanel.add(TokenSelectorPanel_Displayer);
         TokenSelectorPanel_Displayer.setLayout(null);
         
-        TokenSelectorPanel_Right.setBounds(675, 0, 75, 400);
+        TokenSelectorPanel_Right.setBounds(677, 2, 75, 400);
         TokenSelectorPanel.add(TokenSelectorPanel_Right);
         TokenSelectorPanel_Right.setLayout(null);
         
@@ -124,32 +140,42 @@ public class LoginView extends JPanel implements Publisher {
         TokenSelectorPanel_Right_Label.setBounds(0, 0, 30, 60);
         TokenSelectorPanel_Right_Label_Holder.add(TokenSelectorPanel_Right_Label);
         
-        UserNamePanel.setBounds(450, 525, 300, 50);
+        UserNamePanel.setBounds(470, 525, 300, 50);
         UserNamePanel.setBackground(Color.decode("#FFD700"));
         MainPanel.add(UserNamePanel);
         UserNamePanel.setLayout(null);
         
-        textField.setBounds(75, 0, 175, 50);
-        UserNamePanel.add(textField);
-        textField.setBorder(null);
-        textField.setColumns(10);
+        TextField.setBounds(75, 2, 175, 46);
+        UserNamePanel.add(TextField);
+        TextField.setBorder(null);
+        TextField.setColumns(10);
         
         lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         lblNewLabel.setBounds(0, 0, 75, 50);
         UserNamePanel.add(lblNewLabel);
         
-        UserNamePanel_CheckPanel.setBounds(255, 5, 40, 40);
+        UserNamePanel_CheckPanel.setBounds(255, 10, 30, 30);
         UserNamePanel_CheckPanel.setBackground(Color.decode("#FFD700"));
         UserNamePanel.add(UserNamePanel_CheckPanel);
         
-        NextPanel.setBounds(450, 600, 300, 75);
-        MainPanel.add(NextPanel);
-        NextPanel.setLayout(null);
+        NextPanelContainer.setBounds(469, 599, 302, 77);
+        MainPanel.add(NextPanelContainer);
+        NextPanelContainer.setLayout(null);
+        NextPanelContainer.setOpaque(false);
         
-        NextPanel_Label.setBounds(105, 8, 90, 60);
+        
+        NextPanel.setLayout(null);
+        NextPanel.setBounds(1, 1, 300, 75);
+        NextPanelContainer.add(NextPanel);
+        NextPanel.setFocusable(true);
+        NextPanel.requestFocus();
+        
         NextPanel_Label.setHorizontalAlignment(SwingConstants.CENTER);
         NextPanel_Label.setFont(new Font("Tahoma", Font.PLAIN, 20));
+        NextPanel_Label.setBounds(105, 8, 90, 60);
         NextPanel.add(NextPanel_Label);
+        
+        
         
     }
     
@@ -176,34 +202,32 @@ public class LoginView extends JPanel implements Publisher {
         NextPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (loginControl.isUniquePlayerID(textField.getText()) && (!textField.getText().isBlank())) {
-                    loginControl.logPlayerIn(textField.getText(), tokenList.get()); //tokenList.get() should be used
-                    tokenList.delete();
-                    textField.setText("");
-                    TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
-                    MainPanel.changeImage(tokenList.get().getBackground());
-                    LoginView.iter += 1;
-                    //System.out.print(LoginView.iter);
-                    if (NextPanel_Label.getText() == "START") {
-                        //TODO MAKE A NEW GENERIC GAMESETUP THAT TAKES AN ARRAYLIST.
-                        GameController.getInstance().getRoundZeroController().gameSetup();
-                        publishEvent(Type.START_MENUVIEW); // Handled by GamePage
-                        
-                    }
-                    if ((LoginView.iter) == playerAmount - 1) {
-                        NextPanel_Label.setText("START");
-                    }
+                NextButtonPress();
+            }
+        });
+        
+        NextPanel.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    NextButtonPress();
                 }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
             }
         });
         
         
-        textField.getDocument().addDocumentListener(new DocumentListener() {
+        TextField.getDocument().addDocumentListener(new DocumentListener() {
             
             
             @Override
             public void insertUpdate(DocumentEvent e) {
-                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText().isBlank())) {
+                if (!loginControl.isUniquePlayerID(TextField.getText()) || (TextField.getText().isBlank())) {
                     UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
                     
                 } else {
@@ -213,7 +237,7 @@ public class LoginView extends JPanel implements Publisher {
             
             @Override
             public void removeUpdate(DocumentEvent e) {
-                if (!loginControl.isUniquePlayerID(textField.getText()) || (textField.getText().isBlank())) {
+                if (!loginControl.isUniquePlayerID(TextField.getText()) || (TextField.getText().isBlank())) {
                     UserNamePanel_CheckPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
                     
                 } else {
@@ -226,6 +250,60 @@ public class LoginView extends JPanel implements Publisher {
                 // TODO Auto-generated method stub
             }
         });
+        
+        TextField.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    NextButtonPress();
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+    }
+    
+    
+    
+    private void NextButtonPress(){
+        if (loginControl.isUniquePlayerID(TextField.getText()) && (!TextField.getText().isBlank())) {
+            loginControl.logPlayerIn(TextField.getText(), tokenList.get()); //tokenList.get() should be used
+            tokenList.delete();
+            TextField.setText("");
+            TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
+            MainPanel.changeImage(tokenList.get().getBackground());
+            LoginView.iter += 1;
+            
+            
+            //System.out.print(LoginView.iter);
+            if (NextPanel_Label.getText() == "START") {
+                //TODO MAKE A NEW GENERIC GAMESETUP THAT TAKES AN ARRAYLIST.
+                ThrowLoadingGif();
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        GameController.getInstance().getRoundZeroController().gameSetup();
+                        publishEvent(Type.START_MENUVIEW);
+                        return null;
+                    }
+                    
+                    @Override
+                    protected void done() {
+                    
+                    }
+                };
+                
+                worker.execute();
+                
+            }
+            if ((LoginView.iter) == playerAmount - 1) {
+                NextPanel_Label.setText("START");
+            }
+        }
     }
     
     @Override
@@ -248,6 +326,36 @@ public class LoginView extends JPanel implements Publisher {
     @Override
     public void addListener(Listener lis) {
         this.Listeners.add(lis);
+    }
+    
+    private void ThrowLoadingGif(){
+        JPanel blurPanel = new JPanel();
+        
+        blurPanel.setBackground(new Color(255,255,255,125));
+  
+        blurPanel.setBounds(0,0,1280,720);
+        blurPanel.setLayout(null);
+        
+        
+        blurPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                e.consume();
+            }
+        });
+        
+        GifPanel LoadingGif = new GifPanel(540,260,200,200,AssetLoader.getAssetPath(AssetLoader.Gifs.POTION));
+        
+        this.add(blurPanel);
+        this.setComponentZOrder(blurPanel,0);
+        this.setVisible(true);
+        this.add(LoadingGif);
+        this.grabFocus();
+
+        this.setComponentZOrder(LoadingGif,0);
+        
+        this.repaint();
+        
     }
     
 }

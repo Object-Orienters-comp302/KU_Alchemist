@@ -1,5 +1,7 @@
 package Models;
 
+import Utils.AssetLoader;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -128,5 +130,38 @@ public class Ingredient {
             return aspectRed;
         }
         
+    }
+    
+    @Override
+    public String toString() {
+        return this.getType().toString() ;
+    }
+    
+    public static Ingredient.IngredientTypes getTypeFromPath(AssetLoader.AssetPath path) {
+        return switch (path) {
+            case AssetLoader.IngredientAssets.FEATHER -> Ingredient.IngredientTypes.Feather;
+            case AssetLoader.IngredientAssets.FROG -> Ingredient.IngredientTypes.Toad;
+            case AssetLoader.IngredientAssets.MANDRAKE -> Ingredient.IngredientTypes.Mandrake;
+            case AssetLoader.IngredientAssets.WEED -> Ingredient.IngredientTypes.Plant;
+            case AssetLoader.IngredientAssets.SCORPION -> Ingredient.IngredientTypes.Scorpion;
+            case AssetLoader.IngredientAssets.FEET -> Ingredient.IngredientTypes.ChickenLeg;
+            case AssetLoader.IngredientAssets.FLOWER -> Ingredient.IngredientTypes.Flower;
+            case AssetLoader.IngredientAssets.MUSHROOM -> Ingredient.IngredientTypes.Mushroom;
+            default -> throw new IllegalStateException("Unexpected value: " + path);
+        };
+    }
+    
+    public static AssetLoader.AssetPath getPathFromType(Ingredient.IngredientTypes type) {
+        return switch (type) {
+            case  Ingredient.IngredientTypes.Feather -> AssetLoader.IngredientAssets.FEATHER;
+            case  Ingredient.IngredientTypes.Toad -> AssetLoader.IngredientAssets.FROG ;
+            case  Ingredient.IngredientTypes.Mandrake ->AssetLoader.IngredientAssets.MANDRAKE ;
+            case  Ingredient.IngredientTypes.Plant -> AssetLoader.IngredientAssets.WEED ;
+            case  Ingredient.IngredientTypes.Scorpion -> AssetLoader.IngredientAssets.SCORPION ;
+            case  Ingredient.IngredientTypes.ChickenLeg -> AssetLoader.IngredientAssets.FEET ;
+            case  Ingredient.IngredientTypes.Flower -> AssetLoader.IngredientAssets.FLOWER ;
+            case  Ingredient.IngredientTypes.Mushroom -> AssetLoader.IngredientAssets.MUSHROOM ;
+            default -> throw new IllegalStateException("Unexpected type: " + type);
+        };
     }
 }

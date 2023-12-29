@@ -1,27 +1,31 @@
 package UI.Components.Potion;
 
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.GifPanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
+
+import UI.Components.ImagePanels.ImagePanel;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class IngredientPopupButton extends JPanel {
+public class IngredientPopupButton extends GifPanel {
     private int diameter, x, y;
     private ImagePanel img;
     
     public IngredientPopupButton(int x, int y, int width, int height, AssetLoader.AssetPath imgPath,
                                  ImagePanel panelToChange, IngredientButton book, boolean works) {
-        
+  
+        super(x - width / 2,y - height / 2,width,height,"Gifs/Animations/glowCircularBlue.gif");
         setLayout(null);
-        this.setBounds(x - width / 2, y - height / 2, width, height);
         
         img = new ImagePanel(AssetLoader.getAssetPath(imgPath));
-        img.setBounds(width / 4, width / 4, width / 2, height / 2);
+        img.setBounds(width / 10, width / 10, width*4 / 5, height*4 / 5);
         add(img);
         this.setOpaque(false);
+        
         
         
         this.addMouseListener(new MouseAdapter() {
@@ -95,14 +99,15 @@ public class IngredientPopupButton extends JPanel {
         super.paintComponent(g);
         
         int originalDiameter = Math.min(getWidth(), getHeight());
-        int customDiameter = originalDiameter * 3 / 4;
+        int customDiameter = originalDiameter * 1;
         
         int x = (getWidth() - customDiameter) / 2;
         int y = (getHeight() - customDiameter) / 2;
         diameter = originalDiameter;
         
-        g.setColor(Color.decode("#ebd2a9"));
-        g.fillOval(x, y, customDiameter, customDiameter);
+        
+        //g.setColor(Color.decode("#ebd2a9"));
+        //g.fillOval(x, y, customDiameter, customDiameter);
     }
     
 }

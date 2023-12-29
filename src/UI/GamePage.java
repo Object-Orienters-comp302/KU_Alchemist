@@ -8,31 +8,34 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GamePage extends JFrame implements Listener {
-    
-    private JPanel     cardPanel;
     private CardLayout cardLayout;
+    private JPanel     cardPanel;
     
     public GamePage() {
         /*
         GamePage is our main JFrame which we put other JPanels into. It uses CardLayout.
          */
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1290, 750);
         
+        createPage();
+        configurePage();
+        addListeners();
+    }
+    private void createPage(){
         cardLayout = new CardLayout();
         cardPanel  = new JPanel(cardLayout);
-        
-        cardPanel.add(ViewFactory.getInstance().getStartView(), Cards.StartView.getString());
-        
+    }
+    private void configurePage(){
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(1290, 750);
+        cardPanel.add(ViewFactory.getInstance().getLoginView(), Cards.LoginView.getString());
         this.getContentPane().add(cardPanel);
-        
+        cardLayout.show(cardPanel, Cards.LoginView.getString());
+        setVisible(true);
+    }
+    private void addListeners(){
         ViewFactory.getInstance().getLoginView().addListener(this);
         ViewFactory.getInstance().getPauseView().addListener(this);
-        ViewFactory.getInstance().getStartView().addListener(this);
-        cardLayout.show(cardPanel, Cards.StartView.getString());
-        
-        
-        setVisible(true);
+        ViewFactory.getInstance().getHelpScreenView().addListener(this);
     }
     
     @Override
@@ -50,12 +53,17 @@ public class GamePage extends JFrame implements Listener {
             cardPanel.add(ViewFactory.getInstance().getLoginView(), Cards.LoginView.getString());
             cardLayout.show(cardPanel, Cards.LoginView.getString());
         }
+        if (type == Domain.Event.Type.HELP){
+            cardPanel.add(ViewFactory.getInstance().getHelpScreenView(), Cards.HelpView.getString());
+            cardLayout.show(cardPanel, Cards.HelpView.getString());
+        }
     }
     
     enum Cards {
         LoginView("LoginView"),
         MenuView("MenuView"),
         PauseView("PauseView"),
+        HelpView("HelpView"),
         StartView("StartView");
         
         private final String string;

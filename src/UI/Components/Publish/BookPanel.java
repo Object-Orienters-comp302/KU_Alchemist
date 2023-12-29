@@ -1,10 +1,12 @@
 package UI.Components.Publish;
 
-import UI.Components.ImageChangingPanel;
-import UI.Components.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
+
+import UI.Components.ImagePanels.ImageChangingPanel;
+import UI.Components.ImagePanels.ImagePanel;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -14,6 +16,10 @@ import java.util.HashMap;
 public class BookPanel extends JPanel {
     public static HashMap<AssetLoader.AssetPath, Boolean> published = new HashMap<AssetLoader.AssetPath, Boolean>();
     public static ArrayList<AssetLoader.AssetPath>        traitUsed = new ArrayList<>();
+    
+    //public static ArrayList<AssetLoader.AssetPath>        traitRam  = new ArrayList<>();
+    //purpose was for it to check if one is selected even when not published but decided to use traitUsed for this
+    //keeping this because in future it might cause a bug in backend
     
     static {
         published.put(AssetLoader.IngredientAssets.FEATHER, false);

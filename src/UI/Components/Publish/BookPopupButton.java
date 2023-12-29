@@ -1,9 +1,11 @@
 package UI.Components.Publish;
 
-import UI.Components.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
+
+import UI.Components.ImagePanels.ImagePanel;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,7 +21,7 @@ public class BookPopupButton extends JPanel {
         this.setBounds(x - width / 2, y - height / 2, width, height);
         
         img = new ImagePanel(AssetLoader.getAssetPath(imgPath));
-        img.setBounds(width / 4, width / 4, width / 2, height / 2);
+        img.setBounds(width / 10, width / 10, width*4 / 5, height*4 / 5);
         add(img);
         this.setOpaque(false);
         
@@ -35,9 +37,10 @@ public class BookPopupButton extends JPanel {
                     
                     if (isClickInsideCircle(clickX, clickY)) {
                         
-                        
+                        BookPanel.traitUsed.remove(book.getCurrentPath());
                         panelToChange.changeImage(AssetLoader.getAssetPath(imgPath));
                         book.setCurrentPath(imgPath);
+                        BookPanel.traitUsed.add(imgPath);
                         if (grandParent != null) {
                             
                             grandParent.remove(parent);
@@ -95,7 +98,7 @@ public class BookPopupButton extends JPanel {
         super.paintComponent(g);
         
         int originalDiameter = Math.min(getWidth(), getHeight());
-        int customDiameter = originalDiameter * 3 / 4;
+        int customDiameter = originalDiameter * 1;
         
         int x = (getWidth() - customDiameter) / 2;
         int y = (getHeight() - customDiameter) / 2;

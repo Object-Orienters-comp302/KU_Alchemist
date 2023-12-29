@@ -1,9 +1,11 @@
 package UI.Components.Potion;
 
-import UI.Components.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
+
+import UI.Components.ImagePanels.ImagePanel;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -17,9 +19,8 @@ public class PotionPopupButton extends JPanel {
         
         setLayout(null);
         this.setBounds(x - width / 2, y - height / 2, width, height);
-        
         img = new ImagePanel(AssetLoader.getAssetPath(imgPath));
-        img.setBounds(width / 4, width / 4, width / 2, height / 2);
+        img.setBounds(width / 10, width / 10, width*4 / 5, height*4 / 5);
         add(img);
         this.setOpaque(false);
         
@@ -37,7 +38,7 @@ public class PotionPopupButton extends JPanel {
                         
                         
                         panelToChange.changeImage(AssetLoader.getAssetPath(imgPath));
-                        book.setCurrentIngredient(imgPath);
+                        book.setCurrentPotion(imgPath);
                         if (grandParent != null) {
                             
                             grandParent.remove(parent);
@@ -74,28 +75,14 @@ public class PotionPopupButton extends JPanel {
         return distance <= radius;
     }
     
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        
-        JFrame frame = new JFrame("test");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1200, 900);
-        frame.getContentPane().setLayout(null);
-        
-        
-        //frame.getContentPane()
-        //      .add(login);
-        frame.setVisible(true);
-        
-        
-    }
+    
     
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
         int originalDiameter = Math.min(getWidth(), getHeight());
-        int customDiameter = originalDiameter * 3 / 4;
+        int customDiameter = originalDiameter * 1;
         
         int x = (getWidth() - customDiameter) / 2;
         int y = (getHeight() - customDiameter) / 2;

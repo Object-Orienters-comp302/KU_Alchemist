@@ -2,11 +2,10 @@ package Domain;
 
 import Models.*;
 
-import java.util.HashMap;
-
 public class RoundOneController {
     
     protected RoundOneController() { }
+
 
     public Ingredient ForageForIngredient (Player player) {
         if(player.getForageRight() >= 1){
@@ -30,13 +29,15 @@ public class RoundOneController {
         }
     }
     
-    public void BuyArtifacts(Player player, Artifact artifact) {
-        HashMap<Artifact, Integer> artifacts = player.getInventory().getArtifacts();
+    public Artifact BuyArtifacts(Player player) {
+
         if (player.getInventory().getGold() > 3) {
-            
-            artifacts.put(artifact, artifacts.get(artifact) + 1);
+            Artifact artifact =Deck.getInstance().popArtifact();
+            player.getInventory().addArtifactCard(artifact, 1);
             player.getInventory().setGold(player.getInventory().getGold() - 3);
+            return artifact;
         }
+        return null;
     }
     
     public void Make_experiments(Player player, Potion potion,
@@ -91,6 +92,36 @@ public class RoundOneController {
     
     private Boolean CompareTwoAspects(Aspect aspect1, Aspect aspect2) {
         return aspect1.getPositivity() == aspect2.getPositivity();
+    }
+    
+    public boolean MagicMortar(Player current, Artifact artifact, Ingredient ingredient){
+        if(current.getInventory().getArtifacts().containsKey(artifact)){
+            if (artifact.getName().equals("Magic Mortar")){
+                current.getInventory().getArtifacts().remove(artifact);
+                current.getInventory().addIngredient(ingredient, 1);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+    
+    public boolean PrintingPress(Player current, Artifact artifact){
+        if(current.getInventory().getArtifacts().containsKey(artifact)){
+            if(artifact.getName().equals("Printing Press")){
+                current.getInventory().addGold(1);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+    public boolean WisdomIdol(Player current){
+        if(current.getInventory().checkArtifactExists("Wisdom Idol")){
+                current.getInventory().removeArtifact("Wisdom Idol");
+                return true;
+        }
+        return false;
     }
     
 }

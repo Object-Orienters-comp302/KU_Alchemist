@@ -1,9 +1,11 @@
 package UI.Components.Publish;
 
-import UI.Components.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
+
+import UI.Components.ImagePanels.ImagePanel;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -23,7 +25,7 @@ public class BookButton extends JPanel {
         this.setBounds(x, y, width, height);
         currentPath = BookPanel.traitUsed.contains(path) ? path : AssetLoader.TriangleTable.QUESTION_MARK;
         img         = new ImagePanel(AssetLoader.getAssetPath(currentPath));
-        img.setBounds(width / 6, width / 6, width * 11 / 16, height * 11 / 16);
+        img.setBounds(width * 9 / 40, width * 9 / 40, width * 9 / 16, height * 9 / 16);
         add(img);
         
         

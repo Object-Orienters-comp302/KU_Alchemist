@@ -1,5 +1,7 @@
 package UI.View;
 
+import javax.swing.text.PlainView;
+
 import UI.Components.SuperViews.StartView;
 
 public class ViewFactory {
@@ -12,9 +14,10 @@ public class ViewFactory {
     private MenuView       menuView;
     private PauseView      pauseView;
     private LoginView      loginView;
-    private PlainView      plainView;
-    private InventoryView  inventoryView;
-    private TransmuteView  transmuteView;
+    private CustomPlainView customPlainView;
+    private InventoryView inventoryView;
+    private TransmuteView transmuteView;
+    private BuyArtifactView buyArtifactView;
     private StartView      startView;
     
     
@@ -70,12 +73,11 @@ public class ViewFactory {
         }
         return loginView;
     }
-    
-    public PlainView getPlainView() {
-        if (plainView == null) {
-            plainView = new PlainView();
+    public CustomPlainView getPlainView() {
+        if (customPlainView == null) {
+            customPlainView = new CustomPlainView();
         }
-        return plainView;
+        return customPlainView;
     }
     
     public InventoryView getInventoryView() {
@@ -90,6 +92,12 @@ public class ViewFactory {
             transmuteView = new TransmuteView();
         }
         return transmuteView;
+    }
+    public BuyArtifactView getBuyArtifactView() {
+        if (buyArtifactView == null) {
+            buyArtifactView = new BuyArtifactView();
+        }
+        return buyArtifactView;
     }
     
     public StartView getStartView() {

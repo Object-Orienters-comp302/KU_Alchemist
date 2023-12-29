@@ -17,5 +17,6 @@ public enum Type {
     FORAGERIGHT,
     PAUSE,
     START_LOGIN_SCREEN,
+    HELP,
     
 }

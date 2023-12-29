@@ -4,7 +4,7 @@ import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
 import UI.Components.ColorChangingPanel;
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class PauseView extends JPanel implements Publisher {
     ImagePanel         Background;
     ColorChangingPanel resumeButton;
+    ColorChangingPanel goToHelpScreen;
     private ArrayList<Listener> listeners;
     
     protected PauseView() {
@@ -40,11 +41,28 @@ public class PauseView extends JPanel implements Publisher {
         Background.add(resumeButton);
         resumeButton.setLayout(null);
         
-        JLabel MakePotionLbl = new JLabel("Resume Game");
-        MakePotionLbl.setFont(new Font("Tahoma", Font.BOLD, 20));
-        MakePotionLbl.setHorizontalAlignment(SwingConstants.CENTER);
-        MakePotionLbl.setBounds(0, 0, 200, 200);
-        resumeButton.add(MakePotionLbl);
+        
+        goToHelpScreen = new ColorChangingPanel("#cf9d15", "#FFD700");
+        goToHelpScreen.setBounds(1080, 0, 200, 200);
+        goToHelpScreen.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                publishEvent(Type.HELP);
+            }
+        });
+        Background.add(goToHelpScreen);
+        goToHelpScreen.setLayout(null);
+        
+        JLabel goToHelpScreenLbl = new JLabel("Go to Help");
+        goToHelpScreenLbl.setFont(new Font("Tahoma", Font.BOLD, 20));
+        goToHelpScreenLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        goToHelpScreenLbl.setBounds(0, 0, 200, 200);
+        goToHelpScreen.add(goToHelpScreenLbl);
+        
+        JLabel goToHelpLbl = new JLabel("Resume Game");
+        goToHelpLbl.setFont(new Font("Tahoma", Font.BOLD, 20));
+        goToHelpLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        goToHelpLbl.setBounds(0, 0, 200, 200);
+        resumeButton.add(goToHelpLbl);
         
         
         this.setVisible(true);

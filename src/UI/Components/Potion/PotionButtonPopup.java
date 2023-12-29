@@ -3,7 +3,7 @@ package UI.Components.Potion;
 import Models.Player;
 import Models.Potion;
 import UI.Components.CircleTransparentPanel;
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
@@ -14,110 +14,109 @@ import java.awt.event.MouseEvent;
 public class PotionButtonPopup extends JPanel {
     private int width, height, x, y;
     
-    public PotionButtonPopup(int x, int y, int width, int height, ImagePanel imgPanel, PotionButton ingre) {
+    public PotionButtonPopup(int x, int y, int width, int height, ImagePanel imgPanel, PotionButton potio) {
         this.setBounds(x, y, width, height);
         this.setOpaque(false);
         this.setLayout(null);
         
-        int current = 1;
+        int buttonSizeW = width * 4 / 16;
+        int buttonSizeH = height * 4 / 16;
         
         ///did not work when I put the block in another function
         
-        PotionPopupButton B0 = new PotionPopupButton(width * 4 / 8, height * 4 / 8, width * 8 / 16, height * 8 / 16,
-                                                     AssetLoader.TriangleTable.QUESTION_MARK, imgPanel, ingre, true);
+        PotionPopupButton B0 = new PotionPopupButton(width * 4 / 8, height * 4 / 8, buttonSizeW*3/2, buttonSizeW*3/2,
+                                                     AssetLoader.TriangleTable.QUESTION_MARK, imgPanel, potio, true);
         add(B0);
         
-        if (CheckIfInventory(AssetLoader.Potions.UNKNOWN)) {
-            CircleTransparentPanel T1 = new CircleTransparentPanel((width * 3 / 8) - ((width * 5 / 16) / 2),
-                                                                   (height / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+        if (!CheckIfInventory(AssetLoader.Potions.UNKNOWN)) {
+            CircleTransparentPanel T1 = new CircleTransparentPanel((width * 3 / 8) - (buttonSizeW / 2),
+                                                                   (height*3 / 16) - (buttonSizeH / 2), buttonSizeW, buttonSizeH);
             add(T1);
         }
-        PotionPopupButton B1 = new PotionPopupButton(width * 3 / 8, height / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.UNKNOWN, imgPanel, ingre,
+        PotionPopupButton B1 = new PotionPopupButton(width * 3 / 8, height*3 / 16, buttonSizeW, buttonSizeH,
+                                                     AssetLoader.Potions.UNKNOWN, imgPanel, potio,
                                                      !CheckIfInventory(AssetLoader.Potions.UNKNOWN));
         add(B1);
         
         
-        if (CheckIfInventory(AssetLoader.Potions.BLUE_NEGATIVE)) {
-            CircleTransparentPanel T2 = new CircleTransparentPanel((width / 8) - ((width * 5 / 16) / 2),
-                                                                   (height * 3 / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+        if (!CheckIfInventory(AssetLoader.Potions.BLUE_NEGATIVE)) {
+            CircleTransparentPanel T2 = new CircleTransparentPanel((width*3 / 16) - (buttonSizeW / 2),
+                                                                   (height * 3 / 8) - (buttonSizeH / 2), buttonSizeW,
+                                                                   buttonSizeH);
             add(T2);
         }
-        PotionPopupButton B2 = new PotionPopupButton(width / 8, height * 3 / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.BLUE_NEGATIVE, imgPanel, ingre,
+        PotionPopupButton B2 = new PotionPopupButton(width*3 / 16, height * 3 / 8, buttonSizeW, buttonSizeH,
+                                                     AssetLoader.Potions.BLUE_NEGATIVE, imgPanel, potio,
                                                      !CheckIfInventory(AssetLoader.Potions.BLUE_NEGATIVE));
         add(B2);
         
         
-        if (CheckIfInventory(AssetLoader.Potions.BLUE_POSITIVE)) {
-            CircleTransparentPanel T3 = new CircleTransparentPanel((width / 8) - ((width * 5 / 16) / 2),
-                                                                   (height * 5 / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+        if (!CheckIfInventory(AssetLoader.Potions.BLUE_POSITIVE)) {
+            CircleTransparentPanel T3 = new CircleTransparentPanel((width*3 / 16) - (buttonSizeW / 2),
+                                                                   (height * 5 / 8) - (buttonSizeH / 2), buttonSizeW,
+                                                                   buttonSizeH);
             add(T3);
         }
-        PotionPopupButton B3 = new PotionPopupButton(width / 8, height * 5 / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.BLUE_POSITIVE, imgPanel, ingre,
+        PotionPopupButton B3 = new PotionPopupButton(width*3 / 16, height * 5 / 8, buttonSizeW, buttonSizeH,
+                                                     AssetLoader.Potions.BLUE_POSITIVE, imgPanel, potio,
                                                      !CheckIfInventory(AssetLoader.Potions.BLUE_POSITIVE));
         add(B3);
         
-        if (CheckIfInventory(AssetLoader.Potions.RED_NEGATIVE)) {
-            CircleTransparentPanel T4 = new CircleTransparentPanel((width * 3 / 8) - ((width * 5 / 16) / 2),
-                                                                   (height * 7 / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+        if (!CheckIfInventory(AssetLoader.Potions.RED_NEGATIVE)) {
+            CircleTransparentPanel T4 = new CircleTransparentPanel((width * 3 / 8) - (buttonSizeW / 2),
+                                                                   (height * 13 / 16) - (buttonSizeH / 2), buttonSizeW,
+                                                                   buttonSizeH);
             add(T4);
         }
-        PotionPopupButton B4 = new PotionPopupButton(width * 3 / 8, height * 7 / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.RED_NEGATIVE, imgPanel, ingre,
+        PotionPopupButton B4 = new PotionPopupButton(width * 3 / 8, height * 13 / 16, buttonSizeW, buttonSizeH,
+                                                     AssetLoader.Potions.RED_NEGATIVE, imgPanel, potio,
                                                      !CheckIfInventory(AssetLoader.Potions.RED_NEGATIVE));
         add(B4);
         
         
-        if (CheckIfInventory(AssetLoader.Potions.RED_POSITIVE)) {
-            CircleTransparentPanel T5 = new CircleTransparentPanel((width * 5 / 8) - ((width * 5 / 16) / 2),
-                                                                   (height * 7 / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+        if (!CheckIfInventory(AssetLoader.Potions.RED_POSITIVE)) {
+            CircleTransparentPanel T5 = new CircleTransparentPanel((width * 5 / 8) - (buttonSizeW / 2),
+                                                                   (height * 13 / 16) - (buttonSizeH / 2), buttonSizeW,
+                                                                   buttonSizeH);
             add(T5);
         }
-        PotionPopupButton B5 = new PotionPopupButton(width * 5 / 8, height * 7 / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.RED_POSITIVE, imgPanel, ingre,
+        PotionPopupButton B5 = new PotionPopupButton(width * 5 / 8, height* 13 / 16, buttonSizeW, buttonSizeH,
+                                                     AssetLoader.Potions.RED_POSITIVE, imgPanel, potio,
                                                      !CheckIfInventory(AssetLoader.Potions.RED_POSITIVE));
         add(B5);
         
         
-        if (CheckIfInventory(AssetLoader.Potions.GREEN_NEGATIVE)) {
-            CircleTransparentPanel T6 = new CircleTransparentPanel((width * 7 / 8) - ((width * 5 / 16) / 2),
-                                                                   (height * 5 / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+        if (!CheckIfInventory(AssetLoader.Potions.GREEN_NEGATIVE)) {
+            CircleTransparentPanel T6 = new CircleTransparentPanel((width * 13 / 16) - (buttonSizeW / 2),
+                                                                   (height * 5 / 8) - (buttonSizeH / 2), buttonSizeW,
+                                                                   buttonSizeH);
             add(T6);
         }
-        PotionPopupButton B6 = new PotionPopupButton(width * 7 / 8, height * 5 / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.GREEN_NEGATIVE, imgPanel, ingre,
+        PotionPopupButton B6 = new PotionPopupButton(width * 13 / 16, height * 5 / 8, buttonSizeW, buttonSizeH,
+                                                     AssetLoader.Potions.GREEN_NEGATIVE, imgPanel, potio,
                                                      !CheckIfInventory(AssetLoader.Potions.GREEN_NEGATIVE));
         add(B6);
         
         
-        if (CheckIfInventory(AssetLoader.Potions.GREEN_POSITIVE)) {
-            CircleTransparentPanel T7 = new CircleTransparentPanel((width * 7 / 8) - ((width * 5 / 16) / 2),
-                                                                   (height * 3 / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+        if (!CheckIfInventory(AssetLoader.Potions.GREEN_POSITIVE)) {
+            CircleTransparentPanel T7 = new CircleTransparentPanel((width * 13 / 16) - (buttonSizeW / 2),
+                                                                   (height * 3 / 8) - (buttonSizeH / 2), buttonSizeW,
+                                                                   buttonSizeH);
             add(T7);
         }
-        PotionPopupButton B7 = new PotionPopupButton(width * 7 / 8, height * 3 / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.GREEN_POSITIVE, imgPanel, ingre,
+        PotionPopupButton B7 = new PotionPopupButton(width * 13 / 16, height * 3 / 8, buttonSizeW, buttonSizeH,
+                                                     AssetLoader.Potions.GREEN_POSITIVE, imgPanel, potio,
                                                      !CheckIfInventory(AssetLoader.Potions.GREEN_POSITIVE));
         add(B7);
         
         
-        if (CheckIfInventory(AssetLoader.Potions.NEUTRAL)) {
-            CircleTransparentPanel T8 = new CircleTransparentPanel((width * 5 / 8) - ((width * 5 / 16) / 2),
-                                                                   (height / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+        if (!CheckIfInventory(AssetLoader.Potions.NEUTRAL)) {
+            CircleTransparentPanel T8 = new CircleTransparentPanel((width * 5 / 8) - (buttonSizeW / 2),
+                                                                   (height * 3 / 16) - (buttonSizeH / 2), buttonSizeW, buttonSizeH);
             add(T8);
         }
-        PotionPopupButton B8 = new PotionPopupButton(width * 5 / 8, height / 8, width * 5 / 16, height * 5 / 16,
-                                                     AssetLoader.Potions.NEUTRAL, imgPanel, ingre,
+        PotionPopupButton B8 = new PotionPopupButton(width * 5 / 8, height * 3 / 16, buttonSizeW, buttonSizeH,
+                                                     AssetLoader.Potions.NEUTRAL, imgPanel, potio,
                                                      !CheckIfInventory(AssetLoader.Potions.NEUTRAL));
         add(B8);
         

@@ -1,7 +1,7 @@
 package UI.Components.Publish;
 
 import UI.Components.CircleTransparentPanel;
-import UI.Components.ImagePanel;
+import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
@@ -16,98 +16,98 @@ public class BookButtonPopup extends JPanel {
         this.setBounds(x, y, width, height);
         this.setOpaque(false);
         this.setLayout(null);
-        int[] data = new int[3];
-        int current = 1;
+        
+        int buttonSizeW = width * 4 / 16;
+        int buttonSizeH = height * 4 / 16;
         
         ///did not work when I put the block in another function
         
-        BookPopupButton B0 = new BookPopupButton(width * 4 / 8, height * 4 / 8, width * 8 / 16, height * 8 / 16,
+        BookPopupButton B0 = new BookPopupButton(width * 4 / 8, height * 4 / 8, buttonSizeW*3/2, buttonSizeW*3/2,
                                                  AssetLoader.TriangleTable.QUESTION_MARK, imgPanel, book);
         add(B0);
         
         if (BookPanel.traitUsed.contains(AssetLoader.Book.ALL_POSITIVE)) {
-            CircleTransparentPanel T1 = new CircleTransparentPanel((width * 3 / 8) - ((width * 5 / 16) / 2),
-                                                                   (height / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+            CircleTransparentPanel T1 = new CircleTransparentPanel((width * 3 / 8) - (buttonSizeW / 2),
+                                                                   (height*3 / 16) - (buttonSizeH / 2), buttonSizeW, buttonSizeH);
+            add(T1);
             add(T1);
         }
-        BookPopupButton B1 = new BookPopupButton(width * 3 / 8, height / 8, width * 5 / 16, height * 5 / 16,
+        BookPopupButton B1 = new BookPopupButton(width * 3 / 8, height*3 / 16, buttonSizeW, buttonSizeH,
                                                  AssetLoader.Book.ALL_POSITIVE, imgPanel, book);
         add(B1);
         
         
         if (BookPanel.traitUsed.contains(AssetLoader.Book.ALL_NEGATIVE)) {
-            CircleTransparentPanel T2 = new CircleTransparentPanel((width / 8) - ((width * 5 / 16) / 2),
-                                                                   (height * 3 / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+            CircleTransparentPanel T2 = new CircleTransparentPanel((width*3 / 16) - (buttonSizeW / 2),
+                                                                   (height * 3 / 8) - (buttonSizeH / 2), buttonSizeW,
+                                                                   buttonSizeH);
             add(T2);
         }
-        BookPopupButton B2 = new BookPopupButton(width / 8, height * 3 / 8, width * 5 / 16, height * 5 / 16,
+        BookPopupButton B2 = new BookPopupButton(width*3 / 16, height * 3 / 8, buttonSizeW, buttonSizeH,
                                                  AssetLoader.Book.ALL_NEGATIVE, imgPanel, book);
         add(B2);
         
         
         if (BookPanel.traitUsed.contains(AssetLoader.Book.NEGATIVE_GREEN)) {
-            CircleTransparentPanel T3 = new CircleTransparentPanel((width / 8) - ((width * 5 / 16) / 2),
-                                                                   (height * 5 / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+            CircleTransparentPanel T3 = new CircleTransparentPanel((width*3 / 16) - (buttonSizeW / 2),
+                                                                   (height * 5 / 8) - (buttonSizeH / 2), buttonSizeW,
+                                                                   buttonSizeH);
             add(T3);
         }
-        BookPopupButton B3 = new BookPopupButton(width / 8, height * 5 / 8, width * 5 / 16, height * 5 / 16,
+        BookPopupButton B3 = new BookPopupButton(width*3 / 16, height * 5 / 8, buttonSizeW, buttonSizeH,
                                                  AssetLoader.Book.NEGATIVE_GREEN, imgPanel, book);
         add(B3);
         
         if (BookPanel.traitUsed.contains(AssetLoader.Book.POSITIVE_RED)) {
-            CircleTransparentPanel T4 = new CircleTransparentPanel((width * 3 / 8) - ((width * 5 / 16) / 2),
-                                                                   (height * 7 / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+            CircleTransparentPanel T4 = new CircleTransparentPanel((width * 3 / 8) - (buttonSizeW / 2),
+                                                                   (height * 13 / 16) - (buttonSizeH / 2), buttonSizeW,
+                                                                   buttonSizeH);
             add(T4);
         }
-        BookPopupButton B4 = new BookPopupButton(width * 3 / 8, height * 7 / 8, width * 5 / 16, height * 5 / 16,
+        BookPopupButton B4 = new BookPopupButton(width * 3 / 8, height * 13 / 16, buttonSizeW, buttonSizeH,
                                                  AssetLoader.Book.POSITIVE_RED, imgPanel, book);
         add(B4);
         
         
         if (BookPanel.traitUsed.contains(AssetLoader.Book.NEGATIVE_BLUE)) {
-            CircleTransparentPanel T5 = new CircleTransparentPanel((width * 5 / 8) - ((width * 5 / 16) / 2),
-                                                                   (height * 7 / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+            CircleTransparentPanel T5 = new CircleTransparentPanel((width * 5 / 8) - (buttonSizeW / 2),
+                                                                   (height * 13 / 16) - (buttonSizeH / 2), buttonSizeW,
+                                                                   buttonSizeH);
             add(T5);
         }
-        BookPopupButton B5 = new BookPopupButton(width * 5 / 8, height * 7 / 8, width * 5 / 16, height * 5 / 16,
+        BookPopupButton B5 = new BookPopupButton(width * 5 / 8, height* 13 / 16, buttonSizeW, buttonSizeH,
                                                  AssetLoader.Book.NEGATIVE_BLUE, imgPanel, book);
         add(B5);
         
         
         if (BookPanel.traitUsed.contains(AssetLoader.Book.NEGATIVE_RED)) {
-            CircleTransparentPanel T6 = new CircleTransparentPanel((width * 7 / 8) - ((width * 5 / 16) / 2),
-                                                                   (height * 5 / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+            CircleTransparentPanel T6 = new CircleTransparentPanel((width * 13 / 16) - (buttonSizeW / 2),
+                                                                   (height * 5 / 8) - (buttonSizeH / 2), buttonSizeW,
+                                                                   buttonSizeH);
             add(T6);
         }
-        BookPopupButton B6 = new BookPopupButton(width * 7 / 8, height * 5 / 8, width * 5 / 16, height * 5 / 16,
+        BookPopupButton B6 = new BookPopupButton(width * 13 / 16, height * 5 / 8, buttonSizeW, buttonSizeH,
                                                  AssetLoader.Book.NEGATIVE_RED, imgPanel, book);
         add(B6);
         
         
         if (BookPanel.traitUsed.contains(AssetLoader.Book.POSITIVE_GREEN)) {
-            CircleTransparentPanel T7 = new CircleTransparentPanel((width * 7 / 8) - ((width * 5 / 16) / 2),
-                                                                   (height * 3 / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+            CircleTransparentPanel T7 = new CircleTransparentPanel((width * 13 / 16) - (buttonSizeW / 2),
+                                                                   (height * 3 / 8) - (buttonSizeH / 2), buttonSizeW,
+                                                                   buttonSizeH);
             add(T7);
         }
-        BookPopupButton B7 = new BookPopupButton(width * 7 / 8, height * 3 / 8, width * 5 / 16, height * 5 / 16,
+        BookPopupButton B7 = new BookPopupButton(width * 13 / 16, height * 3 / 8, buttonSizeW, buttonSizeH,
                                                  AssetLoader.Book.POSITIVE_GREEN, imgPanel, book);
         add(B7);
         
         
         if (BookPanel.traitUsed.contains(AssetLoader.Book.POSITIVE_BLUE)) {
-            CircleTransparentPanel T8 = new CircleTransparentPanel((width * 5 / 8) - ((width * 5 / 16) / 2),
-                                                                   (height / 8) - ((height * 5 / 16) / 2),
-                                                                   width * 5 / 16, height * 5 / 16);
+            CircleTransparentPanel T8 = new CircleTransparentPanel((width * 5 / 8) - (buttonSizeW / 2),
+                                                                   (height * 3 / 16) - (buttonSizeH / 2), buttonSizeW, buttonSizeH);
             add(T8);
         }
-        BookPopupButton B8 = new BookPopupButton(width * 5 / 8, height / 8, width * 5 / 16, height * 5 / 16,
+        BookPopupButton B8 = new BookPopupButton(width * 5 / 8, height * 3 / 16, buttonSizeW, buttonSizeH,
                                                  AssetLoader.Book.POSITIVE_BLUE, imgPanel, book);
         add(B8);
         
