@@ -49,6 +49,10 @@ public class GamePage extends JFrame implements Listener {
             cardPanel.add(ViewFactory.getInstance().getPauseView(), Cards.PauseView.getString());
             cardLayout.show(cardPanel, Cards.PauseView.getString());
         }
+        if (type == Domain.Event.Type.START_LOGIN_SCREEN) {
+            cardPanel.add(ViewFactory.getInstance().getLoginView(), Cards.LoginView.getString());
+            cardLayout.show(cardPanel, Cards.LoginView.getString());
+        }
         if (type == Domain.Event.Type.HELP){
             cardPanel.add(ViewFactory.getInstance().getHelpScreenView(), Cards.HelpView.getString());
             cardLayout.show(cardPanel, Cards.HelpView.getString());
@@ -59,7 +63,9 @@ public class GamePage extends JFrame implements Listener {
         LoginView("LoginView"),
         MenuView("MenuView"),
         PauseView("PauseView"),
-        HelpView("HelpView");
+        HelpView("HelpView"),
+        StartView("StartView");
+        
         private final String string;
         
         Cards(String string) {
