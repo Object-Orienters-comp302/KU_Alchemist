@@ -19,6 +19,8 @@ public class IngredientButton extends GifPanel {
     private int                   y;
     private AssetLoader.AssetPath currentIngredient;
     
+    private IngredientButton      pair;
+    
     
     public IngredientButton(int x, int y, int width, int height) {
         super(x,y,width,height,"Gifs/Animations/glowCircularBlue.gif");
@@ -181,4 +183,11 @@ public class IngredientButton extends GifPanel {
     }
     
     
+    public IngredientButton getPair() {
+        return pair;
+    }
+    
+    public void setPair(IngredientButton pair) {
+        this.pair = pair;
+    }
 }

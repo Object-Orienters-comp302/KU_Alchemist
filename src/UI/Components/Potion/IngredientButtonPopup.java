@@ -13,6 +13,8 @@ import java.awt.event.MouseEvent;
 
 public class IngredientButtonPopup extends JPanel {
     private int width, height, x, y;
+    private IngredientButton parentsPair;
+    
     
     public IngredientButtonPopup(int x, int y, int width, int height, ImagePanel imgPanel, IngredientButton ingre) {
         this.setBounds(x, y, width, height);
@@ -26,6 +28,11 @@ public class IngredientButtonPopup extends JPanel {
         
         ///did not work when I put the block in another function
         
+        parentsPair=ingre.getPair();
+        if (parentsPair!=null){
+            System.out.println(parentsPair.getCurrentIngredient());
+        }
+        
         IngredientPopupButton B0 =
                 new IngredientPopupButton(width * 4 / 8, height * 4 / 8, buttonSizeW*3/2, buttonSizeW*3/2,
                                           AssetLoader.TriangleTable.QUESTION_MARK, imgPanel, ingre, true);
@@ -33,7 +40,7 @@ public class IngredientButtonPopup extends JPanel {
         
         
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.FEATHER)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.FEATHER)||this.pairCheck(AssetLoader.IngredientAssets.FEATHER)) {
             CircleTransparentPanel T1 = new CircleTransparentPanel((width * 3 / 8) - (buttonSizeW / 2),
                                                                    (height*3 / 16) - (buttonSizeH / 2), buttonSizeW, buttonSizeH);
             add(T1);
@@ -44,7 +51,7 @@ public class IngredientButtonPopup extends JPanel {
         add(B1);
         
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.FEET)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.FEET)||this.pairCheck(AssetLoader.IngredientAssets.FEET)) {
             CircleTransparentPanel T2 = new CircleTransparentPanel((width*3 / 16) - (buttonSizeW / 2),
                                                                    (height * 3 / 8) - (buttonSizeH / 2), buttonSizeW,
                                                                    buttonSizeH);
@@ -56,7 +63,7 @@ public class IngredientButtonPopup extends JPanel {
         add(B2);
         
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.FLOWER)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.FLOWER)||this.pairCheck(AssetLoader.IngredientAssets.FLOWER)) {
             CircleTransparentPanel T3 = new CircleTransparentPanel((width*3 / 16) - (buttonSizeW / 2),
                                                                    (height * 5 / 8) - (buttonSizeH / 2), buttonSizeW,
                                                                    buttonSizeH);
@@ -67,7 +74,7 @@ public class IngredientButtonPopup extends JPanel {
                                                              !CheckIfInventory(AssetLoader.IngredientAssets.FLOWER));
         add(B3);
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.FROG)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.FROG)||this.pairCheck(AssetLoader.IngredientAssets.FROG)) {
             CircleTransparentPanel T4 = new CircleTransparentPanel((width * 3 / 8) - (buttonSizeW / 2),
                                                                    (height * 13 / 16) - (buttonSizeH / 2), buttonSizeW,
                                                                    buttonSizeH);
@@ -80,7 +87,7 @@ public class IngredientButtonPopup extends JPanel {
         add(B4);
         
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.MANDRAKE)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.MANDRAKE)||this.pairCheck(AssetLoader.IngredientAssets.MANDRAKE)) {
             CircleTransparentPanel T5 = new CircleTransparentPanel((width * 5 / 8) - (buttonSizeW / 2),
                                                                    (height * 13 / 16) - (buttonSizeH / 2), buttonSizeW,
                                                                    buttonSizeH);
@@ -93,7 +100,7 @@ public class IngredientButtonPopup extends JPanel {
         add(B5);
         
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.MUSHROOM)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.MUSHROOM)||this.pairCheck(AssetLoader.IngredientAssets.MUSHROOM)) {
             CircleTransparentPanel T6 = new CircleTransparentPanel((width * 13 / 16) - (buttonSizeW / 2),
                                                                    (height * 5 / 8) - (buttonSizeH / 2), buttonSizeW,
                                                                    buttonSizeH);
@@ -106,7 +113,7 @@ public class IngredientButtonPopup extends JPanel {
         add(B6);
         
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.WEED)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.WEED)||this.pairCheck(AssetLoader.IngredientAssets.WEED)) {
             CircleTransparentPanel T7 = new CircleTransparentPanel((width * 13 / 16) - (buttonSizeW / 2),
                                                                    (height * 3 / 8) - (buttonSizeH / 2), buttonSizeW,
                                                                    buttonSizeH);
@@ -119,7 +126,7 @@ public class IngredientButtonPopup extends JPanel {
         add(B7);
         
         
-        if (CheckIfInventory(AssetLoader.IngredientAssets.SCORPION)) {
+        if (CheckIfInventory(AssetLoader.IngredientAssets.SCORPION)||this.pairCheck(AssetLoader.IngredientAssets.SCORPION)) {
             CircleTransparentPanel T8 = new CircleTransparentPanel((width * 5 / 8) - (buttonSizeW / 2),
                                                                    (height * 3 / 16) - (buttonSizeH / 2), buttonSizeW, buttonSizeH);
             add(T8);
@@ -171,6 +178,13 @@ public class IngredientButtonPopup extends JPanel {
         return !Player.getCurrPlayer().getInventory().getIngredients().entrySet().stream()
                 .anyMatch(entry -> entry.getKey().getType() == ingredientType && entry.getValue() > 0);
         
+    }
+    
+    public boolean pairCheck(AssetLoader.AssetPath path){
+        if(this.parentsPair!=null && this.parentsPair.getCurrentIngredient()==path){
+            return true;
+        }
+        return false;
     }
     
     

@@ -105,6 +105,8 @@ public class PotionBrewingView extends JPanel {
         this.add(Background);
         Background.setLayout(null);
         
+        IngredientB1.setPair(IngredientB2);
+        IngredientB2.setPair(IngredientB1);
         
         Background.add(IngredientB2);
         Background.add(IngredientB1);
