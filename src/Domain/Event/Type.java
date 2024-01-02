@@ -16,6 +16,8 @@ public enum Type {
     REPUTATION,
     FORAGERIGHT,
     PAUSE,
-    HELP
+    START_LOGIN_SCREEN,
+    HELP,
+    START_START_VIEW,
     
 }

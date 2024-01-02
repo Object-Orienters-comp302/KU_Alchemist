@@ -6,7 +6,6 @@ import Models.Ingredient;
 import Models.Player;
 import UI.Components.ImagePanels.GifPanel;
 import UI.Components.ImagePanels.ImagePanel;
-import UI.Components.Potion.PotionButton;
 import Utils.AssetLoader;
 
 import javax.swing.*;
@@ -15,10 +14,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ForageGroundsView extends JPanel {
-	
-	
-    Boolean    showsActiveResult=false;
-    GifPanel circleGif;
+    
+    
+    Boolean    showsActiveResult = false;
+    GifPanel   circleGif;
     ImagePanel ingreImg;
     
     ImagePanel Background;
@@ -38,13 +37,11 @@ public class ForageGroundsView extends JPanel {
     ImagePanel BG5;
     ImagePanel BG5_Text;
     
-    int chosenbg=1;
+    int chosenbg = 1;
     private ImagePanel SwitchButton_Forage;
     private ImagePanel Forage_Text;
     private ImagePanel SwitchButton_Transmutate;
     private ImagePanel Transmutate_Text;
-    
-   
     
     
     public ForageGroundsView() {
@@ -57,33 +54,32 @@ public class ForageGroundsView extends JPanel {
         SetupObjects();
         SetupListeners();
         
-
         
     }
     
     
     private void CreateObjects() {
-    	Card = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
-    	Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.BACKGROUND));
-    	textField = new JTextField();
-
-    	ButtonPanel = new JPanel();
-    	BG1 = new ImagePanel("Images/start/frameGold.png");
-    	BG1_Text = new ImagePanel("Images/start/goldInt1.png");
-    	BG2 = new ImagePanel("Images/start/frameCopper.png");
-    	BG2_Text = new ImagePanel("Images/start/goldInt2.png");
-    	BG3 = new ImagePanel("Images/start/frameCopper.png");
-    	BG3_Text = new ImagePanel("Images/start/goldInt3.png");
-    	BG4 = new ImagePanel("Images/start/frameCopper.png");
-    	BG4_Text = new ImagePanel("Images/start/goldInt4.png");
-    	BG5 = new ImagePanel("Images/start/frameCopper.png");
-    	BG5_Text = new ImagePanel("Images/start/goldInt5.png");
-    	
+        Card       = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
+        Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.BACKGROUND));
+        textField  = new JTextField();
+        
+        ButtonPanel = new JPanel();
+        BG1         = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
+        BG1_Text    = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.GOLD_1));
+        BG2         = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
+        BG2_Text    = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.GOLD_2));
+        BG3         = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
+        BG3_Text    = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.GOLD_3));
+        BG4         = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
+        BG4_Text    = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.GOLD_4));
+        BG5         = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
+        BG5_Text    = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.GOLD_5));
+        
     }
     
     private void SetupObjects() {
-    	
-    	
+        
+        
         Background.setBounds(0, 0, 1000, 500);
         this.add(Background);
         Background.setLayout(null);
@@ -148,117 +144,116 @@ public class ForageGroundsView extends JPanel {
         BG5_Text.setBounds(5, 5, 40, 40);
         BG5.add(BG5_Text);
         
-        SwitchButton_Forage = new ImagePanel("Images/start/frameGold.png");
+        SwitchButton_Forage = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
         SwitchButton_Forage.setLayout(null);
         SwitchButton_Forage.setBounds(290, 380, 200, 100);
         Background.add(SwitchButton_Forage);
         
-        Forage_Text = new ImagePanel("Images/buttonText/forageText.png");
+        Forage_Text = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.FORAGE));
         Forage_Text.setLayout(null);
         Forage_Text.setBounds(30, 25, 145, 50);
         SwitchButton_Forage.add(Forage_Text);
         
-        SwitchButton_Transmutate = new ImagePanel("Images/start/frameCopper2.png");
+        SwitchButton_Transmutate = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
         SwitchButton_Transmutate.setLayout(null);
         SwitchButton_Transmutate.setBounds(510, 380, 200, 100);
         Background.add(SwitchButton_Transmutate);
         
-        Transmutate_Text = new ImagePanel("Images/buttonText/transmutateText.png");
+        Transmutate_Text = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.TRANSMUTE));
         Transmutate_Text.setLayout(null);
         Transmutate_Text.setBounds(25, 20, 150, 60);
         SwitchButton_Transmutate.add(Transmutate_Text);
-
-
-    	
+        
+        
     }
     
     private void SetupListeners() {
-    	
-    	 Card.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-                 Ingredient.IngredientTypes ingredientType =
-                         CardClicked(Player.getCurrPlayer(), GameController.getInstance().getRoundOneController());
-                 if (ingredientType != null) {
-                     textField.setText(String.format(Texts.Success.getText(), ingredientType.getTypeString()));
-                     RunForageAnimation(ingredientType);
-                 } else {
-                     textField.setText(Texts.Fail.getText());
-                 }
-                 
-             }
-         });
-    	 
-    	 SwitchButton_Transmutate.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-                 MenuView menu= GameController.getInstance().getMenuController().getMenuView();
-                 menu.cardLay.show(menu.displayerPanel,"Transmute");
-                 
-             }
-         });
-    	
-    	 
-    	 BG1.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-                 if (chosenbg != 1) {
-                     ChangeChosen(chosenbg);
-                     BG1.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
-                     chosenbg = 1	;
-                     ChangeBackground(chosenbg);
-                 }
-             }
-         });
-         
-         BG2.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-                 if (chosenbg != 2) {
-                     ChangeChosen(chosenbg);
-                     BG2.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
-                     chosenbg = 2;
-                     ChangeBackground(chosenbg);
-                 }
-             }
-         });
-         
-         BG3.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-                 if (chosenbg != 3) {
-                     ChangeChosen(chosenbg);
-                     BG3.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
-                     chosenbg = 3;
-                     ChangeBackground(chosenbg);
-                 }
-             }
-         });
-         
-         BG4.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-                 if (chosenbg != 4) {
-                     ChangeChosen(chosenbg);
-                     BG4.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
-                     chosenbg = 4;
-                     ChangeBackground(chosenbg);
-                 }
-             }
-         });
-         
-         BG5.addMouseListener(new MouseAdapter() {
-             @Override
-             public void mouseClicked(MouseEvent e) {
-                 if (chosenbg != 5) {
-                     ChangeChosen(chosenbg);
-                     BG5.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
-                     chosenbg = 5;
-                     ChangeBackground(chosenbg);
-                 }
-             }
-         });
-    	
+        
+        Card.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Ingredient.IngredientTypes ingredientType =
+                        CardClicked(Player.getCurrPlayer(), GameController.getInstance().getRoundOneController());
+                if (ingredientType != null) {
+                    textField.setText(String.format(Texts.Success.getText(), ingredientType.getTypeString()));
+                    RunForageAnimation(ingredientType);
+                } else {
+                    textField.setText(Texts.Fail.getText());
+                }
+                
+            }
+        });
+        
+        SwitchButton_Transmutate.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                MenuView menu = GameController.getInstance().getMenuController().getMenuView();
+                menu.cardLay.show(menu.displayerPanel, "Transmute");
+                
+            }
+        });
+        
+        
+        BG1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (chosenbg != 1) {
+                    ChangeChosen(chosenbg);
+                    BG1.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
+                    chosenbg = 1;
+                    ChangeBackground(chosenbg);
+                }
+            }
+        });
+        
+        BG2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (chosenbg != 2) {
+                    ChangeChosen(chosenbg);
+                    BG2.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
+                    chosenbg = 2;
+                    ChangeBackground(chosenbg);
+                }
+            }
+        });
+        
+        BG3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (chosenbg != 3) {
+                    ChangeChosen(chosenbg);
+                    BG3.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
+                    chosenbg = 3;
+                    ChangeBackground(chosenbg);
+                }
+            }
+        });
+        
+        BG4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (chosenbg != 4) {
+                    ChangeChosen(chosenbg);
+                    BG4.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
+                    chosenbg = 4;
+                    ChangeBackground(chosenbg);
+                }
+            }
+        });
+        
+        BG5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (chosenbg != 5) {
+                    ChangeChosen(chosenbg);
+                    BG5.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_GOLD));
+                    chosenbg = 5;
+                    ChangeBackground(chosenbg);
+                }
+            }
+        });
+        
     }
     
     private Ingredient.IngredientTypes CardClicked(Player player,
@@ -268,6 +263,85 @@ public class ForageGroundsView extends JPanel {
             return ingredient.getType();
         } else {
             return null;
+        }
+    }
+    
+    public void RunForageAnimation(Ingredient.IngredientTypes ingre) {
+        GameController.getInstance().getMenuController().getMenuView().Blockade();
+        GifPanel gif = new GifPanel(0, 0, 1000, 500, AssetLoader.getAssetPath(AssetLoader.Gifs.LEAVES));
+        Background.add(gif);
+        Background.setComponentZOrder(gif, 0);
+        Background.repaint();
+        new Thread(() -> {
+            try {
+                Thread.sleep(1530);
+                
+                SwingUtilities.invokeLater(() -> {
+                    Background.remove(gif);
+                    
+                    if (!showsActiveResult) {
+                        showsActiveResult = true;
+                        circleGif         = new GifPanel(26, 75, 100, 100, AssetLoader.getAssetPath(AssetLoader.Gifs.CIRCLE_BLUE));
+                        circleGif.setLayout(null);
+                        Card.add(circleGif);
+                        
+                        ingreImg = new ImagePanel(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
+                        ingreImg.setBounds(20, 20, 60, 60);
+                        circleGif.add(ingreImg);
+                        Background.repaint();
+                    } else {
+                        ingreImg.changeImage(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
+                    }
+                    
+                    
+                    GameController.getInstance().getMenuController().getMenuView().LiftBlockade();
+                    
+                });
+                
+                
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+    
+    private void ChangeChosen(int i) {
+        switch (i) {
+            case 1:
+                BG1.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
+                break;
+            case 2:
+                BG2.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
+                break;
+            case 3:
+                BG3.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
+                break;
+            case 4:
+                BG4.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
+                break;
+            case 5:
+                BG5.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
+                break;
+        }
+    }
+    
+    private void ChangeBackground(int i) {
+        switch (i) {
+            case 1:
+                Background.changeImage(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.BACKGROUND1));
+                break;
+            case 2:
+                Background.changeImage(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.BACKGROUND2));
+                break;
+            case 3:
+                Background.changeImage(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.BACKGROUND3));
+                break;
+            case 4:
+                Background.changeImage(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.BACKGROUND4));
+                break;
+            case 5:
+                Background.changeImage(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.BACKGROUND5));
+                break;
         }
     }
     
@@ -285,90 +359,5 @@ public class ForageGroundsView extends JPanel {
         public String getText() {
             return Text;
         }
-    }
-    
-    private void ChangeChosen(int i) {
-    	switch (i) {
-        case 1:
-            BG1.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
-            break;
-        case 2:
-            BG2.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
-            break;
-        case 3:
-            BG3.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
-            break;
-        case 4:
-            BG4.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
-            break;
-        case 5:
-            BG5.changeImage(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_COPPER));
-            break;
-    }
-    }
-    
-    private void ChangeBackground(int i) {
-    	switch (i) {
-        case 1:
-        	Background.changeImage(AssetLoader.getAssetPath(
-        			AssetLoader.ForageGroundsAssets.BACKGROUND1));
-            break;
-        case 2:
-        	Background.changeImage(AssetLoader.getAssetPath(
-        			AssetLoader.ForageGroundsAssets.BACKGROUND2));
-            break;
-        case 3:
-        	Background.changeImage(AssetLoader.getAssetPath(
-        			AssetLoader.ForageGroundsAssets.BACKGROUND3));
-            break;
-        case 4:
-        	Background.changeImage(AssetLoader.getAssetPath(
-        			AssetLoader.ForageGroundsAssets.BACKGROUND4));
-            break;
-        case 5:
-        	Background.changeImage(AssetLoader.getAssetPath(
-        			AssetLoader.ForageGroundsAssets.BACKGROUND5));
-            break;
-    }
-    }
-    
-    public void RunForageAnimation(Ingredient.IngredientTypes ingre){
-        GameController.getInstance().getMenuController().getMenuView().Blockade();
-        GifPanel gif = new GifPanel(0,0,1000,500,"Gifs/Animations/leaves.gif");
-        Background.add(gif);
-        Background.setComponentZOrder(gif,0);
-        Background.repaint();
-        new Thread(() -> {
-            try {
-                Thread.sleep(1530);
-                
-                SwingUtilities.invokeLater(() -> {
-                    Background.remove(gif);
-                    
-                    if(!showsActiveResult){
-                        showsActiveResult=true;
-                        circleGif = new GifPanel(26,75,100,100,"Gifs/Animations/glowCircularBlue.gif");
-                        circleGif.setLayout(null);
-                        Card.add(circleGif);
-                        
-                        ingreImg = new ImagePanel(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
-                        ingreImg.setBounds(20,20,60,60);
-                        circleGif.add(ingreImg);
-                        Background.repaint();
-                    }
-                    else{
-                        ingreImg.changeImage(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
-                    }
-                    
-                    
-                    GameController.getInstance().getMenuController().getMenuView().LiftBlockade();
-                    
-                });
-                
-                
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
     }
 }

@@ -196,13 +196,15 @@ public class AssetLoader {
     
     public enum PotionBrewingViewAssets implements AssetPath {
         BACKGROUND("Images/PotionBrewingViewAssets/PotionBrewingArea.png"),
-    	BACKGROUND1("Images/PotionBrewingViewAssets/brewBackground1.png"),
-    	BACKGROUND2("Images/PotionBrewingViewAssets/brewBackground2.png"),
-    	BACKGROUND3("Images/PotionBrewingViewAssets/brewBackground3.png"),
-    	BACKGROUND4("Images/PotionBrewingViewAssets/brewBackground4.png"),
-    	BACKGROUND5("Images/PotionBrewingViewAssets/brewBackground5.png"),
+        new-gui-implementation-and-improvements-stuff
+    	  BACKGROUND1("Images/PotionBrewingViewAssets/brewBackground1.png"),
+    	  BACKGROUND2("Images/PotionBrewingViewAssets/brewBackground2.png"),
+    	  BACKGROUND3("Images/PotionBrewingViewAssets/brewBackground3.png"),
+    	  BACKGROUND4("Images/PotionBrewingViewAssets/brewBackground4.png"),
+    	  BACKGROUND5("Images/PotionBrewingViewAssets/brewBackground5.png"),
         CAULDRON("Images/PotionBrewingViewAssets/Cauldron.png")
     	;
+
         
         private final String path;
         
@@ -301,6 +303,9 @@ public class AssetLoader {
         START_TEXT("Images/start/startText.png"),
         FRAME_GOLD("Images/start/frameGold.png"),
         FRAME_COPPER("Images/start/frameCopper.png"),
+        FRAME_WHITE("Images/start/frameWhite.png"),
+        FRAME_YELLOW("Images/start/frameYellow.png"),
+        GOLD_1("Images/start/goldInt1.png"),
         GOLD_2("Images/start/goldInt2.png"),
         GOLD_3("Images/start/goldInt3.png"),
         GOLD_4("Images/start/goldInt4.png"),
@@ -310,6 +315,24 @@ public class AssetLoader {
         
         Start(String Path) {
             this.path = Path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
+    public enum Gifs implements AssetPath {
+        CIRCLE_BLUE("Gifs/Animations/glowCircularBlue.gif"),
+        LEAVES("Gifs/Animations/leaves.gif"),
+        HOURGLASS("Gifs/Loading/hourglass.gif"),
+        POTION("Gifs/Loading/loadingPotion.gif");
+        
+        private final String path;
+        
+        Gifs(String path) {
+            this.path = path;
         }
         
         @Override
