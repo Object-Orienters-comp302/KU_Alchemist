@@ -200,7 +200,8 @@ public class AssetLoader {
     	BACKGROUND2("Images/PotionBrewingViewAssets/brewBackground2.png"),
     	BACKGROUND3("Images/PotionBrewingViewAssets/brewBackground3.png"),
     	BACKGROUND4("Images/PotionBrewingViewAssets/brewBackground4.png"),
-    	BACKGROUND5("Images/PotionBrewingViewAssets/brewBackground5.png")
+    	BACKGROUND5("Images/PotionBrewingViewAssets/brewBackground5.png"),
+        CAULDRON("Images/PotionBrewingViewAssets/Cauldron.png")
     	;
         
         private final String path;

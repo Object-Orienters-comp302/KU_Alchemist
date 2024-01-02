@@ -140,5 +140,8 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
             this.revalidate();
             this.repaint();
         }
+        if (type==Type.POTION){
+            potionsPanel.RemoveShadow(playerInstance.getInventory().getPotions());
+        }
     }
 }
