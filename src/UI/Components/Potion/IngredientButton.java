@@ -15,9 +15,10 @@ public class IngredientButton extends GifPanel {
     ImagePanel img;
     boolean    transparent = false;
     private int                   diameter;
-    private int                   x;
-    private int                   y;
+    private int                   x,y,width,height;
     private AssetLoader.AssetPath currentIngredient;
+    
+    private IngredientButton      pair;
     
     
     public IngredientButton(int x, int y, int width, int height) {
@@ -181,4 +182,11 @@ public class IngredientButton extends GifPanel {
     }
     
     
+    public IngredientButton getPair() {
+        return pair;
+    }
+    
+    public void setPair(IngredientButton pair) {
+        this.pair = pair;
+    }
 }

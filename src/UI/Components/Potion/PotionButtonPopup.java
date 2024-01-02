@@ -157,15 +157,15 @@ public class PotionButtonPopup extends JPanel {
     }
     
     public static boolean CheckIfInventory(AssetLoader.AssetPath toCheck) {
-        Potion.Identity potionIdentity = switch (toCheck) {
-            case AssetLoader.Potions.BLUE_NEGATIVE -> Potion.Identity.BLUENEGATIVE;
-            case AssetLoader.Potions.BLUE_POSITIVE -> Potion.Identity.BLUEPOSITIVE;
-            case AssetLoader.Potions.RED_NEGATIVE -> Potion.Identity.REDNEGATIVE;
-            case AssetLoader.Potions.RED_POSITIVE -> Potion.Identity.REDPOSITIVE;
-            case AssetLoader.Potions.GREEN_NEGATIVE -> Potion.Identity.GREENNEGATIVE;
-            case AssetLoader.Potions.GREEN_POSITIVE -> Potion.Identity.GREENPOSITIVE;
-            case AssetLoader.Potions.NEUTRAL -> Potion.Identity.NETURAL;
-            case AssetLoader.Potions.UNKNOWN -> Potion.Identity.UNKNOWN;
+        Potion.IdentityTypes potionIdentity = switch (toCheck) {
+            case AssetLoader.Potions.BLUE_NEGATIVE -> Potion.IdentityTypes.BLUENEGATIVE;
+            case AssetLoader.Potions.BLUE_POSITIVE -> Potion.IdentityTypes.BLUEPOSITIVE;
+            case AssetLoader.Potions.RED_NEGATIVE -> Potion.IdentityTypes.REDNEGATIVE;
+            case AssetLoader.Potions.RED_POSITIVE -> Potion.IdentityTypes.REDPOSITIVE;
+            case AssetLoader.Potions.GREEN_NEGATIVE -> Potion.IdentityTypes.GREENNEGATIVE;
+            case AssetLoader.Potions.GREEN_POSITIVE -> Potion.IdentityTypes.GREENPOSITIVE;
+            case AssetLoader.Potions.NEUTRAL -> Potion.IdentityTypes.NETURAL;
+            case AssetLoader.Potions.UNKNOWN -> Potion.IdentityTypes.UNKNOWN;
             default -> throw new IllegalStateException("Unexpected value: " + toCheck);
         };
         

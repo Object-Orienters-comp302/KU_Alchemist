@@ -1,11 +1,13 @@
 package Models;
 
+import Utils.AssetLoader;
+
 import java.util.ArrayList;
 
 public class Potion {//creating function is in the GameController for now
     final Colors Color;
-    final Signs  Sign;
-    final Identity Identity;
+    final        Signs    Sign;
+    final IdentityTypes Identity;
     
     public Potion(Colors color, Signs sign) {
         Color     = color;
@@ -21,7 +23,7 @@ public class Potion {//creating function is in the GameController for now
         return Sign;
     }
     
-    public Identity getIdentity() {
+    public IdentityTypes getIdentity() {
     	return Identity;
     }
     
@@ -38,7 +40,7 @@ public class Potion {//creating function is in the GameController for now
         Red
     }
     
-    public enum Identity{
+    public enum IdentityTypes{
     	BLUENEGATIVE,
     	BLUEPOSITIVE,
     	REDNEGATIVE,
@@ -49,7 +51,7 @@ public class Potion {//creating function is in the GameController for now
         UNKNOWN
     }
     
-    private Identity Identify(Signs sign, Colors color) {
+    private IdentityTypes Identify(Signs sign, Colors color) {
     	switch (color) {
         case Colorless:
             return Identity.UNKNOWN;
@@ -84,7 +86,7 @@ public class Potion {//creating function is in the GameController for now
     return Identity.UNKNOWN;
     	
     }
-    public static Potion deIdentify(Identity identity){
+    public static Potion deIdentify(IdentityTypes identity){
         switch (identity){
             case NETURAL:
                 return new Potion(Colors.Colorless, Signs.Neutral);
@@ -106,5 +108,32 @@ public class Potion {//creating function is in the GameController for now
         
         return new Potion(Colors.Colorless, Signs.Neutral);
         
+    }
+    public static Potion.IdentityTypes getIdentityFromPath(AssetLoader.AssetPath path) {
+        return switch (path) {
+            case AssetLoader.Potions.RED_POSITIVE -> Potion.IdentityTypes.REDPOSITIVE;
+            case AssetLoader.Potions.RED_NEGATIVE -> Potion.IdentityTypes.REDNEGATIVE;
+            case AssetLoader.Potions.GREEN_POSITIVE -> Potion.IdentityTypes.GREENPOSITIVE;
+            case AssetLoader.Potions.GREEN_NEGATIVE -> Potion.IdentityTypes.GREENNEGATIVE;
+            case AssetLoader.Potions.BLUE_POSITIVE -> Potion.IdentityTypes.BLUEPOSITIVE;
+            case AssetLoader.Potions.BLUE_NEGATIVE -> Potion.IdentityTypes.BLUENEGATIVE;
+            case AssetLoader.Potions.NEUTRAL -> Potion.IdentityTypes.NETURAL;
+            case AssetLoader.Potions.UNKNOWN -> Potion.IdentityTypes.UNKNOWN;
+            default -> throw new IllegalStateException("Unexpected value: " + path);
+        };
+    }
+    
+    public static AssetLoader.AssetPath getPathFromIdentity(Potion.IdentityTypes type) {
+        return switch (type) {
+            case  Potion.IdentityTypes.REDPOSITIVE -> AssetLoader.Potions.RED_POSITIVE;
+            case  Potion.IdentityTypes.REDNEGATIVE -> AssetLoader.Potions.RED_NEGATIVE ;
+            case  Potion.IdentityTypes.GREENPOSITIVE ->AssetLoader.Potions.GREEN_POSITIVE ;
+            case  Potion.IdentityTypes.GREENNEGATIVE -> AssetLoader.Potions.GREEN_NEGATIVE ;
+            case  Potion.IdentityTypes.BLUEPOSITIVE -> AssetLoader.Potions.BLUE_POSITIVE ;
+            case  Potion.IdentityTypes.BLUENEGATIVE -> AssetLoader.Potions.BLUE_NEGATIVE ;
+            case  Potion.IdentityTypes.NETURAL -> AssetLoader.Potions.NEUTRAL ;
+            case  Potion.IdentityTypes.UNKNOWN -> AssetLoader.Potions.UNKNOWN ;
+            default -> throw new IllegalStateException("Unexpected type: " + type);
+        };
     }
 }

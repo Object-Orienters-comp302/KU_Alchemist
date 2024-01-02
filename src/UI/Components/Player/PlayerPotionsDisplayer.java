@@ -1,11 +1,13 @@
 package UI.Components.Player;
 
 import java.awt.Color;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import Models.Potion;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.View.MenuView;
 import UI.View.ViewFactory;
@@ -46,7 +48,6 @@ public class PlayerPotionsDisplayer extends JPanel {
 	        setBounds(0, 0, 125, 40);
 	        CreateObjects();
 	        SetupObjects();
-	        Shadow();
 	    }
 
 	    private void CreateObjects() {
@@ -100,21 +101,17 @@ public class PlayerPotionsDisplayer extends JPanel {
 
 	        shadow.setBounds(0, 0, 15, 30);
 	        shadow.setBackground(PlayerPotionsDisplayer.shadow);
-	        shadow.setOpaque(false);
 	        container.add(shadow);
 	        container.setComponentZOrder(shadow, 0);
 	    }
 
-	    public void Shadow() {  //TODO: add checks
+	    public void RemoveShadow(HashMap<Potion, Integer> map) {  //TODO: add checks
 	        
-	        applyShadow(shadow1);
-	        applyShadow(shadow2);
-	        applyShadow(shadow3);
-	        applyShadow(shadow4);
-	        applyShadow(shadow5);
-	        applyShadow(shadow6);
-	        applyShadow(shadow7);
-	        applyShadow(shadow8);
+	        map.forEach((key, value) -> {
+				if (value>0){
+					getShadow(key.getIdentity()).setOpaque(false);
+				}
+			});
 	    }
 
 	    private void applyShadow(JPanel shadow) {
@@ -124,6 +121,20 @@ public class PlayerPotionsDisplayer extends JPanel {
 	            shadow.setOpaque(true);
 	        }
 	    }
+	public JPanel getShadow(Potion.IdentityTypes type) {
+		return switch (type) {
+			case  Potion.IdentityTypes.REDPOSITIVE -> shadow1;
+			case  Potion.IdentityTypes.REDNEGATIVE -> shadow4;
+			case  Potion.IdentityTypes.GREENPOSITIVE ->shadow2;
+			case  Potion.IdentityTypes.GREENNEGATIVE -> shadow5;
+			case  Potion.IdentityTypes.BLUEPOSITIVE -> shadow3;
+			case  Potion.IdentityTypes.BLUENEGATIVE -> shadow6;
+			case  Potion.IdentityTypes.NETURAL -> shadow7;
+			case  Potion.IdentityTypes.UNKNOWN -> shadow8;
+			default -> throw new IllegalStateException("Unexpected type: ");
+		};
+	}
+		
 
    
 

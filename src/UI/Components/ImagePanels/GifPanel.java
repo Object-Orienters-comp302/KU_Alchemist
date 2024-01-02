@@ -49,6 +49,21 @@ public class GifPanel extends JPanel {
         }
     }
     
+    public void ChangeLocationBy(int x,int y){
+        this.x+=x;
+        this.y+=y;
+        this.setBounds(this.x,this.y,width,height);
+        //this.getParent().repaint();
+    }
+    
+    public void ChangeLocationTo(int x,int y){
+        this.x=x;
+        this.y=y;
+        this.setBounds(this.x,this.y,width,height);
+        //this.getParent().repaint();
+        
+    }
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("GifPanel Test");
