@@ -196,7 +196,7 @@ public class AssetLoader {
     
     public enum PotionBrewingViewAssets implements AssetPath {
         BACKGROUND("Images/PotionBrewingViewAssets/PotionBrewingArea.png"),
-        new-gui-implementation-and-improvements-stuff
+        
     	  BACKGROUND1("Images/PotionBrewingViewAssets/brewBackground1.png"),
     	  BACKGROUND2("Images/PotionBrewingViewAssets/brewBackground2.png"),
     	  BACKGROUND3("Images/PotionBrewingViewAssets/brewBackground3.png"),
