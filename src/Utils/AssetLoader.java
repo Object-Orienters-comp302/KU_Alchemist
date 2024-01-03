@@ -202,7 +202,7 @@ public class AssetLoader {
     	  BACKGROUND3("Images/PotionBrewingViewAssets/brewBackground3.png"),
     	  BACKGROUND4("Images/PotionBrewingViewAssets/brewBackground4.png"),
     	  BACKGROUND5("Images/PotionBrewingViewAssets/brewBackground5.png"),
-        CAULDRON("Images/PotionBrewingViewAssets/Cauldron.png")
+        CAULDRON("Images/PotionBrewingViewAssets/cauldron.png")
     	;
 
         
