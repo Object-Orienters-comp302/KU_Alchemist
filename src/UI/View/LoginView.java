@@ -6,6 +6,7 @@ import Domain.Event.Type;
 import Domain.GameController;
 import Domain.LoginController;
 import Models.Token;
+import Sound.DJ;
 import UI.Components.ColorChangingPanel;
 import UI.Components.CutRoundedPanel;
 import UI.Components.ImagePanels.GifPanel;
@@ -64,6 +65,8 @@ public class LoginView extends JPanel implements Publisher {
         new Token("yellow", AssetLoader.getAssetPath(AssetLoader.Tokens.YELLOW),
                   AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
         this.Listeners = new ArrayList<>();
+        
+        
         
         setPreferredSize(new Dimension(1280, 720));
         CreateObjects();

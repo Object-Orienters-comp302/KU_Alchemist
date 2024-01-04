@@ -13,6 +13,7 @@ import UI.Components.ImagePanels.ImageChangingPanel;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.Player.PlayerDisplayer;
 import UI.Components.Publish.BooksDisplayer;
+import UI.Components.Sound.SoundButton;
 import Utils.AssetLoader;
 import Utils.GUtil;
 import Utils.KawaseBlur;
@@ -62,6 +63,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
     private JPanel RoundCounterPanel;
     private JLabel roundLabel;
     
+    SoundButton soundSettings;
     
     private MenuController      controller;
     private ArrayList<Listener> listeners;
@@ -151,6 +153,9 @@ public class MenuView extends JPanel implements Publisher,Listener {
         
         pause.setBounds(1200, 5, 80, 80);
         topPanel.add(pause);
+        
+        soundSettings= new SoundButton(40,40,40);
+        basePanel.add(soundSettings);
         
         
         displayerPanel.setBounds(5, 90, 1000, 500);
@@ -346,7 +351,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
             PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
             
             
-            displayer.setBounds((i * 265 + 40), 5, 260, 80);
+            displayer.setBounds((i * 265 + 120), 5, 260, 80);
             topPanel.add(displayer);
         }
         

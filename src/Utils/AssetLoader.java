@@ -202,7 +202,7 @@ public class AssetLoader {
     	  BACKGROUND3("Images/PotionBrewingViewAssets/brewBackground3.png"),
     	  BACKGROUND4("Images/PotionBrewingViewAssets/brewBackground4.png"),
     	  BACKGROUND5("Images/PotionBrewingViewAssets/brewBackground5.png"),
-        CAULDRON("Images/PotionBrewingViewAssets/Cauldron.png")
+        CAULDRON("Images/PotionBrewingViewAssets/cauldron.png")
     	;
 
         
@@ -332,6 +332,30 @@ public class AssetLoader {
         private final String path;
         
         Gifs(String path) {
+            this.path = path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
+    public enum Sound implements AssetPath {
+        CONTINUEGOLD("Images/sound/continueGold.png"),
+        CONTINUEGREEN("Images/sound/continueGold.png"),
+        PAUSEGOLD("Images/sound/pauseGold.png"),
+        PAUSEGREEN("Images/sound/pauseGreen.png"),
+        NOTEGOLD("Images/sound/noteGold.png"),
+        NOTEGREEN("Images/sound/noteGreen.png"),
+        MINUS("Images/sound/minus.png"),
+        PLUS("Images/sound/plus.png"),
+        NOTEANTIGOLD("Images/sound/noteAntiGold.png")
+        ;
+        
+        private final String path;
+        
+        Sound(String path) {
             this.path = path;
         }
         

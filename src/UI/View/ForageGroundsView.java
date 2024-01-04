@@ -4,6 +4,7 @@ import Domain.GameController;
 import Domain.RoundOneController;
 import Models.Ingredient;
 import Models.Player;
+import Sound.DJ;
 import UI.Components.ImagePanels.GifPanel;
 import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
@@ -176,7 +177,8 @@ public class ForageGroundsView extends JPanel {
                         CardClicked(Player.getCurrPlayer(), GameController.getInstance().getRoundOneController());
                 if (ingredientType != null) {
                     textField.setText(String.format(Texts.Success.getText(), ingredientType.getTypeString()));
-                    RunForageAnimation(ingredientType);
+                    SwingUtilities.invokeLater(() -> RunForageAnimation(ingredientType));
+                    //RunForageAnimation(ingredientType);
                 } else {
                     textField.setText(Texts.Fail.getText());
                 }
@@ -268,41 +270,36 @@ public class ForageGroundsView extends JPanel {
     
     public void RunForageAnimation(Ingredient.IngredientTypes ingre) {
         GameController.getInstance().getMenuController().getMenuView().Blockade();
+        DJ dj = DJ.getDJ();
+        dj.setAndStartEffectSound(DJ.EffectSounds.TRACK1);
+        
         GifPanel gif = new GifPanel(0, 0, 1000, 500, AssetLoader.getAssetPath(AssetLoader.Gifs.LEAVES));
         Background.add(gif);
         Background.setComponentZOrder(gif, 0);
         Background.repaint();
-        new Thread(() -> {
-            try {
-                Thread.sleep(1530);
+        
+        Timer timer = new Timer(1530, (e) -> {
+            Background.remove(gif);
+            
+            if (!showsActiveResult) {
+                showsActiveResult = true;
+                circleGif = new GifPanel(26, 75, 100, 100, AssetLoader.getAssetPath(AssetLoader.Gifs.CIRCLE_BLUE));
+                circleGif.setLayout(null);
+                Card.add(circleGif);
                 
-                SwingUtilities.invokeLater(() -> {
-                    Background.remove(gif);
-                    
-                    if (!showsActiveResult) {
-                        showsActiveResult = true;
-                        circleGif         = new GifPanel(26, 75, 100, 100, AssetLoader.getAssetPath(AssetLoader.Gifs.CIRCLE_BLUE));
-                        circleGif.setLayout(null);
-                        Card.add(circleGif);
-                        
-                        ingreImg = new ImagePanel(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
-                        ingreImg.setBounds(20, 20, 60, 60);
-                        circleGif.add(ingreImg);
-                        Background.repaint();
-                    } else {
-                        ingreImg.changeImage(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
-                    }
-                    
-                    
-                    GameController.getInstance().getMenuController().getMenuView().LiftBlockade();
-                    
-                });
-                
-                
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                ingreImg = new ImagePanel(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
+                ingreImg.setBounds(20, 20, 60, 60);
+                circleGif.add(ingreImg);
+                Background.repaint();
+            } else {
+                ingreImg.changeImage(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
             }
-        }).start();
+            
+            GameController.getInstance().getMenuController().getMenuView().LiftBlockade();
+        });
+        
+        timer.setRepeats(false);
+        timer.start();
     }
     
     private void ChangeChosen(int i) {
