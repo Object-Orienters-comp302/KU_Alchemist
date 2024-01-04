@@ -341,6 +341,30 @@ public class AssetLoader {
         }
     }
     
+    public enum Sound implements AssetPath {
+        CONTINUEGOLD("Images/sound/continueGold.png"),
+        CONTINUEGREEN("Images/sound/continueGold.png"),
+        PAUSEGOLD("Images/sound/pauseGold.png"),
+        PAUSEGREEN("Images/sound/pauseGreen.png"),
+        NOTEGOLD("Images/sound/noteGold.png"),
+        NOTEGREEN("Images/sound/noteGreen.png"),
+        MINUS("Images/sound/minus.png"),
+        PLUS("Images/sound/plus.png"),
+        NOTEANTIGOLD("Images/sound/noteAntiGold.png")
+        ;
+        
+        private final String path;
+        
+        Sound(String path) {
+            this.path = path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
     // Interface for asset paths
     public interface AssetPath {
         String getPath();

@@ -41,7 +41,14 @@ public class DJ {
         }
     }
     
+    public void stopBackgroundSound(){
+        if(BackgroundSound!=null){
+            BackgroundSound.stop();
+        }
+    }
+    
     public void setAndStartBackgroundSound(BackgroundSounds path) {
+        stopBackgroundSound();
         setBackgroundSound(path);
         startBackgroundSound();
     }
@@ -52,7 +59,7 @@ public class DJ {
             FloatControl gainControl = (FloatControl) BackgroundSound.getControl(FloatControl.Type.MASTER_GAIN);
             
             // Set the new volume (in decibels)
-            gainControl.setValue(volume);
+            gainControl.setValue(gainControl.getValue()+volume);
         }
     }
     
@@ -82,8 +89,11 @@ public class DJ {
     }
     
     
-    public enum BackgroundSounds {
+    public static enum BackgroundSounds {
         TRACK1("Sounds/Background/Rick-Astley-Never-Gonna-Give-You-Up-_Official-Music-Video_ (1).wav"),
+        TRACK2("Sounds/Background/Enchanter.wav"),
+        TRACK3("Sounds/Background/Around the Fire.wav"),
+        TRACK4("Sounds/Background/Taverns of Azeroth.wav")
         
         ;
         
