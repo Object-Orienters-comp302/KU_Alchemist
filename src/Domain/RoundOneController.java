@@ -59,32 +59,40 @@ public class RoundOneController {
     
     public Potion MakePotion(Ingredient.AspectTrio AspectTrio1,
                              Ingredient.AspectTrio AspectTrio2) {//Takes 2 AspectTrios and outputs a Potion.
+        if(AspectTrio1 == null || AspectTrio2 == null){
+            throw  new NullPointerException("Any AspectTrio can't be null");
+        }
+        if(AspectTrio1 == AspectTrio2){
+            throw new RuntimeException("Two trios can't be same");
+        }
+        
         if (CompareTwoAspects(AspectTrio1.getAspectBlue(), AspectTrio2.getAspectBlue())) {
-            if (AspectTrio1.getAspectBlue()
-                    .getPositivity() == Aspect.Positivities.Positive) {// If both of them are same we only need to check one.
-                return new Potion(Potion.Colors.Blue, Potion.Signs.Positive);
-            } else {
-                return new Potion(Potion.Colors.Blue, Potion.Signs.Negative);
+            if (CompareTwoAspectSizes(AspectTrio1.getAspectBlue(),AspectTrio2.getAspectBlue())) {// If both of them are same we only need to check one.
+                return new Potion(Potion.Colors.Blue, changePositivityToSign(AspectTrio1.getAspectBlue().getPositivity()));
             }
         } else if (CompareTwoAspects(AspectTrio1.getAspectRed(), AspectTrio2.getAspectRed())) {
-            if (AspectTrio1.getAspectRed().getPositivity() == Aspect.Positivities.Positive) {
-                return new Potion(Potion.Colors.Red, Potion.Signs.Positive);
-            } else {
-                return new Potion(Potion.Colors.Red, Potion.Signs.Negative);
+            if (CompareTwoAspectSizes(AspectTrio1.getAspectRed(),AspectTrio2.getAspectRed())) {
+                return new Potion(Potion.Colors.Red,changePositivityToSign(AspectTrio1.getAspectRed().getPositivity()));
             }
             
         } else if (CompareTwoAspects(AspectTrio1.getAspectGreen(), AspectTrio2.getAspectGreen())) {
-            if (AspectTrio1.getAspectGreen().getPositivity() == Aspect.Positivities.Positive) {
-                return new Potion(Potion.Colors.Green, Potion.Signs.Positive);
-            } else {
-                return new Potion(Potion.Colors.Green, Potion.Signs.Negative);
+            if (CompareTwoAspectSizes(AspectTrio1.getAspectGreen(),AspectTrio2.getAspectGreen())) {
+                return new Potion(Potion.Colors.Green, changePositivityToSign(AspectTrio1.getAspectGreen().getPositivity()));
             }
             
-        } else {
+        }
+        else {
             return new Potion(Potion.Colors.Colorless, Potion.Signs.Neutral);
         }
         
-        
+        return new Potion(Potion.Colors.Colorless, Potion.Signs.Neutral);
+    }
+    public Potion.Signs changePositivityToSign(Aspect.Positivities pos){
+        switch (pos){
+            case Positive -> { return Potion.Signs.Positive; }
+            case Negative -> { return Potion.Signs.Negative; }
+            case null, default -> throw new NullPointerException();
+        }
     }
     public void removeIngredient(Player player ,Ingredient ingredient){
         player.removeFromInventory(ingredient.getType());
@@ -92,6 +100,9 @@ public class RoundOneController {
     
     private Boolean CompareTwoAspects(Aspect aspect1, Aspect aspect2) {
         return aspect1.getPositivity() == aspect2.getPositivity();
+    }
+    private Boolean CompareTwoAspectSizes(Aspect aspect1, Aspect aspect2){
+        return !(aspect1.getSize() == aspect2.getSize());
     }
     
     public boolean MagicMortar(Player current, Artifact artifact, Ingredient ingredient){

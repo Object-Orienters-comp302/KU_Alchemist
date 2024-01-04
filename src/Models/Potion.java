@@ -52,6 +52,9 @@ public class Potion {//creating function is in the GameController for now
     }
     
     private IdentityTypes Identify(Signs sign, Colors color) {
+        if(sign == null || color == null){
+            throw new NullPointerException("Sign or color can't be null.");
+        }
     	switch (color) {
         case Colorless:
             return Identity.UNKNOWN;
