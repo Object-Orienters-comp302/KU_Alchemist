@@ -5,6 +5,7 @@ import Domain.Event.Publisher;
 import Domain.Event.Type;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
