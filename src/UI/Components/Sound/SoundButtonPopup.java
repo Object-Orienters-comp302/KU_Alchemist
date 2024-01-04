@@ -14,7 +14,7 @@ import java.awt.event.MouseEvent;
 public class SoundButtonPopup extends JPanel {
     
     int x,y,size;
-    boolean paused=false,muted=false;
+    static boolean paused=false,muted=false;
     double verticalM=5,horizontalM=3;
     public SoundButtonPopup(int x,int y,int size,ImagePanel parent){
         this.x=x;this.y=y;this.size=size;
@@ -41,7 +41,7 @@ public class SoundButtonPopup extends JPanel {
         vertical.setBounds(size+size/20,size/10,size,size*(i+1)+i*size/10);
         add(vertical);
         
-        ImagePanel continuePause = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Sound.PAUSEGOLD));
+        ImagePanel continuePause = new ImagePanel(!paused ? AssetLoader.getAssetPath(AssetLoader.Sound.PAUSEGOLD) : AssetLoader.getAssetPath(AssetLoader.Sound.CONTINUEGOLD));
         continuePause.setBounds((size*3-size*11/8)/2+size/20,size+size/10-((size*11/8)/2)+size/2,size*11/8,size*11/8);
         add(continuePause);
         setComponentZOrder(continuePause,0);
@@ -54,7 +54,7 @@ public class SoundButtonPopup extends JPanel {
         higher.setBounds(size*3-size/16-size*3/4,size/8,size*3/4,size*3/4);
         horizon.add(higher);
         
-        ImagePanel mute = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Sound.NOTEANTIGOLD));
+        ImagePanel mute = new ImagePanel(muted ? AssetLoader.getAssetPath(AssetLoader.Sound.NOTEANTIGOLD) : AssetLoader.getAssetPath(AssetLoader.Sound.NOTEGOLD));
         mute.setBounds(size/8,size/16,size*3/4,size*3/4);
         vertical.add(mute);
         
@@ -67,14 +67,19 @@ public class SoundButtonPopup extends JPanel {
                     dj.startBackgroundSound();
                     mute.changeImage(AssetLoader.Sound.NOTEGOLD.getPath());
                     parent.changeImage(AssetLoader.Sound.NOTEGOLD.getPath());
+                    continuePause.changeImage(AssetLoader.Sound.PAUSEGOLD.getPath());
                     muted=false;
-                    
+                    paused=false;
+                    repaint();
                 }
                 else{
                     dj.stopBackgroundSound();
                     mute.changeImage(AssetLoader.Sound.NOTEANTIGOLD.getPath());
                     parent.changeImage(AssetLoader.Sound.NOTEANTIGOLD.getPath());
+                    continuePause.changeImage(AssetLoader.Sound.CONTINUEGOLD.getPath());
                     muted=true;
+                    paused=true;
+                    repaint();
                 }
                 
             }
@@ -86,14 +91,21 @@ public class SoundButtonPopup extends JPanel {
                 DJ dj=DJ.getDJ();
                 if (paused){
                     dj.startBackgroundSound();
+                    mute.changeImage(AssetLoader.Sound.NOTEGOLD.getPath());
+                    parent.changeImage(AssetLoader.Sound.NOTEGOLD.getPath());
                     continuePause.changeImage(AssetLoader.Sound.PAUSEGOLD.getPath());
+                    muted=false;
                     paused=false;
-                    
+                    repaint();
                 }
                 else{
                     dj.stopBackgroundSound();
+                    mute.changeImage(AssetLoader.Sound.NOTEANTIGOLD.getPath());
+                    parent.changeImage(AssetLoader.Sound.NOTEANTIGOLD.getPath());
                     continuePause.changeImage(AssetLoader.Sound.CONTINUEGOLD.getPath());
+                    muted=true;
                     paused=true;
+                    repaint();
                 }
                 
             }
