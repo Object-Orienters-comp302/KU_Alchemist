@@ -55,14 +55,14 @@ public class ArtifactTest {
         Artifact artifact = new Artifact(Artifact.Name.Elixir_of_Insight, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
        
         // Perform the test
-        HashMap<Ingredient, Integer> expectedView = new HashMap<>();
+        ArrayList<Ingredient> expectedView = new ArrayList<Ingredient>();
         Deck.getInstance().shuffleIngredients();
         ArrayList<Ingredient> deck=  Deck.getInstance().getIngredients();
         
         System.out.println(deck);
-        expectedView.put(new Ingredient(Ingredient.IngredientTypes.Toad), 2);
-        expectedView.put(new Ingredient(Ingredient.IngredientTypes.Mandrake), 0);
-        expectedView.put(new Ingredient(Ingredient.IngredientTypes.Scorpion), 1);
+        expectedView.add(0,new Ingredient(Ingredient.IngredientTypes.Mandrake));
+        expectedView.add(1,new Ingredient(Ingredient.IngredientTypes.Scorpion));
+        expectedView.add(2,new Ingredient(Ingredient.IngredientTypes.Flower));
         
         artifact.elixirOfInsightView(expectedView);
         System.out.println(deck);
@@ -71,7 +71,10 @@ public class ArtifactTest {
         combinedList.add(deck.get(0));
         combinedList.add(deck.get(1));
         combinedList.add(deck.get(2));
-        assertTrue(combinedList.containsAll(expectedView.keySet()));
+        assertEquals(combinedList.get(0),expectedView.get(0));
+        assertEquals(combinedList.get(1),expectedView.get(1));
+        assertEquals(combinedList.get(2),expectedView.get(2));
+        assertTrue(combinedList.containsAll(expectedView));
         
         
     }

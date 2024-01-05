@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Deck implements Publisher {
     private static Deck                  single_instance;
@@ -24,15 +26,15 @@ public class Deck implements Publisher {
         Deck.single_instance = this;
     }
     
-    public HashMap<Ingredient, Integer> getFirstThree() {
-        HashMap<Ingredient, Integer> firstThreeCard = new HashMap<>();
-        ArrayList<Ingredient> ingredients = Deck.getInstance().getIngredients();
-        
-        for (int i = 0; i < 3; i++) {
-            firstThreeCard.put(ingredients.get(i), i);
+    public ArrayList<Ingredient> getFirstThree() {
+        ArrayList<Ingredient> ar= new ArrayList<Ingredient>();
+        if (Ingredients.size()<3){
+            return null;
         }
-        
-        return firstThreeCard;
+        for (int i=0;i<3;i++){
+            ar.set(i,Ingredients.get(i));
+        }
+        return ar;
     }
     
     
@@ -46,28 +48,12 @@ public class Deck implements Publisher {
         return single_instance;
     }
     
-    public void setFirstThree(HashMap<Ingredient, Integer> to_set) {
-        // Clear the current first three ingredients if they exist
-        if (Ingredients.size() > 3) {
-            Ingredients.subList(0, 3).clear();
+    public void setFirstThree(ArrayList<Ingredient> to_set) {
+        int i=0;
+        for (Ingredient ing:to_set){
+            Ingredients.set(i,ing);
+            i++;
         }
-        
-        // Add new ingredients in the correct order
-        Ingredient[] newFirstThree = new Ingredient[3];
-        for (Map.Entry<Ingredient, Integer> entry : to_set.entrySet()) {
-            if (entry.getValue() >= 0 && entry.getValue() < 3) {
-                newFirstThree[entry.getValue()] = entry.getKey();
-            }
-        }
-        
-        // Adding the new ingredients to the Ingredients list
-        for (Ingredient ingredient : newFirstThree) {
-            if (ingredient != null) {
-                Ingredients.add(0, ingredient); // Add at the beginning
-            }
-        }
-        
-        publishEvent(Type.DECK_INGREDIENT);
     }
     
     
@@ -132,6 +118,10 @@ public class Deck implements Publisher {
     public void shuffleArtifact() {
         Collections.shuffle(Artifacts);
         publishEvent(Type.DECK_ARTIFACT);
+    }
+    
+    public void clear() {
+        single_instance = new Deck();
     }
     
     @Override
