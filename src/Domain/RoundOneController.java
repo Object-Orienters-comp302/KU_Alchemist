@@ -30,10 +30,9 @@ public class RoundOneController {
     }
     
     public Artifact BuyArtifacts(Player player) {
-
         if (player.getInventory().getGold() > 3) {
             Artifact artifact = Deck.getInstance().popArtifact();
-            player.getInventory().addArtifactCard(artifact, 1);
+            player.getInventory().addArtifactCard(artifact.getName(), 1);
             player.getInventory().setGold(player.getInventory().getGold() - 3);
             return artifact;
         }
@@ -86,39 +85,37 @@ public class RoundOneController {
         
         
     }
-    public void removeIngredient(Player player ,Ingredient ingredient){
-        player.getInventory().removeIngredient(ingredient.getType());
+    public void removeIngredient(Player player , Ingredient.IngredientTypes ingredient){
+        player.getInventory().removeIngredient(ingredient);
     }
     
     private Boolean CompareTwoAspects(Aspect aspect1, Aspect aspect2) {
         return aspect1.getPositivity() == aspect2.getPositivity();
     }
     
-    public boolean MagicMortar(Player current, Artifact artifact, Ingredient ingredient){
-        if(current.getInventory().getArtifacts().containsKey(artifact)){
-            if (artifact.getName().equals("Magic Mortar")){
-                current.getInventory().getArtifacts().remove(artifact);
-                current.getInventory().addIngredient(ingredient.getType(), 1);
+    public boolean MagicMortar(Player current, Artifact.Name artifactName, Ingredient.IngredientTypes ingredient){
+        if(current.getInventory().getArtifacts().containsKey(artifactName)){
+            if (artifactName.equals(Artifact.Name.Magic_Mortar)){
+                current.getInventory().getArtifacts().remove(artifactName);
+                current.getInventory().addIngredient(ingredient, 1);
                 return true;
             }
-            return false;
         }
         return false;
     }
     
-    public boolean PrintingPress(Player current, Artifact artifact){
-        if(current.getInventory().getArtifacts().containsKey(artifact)){
-            if(artifact.getName().equals("Printing Press")){
+    public boolean PrintingPress(Player current, Artifact.Name artifactName){
+        if(current.getInventory().getArtifacts().containsKey(artifactName)){
+            if(artifactName.equals(Artifact.Name.Printing_Press)){
                 current.getInventory().addGold(1);
                 return true;
             }
-            return false;
         }
         return false;
     }
     public boolean WisdomIdol(Player current){
-        if(current.getInventory().checkArtifactExists("Wisdom Idol")){
-                current.getInventory().removeArtifact("Wisdom Idol");
+        if(current.getInventory().checkArtifactExists(Artifact.Name.Wisdom_Idol)){
+                current.getInventory().removeArtifact(Artifact.Name.Wisdom_Idol);
                 return true;
         }
         return false;

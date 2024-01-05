@@ -3,21 +3,21 @@ package Models;
 import java.util.HashMap;
 
 public class Artifact {
-    private final Name name;
+    private final Artifact.Name name;
     
-    private final AbilityType abilityType; // Enum to represent the type of ability
+    private final Artifact.AbilityType abilityType; // Enum to represent the type of ability
     
-    public Artifact(Name name, AbilityType abilityType) {
+    @Deprecated
+    public Artifact(Artifact.Name name, Artifact.AbilityType abilityType) {
         this.name = name;
-        
         this.abilityType = abilityType;
     }
-    
-    public Name getName() {
+    @Deprecated
+    public Artifact.Name getName() {
         return name;
     }
     
-    public AbilityType getAbilityType() {
+    public Artifact.AbilityType getAbilityType() {
         return abilityType;
     }
     

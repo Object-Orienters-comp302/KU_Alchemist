@@ -366,8 +366,8 @@ public class PotionBrewingView extends JPanel {
         Potion potion = roundOneController.MakePotion(ingredient1.getAspects(), ingredient2.getAspects());
         player.getInventory().addPotions(potion, 1);
         
-        roundOneController.removeIngredient(player, ingredient1);
-        roundOneController.removeIngredient(player, ingredient2);
+        roundOneController.removeIngredient(player, ingredient1.getType());
+        roundOneController.removeIngredient(player, ingredient2.getType());
         return potion;
     }
     

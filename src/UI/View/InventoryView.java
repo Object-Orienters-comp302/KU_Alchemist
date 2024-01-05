@@ -253,7 +253,7 @@ public class InventoryView extends JPanel implements Listener {
     
     public void IngredientsQuantity() {
         
-        HashMap<Ingredient.IngredientTypes, Integer> ingredients = Player.getCurrPlayer().getInventory().getIngredients();
+        HashMap<Ingredient.IngredientTypes, Integer> ingredients = Player.getCurrPlayer().getInventory().getIngredientHashMap();
         
         for (Ingredient.IngredientTypes ingredient : ingredients.keySet()) {
             
