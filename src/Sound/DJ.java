@@ -93,7 +93,8 @@ public class DJ {
         TRACK1("Sounds/Background/Rick-Astley-Never-Gonna-Give-You-Up-_Official-Music-Video_ (1).wav"),
         TRACK2("Sounds/Background/Enchanter.wav"),
         TRACK3("Sounds/Background/Around the Fire.wav"),
-        TRACK4("Sounds/Background/Taverns of Azeroth.wav")
+        TRACK4("Sounds/Background/Taverns of Azeroth.wav"),
+        TRACK5("Sounds/Background/Reverse Dance.wav")
         
         ;
         
