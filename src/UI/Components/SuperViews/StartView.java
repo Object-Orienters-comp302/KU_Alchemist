@@ -3,6 +3,7 @@ package UI.Components.SuperViews;
 import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
+import Sound.DJ;
 import UI.Components.ImagePanels.HQImagePanel;
 import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
@@ -38,6 +39,10 @@ public class StartView extends JPanel implements Publisher {
         CreateObjects();
         SetupObjects();
         SetupListeners();
+        
+        DJ dj=DJ.getDJ();
+        dj.setAndStartBackgroundSound(DJ.BackgroundSounds.TRACK1);
+        dj.adjustBackgroundVolume(-20f);
     }
     
     private void CreateObjects() {
@@ -116,7 +121,9 @@ public class StartView extends JPanel implements Publisher {
         StartButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+
                 publishEvent(Type.START_LOGIN_SCREEN);
+                
             }
         });
         B1.addMouseListener(new MouseAdapter() {
