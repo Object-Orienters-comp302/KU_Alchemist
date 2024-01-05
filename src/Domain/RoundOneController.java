@@ -31,7 +31,7 @@ public class RoundOneController {
     
     public Artifact BuyArtifacts(Player player) {
 
-        if (player.getInventory().getGold() > 3) {
+        if (player.getInventory().getGold() >= 3) {
             Artifact artifact =Deck.getInstance().popArtifact();
             player.getInventory().addArtifactCard(artifact, 1);
             player.getInventory().setGold(player.getInventory().getGold() - 3);

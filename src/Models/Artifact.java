@@ -1,5 +1,6 @@
 package Models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Artifact {
@@ -31,6 +32,20 @@ public class Artifact {
         Deck.getInstance().setFirstThree(to_set);
     }
     
+    public static ArrayList<Artifact> createArtifacts(){  //no looping because effects likely be different
+        ArrayList<Artifact> list = new ArrayList<>();
+        Artifact art1 = new Artifact(Name.Elixir_of_Insight,AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        Artifact art2 = new Artifact(Name.Magic_Mortar,AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        Artifact art3 = new Artifact(Name.Printing_Press,AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        Artifact art4 = new Artifact(Name.Wisdom_Idol,AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        list.add(art1);list.add(art2);list.add(art3);list.add(art4);
+        return list;
+    }
+    
+    @Override
+    public String toString() {
+        return this.getName().toString();
+    }
     
     public enum AbilityType {
         IMMEDIATE_ONE_TIME_EFFECT,

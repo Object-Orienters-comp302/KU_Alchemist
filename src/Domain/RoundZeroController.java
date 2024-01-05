@@ -15,6 +15,7 @@ public class RoundZeroController {
         
         //Creates 4 of each ingredient card in deck
         initializeIngredients(4);
+        this.deck.initializeArtifacts();
         
         this.deck.shuffleIngredients();
         this.deck.shuffleArtifact();
@@ -34,6 +35,8 @@ public class RoundZeroController {
             deck.addIngredient(new Ingredient(type), quantity);
         }
     }
+    
+   
     
     public void gold_setup(Player player, int gold) {
         player.getInventory().setGold(gold);

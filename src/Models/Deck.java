@@ -120,6 +120,10 @@ public class Deck implements Publisher {
         return Artifacts;
     }
     
+    public void  initializeArtifacts(){
+        Artifacts= Artifact.createArtifacts();
+    }
+    
     public void shuffleIngredients() {
         Collections.shuffle(Ingredients);
         publishEvent(Type.DECK_INGREDIENT);
