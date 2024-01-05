@@ -3,9 +3,6 @@ package Models;
 import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
-
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -22,7 +19,7 @@ public class Player implements Publisher {
     private        ArrayList<Listener> listeners;
     private        int[]               triangleTableArray;
     private        int[][]             rectangleTableArray;
-    private        int                 forageRight;
+    private        int                 forageRight; // Count of forageing rights left
     
     public Player(String playerID, Token token) {
         this.ID                  = playerID;
@@ -57,140 +54,24 @@ public class Player implements Publisher {
         Player.getCurrPlayer().publishEvent(Type.INGREDIENT);
         Player.getCurrPlayer().publishEvent(Type.POTION);
         
-        
         return instances.get(currPlayerIndex);
     }
-    
-    // Testing function
-    public static void main(String[] args) {
-        Player a = new Player("CoolPlayer", null);
-        
-        
-        Ingredient feather1 = new Ingredient(Ingredient.IngredientTypes.Feather);
-        Ingredient feather2 = new Ingredient(Ingredient.IngredientTypes.Feather);
-        
-        a.getInventory().addIngredient(feather1, 1);
-        a.getInventory().addIngredient(feather2, 3);
-        a.getInventory().addIngredient(feather1, 1);
-        a.getInventory().addIngredient(feather2, 3);
-        
-        System.out.println(a.isInInventory(feather1));
-        System.out.println(a.isInInventory(feather2));
-        
-        System.out.println(a.isInInventory(feather1));
-        System.out.println(a.isInInventory(feather2));
-        
-        
-        System.out.println(a.isInInventory(Ingredient.IngredientTypes.ChickenLeg));
-        
-        
-        //        System.out.println(Player.getCurrPlayer());
-        //        System.out.println(Player.getPlayers());
-        //
-        //        Player.nextPlayer();
-        //
-        //        System.out.println(Player.getCurrPlayer());
-        //        System.out.println(Player.getPlayers());
-        //        Player.nextPlayer();
-        //
-        //        System.out.println(Player.getCurrPlayer());
-        //        System.out.println(Player.getPlayers());
-        //        Player.nextPlayer();
-        //
-        //        System.out.println(Player.getCurrPlayer());
-        //        System.out.println(Player.getPlayers());
-    }
-    
-    public boolean isInInventory(
-            Ingredient ingredientToCheck) { // This function is horrible because Ingredient implementation is horrible
-        return isInInventory(ingredientToCheck.getType());
-    }
-    
-    public boolean removeFromInventory(Ingredient ingrToRemove, int amount) {
-        return this.removeFromInventory(ingrToRemove.getType(), amount);
-    }
-    
-    public boolean removeFromInventory(Ingredient.IngredientTypes ingrtypeToRemove, int amount) {//this won't work
-        if (!this.isInInventory(ingrtypeToRemove)) { return false; }
-        HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
-        
-        for (Ingredient ingrIter : inventory.keySet()) {
-            Integer quantity = inventory.get(ingrIter);
-            if (ingrIter.getType() == ingrtypeToRemove) {
-                if (amount > quantity) {
-                    System.out.println("Amount is greater than the players Ingredient amount! Not removing Ingredient");
-                    return false;
-                } else {
-                    quantity = quantity - amount;
-                    System.out.println(
-                            "Removing " + amount + " " + ingrtypeToRemove + ". From PlayerID: " + this.getID());
-                    return true;
-                }
-            }
-        }
-        return false; // Ingredient wasn't found, which shouldn't happen.
-    }
-    
-    public boolean isInInventory(Ingredient.IngredientTypes ingredientType) {
-        HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
-        
-        for (Ingredient ingrIter : inventory.keySet()) {
-            Integer quantity = inventory.get(ingrIter);
-            if (ingrIter.getType() == ingredientType && quantity > 0) {
-                // TODO: Add this to debug
-                System.out.println(
-                        "Ingredient: " + "`" + ingredientType + "`" + " is in PlayerID: " + "`" + this.getID() + "`");
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    public Inventory getInventory() {
-        return inventory;
-    }
-    
-    // Auto-Generated getter setters
-    public String getID() {
-        return ID;
-    }
-    
-    public boolean removeFromInventory(
-            Ingredient.IngredientTypes ingredientType) { // Deletes 1 unit of the specified ingredient
-        if (!this.isInInventory(ingredientType)) { return false; }
-        HashMap<Ingredient, Integer> inventory = this.getInventory().getIngredients();
-        for (Ingredient ingrIter : inventory.keySet()) {
-            if (ingrIter.getType() == ingredientType) {
-                if (inventory.get(ingrIter) > 0) {
-                    inventory.put(ingrIter, inventory.get(ingrIter) - 1);
-                    publishEvent(Type.INGREDIENT);
-                    return true;
-                }
-            }
-        }
-        
-        return false;
-    }
-    
-    @Override
-    public void publishEvent(Type type) {
-        for (Listener listener : listeners) {
-            listener.onEvent(type);
-        }
-    }
-    
     public void haveSurgery() {
         // If the player gets surgery remove all gold and set sickness to 0
         getInventory().setGold(0);
         setSicknessLevel(0);
     }
+    public Inventory getInventory() {
+        return inventory;
+    }
+    public String getID() {
+        return ID;
+    }
     
     public Token getToken() { return token; }
-    
     public void setToken(Token token) {
         this.token = token;
     }
-    
     public Integer getScore() {
         return score;
     }
@@ -211,17 +92,14 @@ public class Player implements Publisher {
         this.reputation = reputation;
         publishEvent(Type.REPUTATION);
     }
-    
     public Integer getSicknessLevel() {
         return sicknessLevel;
     }
-    
     public void setSicknessLevel(Integer sicknessLevel) {
         this.sicknessLevel = sicknessLevel;
         publishEvent(Type.SICKNESS); // Sickness yerine playerGotSick gibi bisey yapsak daha iyi olmaz mi?
         // TODO: Refactor the event names
     }
-    
     public int[] getTriangleTableArray() {
         return triangleTableArray;
     }
@@ -248,6 +126,12 @@ public class Player implements Publisher {
     }
     
     // Listener Functions
+    @Override
+    public void publishEvent(Type type) {
+        for (Listener listener : listeners) {
+            listener.onEvent(type);
+        }
+    }
     @Override
     public void addListener(Listener lis) {
         listeners.add(lis);

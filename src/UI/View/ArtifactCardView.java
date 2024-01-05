@@ -124,17 +124,15 @@ public class ArtifactCardView extends JPanel implements Listener {
     
     
     public void ArtifactQuantity () {
-        
         for(int i = 0; i < Player.getPlayers().size() ; i++){
             
-            HashMap<Artifact, Integer> artifacts = Player.getPlayers().get(i)
-                    .getInventory().getArtifacts();
+            HashMap<Artifact.Name, Integer> artifacts = Player.getPlayers().get(i).getInventory().getArtifacts();
             
             ArrayList<JLabel> label_set = quantityLabels.get(i);
             
-            for (Artifact artifact : artifacts.keySet()) {
+            for (Artifact.Name artifact : artifacts.keySet()) {
                 
-                switch (artifact.getName()) {
+                switch (artifact) {
                     
                     case Elixir_of_Insight -> {
                         label_set.get(0).setText(String.valueOf(artifacts.get(artifact)));
@@ -154,32 +152,6 @@ public class ArtifactCardView extends JPanel implements Listener {
             
         }
     }
-    
-    
-//    public static void main(String[] args) {
-//
-//
-//        Player player1 = new Player("test1" , null);
-//        Player player2 = new Player("test2" , null);
-//        Player player3 = new Player("test3" , null);
-//        Player player4 = new Player("test4" , null);
-//
-//        Artifact a = new Artifact(Artifact.Name.Wisdom_Idol, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
-//
-//        player1.getInventory().addArtifactCard(a, 2);
-//        player2.getInventory().addArtifactCard(a, 4);
-//
-//
-//        JFrame test = new JFrame();
-//        test.setSize(1200,800);
-//        ArtifactCardView test_panel = new ArtifactCardView();
-//
-//
-//        test.setDefaultCloseOperation(test.EXIT_ON_CLOSE);
-//        test.add(test_panel);
-//        test.setVisible(true);
-//    }
-    
     @Override
     public void onEvent(Type type) {
         if (type == Type.ARTIFACT) {

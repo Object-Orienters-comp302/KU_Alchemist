@@ -13,10 +13,12 @@ public class Ingredient {
     private static HashMap<IngredientTypes, AspectTrio> ingredientTypeToAspectTrioMap;
     final          IngredientTypes                      Type;
     
+    @Deprecated
     public Ingredient(IngredientTypes type) {
         Type = type;
     }
     
+    @Deprecated
     public AspectTrio getAspects() {
         return getIngredientTypeToAspectTrioMap().get(this.getType());
     }
@@ -26,13 +28,14 @@ public class Ingredient {
             initializeTypeToAspectTrioMap();
         }
         return ingredientTypeToAspectTrioMap;
-        
     }
     
+    @Deprecated
     public boolean equals(Ingredient ingr) {
         return (this.getType() == ingr.getType());
     }
     
+    @Deprecated
     public IngredientTypes getType() {
         return Type;
     }

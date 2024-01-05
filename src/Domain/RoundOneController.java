@@ -12,7 +12,7 @@ public class RoundOneController {
             Deck deck = Deck.getInstance();
             Ingredient ingredient = deck.popIngredient();
             player.getInventory()
-                    .addIngredient(ingredient, 1);
+                    .addIngredient(ingredient.getType(), 1);
             player.setForageRight(player.getForageRight()-1);
             return ingredient;
         }
@@ -23,17 +23,16 @@ public class RoundOneController {
     }
     
     public void TransmuteIngredient(Player player, Ingredient.IngredientTypes ingredientType) {
-        if (player.isInInventory(ingredientType)) {
-            player.removeFromInventory(ingredientType);
+        if (player.getInventory().isInInventory(ingredientType)) {
+            player.getInventory().removeIngredient(ingredientType);
             player.getInventory().setGold(player.getInventory().getGold() + 1);
         }
     }
     
     public Artifact BuyArtifacts(Player player) {
-
         if (player.getInventory().getGold() > 3) {
-            Artifact artifact =Deck.getInstance().popArtifact();
-            player.getInventory().addArtifactCard(artifact, 1);
+            Artifact artifact = Deck.getInstance().popArtifact();
+            player.getInventory().addArtifactCard(artifact.getName(), 1);
             player.getInventory().setGold(player.getInventory().getGold() - 3);
             return artifact;
         }
@@ -94,8 +93,8 @@ public class RoundOneController {
             case null, default -> throw new NullPointerException();
         }
     }
-    public void removeIngredient(Player player ,Ingredient ingredient){
-        player.removeFromInventory(ingredient.getType());
+    public void removeIngredient(Player player , Ingredient.IngredientTypes ingredient){
+        player.getInventory().removeIngredient(ingredient);
     }
     
     private Boolean CompareTwoAspects(Aspect aspect1, Aspect aspect2) {
@@ -105,31 +104,29 @@ public class RoundOneController {
         return !(aspect1.getSize() == aspect2.getSize());
     }
     
-    public boolean MagicMortar(Player current, Artifact artifact, Ingredient ingredient){
-        if(current.getInventory().getArtifacts().containsKey(artifact)){
-            if (artifact.getName().equals("Magic Mortar")){
-                current.getInventory().getArtifacts().remove(artifact);
+    public boolean MagicMortar(Player current, Artifact.Name artifactName, Ingredient.IngredientTypes ingredient){
+        if(current.getInventory().getArtifacts().containsKey(artifactName)){
+            if (artifactName.equals(Artifact.Name.Magic_Mortar)){
+                current.getInventory().getArtifacts().remove(artifactName);
                 current.getInventory().addIngredient(ingredient, 1);
                 return true;
             }
-            return false;
         }
         return false;
     }
     
-    public boolean PrintingPress(Player current, Artifact artifact){
-        if(current.getInventory().getArtifacts().containsKey(artifact)){
-            if(artifact.getName().equals("Printing Press")){
+    public boolean PrintingPress(Player current, Artifact.Name artifactName){
+        if(current.getInventory().getArtifacts().containsKey(artifactName)){
+            if(artifactName.equals(Artifact.Name.Printing_Press)){
                 current.getInventory().addGold(1);
                 return true;
             }
-            return false;
         }
         return false;
     }
     public boolean WisdomIdol(Player current){
-        if(current.getInventory().checkArtifactExists("Wisdom Idol")){
-                current.getInventory().removeArtifact("Wisdom Idol");
+        if(current.getInventory().checkArtifactExists(Artifact.Name.Wisdom_Idol)){
+                current.getInventory().removeArtifact(Artifact.Name.Wisdom_Idol);
                 return true;
         }
         return false;
