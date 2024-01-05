@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Inventory implements Publisher {
-    HashMap<Ingredient, Integer> Ingredients;
+    HashMap<Ingredient.IngredientTypes, Integer> Ingredients;
     HashMap<Potion, Integer>     Potions;
     
     HashMap<Artifact, Integer> Artifacts;
@@ -16,29 +16,50 @@ public class Inventory implements Publisher {
     private ArrayList<Listener> listeners;
     
     public Inventory() {
-        Ingredients = new HashMap<Ingredient, Integer>();
+        Ingredients = new HashMap<Ingredient.IngredientTypes, Integer>();
         Artifacts   = new HashMap<Artifact, Integer>();
         Potions     = new HashMap<Potion, Integer>();
         Gold        = 0;
         listeners   = new ArrayList<>();
     }
     
-    public HashMap<Potion, Integer> getPotions() {
-        return Potions;
+    
+    public HashMap<Ingredient.IngredientTypes, Integer> getIngredients() {
+        return Ingredients;
     }
     
-    public void addIngredient(Ingredient ingredient, int quantity) {
-        Ingredients.merge(ingredient, quantity, Integer::sum);
+    public void addIngredient(Ingredient.IngredientTypes type, int quantity) {
+        // Check if the ingredient type is already in the inventory
+        if (Ingredients.containsKey(type)) {
+            // If it exists, update the quantity
+            int currentQuantity = Ingredients.get(type);
+            Ingredients.put(type, currentQuantity + quantity);
+        } else {
+            // If it does not exist, add it with the given quantity
+            Ingredients.put(type, quantity);
+        }
+        publishEvent(Type.INGREDIENT);
+    }
+    public void removeIngredient(Ingredient.IngredientTypes type) {
+        Ingredients.remove(type);
         publishEvent(Type.INGREDIENT);
     }
     
-    @Override
-    public void publishEvent(Type type) {
-        for (Listener listener : listeners) {
-            listener.onEvent(type);
-        }
+    public int getIngredientCount(Ingredient.IngredientTypes type) {
+        return Ingredients.getOrDefault(type, 0);
     }
     
+    public boolean isInInventory(Ingredient.IngredientTypes type) {
+        return Ingredients.getOrDefault(type, 0) > 0;
+    }
+    
+    
+    
+    
+    
+    public HashMap<Potion, Integer> getPotions() {
+        return Potions;
+    }
     public void addPotions(Potion potion, int quantity) {
         Potions.merge(potion, quantity, Integer::sum);
         publishEvent(Type.POTION);
@@ -66,18 +87,6 @@ public class Inventory implements Publisher {
         publishEvent(Type.GOLD);
     }
     
-    public void removeIngredient(Ingredient ingredient) {
-        this.getIngredients().put(ingredient, this.getIngredients().get(ingredient) - 1); //TODO Add publisher.
-        publishEvent(Type.INGREDIENT);
-    }
-    
-    public HashMap<Ingredient, Integer> getIngredients() {
-        return Ingredients;
-    }
-    
-    public boolean checkIngredientExists(Ingredient.IngredientTypes Type) {
-        return this.getIngredients().get(new Ingredient(Type)) > 0;
-    }
     public boolean checkArtifactExists(String artifactName){
         for (Artifact artifact1: Artifacts.keySet()){
             if(artifact1.getName().equals(artifactName)){
@@ -95,7 +104,12 @@ public class Inventory implements Publisher {
             }
         }
     }
-    
+    @Override
+    public void publishEvent(Type type) {
+        for (Listener listener : listeners) {
+            listener.onEvent(type);
+        }
+    }
     @Override
     public void addListener(Listener lis) {
         listeners.add(lis);

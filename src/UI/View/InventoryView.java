@@ -253,11 +253,11 @@ public class InventoryView extends JPanel implements Listener {
     
     public void IngredientsQuantity() {
         
-        HashMap<Ingredient, Integer> ingredients = Player.getCurrPlayer().getInventory().getIngredients();
+        HashMap<Ingredient.IngredientTypes, Integer> ingredients = Player.getCurrPlayer().getInventory().getIngredients();
         
-        for (Ingredient ingredient : ingredients.keySet()) {
+        for (Ingredient.IngredientTypes ingredient : ingredients.keySet()) {
             
-            switch (ingredient.getType()) {
+            switch (ingredient) {
                 
                 case Plant -> {
                     weed_quantity.setText(String.valueOf(ingredients.get(ingredient)));

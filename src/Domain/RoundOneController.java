@@ -12,7 +12,7 @@ public class RoundOneController {
             Deck deck = Deck.getInstance();
             Ingredient ingredient = deck.popIngredient();
             player.getInventory()
-                    .addIngredient(ingredient, 1);
+                    .addIngredient(ingredient.getType(), 1);
             player.setForageRight(player.getForageRight()-1);
             return ingredient;
         }
@@ -23,8 +23,8 @@ public class RoundOneController {
     }
     
     public void TransmuteIngredient(Player player, Ingredient.IngredientTypes ingredientType) {
-        if (player.isInInventory(ingredientType)) {
-            player.removeFromInventory(ingredientType);
+        if (player.getInventory().isInInventory(ingredientType)) {
+            player.getInventory().removeIngredient(ingredientType);
             player.getInventory().setGold(player.getInventory().getGold() + 1);
         }
     }
@@ -32,7 +32,7 @@ public class RoundOneController {
     public Artifact BuyArtifacts(Player player) {
 
         if (player.getInventory().getGold() > 3) {
-            Artifact artifact =Deck.getInstance().popArtifact();
+            Artifact artifact = Deck.getInstance().popArtifact();
             player.getInventory().addArtifactCard(artifact, 1);
             player.getInventory().setGold(player.getInventory().getGold() - 3);
             return artifact;
@@ -87,7 +87,7 @@ public class RoundOneController {
         
     }
     public void removeIngredient(Player player ,Ingredient ingredient){
-        player.removeFromInventory(ingredient.getType());
+        player.getInventory().removeIngredient(ingredient.getType());
     }
     
     private Boolean CompareTwoAspects(Aspect aspect1, Aspect aspect2) {
@@ -98,7 +98,7 @@ public class RoundOneController {
         if(current.getInventory().getArtifacts().containsKey(artifact)){
             if (artifact.getName().equals("Magic Mortar")){
                 current.getInventory().getArtifacts().remove(artifact);
-                current.getInventory().addIngredient(ingredient, 1);
+                current.getInventory().addIngredient(ingredient.getType(), 1);
                 return true;
             }
             return false;

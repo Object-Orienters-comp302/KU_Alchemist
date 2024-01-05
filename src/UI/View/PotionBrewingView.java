@@ -224,7 +224,7 @@ public class PotionBrewingView extends JPanel {
                 if (!potionIsBeingDisplayed) {
                     Inventory inventory = Player.getCurrPlayer().getInventory();
                     
-                    if (Player.getCurrPlayer().isInInventory(IngredientB1.getType()) && Player.getCurrPlayer()
+                    if (Player.getCurrPlayer().getInventory().isInInventory(IngredientB1.getType()) && Player.getCurrPlayer().getInventory()
                             .isInInventory(IngredientB2.getType())) {
                         //TODO Make this better currently this maybe problematic
                         Potion pot = MakePotion(new Ingredient(IngredientB1.getType()),

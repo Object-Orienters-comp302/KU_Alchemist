@@ -42,8 +42,7 @@ public class RoundZeroController {
     private void dealIngredientCards(Player player, int count) {
         for (int i = 0; i < count; i++) {
             Ingredient card = deck.popIngredient();
-            player.getInventory().addIngredient(card, 1);
+            player.getInventory().addIngredient(card.getType(), 1);
         }
     }
-    
 }
