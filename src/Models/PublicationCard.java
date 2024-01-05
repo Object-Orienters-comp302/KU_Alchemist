@@ -4,18 +4,18 @@ import java.util.ArrayList;
 
 public class PublicationCard {
 
-    private  ArrayList<Aspect> Aspects; //3 Aspects.
-    private final Ingredient        Ingredient;
+    private       Models.Ingredient.AspectTrio Aspects; //3 Aspects.
+    private final Ingredient                   Ingredient;
     
     private final Player Owner;
     
-    public PublicationCard(Ingredient Ingredient, ArrayList<Aspect> aspects, Player owner) {
+    public PublicationCard(Ingredient Ingredient, Models.Ingredient.AspectTrio aspects, Player owner) {
         this.Ingredient = Ingredient;
-        Aspects         = aspects;
+        this.Aspects         = aspects;
         this.Owner = owner;
     }
     
-    public ArrayList<Aspect> getAspects() {
+    public Models.Ingredient.AspectTrio getAspects() {
         return Aspects;
     }
     
@@ -25,7 +25,7 @@ public class PublicationCard {
     
     public Player getOwner() { return Owner; }
     
-    public void setAspects(ArrayList<Aspect> aspects){ // Todo delete if there is a fault
+    public void setAspects(Models.Ingredient.AspectTrio aspects){ // Todo delete if there is a fault
         this.Aspects = aspects;
     }
 }

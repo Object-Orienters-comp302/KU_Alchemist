@@ -46,7 +46,7 @@ public class RoundTwoController extends RoundOneController{
         }
     }
     
-    public boolean publishTheory(Player currentPlayer, Ingredient selectedIngredient, ArrayList<Aspect> alchemyMarker ) {
+    public boolean publishTheory(Player currentPlayer, Ingredient selectedIngredient, Ingredient.AspectTrio alchemyMarker) {
         if (selectedIngredient != null && alchemyMarker != null ) {
             // Check if the selected ingredient has an available alchemy marker and does not have a published theory
             if (!PublicationTrack.getInstance().isInPublicationTrack(selectedIngredient, alchemyMarker)) {
