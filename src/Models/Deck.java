@@ -4,10 +4,9 @@ import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Deck implements Publisher {
     private static Deck                  single_instance;
@@ -24,17 +23,11 @@ public class Deck implements Publisher {
         Deck.single_instance = this;
     }
     
-    public HashMap<Ingredient, Integer> getFirstThree() {
-        HashMap<Ingredient, Integer> firstThreeCard = new HashMap<>();
-        ArrayList<Ingredient> ingredients = Deck.getInstance().getIngredients();
-        
-        for (int i = 0; i < 3; i++) {
-            firstThreeCard.put(ingredients.get(i), i);
-        }
-        
-        return firstThreeCard;
+    public HashMap<Integer, Ingredient> getFirstThree() {
+        return IntStream.range(0, Math.min(3, Ingredients.size()))
+                .boxed()
+                .collect(Collectors.toMap(i -> i, Ingredients::get, (a, b) -> b, HashMap::new));
     }
-    
     
     public ArrayList<Ingredient> getIngredients() {
         return Ingredients;
@@ -46,30 +39,18 @@ public class Deck implements Publisher {
         return single_instance;
     }
     
-    public void setFirstThree(HashMap<Ingredient, Integer> to_set) {
-        // Clear the current first three ingredients if they exist
-        if (Ingredients.size() > 3) {
-            Ingredients.subList(0, 3).clear();
-        }
-        
-        // Add new ingredients in the correct order
-        Ingredient[] newFirstThree = new Ingredient[3];
-        for (Map.Entry<Ingredient, Integer> entry : to_set.entrySet()) {
-            if (entry.getValue() >= 0 && entry.getValue() < 3) {
-                newFirstThree[entry.getValue()] = entry.getKey();
+    public void setFirstThree(HashMap<Integer, Ingredient> to_set) {
+        to_set.forEach((index, ingredient) -> {
+            if (index >= 0 && index < 3) {
+                if (index < Ingredients.size()) {
+                    Ingredients.set(index, ingredient);
+                } else {
+                    Ingredients.add(ingredient);
+                }
             }
-        }
-        
-        // Adding the new ingredients to the Ingredients list
-        for (Ingredient ingredient : newFirstThree) {
-            if (ingredient != null) {
-                Ingredients.add(0, ingredient); // Add at the beginning
-            }
-        }
-        
+        });
         publishEvent(Type.DECK_INGREDIENT);
     }
-    
     
     @Override
     public void publishEvent(Type type) {
@@ -133,5 +114,9 @@ public class Deck implements Publisher {
     @Override
     public void addListener(Listener lis) {
         listeners.add(lis);
+    }
+    
+    public void clear() {
+        single_instance = new Deck();
     }
 }
