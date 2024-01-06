@@ -16,9 +16,15 @@ import org.junit.jupiter.api.*;
 
 public class PublishTheoryTest {
     RoundTwoController roundTwoController = GameController.getInstance().getRoundTwoController();
+    Player testPlayer;
+    @BeforeEach
+    public void init_player() {
+         testPlayer = new Player("Test", null);
+         testPlayer.getInventory().addGold(10);
+    }
+    
     @Test
     public void testPublishTheorySuccess() {
-        Player testPlayer = new Player("Test", null);
         Ingredient testIngredient = new Ingredient(Ingredient.IngredientTypes.Flower);
         Ingredient.AspectTrio testMarkers = Ingredient.AspectTrio.allNegative;
         
@@ -30,7 +36,7 @@ public class PublishTheoryTest {
     }
     @Test
     public void testPublishTheoryNullInputs() {
-        Player testPlayer = new Player("Test", null);
+        
         Ingredient testIngredient = null;
         Ingredient.AspectTrio testMarkers = Ingredient.AspectTrio.allPositive;
         
@@ -41,9 +47,9 @@ public class PublishTheoryTest {
     }
     @Test
     public void testPublishTheoryExistingPublication() {
-        Player testPlayer = new Player("Test", null);
-        Ingredient testIngredient = new Ingredient(Ingredient.IngredientTypes.Flower);
-        Ingredient.AspectTrio testMarkers = Ingredient.AspectTrio.allNegative;
+        
+        Ingredient testIngredient = new Ingredient(Ingredient.IngredientTypes.Scorpion);
+        Ingredient.AspectTrio testMarkers = Ingredient.AspectTrio.negativeBlue;
         
         
         boolean isPublished_1 = roundTwoController.publishTheory(testPlayer, testIngredient, testMarkers);
@@ -54,30 +60,30 @@ public class PublishTheoryTest {
     
     @Test
     public void testPublishTheoryGoldAndReputation() {
-        Player testPlayer = new Player("Test_1", null);
-        Ingredient testIngredient = new Ingredient(Ingredient.IngredientTypes.Flower);
-        Ingredient.AspectTrio testMarkers = Ingredient.AspectTrio.allPositive;
+        
+        Ingredient testIngredient = new Ingredient(Ingredient.IngredientTypes.Mushroom);
+        Ingredient.AspectTrio testMarkers = Ingredient.AspectTrio.negativeGreen;
         
         
-        int initialGold = testPlayer.getInventory().getGold();
+        ;
         int initialReputation = testPlayer.getReputation();
-        testPlayer.getInventory().addGold(1);
+        
         roundTwoController.publishTheory(testPlayer, testIngredient, testMarkers);
 
-        assertEquals(initialGold, testPlayer.getInventory().getGold());
+        assertEquals(9, testPlayer.getInventory().getGold());
         assertEquals(initialReputation + 1, testPlayer.getReputation());
     }
     @Test
     public void testPublishTheoryAddToTrack() {
-        Player testPlayer = new Player("Test", null);
-        Ingredient testIngredient = new Ingredient(Ingredient.IngredientTypes.Feather);
-        Ingredient.AspectTrio testMarkers = Ingredient.AspectTrio.allPositive;
+       
+        Ingredient testIngredient_1 = new Ingredient(Ingredient.IngredientTypes.Feather);
+        Ingredient.AspectTrio testMarkers = Ingredient.AspectTrio.negativeRed;
         
         
         int initialSize = PublicationTrack.getInstance().getPublicationCards().size();
         
-        roundTwoController.publishTheory(testPlayer, testIngredient, testMarkers);
-        
+        roundTwoController.publishTheory(testPlayer, testIngredient_1, testMarkers);
         assertEquals(initialSize + 1, PublicationTrack.getInstance().getPublicationCards().size());
     }
+ 
 }
