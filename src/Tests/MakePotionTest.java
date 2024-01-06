@@ -1,4 +1,3 @@
-package Tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import Domain.GameController;

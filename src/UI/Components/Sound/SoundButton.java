@@ -18,7 +18,7 @@ public class SoundButton extends ImagePanel {
     int x,y,size;
     
     public SoundButton(int x, int y, int size) {
-        super(AssetLoader.getAssetPath(AssetLoader.Sound.NOTEGOLD));
+        super(AssetLoader.getAssetPath(AssetLoader.SoundPlayer.NOTEGOLD));
         setBounds(x,y,size,size);
         
         this.addMouseListener(new MouseAdapter() {
@@ -65,7 +65,7 @@ public class SoundButton extends ImagePanel {
         frame.setSize(1294, 757);
         frame.getContentPane().setLayout(null);
         JPanel login = new SoundButton(10,10,500);
-        ImagePanel im = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Sound.NOTEGREEN));
+        ImagePanel im = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.SoundPlayer.NOTEGREEN));
         
         im.setBounds(500,500,50,50);
         

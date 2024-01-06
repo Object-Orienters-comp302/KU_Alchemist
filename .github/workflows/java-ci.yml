@@ -1,0 +1,25 @@
+name: Java CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v1
+      with:
+        java-version: 21
+
+    - name: Compile Java code
+      run: javac -d ./bin ./src/**/*.java
+
+    - name: Run main file
+      run: java ./src/Main.java
+
+    - name: Run JUnit tests
+      run: java ./src/Tests/*
+
