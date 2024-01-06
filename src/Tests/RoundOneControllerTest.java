@@ -2,8 +2,6 @@ package Tests;
 
 import Domain.GameController;
 import Models.Player;
-import Models.Inventory;
-import Domain.GameController;
 import Models.Ingredient;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -22,10 +20,11 @@ public class RoundOneControllerTest {
     Player testPlayer;
     Ingredient.IngredientTypes plant1 = Ingredient.IngredientTypes.Plant;
     
+    
     @BeforeEach
     public void init_classes(){
         // Create a test player with some ingredients in the inventory
-        Player testPlayer = new Player("Test Player" , null);
+        testPlayer = new Player("Test Player" , null);
     }
     
 
