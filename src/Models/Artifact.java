@@ -22,12 +22,12 @@ public class Artifact {
     }
     
     /// The Integer is the order of the cards.
-    public HashMap<Ingredient, Integer> elixirOfInsightView() {
+    public HashMap<Integer, Ingredient> elixirOfInsightView() {
         return Deck.getInstance().getFirstThree();
     }
     
-    /// The Key is the Ingredient, and the value is the order to set it into the deck, must be 0, 1, 2.
-    public void elixirOfInsightView(HashMap<Ingredient, Integer> to_set) {
+    /// The Value is the Ingredient, and the key is the order to set it into the deck, must be 0, 1, 2.
+    public void elixirOfInsightView(HashMap<Integer, Ingredient> to_set) {
         Deck.getInstance().setFirstThree(to_set);
     }
     
