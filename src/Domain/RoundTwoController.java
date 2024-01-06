@@ -46,8 +46,8 @@ public class RoundTwoController extends RoundOneController{
         }
     }
     
-    public boolean publishTheory(Player currentPlayer, Ingredient selectedIngredient, ArrayList<Aspect> alchemyMarker ) {
-        if (selectedIngredient != null && alchemyMarker != null ) {
+    public boolean publishTheory(Player currentPlayer, Ingredient selectedIngredient, Ingredient.AspectTrio alchemyMarker) {
+        if (selectedIngredient != null && alchemyMarker != null && currentPlayer.getInventory().getGold() > 0) {
             // Check if the selected ingredient has an available alchemy marker and does not have a published theory
             if (!PublicationTrack.getInstance().isInPublicationTrack(selectedIngredient, alchemyMarker)) {
                 // Assign the marker to the selected ingredient
@@ -60,6 +60,7 @@ public class RoundTwoController extends RoundOneController{
                 currentPlayer.addReputation(1);
                 return true; // Theory published successfully
             }
+            return false;
         }
         return false; // Publishing theory failed due to invalid inputs or unavailable markers/ingredients
     }

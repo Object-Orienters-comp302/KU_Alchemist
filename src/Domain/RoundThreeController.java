@@ -65,10 +65,10 @@ public class RoundThreeController extends RoundTwoController{
         return false;
     }
     public boolean elixirRearrange(Ingredient ing1, Ingredient ing2, Ingredient ing3){
-        HashMap<Ingredient, Integer> toSet = new HashMap<>();
-        toSet.put(ing1,0);
-        toSet.put(ing2,1);
-        toSet.put(ing3,2);
+        HashMap<Integer, Ingredient> toSet = new HashMap<>();
+        toSet.put(0,ing1);
+        toSet.put(1,ing2);
+        toSet.put(2,ing3);
         Deck.getInstance().setFirstThree(toSet);
         return true;
     }

@@ -27,7 +27,7 @@ public class PublicationTrack {
         publicationCards.remove(publicationCard);
     }
     
-    public boolean isInPublicationTrack(Ingredient ingredient, ArrayList<Aspect> aspects) {
+    public boolean isInPublicationTrack(Ingredient ingredient, Ingredient.AspectTrio aspects) {
         List<PublicationCard> publicationCards = getPublicationCards();
         boolean isPublishedIngredient = false; // True if the ingredient has a theory about itself
         boolean isPublishedAspects = false; // True if the aspect was used to publish an ingredient
