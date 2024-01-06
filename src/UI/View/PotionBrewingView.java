@@ -37,8 +37,7 @@ public class PotionBrewingView extends JPanel {
     ImagePanel Card1;
     ImagePanel Card2;
     ImagePanel Cauldron;
-    ColorChangingPanel DrinkButton;
-    JLabel lblDrink;
+
     JPanel ButtonPanel;
     
     ImagePanel BG1;
@@ -92,9 +91,7 @@ public class PotionBrewingView extends JPanel {
     	lblNewLabel = new JLabel("TEST ON STUDENT");
     	Card1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
     	Card2 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
-    	
-    	DrinkButton = new ColorChangingPanel("#cf9d15", "#FFD700");
-    	lblDrink = new JLabel("DRINK");
+     
     	
     	ButtonPanel = new JPanel();
     	BG1 = new ImagePanel("Images/start/frameGold.png");
@@ -162,13 +159,7 @@ public class PotionBrewingView extends JPanel {
         Cauldron.setBounds(375, 100, 250, 250);
         Background.add(Cauldron);
         
-        DrinkButton.setLayout(null);
-        DrinkButton.setBounds(475, 425, 50, 40);
-        Background.add(DrinkButton);
-        
-        lblDrink.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        lblDrink.setBounds(10, 5, 40, 30);
-        DrinkButton.add(lblDrink);
+
         
         ButtonPanel.setLayout(null);
         ButtonPanel.setOpaque(false);
@@ -304,12 +295,14 @@ public class PotionBrewingView extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (PotionBrewingView.this.testOnStudent) {
                     TickPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
+                    PotionBrewingView.this.testOnStudent = false;
                     
                 } else {
                     
                     TickPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
+                    PotionBrewingView.this.testOnStudent = true;
                 }
-                PotionBrewingView.this.testOnStudent = !PotionBrewingView.this.testOnStudent;//Sets it to it's negative
+                //PotionBrewingView.this.testOnStudent = !PotionBrewingView.this.testOnStudent;//Sets it to it's negative
                 
             }
         });
@@ -364,6 +357,7 @@ public class PotionBrewingView extends JPanel {
     private Potion MakePotion(Ingredient ingredient1, Ingredient ingredient2, Player player) {
         RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
         Potion potion = roundOneController.MakePotion(ingredient1.getAspects(), ingredient2.getAspects());
+        MakeExperiments(potion,player,!this.testOnStudent);
         player.getInventory().addPotions(potion, 1);
         
         roundOneController.removeIngredient(player, ingredient1.getType());
