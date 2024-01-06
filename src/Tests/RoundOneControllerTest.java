@@ -1,5 +1,3 @@
-package Tests;
-
 import Domain.GameController;
 import Models.Player;
 import Models.Inventory;
