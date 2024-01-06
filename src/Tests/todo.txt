@@ -1,6 +1,0 @@
-Mete Yokuş: Make Potion
-Fırat Gümüş: Transmute funcs
-Hasan Görkem Orta:Buy Artifact
-Ali Mete Sevinçli: Publish\Debunk Theory
-Mehmet Murat Budak: Player funcs?
-Eray Altun: Deck Shuffle
