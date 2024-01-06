@@ -41,20 +41,20 @@ public class SoundButtonPopup extends JPanel {
         vertical.setBounds(size+size/20,size/10,size,size*(i+1)+i*size/10);
         add(vertical);
         
-        ImagePanel continuePause = new ImagePanel(!paused ? AssetLoader.getAssetPath(AssetLoader.Sound.PAUSEGOLD) : AssetLoader.getAssetPath(AssetLoader.Sound.CONTINUEGOLD));
+        ImagePanel continuePause = new ImagePanel(!paused ? AssetLoader.getAssetPath(AssetLoader.SoundPlayer.PAUSEGOLD) : AssetLoader.getAssetPath(AssetLoader.SoundPlayer.CONTINUEGOLD));
         continuePause.setBounds((size*3-size*11/8)/2+size/20,size+size/10-((size*11/8)/2)+size/2,size*11/8,size*11/8);
         add(continuePause);
         setComponentZOrder(continuePause,0);
         
-        ImagePanel lower = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Sound.MINUS));
+        ImagePanel lower = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.SoundPlayer.MINUS));
         lower.setBounds(size/16,size/8,size*3/4,size*3/4);
         horizon.add(lower);
         
-        ImagePanel higher = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Sound.PLUS));
+        ImagePanel higher = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.SoundPlayer.PLUS));
         higher.setBounds(size*3-size/16-size*3/4,size/8,size*3/4,size*3/4);
         horizon.add(higher);
         
-        ImagePanel mute = new ImagePanel(muted ? AssetLoader.getAssetPath(AssetLoader.Sound.NOTEANTIGOLD) : AssetLoader.getAssetPath(AssetLoader.Sound.NOTEGOLD));
+        ImagePanel mute = new ImagePanel(muted ? AssetLoader.getAssetPath(AssetLoader.SoundPlayer.NOTEANTIGOLD) : AssetLoader.getAssetPath(AssetLoader.SoundPlayer.NOTEGOLD));
         mute.setBounds(size/8,size/16,size*3/4,size*3/4);
         vertical.add(mute);
         
@@ -65,18 +65,18 @@ public class SoundButtonPopup extends JPanel {
                 DJ dj=DJ.getDJ();
                 if (muted){
                     dj.startBackgroundSound();
-                    mute.changeImage(AssetLoader.Sound.NOTEGOLD.getPath());
-                    parent.changeImage(AssetLoader.Sound.NOTEGOLD.getPath());
-                    continuePause.changeImage(AssetLoader.Sound.PAUSEGOLD.getPath());
+                    mute.changeImage(AssetLoader.SoundPlayer.NOTEGOLD.getPath());
+                    parent.changeImage(AssetLoader.SoundPlayer.NOTEGOLD.getPath());
+                    continuePause.changeImage(AssetLoader.SoundPlayer.PAUSEGOLD.getPath());
                     muted=false;
                     paused=false;
                     repaint();
                 }
                 else{
                     dj.stopBackgroundSound();
-                    mute.changeImage(AssetLoader.Sound.NOTEANTIGOLD.getPath());
-                    parent.changeImage(AssetLoader.Sound.NOTEANTIGOLD.getPath());
-                    continuePause.changeImage(AssetLoader.Sound.CONTINUEGOLD.getPath());
+                    mute.changeImage(AssetLoader.SoundPlayer.NOTEANTIGOLD.getPath());
+                    parent.changeImage(AssetLoader.SoundPlayer.NOTEANTIGOLD.getPath());
+                    continuePause.changeImage(AssetLoader.SoundPlayer.CONTINUEGOLD.getPath());
                     muted=true;
                     paused=true;
                     repaint();
@@ -91,18 +91,18 @@ public class SoundButtonPopup extends JPanel {
                 DJ dj=DJ.getDJ();
                 if (paused){
                     dj.startBackgroundSound();
-                    mute.changeImage(AssetLoader.Sound.NOTEGOLD.getPath());
-                    parent.changeImage(AssetLoader.Sound.NOTEGOLD.getPath());
-                    continuePause.changeImage(AssetLoader.Sound.PAUSEGOLD.getPath());
+                    mute.changeImage(AssetLoader.SoundPlayer.NOTEGOLD.getPath());
+                    parent.changeImage(AssetLoader.SoundPlayer.NOTEGOLD.getPath());
+                    continuePause.changeImage(AssetLoader.SoundPlayer.PAUSEGOLD.getPath());
                     muted=false;
                     paused=false;
                     repaint();
                 }
                 else{
                     dj.stopBackgroundSound();
-                    mute.changeImage(AssetLoader.Sound.NOTEANTIGOLD.getPath());
-                    parent.changeImage(AssetLoader.Sound.NOTEANTIGOLD.getPath());
-                    continuePause.changeImage(AssetLoader.Sound.CONTINUEGOLD.getPath());
+                    mute.changeImage(AssetLoader.SoundPlayer.NOTEANTIGOLD.getPath());
+                    parent.changeImage(AssetLoader.SoundPlayer.NOTEANTIGOLD.getPath());
+                    continuePause.changeImage(AssetLoader.SoundPlayer.CONTINUEGOLD.getPath());
                     muted=true;
                     paused=true;
                     repaint();

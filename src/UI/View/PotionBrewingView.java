@@ -97,21 +97,21 @@ public class PotionBrewingView extends JPanel {
     	lblDrink = new JLabel("DRINK");
     	
     	ButtonPanel = new JPanel();
-    	BG1 = new ImagePanel("Images/start/frameGold.png");
-    	BG1_Text = new ImagePanel("Images/start/goldInt1.png");
-    	BG2 = new ImagePanel("Images/start/frameCopper.png");
-    	BG2_Text = new ImagePanel("Images/start/goldInt2.png");
-    	BG3 = new ImagePanel("Images/start/frameCopper.png");
-    	BG3_Text = new ImagePanel("Images/start/goldInt3.png");
-    	BG4 = new ImagePanel("Images/start/frameCopper.png");
-    	BG4_Text = new ImagePanel("Images/start/goldInt4.png");
-    	BG5 = new ImagePanel("Images/start/frameCopper.png");
-    	BG5_Text = new ImagePanel("Images/start/goldInt5.png");
+    	BG1 = new ImagePanel("resources/Images/start/frameGold.png");
+    	BG1_Text = new ImagePanel("resources/Images/start/goldInt1.png");
+    	BG2 = new ImagePanel("resources/Images/start/frameCopper.png");
+    	BG2_Text = new ImagePanel("resources/Images/start/goldInt2.png");
+    	BG3 = new ImagePanel("resources/Images/start/frameCopper.png");
+    	BG3_Text = new ImagePanel("resources/Images/start/goldInt3.png");
+    	BG4 = new ImagePanel("resources/Images/start/frameCopper.png");
+    	BG4_Text = new ImagePanel("resources/Images/start/goldInt4.png");
+    	BG5 = new ImagePanel("resources/Images/start/frameCopper.png");
+    	BG5_Text = new ImagePanel("resources/Images/start/goldInt5.png");
         
         Cauldron = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.PotionBrewingViewAssets.CAULDRON));
-        FlameGif=new GifPanel(315, 0, 360, 225,"Gifs/Animations/flame.gif");
-        GlowGif=new GifPanel(100, 0, 800, 500,"Gifs/Animations/radiatingWhiteGlow.gif");
-        PotionBackground = new GifPanel(375, 100, 250, 260,"Gifs/Animations/orbFire.gif");
+        FlameGif=new GifPanel(315, 0, 360, 225,"resources/Gifs/Animations/flame.gif");
+        GlowGif=new GifPanel(100, 0, 800, 500,"resources/Gifs/Animations/radiatingWhiteGlow.gif");
+        PotionBackground = new GifPanel(375, 100, 250, 260,"resources/Gifs/Animations/orbFire.gif");
         PotionImage= new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.UNKNOWN));
         
     }
