@@ -13,6 +13,8 @@ import Utils.AssetLoader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: needs editing and refactoring
@@ -114,6 +116,16 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         container.add(potionsPanel);
 
         add(container); 
+    }
+    
+    public void addFunctions(){
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                e.consume();
+            }
+        });
+        
     }
     
     public void setPlayerBackground(Player player){

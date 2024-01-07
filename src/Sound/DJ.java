@@ -76,7 +76,6 @@ public class DJ {
     
     public void startEffectSound() {
         try {
-            adjustBackgroundVolume(-20.0f);
             EffectSound.start();
         } catch (Exception e) {
             e.printStackTrace(); // Handle the exception according to your application's needs
@@ -93,7 +92,8 @@ public class DJ {
         TRACK1("resources/Sounds/Background/Rick-Astley-Never-Gonna-Give-You-Up-_Official-Music-Video_ (1).wav"),
         TRACK2("resources/Sounds/Background/Enchanter.wav"),
         TRACK3("resources/Sounds/Background/Around the Fire.wav"),
-        TRACK4("resources/Sounds/Background/Taverns of Azeroth.wav")
+        TRACK4("resources/Sounds/Background/Taverns of Azeroth.wav"),
+        TRACK5("resources/Sounds/Background/Reverse Dance.wav")
         
         ;
         

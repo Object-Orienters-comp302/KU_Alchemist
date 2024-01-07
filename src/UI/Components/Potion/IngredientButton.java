@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+// 2 consturtors
 //ToDo:invantory checks
 public class IngredientButton extends GifPanel {
     ImagePanel img;

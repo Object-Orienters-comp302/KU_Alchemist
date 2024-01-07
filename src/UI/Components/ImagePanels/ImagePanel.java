@@ -23,6 +23,11 @@ public class ImagePanel extends JPanel {
         this.setOpaque(false);
     }
     
+    public ImagePanel(AssetLoader.AssetPath source) {
+        loadImage(source.getPath());
+        this.setOpaque(false);
+    }
+    
     private void loadImage(String source) {
         try {
             // Load an image from a file
@@ -131,9 +136,20 @@ public class ImagePanel extends JPanel {
         repaint();
     }
     
+    public void changeImage(AssetLoader.AssetPath newSource) {
+        loadImage(newSource.getPath());
+        repaint();
+    }
+    
     public void changeImage(BufferedImage newSource) {
         loadImage(newSource);
         repaint();
+    }
+    
+    public void addCorner(int cornerVal){
+        this.cornerVal=cornerVal;
+        this.shape=1;
+        this.repaint();
     }
     
     public int getCornerVal() {
