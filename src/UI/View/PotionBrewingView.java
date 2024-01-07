@@ -37,8 +37,7 @@ public class PotionBrewingView extends JPanel {
     ImagePanel Card1;
     ImagePanel Card2;
     ImagePanel Cauldron;
-    ColorChangingPanel DrinkButton;
-    JLabel lblDrink;
+
     JPanel ButtonPanel;
     
     ImagePanel BG1;
@@ -92,26 +91,24 @@ public class PotionBrewingView extends JPanel {
     	lblNewLabel = new JLabel("TEST ON STUDENT");
     	Card1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
     	Card2 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
-    	
-    	DrinkButton = new ColorChangingPanel("#cf9d15", "#FFD700");
-    	lblDrink = new JLabel("DRINK");
+     
     	
     	ButtonPanel = new JPanel();
-    	BG1 = new ImagePanel("Images/start/frameGold.png");
-    	BG1_Text = new ImagePanel("Images/start/goldInt1.png");
-    	BG2 = new ImagePanel("Images/start/frameCopper.png");
-    	BG2_Text = new ImagePanel("Images/start/goldInt2.png");
-    	BG3 = new ImagePanel("Images/start/frameCopper.png");
-    	BG3_Text = new ImagePanel("Images/start/goldInt3.png");
-    	BG4 = new ImagePanel("Images/start/frameCopper.png");
-    	BG4_Text = new ImagePanel("Images/start/goldInt4.png");
-    	BG5 = new ImagePanel("Images/start/frameCopper.png");
-    	BG5_Text = new ImagePanel("Images/start/goldInt5.png");
+    	BG1 = new ImagePanel("resources/Images/start/frameGold.png");
+    	BG1_Text = new ImagePanel("resources/Images/start/goldInt1.png");
+    	BG2 = new ImagePanel("resources/Images/start/frameCopper.png");
+    	BG2_Text = new ImagePanel("resources/Images/start/goldInt2.png");
+    	BG3 = new ImagePanel("resources/Images/start/frameCopper.png");
+    	BG3_Text = new ImagePanel("resources/Images/start/goldInt3.png");
+    	BG4 = new ImagePanel("resources/Images/start/frameCopper.png");
+    	BG4_Text = new ImagePanel("resources/Images/start/goldInt4.png");
+    	BG5 = new ImagePanel("resources/Images/start/frameCopper.png");
+    	BG5_Text = new ImagePanel("resources/Images/start/goldInt5.png");
         
         Cauldron = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.PotionBrewingViewAssets.CAULDRON));
-        FlameGif=new GifPanel(315, 0, 360, 225,"Gifs/Animations/flame.gif");
-        GlowGif=new GifPanel(100, 0, 800, 500,"Gifs/Animations/radiatingWhiteGlow.gif");
-        PotionBackground = new GifPanel(375, 100, 250, 260,"Gifs/Animations/orbFire.gif");
+        FlameGif=new GifPanel(315, 0, 360, 225,"resources/Gifs/Animations/flame.gif");
+        GlowGif=new GifPanel(100, 0, 800, 500,"resources/Gifs/Animations/radiatingWhiteGlow.gif");
+        PotionBackground = new GifPanel(375, 100, 250, 260,"resources/Gifs/Animations/orbFire.gif");
         PotionImage= new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.UNKNOWN));
         
     }
@@ -162,13 +159,7 @@ public class PotionBrewingView extends JPanel {
         Cauldron.setBounds(375, 100, 250, 250);
         Background.add(Cauldron);
         
-        DrinkButton.setLayout(null);
-        DrinkButton.setBounds(475, 425, 50, 40);
-        Background.add(DrinkButton);
-        
-        lblDrink.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        lblDrink.setBounds(10, 5, 40, 30);
-        DrinkButton.add(lblDrink);
+
         
         ButtonPanel.setLayout(null);
         ButtonPanel.setOpaque(false);
@@ -224,7 +215,7 @@ public class PotionBrewingView extends JPanel {
                 if (!potionIsBeingDisplayed) {
                     Inventory inventory = Player.getCurrPlayer().getInventory();
                     
-                    if (Player.getCurrPlayer().isInInventory(IngredientB1.getType()) && Player.getCurrPlayer()
+                    if (Player.getCurrPlayer().getInventory().isInInventory(IngredientB1.getType()) && Player.getCurrPlayer().getInventory()
                             .isInInventory(IngredientB2.getType())) {
                         //TODO Make this better currently this maybe problematic
                         Potion pot = MakePotion(new Ingredient(IngredientB1.getType()),
@@ -304,12 +295,14 @@ public class PotionBrewingView extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (PotionBrewingView.this.testOnStudent) {
                     TickPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
+                    PotionBrewingView.this.testOnStudent = false;
                     
                 } else {
                     
                     TickPanel.changeImage(AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN_TICK));
+                    PotionBrewingView.this.testOnStudent = true;
                 }
-                PotionBrewingView.this.testOnStudent = !PotionBrewingView.this.testOnStudent;//Sets it to it's negative
+                //PotionBrewingView.this.testOnStudent = !PotionBrewingView.this.testOnStudent;//Sets it to it's negative
                 
             }
         });
@@ -364,10 +357,11 @@ public class PotionBrewingView extends JPanel {
     private Potion MakePotion(Ingredient ingredient1, Ingredient ingredient2, Player player) {
         RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
         Potion potion = roundOneController.MakePotion(ingredient1.getAspects(), ingredient2.getAspects());
+        MakeExperiments(potion,player,!this.testOnStudent);
         player.getInventory().addPotions(potion, 1);
         
-        roundOneController.removeIngredient(player, ingredient1);
-        roundOneController.removeIngredient(player, ingredient2);
+        roundOneController.removeIngredient(player, ingredient1.getType());
+        roundOneController.removeIngredient(player, ingredient2.getType());
         return potion;
     }
     

@@ -12,7 +12,7 @@ public class RoundOneController {
             Deck deck = Deck.getInstance();
             Ingredient ingredient = deck.popIngredient();
             player.getInventory()
-                    .addIngredient(ingredient, 1);
+                    .addIngredient(ingredient.getType(), 1);
             player.setForageRight(player.getForageRight()-1);
             return ingredient;
         }
@@ -23,17 +23,16 @@ public class RoundOneController {
     }
     
     public void TransmuteIngredient(Player player, Ingredient.IngredientTypes ingredientType) {
-        if (player.isInInventory(ingredientType)) {
-            player.removeFromInventory(ingredientType);
+        if (player.getInventory().isInInventory(ingredientType)) {
+            player.getInventory().removeIngredient(ingredientType,1);
             player.getInventory().setGold(player.getInventory().getGold() + 1);
         }
     }
     
     public Artifact BuyArtifacts(Player player) {
-
         if (player.getInventory().getGold() > 3) {
-            Artifact artifact =Deck.getInstance().popArtifact();
-            player.getInventory().addArtifactCard(artifact, 1);
+            Artifact artifact = Deck.getInstance().popArtifact();
+            player.getInventory().addArtifactCard(artifact.getName(), 1);
             player.getInventory().setGold(player.getInventory().getGold() - 3);
             return artifact;
         }
@@ -59,66 +58,75 @@ public class RoundOneController {
     
     public Potion MakePotion(Ingredient.AspectTrio AspectTrio1,
                              Ingredient.AspectTrio AspectTrio2) {//Takes 2 AspectTrios and outputs a Potion.
+        if(AspectTrio1 == null || AspectTrio2 == null){
+            throw  new NullPointerException("Any AspectTrio can't be null");
+        }
+        if(AspectTrio1 == AspectTrio2){
+            throw new RuntimeException("Two trios can't be same");
+        }
+        
         if (CompareTwoAspects(AspectTrio1.getAspectBlue(), AspectTrio2.getAspectBlue())) {
-            if (AspectTrio1.getAspectBlue()
-                    .getPositivity() == Aspect.Positivities.Positive) {// If both of them are same we only need to check one.
-                return new Potion(Potion.Colors.Blue, Potion.Signs.Positive);
-            } else {
-                return new Potion(Potion.Colors.Blue, Potion.Signs.Negative);
+            if (CompareTwoAspectSizes(AspectTrio1.getAspectBlue(),AspectTrio2.getAspectBlue())) {// If both of them are same we only need to check one.
+                return new Potion(Potion.Colors.Blue, changePositivityToSign(AspectTrio1.getAspectBlue().getPositivity()));
             }
         } else if (CompareTwoAspects(AspectTrio1.getAspectRed(), AspectTrio2.getAspectRed())) {
-            if (AspectTrio1.getAspectRed().getPositivity() == Aspect.Positivities.Positive) {
-                return new Potion(Potion.Colors.Red, Potion.Signs.Positive);
-            } else {
-                return new Potion(Potion.Colors.Red, Potion.Signs.Negative);
+            if (CompareTwoAspectSizes(AspectTrio1.getAspectRed(),AspectTrio2.getAspectRed())) {
+                return new Potion(Potion.Colors.Red,changePositivityToSign(AspectTrio1.getAspectRed().getPositivity()));
             }
             
         } else if (CompareTwoAspects(AspectTrio1.getAspectGreen(), AspectTrio2.getAspectGreen())) {
-            if (AspectTrio1.getAspectGreen().getPositivity() == Aspect.Positivities.Positive) {
-                return new Potion(Potion.Colors.Green, Potion.Signs.Positive);
-            } else {
-                return new Potion(Potion.Colors.Green, Potion.Signs.Negative);
+            if (CompareTwoAspectSizes(AspectTrio1.getAspectGreen(),AspectTrio2.getAspectGreen())) {
+                return new Potion(Potion.Colors.Green, changePositivityToSign(AspectTrio1.getAspectGreen().getPositivity()));
             }
             
-        } else {
+        }
+        else {
             return new Potion(Potion.Colors.Colorless, Potion.Signs.Neutral);
         }
         
-        
+        return new Potion(Potion.Colors.Colorless, Potion.Signs.Neutral);
     }
-    public void removeIngredient(Player player ,Ingredient ingredient){
-        player.removeFromInventory(ingredient.getType());
+    public Potion.Signs changePositivityToSign(Aspect.Positivities pos){
+        switch (pos){
+            case Positive -> { return Potion.Signs.Positive; }
+            case Negative -> { return Potion.Signs.Negative; }
+            case null, default -> throw new NullPointerException();
+        }
+    }
+    public void removeIngredient(Player player , Ingredient.IngredientTypes ingredient){
+        player.getInventory().removeIngredient(ingredient);
     }
     
     private Boolean CompareTwoAspects(Aspect aspect1, Aspect aspect2) {
         return aspect1.getPositivity() == aspect2.getPositivity();
     }
+    private Boolean CompareTwoAspectSizes(Aspect aspect1, Aspect aspect2){
+        return !(aspect1.getSize() == aspect2.getSize());
+    }
     
-    public boolean MagicMortar(Player current, Artifact artifact, Ingredient ingredient){
-        if(current.getInventory().getArtifacts().containsKey(artifact)){
-            if (artifact.getName().equals("Magic Mortar")){
-                current.getInventory().getArtifacts().remove(artifact);
+    public boolean MagicMortar(Player current, Artifact.Name artifactName, Ingredient.IngredientTypes ingredient){
+        if(current.getInventory().getArtifacts().containsKey(artifactName)){
+            if (artifactName.equals(Artifact.Name.Magic_Mortar)){
+                current.getInventory().getArtifacts().remove(artifactName);
                 current.getInventory().addIngredient(ingredient, 1);
                 return true;
             }
-            return false;
         }
         return false;
     }
     
-    public boolean PrintingPress(Player current, Artifact artifact){
-        if(current.getInventory().getArtifacts().containsKey(artifact)){
-            if(artifact.getName().equals("Printing Press")){
+    public boolean PrintingPress(Player current, Artifact.Name artifactName){
+        if(current.getInventory().getArtifacts().containsKey(artifactName)){
+            if(artifactName.equals(Artifact.Name.Printing_Press)){
                 current.getInventory().addGold(1);
                 return true;
             }
-            return false;
         }
         return false;
     }
     public boolean WisdomIdol(Player current){
-        if(current.getInventory().checkArtifactExists("Wisdom Idol")){
-                current.getInventory().removeArtifact("Wisdom Idol");
+        if(current.getInventory().checkArtifactExists(Artifact.Name.Wisdom_Idol)){
+                current.getInventory().removeArtifact(Artifact.Name.Wisdom_Idol);
                 return true;
         }
         return false;

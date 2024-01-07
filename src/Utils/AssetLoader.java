@@ -8,18 +8,18 @@ public class AssetLoader {
     
     // Enums for asset paths
     public enum Backgrounds implements AssetPath {
-        BLUE("Images/backgrounds/blueBackground.png"),
-        RED("Images/backgrounds/redBackground.png"),
-        GREEN("Images/backgrounds/greenBackground.png"),
-        YELLOW("Images/backgrounds/yellowBackground.png"),
-        PURPLE("Images/backgrounds/purpleBackground.png"),
-        MAIN_BACKGROUND("Images/backgrounds/MainBackground.png"),
-        INVENTORY("Images/backgrounds/inventoryBackground.png"),
-        PUBLISH("Images/backgrounds/publishBackground.png"),
-        BLANK("Images/backgrounds/blankPng.png"),
-        TRANSMUTE_BACKGROUND("Images/backgrounds/transmuteBackground.png"),
-        START_BACKGROUND("Images/backgrounds/startBackground0.png"),
-        DEDUCTION_BACKGROUND("Images/backgrounds/deductionBackground.png");
+        BLUE("resources/Images/backgrounds/blueBackground.png"),
+        RED("resources/Images/backgrounds/redBackground.png"),
+        GREEN("resources/Images/backgrounds/greenBackground.png"),
+        YELLOW("resources/Images/backgrounds/yellowBackground.png"),
+        PURPLE("resources/Images/backgrounds/purpleBackground.png"),
+        MAIN_BACKGROUND("resources/Images/backgrounds/MainBackground.png"),
+        INVENTORY("resources/Images/backgrounds/inventoryBackground.png"),
+        PUBLISH("resources/Images/backgrounds/publishBackground.png"),
+        BLANK("resources/Images/backgrounds/blankPng.png"),
+        TRANSMUTE_BACKGROUND("resources/Images/backgrounds/transmuteBackground.png"),
+        START_BACKGROUND("resources/Images/backgrounds/startBackground0.png"),
+        DEDUCTION_BACKGROUND("resources/Images/backgrounds/deductionBackground.png");
         
         
         private final String path;
@@ -35,20 +35,20 @@ public class AssetLoader {
     }
     
     public enum ButtonBackgrounds implements AssetPath {
-        TABLE_0("Images/buttonBackgrounds/tablesBackground0.png"),
-        TABLE_1("Images/buttonBackgrounds/tablesBackground1.png"),
-        PUBLISH_0("Images/buttonBackgrounds/publish0.png"),
-        PUBLISH_1("Images/buttonBackgrounds/publish1.png"),
-        LAB_0("Images/buttonBackgrounds/lab0.png"),
-        LAB_1("Images/buttonBackgrounds/lab1.png"),
-        JUNGLE_0("Images/buttonBackgrounds/forage0.png"),
-        JUNGLE_1("Images/buttonBackgrounds/forage1.png"),
-        INVENTORY_0("Images/buttonBackgrounds/inventory0.png"),
-        INVENTORY_1("Images/buttonBackgrounds/inventory1.png"),
-        TRANS_0("Images/buttonBackgrounds/transmutate0.png"),
-        TRANS_1("Images/buttonBackgrounds/transmutate1.png"),
-        PAUSE("Images/buttonBackgrounds/pause.png"),
-        EU4("Images/buttonBackgrounds/eu4Logo.png");
+        TABLE_0("resources/Images/buttonBackgrounds/tablesBackground0.png"),
+        TABLE_1("resources/Images/buttonBackgrounds/tablesBackground1.png"),
+        PUBLISH_0("resources/Images/buttonBackgrounds/publish0.png"),
+        PUBLISH_1("resources/Images/buttonBackgrounds/publish1.png"),
+        LAB_0("resources/Images/buttonBackgrounds/lab0.png"),
+        LAB_1("resources/Images/buttonBackgrounds/lab1.png"),
+        JUNGLE_0("resources/Images/buttonBackgrounds/forage0.png"),
+        JUNGLE_1("resources/Images/buttonBackgrounds/forage1.png"),
+        INVENTORY_0("resources/Images/buttonBackgrounds/inventory0.png"),
+        INVENTORY_1("resources/Images/buttonBackgrounds/inventory1.png"),
+        TRANS_0("resources/Images/buttonBackgrounds/transmutate0.png"),
+        TRANS_1("resources/Images/buttonBackgrounds/transmutate1.png"),
+        PAUSE("resources/Images/buttonBackgrounds/pause.png"),
+        EU4("resources/Images/buttonBackgrounds/eu4Logo.png");
         
         
         private final String path;
@@ -64,12 +64,12 @@ public class AssetLoader {
     }
     
     public enum ButtonTexts implements AssetPath {
-        DEDUCT("Images/buttonText/deductionText.png"),
-        EXPERIMENT("Images/buttonText/experimentText.png"),
-        PUBLISH("Images/buttonText/publishText.png"),
-        FORAGE("Images/buttonText/forageText.png"),
-        TRANSMUTE("Images/buttonText/transmutateText.png"),
-        INVENTORY("Images/buttonText/inventoryText.png");
+        DEDUCT("resources/Images/buttonText/deductionText.png"),
+        EXPERIMENT("resources/Images/buttonText/experimentText.png"),
+        PUBLISH("resources/Images/buttonText/publishText.png"),
+        FORAGE("resources/Images/buttonText/forageText.png"),
+        TRANSMUTE("resources/Images/buttonText/transmutateText.png"),
+        INVENTORY("resources/Images/buttonText/inventoryText.png");
         
         
         private final String path;
@@ -85,13 +85,13 @@ public class AssetLoader {
     }
     
     public enum Tokens implements AssetPath {
-        GREEN_TICK("Images/tokens/greenTick.png"),
-        RED_X("Images/tokens/redX.png"),
-        BLUE("Images/tokens/bluePortrait.png"),
-        RED("Images/tokens/redPortrait.png"),
-        GREEN("Images/tokens/greenPortrait.png"),
-        YELLOW("Images/tokens/yellowPortrait.png"),
-        PURPLE("Images/tokens/purplePortrait.png");
+        GREEN_TICK("resources/Images/tokens/greenTick.png"),
+        RED_X("resources/Images/tokens/redX.png"),
+        BLUE("resources/Images/tokens/bluePortrait.png"),
+        RED("resources/Images/tokens/redPortrait.png"),
+        GREEN("resources/Images/tokens/greenPortrait.png"),
+        YELLOW("resources/Images/tokens/yellowPortrait.png"),
+        PURPLE("resources/Images/tokens/purplePortrait.png");
         
         private final String path;
         
@@ -106,11 +106,11 @@ public class AssetLoader {
     }
     
     public enum Avatars implements AssetPath {
-        BLUE("Images/avatars/blueAvatar.png"),
-        RED("Images/avatars/redAvatar.png"),
-        GREEN("Images/avatars/greenAvatar.png"),
-        YELLOW("Images/avatars/yellowAvatar.png"),
-        PURPLE("Images/avatars/purpleAvatar.png");
+        BLUE("resources/Images/avatars/blueAvatar.png"),
+        RED("resources/Images/avatars/redAvatar.png"),
+        GREEN("resources/Images/avatars/greenAvatar.png"),
+        YELLOW("resources/Images/avatars/yellowAvatar.png"),
+        PURPLE("resources/Images/avatars/purpleAvatar.png");
         
         private final String path;
         
@@ -125,14 +125,14 @@ public class AssetLoader {
     }
     
     public enum Potions implements AssetPath {
-        BLUE_NEGATIVE("Images/PotionBrewingViewAssets/bluePotionNegative.png"),
-        BLUE_POSITIVE("Images/PotionBrewingViewAssets/bluePotionPositive.png"),
-        RED_NEGATIVE("Images/PotionBrewingViewAssets/redPotionNegative.png"),
-        RED_POSITIVE("Images/PotionBrewingViewAssets/redPotionPositive.png"),
-        GREEN_NEGATIVE("Images/PotionBrewingViewAssets/greenPotionNegative.png"),
-        GREEN_POSITIVE("Images/PotionBrewingViewAssets/greenPotionPositive.png"),
-        NEUTRAL("Images/PotionBrewingViewAssets/neutralPotion.png"),
-        UNKNOWN("Images/PotionBrewingViewAssets/unknownPotion.png");
+        BLUE_NEGATIVE("resources/Images/PotionBrewingViewAssets/bluePotionNegative.png"),
+        BLUE_POSITIVE("resources/Images/PotionBrewingViewAssets/bluePotionPositive.png"),
+        RED_NEGATIVE("resources/Images/PotionBrewingViewAssets/redPotionNegative.png"),
+        RED_POSITIVE("resources/Images/PotionBrewingViewAssets/redPotionPositive.png"),
+        GREEN_NEGATIVE("resources/Images/PotionBrewingViewAssets/greenPotionNegative.png"),
+        GREEN_POSITIVE("resources/Images/PotionBrewingViewAssets/greenPotionPositive.png"),
+        NEUTRAL("resources/Images/PotionBrewingViewAssets/neutralPotion.png"),
+        UNKNOWN("resources/Images/PotionBrewingViewAssets/unknownPotion.png");
         
         
         private final String path;
@@ -148,18 +148,18 @@ public class AssetLoader {
     }
     
     public enum TriangleTable implements AssetPath {
-        TRIANGLE_TABLE("Images/triangleTable/TriangleTable.png"),
-        MINUS_BLUE("Images/triangleTable/minusBlue.png"),
-        MINUS_GREEN("Images/triangleTable/minusGreen.png"),
-        MINUS_RED("Images/triangleTable/minusRed.png"),
-        OUTLINE("Images/triangleTable/outline.png"),
-        PLUS_BLUE("Images/triangleTable/plusBlue.png"),
-        PLUS_GREEN("Images/triangleTable/plusGreen.png"),
-        PLUS_RED("Images/triangleTable/plusRed.png"),
-        QUESTION_MARK("Images/triangleTable/questionMark.png"),
-        QUESTION_MARK_WHITE("Images/triangleTable/questionMarkWhite.png"),
-        RECTANGLE_TABLE("Images/triangleTable/rectangleTable.png"),
-        Empty("Images/triangleTable/empty.png");
+        TRIANGLE_TABLE("resources/Images/triangleTable/TriangleTable.png"),
+        MINUS_BLUE("resources/Images/triangleTable/minusBlue.png"),
+        MINUS_GREEN("resources/Images/triangleTable/minusGreen.png"),
+        MINUS_RED("resources/Images/triangleTable/minusRed.png"),
+        OUTLINE("resources/Images/triangleTable/outline.png"),
+        PLUS_BLUE("resources/Images/triangleTable/plusBlue.png"),
+        PLUS_GREEN("resources/Images/triangleTable/plusGreen.png"),
+        PLUS_RED("resources/Images/triangleTable/plusRed.png"),
+        QUESTION_MARK("resources/Images/triangleTable/questionMark.png"),
+        QUESTION_MARK_WHITE("resources/Images/triangleTable/questionMarkWhite.png"),
+        RECTANGLE_TABLE("resources/Images/triangleTable/rectangleTable.png"),
+        Empty("resources/Images/triangleTable/empty.png");
         
         private final String path;
         
@@ -174,13 +174,13 @@ public class AssetLoader {
     }
     
     public enum ForageGroundsAssets implements AssetPath {
-        BACKGROUND("Images/ForageGroundsAssets/forageGrounds.png"),
-        CARD("Images/ForageGroundsAssets/ingredientCard.png"),
-        BACKGROUND1("Images/ForageGroundsAssets/forageBackground1.png"),
-        BACKGROUND2("Images/ForageGroundsAssets/forageBackground2.png"),
-        BACKGROUND3("Images/ForageGroundsAssets/forageBackground3.png"),
-        BACKGROUND4("Images/ForageGroundsAssets/forageBackground4.png"),
-        BACKGROUND5("Images/ForageGroundsAssets/forageBackground5.png");
+        BACKGROUND("resources/Images/ForageGroundsAssets/forageGrounds.png"),
+        CARD("resources/Images/ForageGroundsAssets/ingredientCard.png"),
+        BACKGROUND1("resources/Images/ForageGroundsAssets/forageBackground1.png"),
+        BACKGROUND2("resources/Images/ForageGroundsAssets/forageBackground2.png"),
+        BACKGROUND3("resources/Images/ForageGroundsAssets/forageBackground3.png"),
+        BACKGROUND4("resources/Images/ForageGroundsAssets/forageBackground4.png"),
+        BACKGROUND5("resources/Images/ForageGroundsAssets/forageBackground5.png");
         
         private final String path;
         
@@ -195,14 +195,14 @@ public class AssetLoader {
     }
     
     public enum PotionBrewingViewAssets implements AssetPath {
-        BACKGROUND("Images/PotionBrewingViewAssets/PotionBrewingArea.png"),
+        BACKGROUND("resources/Images/PotionBrewingViewAssets/PotionBrewingArea.png"),
         
-    	  BACKGROUND1("Images/PotionBrewingViewAssets/brewBackground1.png"),
-    	  BACKGROUND2("Images/PotionBrewingViewAssets/brewBackground2.png"),
-    	  BACKGROUND3("Images/PotionBrewingViewAssets/brewBackground3.png"),
-    	  BACKGROUND4("Images/PotionBrewingViewAssets/brewBackground4.png"),
-    	  BACKGROUND5("Images/PotionBrewingViewAssets/brewBackground5.png"),
-        CAULDRON("Images/PotionBrewingViewAssets/cauldron.png")
+    	  BACKGROUND1("resources/Images/PotionBrewingViewAssets/brewBackground1.png"),
+    	  BACKGROUND2("resources/Images/PotionBrewingViewAssets/brewBackground2.png"),
+    	  BACKGROUND3("resources/Images/PotionBrewingViewAssets/brewBackground3.png"),
+    	  BACKGROUND4("resources/Images/PotionBrewingViewAssets/brewBackground4.png"),
+    	  BACKGROUND5("resources/Images/PotionBrewingViewAssets/brewBackground5.png"),
+        CAULDRON("resources/Images/PotionBrewingViewAssets/cauldron.png")
     	;
 
         
@@ -219,7 +219,7 @@ public class AssetLoader {
     }
     
     public enum PlainViewAssets implements AssetPath {
-        BACKGROUND("Images/PlainViewAssets/PlainViewBackground.png");
+        BACKGROUND("resources/Images/PlainViewAssets/PlainViewBackground.png");
         
         private final String path;
         
@@ -235,14 +235,14 @@ public class AssetLoader {
     
     public enum IngredientAssets implements AssetPath {
         
-        FEATHER("Images/book/feather.png"),
-        FEET("Images/book/feet.png"),
-        FLOWER("Images/book/flower.png"),
-        FROG("Images/book/frog.png"),
-        MANDRAKE("Images/book/mandrake.png"),
-        MUSHROOM("Images/book/mushroom.png"),
-        SCORPION("Images/book/scorpion.png"),
-        WEED("Images/book/weed.png");
+        FEATHER("resources/Images/book/feather.png"),
+        FEET("resources/Images/book/feet.png"),
+        FLOWER("resources/Images/book/flower.png"),
+        FROG("resources/Images/book/frog.png"),
+        MANDRAKE("resources/Images/book/mandrake.png"),
+        MUSHROOM("resources/Images/book/mushroom.png"),
+        SCORPION("resources/Images/book/scorpion.png"),
+        WEED("resources/Images/book/weed.png");
         
         private final String path;
         
@@ -257,7 +257,7 @@ public class AssetLoader {
     }
     
     public enum Artifacts implements AssetPath {
-        CARD("Images/artifact/artifactCard.png");
+        CARD("resources/Images/artifact/artifactCard.png");
         
         private final String path;
         
@@ -271,20 +271,19 @@ public class AssetLoader {
         }
     }
     
-    
     public enum Book implements AssetPath {
-        ALL_POSITIVE("Images/book/C1.png"),
-        ALL_NEGATIVE("Images/book/C2.png"),
-        NEGATIVE_GREEN("Images/book/C3.png"),
-        POSITIVE_RED("Images/book/C4.png"),
-        NEGATIVE_BLUE("Images/book/C5.png"),
-        NEGATIVE_RED("Images/book/C6.png"),
-        POSITIVE_GREEN("Images/book/C7.png"),
-        POSITIVE_BLUE("Images/book/C8.png"),
-        BOOK("Images/book/book.png"),
-        ENVELOPE("Images/book/envelope.png"),
-        PUBLISH("Images/book/publish.png"),
-        PUBLISHED("Images/book/published.png");
+        ALL_POSITIVE("resources/Images/book/C1.png"),
+        ALL_NEGATIVE("resources/Images/book/C2.png"),
+        NEGATIVE_GREEN("resources/Images/book/C3.png"),
+        POSITIVE_RED("resources/Images/book/C4.png"),
+        NEGATIVE_BLUE("resources/Images/book/C5.png"),
+        NEGATIVE_RED("resources/Images/book/C6.png"),
+        POSITIVE_GREEN("resources/Images/book/C7.png"),
+        POSITIVE_BLUE("resources/Images/book/C8.png"),
+        BOOK("resources/Images/book/book.png"),
+        ENVELOPE("resources/Images/book/envelope.png"),
+        PUBLISH("resources/Images/book/publish.png"),
+        PUBLISHED("resources/Images/book/published.png");
         
         private final String path;
         
@@ -299,17 +298,17 @@ public class AssetLoader {
     }
     
     public enum Start implements AssetPath {
-        NAME_TEXT("Images/start/alchemistText.png"),
-        START_TEXT("Images/start/startText.png"),
-        FRAME_GOLD("Images/start/frameGold.png"),
-        FRAME_COPPER("Images/start/frameCopper.png"),
-        FRAME_WHITE("Images/start/frameWhite.png"),
-        FRAME_YELLOW("Images/start/frameYellow.png"),
-        GOLD_1("Images/start/goldInt1.png"),
-        GOLD_2("Images/start/goldInt2.png"),
-        GOLD_3("Images/start/goldInt3.png"),
-        GOLD_4("Images/start/goldInt4.png"),
-        GOLD_5("Images/start/goldInt5.png");
+        NAME_TEXT("resources/Images/start/alchemistText.png"),
+        START_TEXT("resources/Images/start/startText.png"),
+        FRAME_GOLD("resources/Images/start/frameGold.png"),
+        FRAME_COPPER("resources/Images/start/frameCopper.png"),
+        FRAME_WHITE("resources/Images/start/frameWhite.png"),
+        FRAME_YELLOW("resources/Images/start/frameYellow.png"),
+        GOLD_1("resources/Images/start/goldInt1.png"),
+        GOLD_2("resources/Images/start/goldInt2.png"),
+        GOLD_3("resources/Images/start/goldInt3.png"),
+        GOLD_4("resources/Images/start/goldInt4.png"),
+        GOLD_5("resources/Images/start/goldInt5.png");
         
         private final String path;
         
@@ -324,10 +323,10 @@ public class AssetLoader {
     }
     
     public enum Gifs implements AssetPath {
-        CIRCLE_BLUE("Gifs/Animations/glowCircularBlue.gif"),
-        LEAVES("Gifs/Animations/leaves.gif"),
-        HOURGLASS("Gifs/Loading/hourglass.gif"),
-        POTION("Gifs/Loading/loadingPotion.gif");
+        CIRCLE_BLUE("resources/Gifs/Animations/glowCircularBlue.gif"),
+        LEAVES("resources/Gifs/Animations/leaves.gif"),
+        HOURGLASS("resources/Gifs/Loading/hourglass.gif"),
+        POTION("resources/Gifs/Loading/loadingPotion.gif");
         
         private final String path;
         
@@ -341,21 +340,21 @@ public class AssetLoader {
         }
     }
     
-    public enum Sound implements AssetPath {
-        CONTINUEGOLD("Images/sound/continueGold.png"),
-        CONTINUEGREEN("Images/sound/continueGold.png"),
-        PAUSEGOLD("Images/sound/pauseGold.png"),
-        PAUSEGREEN("Images/sound/pauseGreen.png"),
-        NOTEGOLD("Images/sound/noteGold.png"),
-        NOTEGREEN("Images/sound/noteGreen.png"),
-        MINUS("Images/sound/minus.png"),
-        PLUS("Images/sound/plus.png"),
-        NOTEANTIGOLD("Images/sound/noteAntiGold.png")
+    public enum SoundPlayer implements AssetPath {
+        CONTINUEGOLD("resources/Images/sound/continueGold.png"),
+        CONTINUEGREEN("resources/Images/sound/continueGold.png"),
+        PAUSEGOLD("resources/Images/sound/pauseGold.png"),
+        PAUSEGREEN("resources/Images/sound/pauseGreen.png"),
+        NOTEGOLD("resources/Images/sound/noteGold.png"),
+        NOTEGREEN("resources/Images/sound/noteGreen.png"),
+        MINUS("resources/Images/sound/minus.png"),
+        PLUS("resources/Images/sound/plus.png"),
+        NOTEANTIGOLD("resources/Images/sound/noteAntiGold.png")
         ;
         
         private final String path;
         
-        Sound(String path) {
+        SoundPlayer(String path) {
             this.path = path;
         }
         
@@ -364,6 +363,7 @@ public class AssetLoader {
             return path;
         }
     }
+
     
     // Interface for asset paths
     public interface AssetPath {

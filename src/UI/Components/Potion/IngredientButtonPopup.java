@@ -175,8 +175,7 @@ public class IngredientButtonPopup extends JPanel {
     public static boolean CheckIfInventory(AssetLoader.AssetPath toCheck) {
         Ingredient.IngredientTypes ingredientType = Ingredient.getTypeFromPath(toCheck);
         
-        return !Player.getCurrPlayer().getInventory().getIngredients().entrySet().stream()
-                .anyMatch(entry -> entry.getKey().getType() == ingredientType && entry.getValue() > 0);
+        return !Player.getCurrPlayer().getInventory().isInInventory(ingredientType);
         
     }
     
