@@ -139,6 +139,42 @@ public class Inventory implements Publisher {
             }
         }
     }
+    public boolean repOK() {
+        // Null checks for maps and listeners
+        if (ingredientHashMap == null || potions == null || artifacts == null || listeners == null) {
+            return false;
+        }
+        
+        // Check for non-negative gold value
+        if (gold == null || gold < 0) {
+            return false;
+        }
+        
+        // Check for non-negative values in ingredientHashMap
+        for (Integer quantity : ingredientHashMap.values()) {
+            if (quantity == null || quantity < 0) {
+                return false;
+            }
+        }
+        
+        // Check for non-negative values in potions
+        for (Integer quantity : potions.values()) {
+            if (quantity == null || quantity < 0) {
+                return false;
+            }
+        }
+        
+        // Check for non-negative values in artifacts
+        for (Integer quantity : artifacts.values()) {
+            if (quantity == null || quantity < 0) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    
     @Override
     public void publishEvent(Type type) {
         for (Listener listener : listeners) {

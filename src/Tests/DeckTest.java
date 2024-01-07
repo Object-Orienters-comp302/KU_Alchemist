@@ -9,9 +9,19 @@ import Models.Ingredient;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Test class for Deck.
+ * Provides unit tests for different functionalities of the Deck class.
+ */
 public class DeckTest {
     private Deck deck;
     
+    /**
+     * Sets up the test environment before each test.
+     * Requires: None
+     * Modifies: this.deck
+     * Effects: Initializes a new Deck instance and clears it before each test.
+     */
     @BeforeEach
     void setUp() {
         deck = Deck.getInstance();
@@ -20,18 +30,36 @@ public class DeckTest {
         deck.clear();
     }
     
-    /*--------------------------------getFirstThree---------------------------------*/
+    /**
+     * Tests the behavior of getFirstThree method when the deck is empty.
+     * Requires: An empty deck instance.
+     * Modifies: None
+     * Effects: Asserts that the returned collection from getFirstThree is empty.
+     */
     @Test
     void getFirstThreeWhenDeckIsEmpty() {
         assertTrue(deck.getFirstThree().isEmpty(), "The deck should be empty");
     }
     
+    
+    /**
+     * Tests the getFirstThree method with less than three ingredients in the deck.
+     * Requires: A deck instance with less than three ingredients.
+     * Modifies: None
+     * Effects: Asserts that the size of the returned collection is equal to the number of ingredients in the deck.
+     */
     @Test
     void getFirstThreeWithLessThanThreeIngredients() {
         deck.addIngredient(new Ingredient(Ingredient.IngredientTypes.Plant), 1);
         assertEquals(1, deck.getFirstThree().size(), "The deck should have only one ingredient");
     }
     
+    /**
+     * Tests the getFirstThree method with exactly three ingredients in the deck.
+     * Requires: A deck instance with exactly three different ingredients.
+     * Modifies: None
+     * Effects: Asserts that the size of the returned collection is exactly three.
+     */
     @Test
     void getFirstThreeWithExactlyThreeIngredients() {
         deck.addIngredient(new Ingredient(Ingredient.IngredientTypes.Plant), 1);
@@ -182,6 +210,12 @@ public class DeckTest {
     }
     
     /*--------------------------------shuffleIngredients---------------------------------*/
+    /**
+     * Tests the behavior of shuffleIngredients method on a non-empty deck.
+     * Requires: A non-empty deck instance.
+     * Modifies: The order of ingredients in this.deck.
+     * Effects: Asserts that the order of ingredients is changed after shuffling.
+     */
     @Test
     void shuffleIngredientsNonEmptyDeck() {
         deck.addIngredient(new Ingredient(Ingredient.IngredientTypes.Plant), 1);
@@ -196,12 +230,24 @@ public class DeckTest {
                         "The order of ingredients should be changed after shuffle");
     }
     
+    /**
+     * Tests the shuffleIngredients method on an empty deck.
+     * Requires: An empty deck instance.
+     * Modifies: None
+     * Effects: Asserts that shuffling an empty deck results in an empty deck.
+     */
     @Test
     void shuffleEmptyDeck() {
         deck.shuffleIngredients();
         assertTrue(deck.getIngredients().isEmpty(), "Shuffling an empty deck should still result in an empty deck");
     }
     
+    /**
+     * Tests the shuffleIngredients method ensuring a different order of ingredients.
+     * Requires: A deck instance with multiple ingredients.
+     * Modifies: The order of ingredients in this.deck.
+     * Effects: Asserts that the order of ingredients is different after shuffling.
+     */
     @Test
     void shuffleResultsInDifferentOrder() {
         // This test might occasionally fail due to the random nature of shuffling
