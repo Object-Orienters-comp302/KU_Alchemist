@@ -257,7 +257,12 @@ public class AssetLoader {
     }
     
     public enum Artifacts implements AssetPath {
-        CARD("resources/Images/artifact/artifactCard.png");
+        CARD("resources/Images/artifact/artifactCard.png"),
+        WISDOM("resources/Images/artifact/wisdom6.png"),
+        MORTAR("resources/Images/artifact/mortar5.png"),
+        PRESS("resources/Images/artifact/press1.png"),
+        IDOL("resources/Images/artifact/idol.png")
+        ;
         
         private final String path;
         

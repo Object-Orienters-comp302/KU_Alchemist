@@ -146,6 +146,12 @@ public class ImagePanel extends JPanel {
         repaint();
     }
     
+    public void addCorner(int cornerVal){
+        this.cornerVal=cornerVal;
+        this.shape=1;
+        this.repaint();
+    }
+    
     public int getCornerVal() {
         return cornerVal;
     }
