@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+// 2 consturtors
 //ToDo:invantory checks
 public class IngredientButton extends GifPanel {
     ImagePanel img;
@@ -22,7 +22,7 @@ public class IngredientButton extends GifPanel {
     
     
     public IngredientButton(int x, int y, int width, int height) {
-        super(x,y,width,height,"Gifs/Animations/glowCircularBlue.gif");
+        super(x,y,width,height,AssetLoader.getAssetPath(AssetLoader.Gifs.CIRCLE_BLUE));
         
         setLayout(null);
         
@@ -71,7 +71,7 @@ public class IngredientButton extends GifPanel {
     }
     
     public IngredientButton(int x, int y, int width, int height, boolean transparent) {
-        super(x,y,width,height,"Gifs/Animations/glowCircularBlue.gif");
+        super(x,y,width,height,AssetLoader.getAssetPath(AssetLoader.Gifs.CIRCLE_BLUE));
         
         setLayout(null);
         

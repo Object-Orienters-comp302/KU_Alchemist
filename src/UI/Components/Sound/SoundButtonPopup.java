@@ -46,7 +46,7 @@ public class SoundButtonPopup extends JPanel {
         vertical.setBounds(size+size/20,size/10,size,size*(i+1)+i*size/10);
         add(vertical);
         
-        continuePause = new ImagePanel(!paused ? AssetLoader.getAssetPath(AssetLoader.Sound.PAUSEGOLD) : AssetLoader.getAssetPath(AssetLoader.Sound.CONTINUEGOLD));
+        continuePause = new ImagePanel(!paused ? AssetLoader.getAssetPath(AssetLoader.SoundPlayer.PAUSEGOLD) : AssetLoader.getAssetPath(AssetLoader.SoundPlayer.CONTINUEGOLD));
 
         continuePause.setBounds((size*3-size*11/8)/2+size/20,size+size/10-((size*11/8)/2)+size/2,size*11/8,size*11/8);
         add(continuePause);
@@ -61,7 +61,7 @@ public class SoundButtonPopup extends JPanel {
         horizon.add(higher);
         
 
-        mute = new ImagePanel(muted ? AssetLoader.getAssetPath(AssetLoader.Sound.NOTEANTIGOLD) : AssetLoader.getAssetPath(AssetLoader.Sound.NOTEGOLD));
+        mute = new ImagePanel(muted ? AssetLoader.getAssetPath(AssetLoader.SoundPlayer.NOTEANTIGOLD) : AssetLoader.getAssetPath(AssetLoader.SoundPlayer.NOTEGOLD));
         mute.setBounds(size/8,size/16,size*3/4,size*3/4);
         vertical.add(mute);
         

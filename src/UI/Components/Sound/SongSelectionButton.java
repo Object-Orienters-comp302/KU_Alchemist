@@ -30,9 +30,9 @@ public class SongSelectionButton extends JPanel {
                 
                 if (isClickInsideCircle(clickX, clickY)) {
                     DJ.getDJ().setAndStartBackgroundSound(song);
-                    sou.parent.changeImage(AssetLoader.Sound.NOTEGOLD.getPath());
-                    sou.continuePause.changeImage(AssetLoader.Sound.PAUSEGOLD.getPath());
-                    sou.mute.changeImage(AssetLoader.Sound.NOTEGOLD.getPath());
+                    sou.parent.changeImage(AssetLoader.SoundPlayer.NOTEGOLD.getPath());
+                    sou.continuePause.changeImage(AssetLoader.SoundPlayer.PAUSEGOLD.getPath());
+                    sou.mute.changeImage(AssetLoader.SoundPlayer.NOTEGOLD.getPath());
                     SoundButtonPopup.muted=false;
                     SoundButtonPopup.paused=false;
                     

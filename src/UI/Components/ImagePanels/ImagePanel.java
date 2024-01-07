@@ -23,6 +23,11 @@ public class ImagePanel extends JPanel {
         this.setOpaque(false);
     }
     
+    public ImagePanel(AssetLoader.AssetPath source) {
+        loadImage(source.getPath());
+        this.setOpaque(false);
+    }
+    
     private void loadImage(String source) {
         try {
             // Load an image from a file
@@ -128,6 +133,11 @@ public class ImagePanel extends JPanel {
     
     public void changeImage(String newSource) {
         loadImage(newSource);
+        repaint();
+    }
+    
+    public void changeImage(AssetLoader.AssetPath newSource) {
+        loadImage(newSource.getPath());
         repaint();
     }
     
