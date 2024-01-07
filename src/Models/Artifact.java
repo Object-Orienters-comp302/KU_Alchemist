@@ -12,7 +12,7 @@ public class Artifact {
         this.name = name;
         this.abilityType = abilityType;
     }
-    //@Deprecated
+    @Deprecated
     public Artifact.Name getName() {
         return name;
     }
