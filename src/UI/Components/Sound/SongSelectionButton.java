@@ -1,8 +1,10 @@
 package UI.Components.Sound;
 
 import Sound.DJ;
+import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.Potion.IngredientButton;
 import UI.Components.Potion.IngredientButtonPopup;
+import Utils.AssetLoader;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +16,7 @@ public class SongSelectionButton extends JPanel {
     int number;
     DJ.BackgroundSounds song;
     
-    public SongSelectionButton(int num, DJ.BackgroundSounds song){
+    public SongSelectionButton(int num, DJ.BackgroundSounds song, SoundButtonPopup sou){
         this.number=num;
         this.song=song;
         
@@ -28,6 +30,12 @@ public class SongSelectionButton extends JPanel {
                 
                 if (isClickInsideCircle(clickX, clickY)) {
                     DJ.getDJ().setAndStartBackgroundSound(song);
+                    sou.parent.changeImage(AssetLoader.Sound.NOTEGOLD.getPath());
+                    sou.continuePause.changeImage(AssetLoader.Sound.PAUSEGOLD.getPath());
+                    sou.mute.changeImage(AssetLoader.Sound.NOTEGOLD.getPath());
+                    SoundButtonPopup.muted=false;
+                    SoundButtonPopup.paused=false;
+                    
                 
                 } else {
                     System.out.println("Button click outside the circle.");
@@ -77,7 +85,7 @@ public class SongSelectionButton extends JPanel {
         frame.setSize(200, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        SongSelectionButton button = new SongSelectionButton(1, DJ.BackgroundSounds.TRACK1);
+        SongSelectionButton button = new SongSelectionButton(1, DJ.BackgroundSounds.TRACK1,null);
         frame.add(button);
         
         frame.setVisible(true);
