@@ -18,7 +18,7 @@ public class IngredientPopupButton extends GifPanel {
     public IngredientPopupButton(int x, int y, int width, int height, AssetLoader.AssetPath imgPath,
                                  ImagePanel panelToChange, IngredientButton book, boolean works) {
   
-        super(x - width / 2,y - height / 2,width,height,"Gifs/Animations/glowCircularBlue.gif");
+        super(x - width / 2,y - height / 2,width,height,AssetLoader.Gifs.CIRCLE_BLUE.getPath());
         setLayout(null);
         
         img = new ImagePanel(AssetLoader.getAssetPath(imgPath));
