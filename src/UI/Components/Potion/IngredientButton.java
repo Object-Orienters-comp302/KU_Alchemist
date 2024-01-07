@@ -22,7 +22,7 @@ public class IngredientButton extends GifPanel {
     
     
     public IngredientButton(int x, int y, int width, int height) {
-        super(x,y,width,height,"Gifs/Animations/glowCircularBlue.gif");
+        super(x,y,width,height, AssetLoader.Gifs.CIRCLE_BLUE.getPath());
         
         setLayout(null);
         
@@ -71,7 +71,7 @@ public class IngredientButton extends GifPanel {
     }
     
     public IngredientButton(int x, int y, int width, int height, boolean transparent) {
-        super(x,y,width,height,"Gifs/Animations/glowCircularBlue.gif");
+        super(x,y,width,height,AssetLoader.Gifs.CIRCLE_BLUE.getPath());
         
         setLayout(null);
         
