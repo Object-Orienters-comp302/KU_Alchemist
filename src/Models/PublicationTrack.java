@@ -27,7 +27,7 @@ public class PublicationTrack {
         publicationCards.remove(publicationCard);
     }
     
-    public boolean isInPublicationTrack(Ingredient ingredient, Ingredient.AspectTrio aspects) {
+    public boolean isInPublicationTrack(Ingredient.IngredientTypes ingredient, Ingredient.AspectTrio aspects) {
         List<PublicationCard> publicationCards = getPublicationCards();
         boolean isPublishedIngredient = false; // True if the ingredient has a theory about itself
         boolean isPublishedAspects = false; // True if the aspect was used to publish an ingredient
@@ -57,5 +57,25 @@ public class PublicationTrack {
             }
         }
         return false;
+    }
+    public boolean isPublished(Ingredient.IngredientTypes type) {
+        // Checks if the given pCard is published in publicationTrack
+        List<PublicationCard> publicationCards = getPublicationCards();
+        
+        for (PublicationCard card : publicationCards) {
+            if (card.getIngredient()==type) {
+                return true; // PublicationCard found in the track
+            }
+        }
+        return false;
+    }
+    
+    public PublicationCard getPublicationCardOf(Ingredient.IngredientTypes type){
+        for (PublicationCard card : publicationCards) {
+            if (card.getIngredient()==type) {
+                return card;
+            }
+        }
+        return null;
     }
 }

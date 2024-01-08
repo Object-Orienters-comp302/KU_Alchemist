@@ -17,19 +17,19 @@ public class RoundThreeController extends RoundTwoController{
             if (PublicationTrack.getInstance().isPublished(publicationCardToDebunk)) {
                 if (aspectTypeToDebunk.getColor() == Aspect.Colors.Red) {
                     if (aspectTypeToDebunk.isEqual(
-                            publicationCardToDebunk.getIngredient().getAspects().getAspectRed())) {
+                            publicationCardToDebunk.getAspects().getAspectRed())) {
                         currentPlayer.addReputation(-1);
                         return false; // aspect type is not debunked, because aspect is not false
                     }
                 } else if (aspectTypeToDebunk.getColor() == Aspect.Colors.Green) {
                     if (aspectTypeToDebunk.isEqual(
-                            publicationCardToDebunk.getIngredient().getAspects().getAspectGreen())) {
+                            publicationCardToDebunk.getAspects().getAspectGreen())) {
                         currentPlayer.addReputation(-1);
                         return false; // aspect type is not debunked, because aspect is not false
                     }
                 } else if (aspectTypeToDebunk.getColor() == Aspect.Colors.Blue) {
                     if (aspectTypeToDebunk.isEqual(
-                            publicationCardToDebunk.getIngredient().getAspects().getAspectBlue())) {
+                            publicationCardToDebunk.getAspects().getAspectBlue())) {
                         currentPlayer.addReputation(-1);
                         return false; // aspect type is not debunked, because aspect is not false
                     }

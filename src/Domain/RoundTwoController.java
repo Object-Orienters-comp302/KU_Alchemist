@@ -46,7 +46,7 @@ public class RoundTwoController extends RoundOneController{
         }
     }
     
-    public boolean publishTheory(Player currentPlayer, Ingredient selectedIngredient, Ingredient.AspectTrio alchemyMarker) {
+    public boolean publishTheory(Player currentPlayer, Ingredient.IngredientTypes selectedIngredient, Ingredient.AspectTrio alchemyMarker) {
         if (selectedIngredient != null && alchemyMarker != null && currentPlayer.getInventory().getGold() > 0) {
             // Check if the selected ingredient has an available alchemy marker and does not have a published theory
             if (!PublicationTrack.getInstance().isInPublicationTrack(selectedIngredient, alchemyMarker)) {
@@ -64,6 +64,30 @@ public class RoundTwoController extends RoundOneController{
         }
         return false; // Publishing theory failed due to invalid inputs or unavailable markers/ingredients
     }
+    public PublicationCard getCardForIngredient(Ingredient.IngredientTypes ingre){
+        for(PublicationCard card: PublicationTrack.getInstance().getPublicationCards()){
+            if (card.getIngredient()==ingre){
+                return card;
+            }
+        }
+        return null;
+    }
+    
+    public boolean canPublish(Player player, Ingredient.IngredientTypes type){
+        if (player.getInventory().getGold()>=1 && !PublicationTrack.getInstance().isPublished(type)){
+            return true;
+        }
+        return false;
+    }
+    public boolean canEndorse(Player player,PublicationCard card){
+        return card.playerCanEndorse(player);
+    }
+    public void endorseTheory(Player player, PublicationCard card, int i){
+        if (canEndorse(player,card)) {
+            card.addEndorser(i, player);
+        }
+    }
+    
     
 
     

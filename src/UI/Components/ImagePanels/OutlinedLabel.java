@@ -16,6 +16,11 @@ public class OutlinedLabel extends JLabel {
         this.textColor    = textColor;
         this.outlineColor = outlineColor;
     }
+    public OutlinedLabel(String text, String textColor, String outlineColor) {
+        super(text);
+        this.textColor    = Color.decode(textColor);
+        this.outlineColor = Color.decode(outlineColor);
+    }
     
     @Override
     protected void paintComponent(Graphics g) {

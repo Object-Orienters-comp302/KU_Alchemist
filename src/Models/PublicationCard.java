@@ -1,18 +1,22 @@
 package Models;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PublicationCard {
 
     private       Models.Ingredient.AspectTrio Aspects; //3 Aspects.
-    private final Ingredient                   Ingredient;
+    private final Ingredient.IngredientTypes                   Ingredient;
     
     private final Player Owner;
+    private HashMap<Integer,Player> playersThatEndorsed;
     
-    public PublicationCard(Ingredient Ingredient, Models.Ingredient.AspectTrio aspects, Player owner) {
+    public PublicationCard(Ingredient.IngredientTypes Ingredient, Models.Ingredient.AspectTrio aspects, Player owner) {
         this.Ingredient = Ingredient;
         this.Aspects         = aspects;
         this.Owner = owner;
+        this.playersThatEndorsed = new HashMap<>();
+        playersThatEndorsed.put(1,null);playersThatEndorsed.put(2,null);playersThatEndorsed.put(3,null);
     }
     
     public Models.Ingredient.AspectTrio getAspects() {
@@ -21,12 +25,28 @@ public class PublicationCard {
     
    
     
-    public Ingredient getIngredient() { return Ingredient; }
+    public Ingredient.IngredientTypes getIngredient() { return Ingredient; }
     
     public Player getOwner() { return Owner; }
     
     public void setAspects(Models.Ingredient.AspectTrio aspects){ // Todo delete if there is a fault
         this.Aspects = aspects;
+    }
+    
+    public void addEndorser(int i,Player player){
+        if (player==Owner){
+            throw new RuntimeException("cannot endorse your own theory??");
+        }
+        playersThatEndorsed.put(i,player);
+    }
+    public HashMap<Integer,Player> getEndorsers(){
+        return  playersThatEndorsed;
+    }
+    public boolean playerCanEndorse(Player player){
+        if (Owner!=player && !playersThatEndorsed.values().contains(player)){
+            return true;
+        }
+        return false;
     }
 }
 
