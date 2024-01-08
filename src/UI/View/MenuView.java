@@ -46,10 +46,10 @@ public class MenuView extends JPanel implements Publisher,Listener {
     ForageGroundsView ForagePanel;
     CustomPlainView         CustomPlainPanel;
     InventoryView     InventoryPanel;
-    TransmuteView      TransmutePanel;
-    BuyArtifactView    BuyArtifactPanel;
+    TransmuteView TransmutePanel;
+    MarketView    BuyArtifactPanel;
     //other?
-    JPanel             bottomPanel;
+    JPanel        bottomPanel;
     JPanel             sidePanel;
     //buttons of side panel
     ImageChangingPanel side1;
@@ -100,7 +100,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
         CustomPlainPanel = new CustomPlainView();
         InventoryPanel   = new InventoryView();
         TransmutePanel     = new TransmuteView();
-        BuyArtifactPanel    = new BuyArtifactView();
+        BuyArtifactPanel    = new MarketView();
         
         bottomPanel = new JPanel();
         

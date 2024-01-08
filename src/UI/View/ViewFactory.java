@@ -1,7 +1,5 @@
 package UI.View;
 
-import javax.swing.text.PlainView;
-
 import UI.Components.SuperViews.StartView;
 
 public class ViewFactory {
@@ -17,8 +15,8 @@ public class ViewFactory {
     private CustomPlainView customPlainView;
     private InventoryView inventoryView;
     private TransmuteView transmuteView;
-    private BuyArtifactView buyArtifactView;
-    private StartView      startView;
+    private MarketView    buyArtifactView;
+    private StartView     startView;
     
     
     private ViewFactory() {
@@ -93,9 +91,9 @@ public class ViewFactory {
         }
         return transmuteView;
     }
-    public BuyArtifactView getBuyArtifactView() {
+    public MarketView getBuyArtifactView() {
         if (buyArtifactView == null) {
-            buyArtifactView = new BuyArtifactView();
+            buyArtifactView = new MarketView();
         }
         return buyArtifactView;
     }

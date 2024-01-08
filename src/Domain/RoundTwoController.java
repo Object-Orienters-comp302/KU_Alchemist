@@ -7,26 +7,25 @@ import java.util.HashMap;
 
 public class RoundTwoController extends RoundOneController{
     
-    public Potion sellPotion(Inventory inventory, Potion potion, Guarantee guarantee) {
+    public Potion sellPotion(Inventory inventory, Potion potion) {
         Potion removed_potion = removePotion(inventory.getPotions(), potion);
         
         if (removed_potion != null) {
-            switch (guarantee) {
-                case POSITIVE -> {
+            switch (removed_potion.getSign()) {
+                case Potion.Signs.Positive -> {
                     inventory.setGold(inventory.getGold() + 3);
                 }
-                case NEUTRAL -> {
+                case Potion.Signs.Neutral -> {
                     inventory.setGold(inventory.getGold() + 2);
                 }
-                case NEGATIVE -> {
+                case Potion.Signs.Negative -> {
                     inventory.setGold(inventory.getGold() + 1);
                 }
             }
             
             return removed_potion;
         }
-        
-        return null;
+        throw new RuntimeException("HOW IS THE POTION NULL???");
     }
     
     public Potion removePotion(HashMap<Potion, Integer> Potions, Potion potion) {
@@ -90,7 +89,7 @@ public class RoundTwoController extends RoundOneController{
     
     
 
-    
+    //just gonna keep this here
     public enum Guarantee {
         POSITIVE,
         NEUTRAL,

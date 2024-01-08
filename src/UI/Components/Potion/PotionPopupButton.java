@@ -38,7 +38,7 @@ public class PotionPopupButton extends JPanel {
                         
                         
                         panelToChange.changeImage(AssetLoader.getAssetPath(imgPath));
-                        book.setCurrentPotion(imgPath);
+                        book.setCurrentPotionPath(imgPath);
                         if (grandParent != null) {
                             
                             grandParent.remove(parent);
