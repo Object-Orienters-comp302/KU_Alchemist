@@ -380,6 +380,12 @@ public class MenuView extends JPanel implements Publisher,Listener {
         panel.revalidate();
     }
     
+    public void addAndRunPage(JPanel page){
+        displayerPanel.add(page,"page");
+        cardLay.show(displayerPanel,"page");
+        displayerPanel.repaint();
+    }
+    
     @Override
     public void addListener(Listener lis) {
         listeners.add(lis);

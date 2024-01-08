@@ -18,46 +18,41 @@ public class ArtifactCard extends JPanel {
     Artifact artifact;
     ImagePanel image;
     
-    public ArtifactCard(Artifact artifact){
-        this.artifact=artifact;
+    public ArtifactCard(Artifact artifact) {
+        this.artifact = artifact;
         
         setBackground(Color.decode("#8E8E8E"));
-        setSize(270,400);
+        setSize(200, 289); // Adjusted size
+        
         setLayout(null);
         
         cardBackground = new ImagePanel(AssetLoader.Artifacts.CARD);
-        
-        cardBackground.setBounds(5,5,260,390);
+        cardBackground.setBounds(5, 5, 190, 279); // Adjusted bounds
         cardBackground.setLayout(null);
         add(cardBackground);
         
         artifactImage = new ImagePanel(AssetLoader.TriangleTable.QUESTION_MARK);
         artifactImage.addCorner(10);
-        artifactImage.setBounds(15,15,230,170);
+        artifactImage.setBounds(15, 15, 160, 113); // Adjusted bounds
         cardBackground.add(artifactImage);
         
-        nameLabel = new OutlinedLabel("TEST but bit longer",Color.WHITE,Color.BLUE );
+        nameLabel = new OutlinedLabel("TEST but bit longer", Color.WHITE, Color.BLUE);
         nameLabel.setHorizontalAlignment(JLabel.CENTER);
         nameLabel.setVerticalAlignment(JLabel.CENTER);
-        nameLabel.setBounds(30,190,210,25);
+        nameLabel.setBounds(20, 138, 170, 25); // Adjusted bounds
         nameLabel.setForeground(Color.white);
-        nameLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        nameLabel.setFont(new Font("Arial", Font.BOLD, 16)); // Adjusted font size
         cardBackground.add(nameLabel);
         
-        description = new OutlinedLabel("TEST",Color.WHITE,Color.BLUE );
-        description.setBounds(30, 230, 210, 140);
+        description = new OutlinedLabel("TEST", Color.WHITE, Color.BLUE);
+        description.setBounds(20, 168, 170, 110); // Adjusted bounds
         description.setForeground(Color.white);
-        description.setFont(new Font("Arial", Font.BOLD, 20));
+        description.setFont(new Font("Arial", Font.BOLD, 16)); // Adjusted font size
         description.setHorizontalAlignment(JLabel.CENTER);
         description.setVerticalAlignment(JLabel.TOP);
         cardBackground.add(description);
         
         setTextAndImage(artifact.getName());
-        
-        
-        
-        
-        
     }
     
     

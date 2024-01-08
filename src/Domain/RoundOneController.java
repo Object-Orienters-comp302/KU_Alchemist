@@ -32,7 +32,7 @@ public class RoundOneController {
     public Artifact BuyArtifacts(Player player) {
         if (player.getInventory().getGold() > 3) {
             Artifact artifact = Deck.getInstance().popArtifact();
-            player.getInventory().addArtifactCard(artifact.getName(), 1);
+            player.getInventory().addArtifactCard(artifact);
             player.getInventory().setGold(player.getInventory().getGold() - 3);
             return artifact;
         }
@@ -105,7 +105,7 @@ public class RoundOneController {
     }
     
     public boolean MagicMortar(Player current, Artifact.Name artifactName, Ingredient.IngredientTypes ingredient){
-        if(current.getInventory().getArtifacts().containsKey(artifactName)){
+        if(current.getInventory().checkArtifactExists(artifactName)){
             if (artifactName.equals(Artifact.Name.Magic_Mortar)){
                 current.getInventory().getArtifacts().remove(artifactName);
                 current.getInventory().addIngredient(ingredient, 1);
@@ -116,7 +116,7 @@ public class RoundOneController {
     }
     
     public boolean PrintingPress(Player current, Artifact.Name artifactName){
-        if(current.getInventory().getArtifacts().containsKey(artifactName)){
+        if(current.getInventory().checkArtifactExists(artifactName)){
             if(artifactName.equals(Artifact.Name.Printing_Press)){
                 current.getInventory().addGold(1);
                 return true;
