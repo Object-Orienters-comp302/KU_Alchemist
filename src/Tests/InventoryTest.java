@@ -107,7 +107,7 @@ public class InventoryTest {
     @Test
     public void testArtifactExistenceAndRemoval() {
         Artifact artifact = new Artifact(Artifact.Name.Elixir_of_Insight, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
-        inventory.addArtifactCard(artifact.getName(), 1);
+        inventory.addArtifactCard(artifact);
         
         assertTrue(inventory.checkArtifactExists(Artifact.Name.Elixir_of_Insight), "Artifact should exist");
         

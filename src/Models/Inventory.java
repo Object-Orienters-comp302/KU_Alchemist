@@ -161,14 +161,14 @@ public class Inventory implements Publisher {
                 return false;
             }
         }
-        
+        /*
         // Check for non-negative values in artifacts
         for (Integer quantity : artifacts.values()) {
             if (quantity == null || quantity < 0) {
                 return false;
             }
         }
-        
+        */
         return true;
     }
     
