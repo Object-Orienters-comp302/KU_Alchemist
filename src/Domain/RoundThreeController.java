@@ -54,7 +54,7 @@ public class RoundThreeController extends RoundTwoController{
     
   
     public boolean useElixirOfInsight(Player currentPlayer, Artifact artifactCard){
-        if (artifactCard != null && currentPlayer.getInventory().getArtifacts().containsKey(artifactCard)) {
+        if (artifactCard != null && currentPlayer.getInventory().getArtifacts().contains(artifactCard)) {
             if (artifactCard.getAbilityType().equals(Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT)) {
                 Deck.getInstance().getFirstThree();
                 return true;

@@ -35,7 +35,7 @@ public class ArtifactCardView extends JPanel implements Listener {
         CreateObjects();
         SetupObjects();
         createAndSetRow();
-        ArtifactQuantity();
+       // ArtifactQuantity();
         
     }
     
@@ -122,17 +122,17 @@ public class ArtifactCardView extends JPanel implements Listener {
     
 
     
-    
+    /*
     public void ArtifactQuantity () {
         for(int i = 0; i < Player.getPlayers().size() ; i++){
             
-            HashMap<Artifact.Name, Integer> artifacts = Player.getPlayers().get(i).getInventory().getArtifacts();
+            ArrayList<Artifact> artifacts = Player.getPlayers().get(i).getInventory().getArtifacts();
             
             ArrayList<JLabel> label_set = quantityLabels.get(i);
             
-            for (Artifact.Name artifact : artifacts.keySet()) {
+            for (Artifact artifact : artifacts) {
                 
-                switch (artifact) {
+                switch (artifact.getName()) {
                     
                     case Elixir_of_Insight -> {
                         label_set.get(0).setText(String.valueOf(artifacts.get(artifact)));
@@ -152,10 +152,13 @@ public class ArtifactCardView extends JPanel implements Listener {
             
         }
     }
+    
+     */
+    
     @Override
     public void onEvent(Type type) {
         if (type == Type.ARTIFACT) {
-            ArtifactQuantity();
+            //ArtifactQuantity();
             this.revalidate();
             this.repaint();
         }

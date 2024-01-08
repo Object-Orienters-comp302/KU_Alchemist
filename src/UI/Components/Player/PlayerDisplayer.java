@@ -49,6 +49,7 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         this.playerInstance.getInventory().addListener(this);
         CreateObjects();
         SetupObjects();
+        addFunctions();
     }
 
     private void CreateObjects() {
@@ -122,7 +123,9 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                e.consume();
+                System.out.println("clicked");
+                PlayerPublicInventoryDisplayer disp = new PlayerPublicInventoryDisplayer(playerInstance);
+                GameController.getInstance().getMenuController().getMenuView().addAndRunPage(disp);
             }
         });
         

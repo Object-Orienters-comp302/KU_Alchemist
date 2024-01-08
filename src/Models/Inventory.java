@@ -11,13 +11,13 @@ import java.util.NoSuchElementException;
 public class Inventory implements Publisher {
     HashMap<Ingredient.IngredientTypes, Integer> ingredientHashMap;
     HashMap<Potion, Integer>                     potions;
-    HashMap<Artifact.Name, Integer> artifacts;
+    ArrayList<Artifact> artifacts;
     Integer                    gold;
     private ArrayList<Listener> listeners;
     
     public Inventory() {
         ingredientHashMap = new HashMap<Ingredient.IngredientTypes, Integer>();
-        artifacts         = new HashMap<Artifact.Name, Integer>();
+        artifacts         = new ArrayList<Artifact>();
         potions   = new HashMap<Potion, Integer>();
         gold      = 0;
         listeners = new ArrayList<>();
@@ -100,12 +100,12 @@ public class Inventory implements Publisher {
         publishEvent(Type.POTION);
     }
     
-    public HashMap<Artifact.Name, Integer> getArtifacts() {
+    public ArrayList<Artifact> getArtifacts() {
         return artifacts;
     }
     
-    public void addArtifactCard(Artifact.Name artifactName, int quantity) {
-        artifacts.merge(artifactName, quantity, Integer::sum);
+    public void addArtifactCard(Artifact artifact) {
+        artifacts.add(artifact);
         publishEvent(Type.ARTIFACT);
     }
     
@@ -123,19 +123,17 @@ public class Inventory implements Publisher {
     }
     
     public boolean checkArtifactExists(Artifact.Name artifactName){
-        for (Artifact.Name artifact1Name: artifacts.keySet()){
-            if(artifact1Name.equals(artifactName)){
+        for (Artifact artifact: artifacts){
+            if(artifact.getName().equals(artifactName)){
                 return true;
             }
         }
         return false;
     }
     public void removeArtifact(Artifact.Name artifactName){ // TODO: This function seems odd, may not work
-        boolean deleted = false;
-        for (Artifact.Name artifact1Name: artifacts.keySet()){
-            if(artifact1Name.equals(artifactName) && !deleted){
-                getArtifacts().remove(artifact1Name);
-                deleted = true;
+        for (Artifact artifact: artifacts){
+            if(artifact.getName().equals(artifactName)){
+                getArtifacts().remove(artifact);
             }
         }
     }
