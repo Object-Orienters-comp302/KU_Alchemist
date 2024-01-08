@@ -139,6 +139,8 @@ public class Ingredient {
     public String toString() {
         return this.getType().toString() ;
     }
+
+    // Move Path Related functions to Controllers
     
     public static Ingredient.IngredientTypes getTypeFromPath(AssetLoader.AssetPath path) {
         return switch (path) {
