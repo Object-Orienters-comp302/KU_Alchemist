@@ -14,8 +14,8 @@ public class ViewFactory {
     private LoginView      loginView;
     private CustomPlainView customPlainView;
     private InventoryView inventoryView;
-    private TransmuteView transmuteView;
-    private MarketView    buyArtifactView;
+    private TransmuteView transmuteView; // TODO: Refactor this
+    private MarketView    buyArtifactView; // TODO: Refactor this
     private StartView     startView;
     
     
