@@ -235,7 +235,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
         sidePanel.add(side5);
         
         
-        ImagePanel sideText6 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.TRANSMUTE));
+        ImagePanel sideText6 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.MARKET));
         sideText6.setBounds(20, 420, 240, 55);
         sidePanel.add(sideText6);
         
@@ -301,16 +301,11 @@ public class MenuView extends JPanel implements Publisher,Listener {
         side6.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                cardLay.show(displayerPanel, "Transmute");
-            }
-        });
-        side7.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
                 cardLay.show(displayerPanel, "BuyArtifact");
                 
             }
         });
+        
         pause.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

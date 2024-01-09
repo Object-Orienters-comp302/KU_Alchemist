@@ -69,7 +69,10 @@ public class AssetLoader {
         PUBLISH("resources/Images/buttonText/publishText.png"),
         FORAGE("resources/Images/buttonText/forageText.png"),
         TRANSMUTE("resources/Images/buttonText/transmutateText.png"),
-        INVENTORY("resources/Images/buttonText/inventoryText.png");
+        INVENTORY("resources/Images/buttonText/inventoryText.png"),
+        MARKET("resources/Images/buttonText/marketText.png"),
+        
+        ;
         
         
         private final String path;
