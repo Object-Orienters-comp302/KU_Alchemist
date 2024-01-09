@@ -96,11 +96,12 @@ public class BookPanel extends JPanel {
     }
     
     public void publish(AssetLoader.AssetPath path){
-        System.out.println("pub");
+        
         Player cur = GameController.getInstance().getMenuController().getCurrentPlayer();
         RoundTwoController cont2 = GameController.getInstance().getRoundTwoController();
         cont2.publishTheory(cur,type,Ingredient.getTrioFromPath(path));
         isAlreadyPublished(type);
+        System.out.println("Published a new theory!"); //TODO: Fix this
     }
     
     public void isAlreadyPublished(Ingredient.IngredientTypes ingredientType){
