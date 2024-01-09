@@ -126,9 +126,8 @@ public class MarketView extends JPanel {
         game.getRoundTwoController().sellPotion(curr.getInventory(),pot);
         potionButton.reset();
     }
-    private Artifact CardClicked(Player player,
-                                                   RoundOneController roundOneController) { //Calls Forage for Ingredient on controller then, returns its type for the function.
-        return roundOneController.BuyArtifacts(player);
+    private Artifact CardClicked(Player player) { //Calls Forage for Ingredient on controller then, returns its type for the function.
+        return GameController.getInstance().getRoundOneController().BuyArtifacts(player);
     }
     
     private void artifactAnimation(Artifact artifact){
