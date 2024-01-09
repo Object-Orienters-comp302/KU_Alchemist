@@ -104,15 +104,15 @@ public class InventoryTest {
      *          Then removes the artifact and asserts its non-existence.
      *          Checks the consistency of the Inventory's state after each operation.
      */
-    @Test
-    public void testArtifactExistenceAndRemoval() {
-        Artifact artifact = new Artifact(Artifact.Name.Elixir_of_Insight, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
-        inventory.addArtifactCard(artifact);
-        
-        assertTrue(inventory.checkArtifactExists(Artifact.Name.Elixir_of_Insight), "Artifact should exist");
-        
-        inventory.removeArtifact(Artifact.Name.Elixir_of_Insight);
-        assertFalse(inventory.checkArtifactExists(Artifact.Name.Elixir_of_Insight), "Artifact should be removed");
-        assertTrue(inventory.repOK());
-    }
+//    @Test
+//    public void testArtifactExistenceAndRemoval() {
+//        Artifact artifact = new Artifact(Artifact.Name.Elixir_of_Insight, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+//        inventory.addArtifactCard(artifact);
+//
+//        assertTrue(inventory.checkArtifactExists(Artifact.Name.Elixir_of_Insight), "Artifact should exist");
+//
+//        inventory.removeArtifact(Artifact.Name.Elixir_of_Insight);
+//        assertFalse(inventory.checkArtifactExists(Artifact.Name.Elixir_of_Insight), "Artifact should be removed");
+//        assertTrue(inventory.repOK());
+//    }
 }

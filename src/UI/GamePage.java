@@ -2,6 +2,8 @@ package UI;
 
 import Domain.Event.Listener;
 import Domain.Event.Type;
+import Domain.GameController;
+import Domain.RoundOneController;
 import UI.View.ViewFactory;
 
 import javax.swing.*;
@@ -22,6 +24,7 @@ public class GamePage extends JFrame implements Listener {
         addListeners();
         // Manually trigger the event to start START_VIEW
         //
+        
     }
     private void createPage(){
         cardLayout = new CardLayout();

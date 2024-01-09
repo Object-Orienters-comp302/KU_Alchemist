@@ -98,7 +98,7 @@ public class MarketView extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Artifact artifact =
-                        CardClicked(Player.getCurrPlayer(), GameController.getInstance().getRoundOneController());
+                        CardClicked(Player.getCurrPlayer());
                 if (artifact != null) {
                     textField.setText(String.format(MarketView.Texts.Success.getText(), artifact.getName()));
                     artifactAnimation(artifact);

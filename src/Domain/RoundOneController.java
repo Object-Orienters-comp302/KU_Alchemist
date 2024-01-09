@@ -29,15 +29,33 @@ public class RoundOneController {
         }
     }
     
+    /**
+     * Buys an artifact for a player if they have enough gold.
+     *
+     * @param player The player attempting to buy an artifact.
+     * @return       The purchased artifact, or null if the player doesn't have enough gold or no artifacts are available.
+     * @throws       IllegalArgumentException if the deck has no artifacts left.
+     */
     public Artifact BuyArtifacts(Player player) {
-        if (player.getInventory().getGold() > 3) {
-            Artifact artifact = Deck.getInstance().popArtifact();
-            player.getInventory().addArtifactCard(artifact);
-            player.getInventory().setGold(player.getInventory().getGold() - 3);
-            return artifact;
+        final int artifactCost = 3;
+        
+        if (player.getInventory().getGold() <= artifactCost) {
+            return null; // Not enough gold
         }
-        return null;
+        
+        Artifact artifact = Deck.getInstance().popArtifact();
+        if (artifact == null) {
+            throw new IllegalArgumentException("No Artifacts are left in the Deck!");
+        }
+        
+        // Process the purchase
+        player.getInventory().addArtifactCard(artifact);
+        player.getInventory().setGold(player.getInventory().getGold() - artifactCost);
+        
+        return artifact;
     }
+    
+    
     
     public void Make_experiments(Player player, Potion potion,
                                  Boolean TestOnSelf) {//TODO Other cases will be implemented.
