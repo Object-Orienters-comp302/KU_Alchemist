@@ -66,6 +66,9 @@ public class RoundOneController {
                     player.haveSurgery();
                 }
             }
+            if (potion.getSign()==Potion.Signs.Positive){
+                player.setSicknessLevel(player.getSicknessLevel() - 1);
+            }
         } else {// Testing on Student
             if (potion.getSign() == Potion.Signs.Negative) {//If negative lose 1 gold
                 player.getInventory().setGold(player.getInventory().getGold() - 1);

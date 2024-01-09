@@ -37,6 +37,7 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
     JPanel labelPanel_3_2;
     JLabel pointsLabel;
     PlayerPotionsDisplayer potionsPanel;
+    HealthDisplayer healthPanel;
 
     public PlayerDisplayer(Player player) {
         super(20);
@@ -66,6 +67,7 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         labelPanel_3_2 = new JPanel();
         pointsLabel = new JLabel(String.valueOf(playerInstance.getReputation()));
         potionsPanel = new PlayerPotionsDisplayer();
+        healthPanel= new HealthDisplayer();
     }
 
     public void SetupObjects() {
@@ -82,39 +84,42 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         nameLabel.setBounds(5, 0, 100, 30);
         labelPanel_1.add(nameLabel);
 
-        labelPanel_2.setBounds(175, 0, 55, 36);
+        labelPanel_2.setBounds(175, 0, 45, 35);
         container.add(labelPanel_2);
         labelPanel_2.setLayout(null);
 
         labelPanel_2_1.setLayout(null);
-        labelPanel_2_1.setBounds(0, 2, 30, 30);
+        labelPanel_2_1.setBounds(2, 7, 20, 20);
         labelPanel_2.add(labelPanel_2_1);
 
         labelPanel_2_2.setLayout(null);
-        labelPanel_2_2.setBounds(30, 2, 30, 30);
+        labelPanel_2_2.setBounds(22, 2, 20, 30);
         labelPanel_2.add(labelPanel_2_2);
 
-        coinsLabel.setBounds(0, 0, 30, 30);
+        coinsLabel.setBounds(0, 0, 20, 30);
         labelPanel_2_2.add(coinsLabel);
 
-        labelPanel_3.setBounds(175, 35, 55, 35);
+        labelPanel_3.setBounds(175, 35, 45, 35);
         container.add(labelPanel_3);
         labelPanel_3.setLayout(null);
 
-        labelPanel_3_1.setBounds(0, 2, 30, 30);
+        labelPanel_3_1.setBounds(2, 7, 20, 20);
         labelPanel_3.add(labelPanel_3_1);
         labelPanel_3_1.setLayout(null);
 
-        labelPanel_3_2.setBounds(30, 2, 30, 30);
+        labelPanel_3_2.setBounds(22, 2, 20, 30);
         labelPanel_3_2.setLayout(null);
         labelPanel_3.add(labelPanel_3_2);
 
-        pointsLabel.setBounds(0, 0, 30, 30);
+        pointsLabel.setBounds(0, 0, 20, 30);
         labelPanel_3_2.add(pointsLabel);
 
         potionsPanel.setLayout(null);
         potionsPanel.setBounds(70, 30, 105, 40);
         container.add(potionsPanel);
+        
+        healthPanel.setBounds(220,0,10,70);
+        container.add(healthPanel);
 
         add(container); 
     }
@@ -157,6 +162,8 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         }
         if (type==Type.POTION){
             potionsPanel.RemoveShadow(playerInstance.getInventory().getPotions());
+            healthPanel.setHealth(-playerInstance.getSicknessLevel());
         }
+        
     }
 }

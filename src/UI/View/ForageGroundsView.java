@@ -147,6 +147,9 @@ public class ForageGroundsView extends JPanel {
         GameController.getInstance().getMenuController().getMenuView().Blockade();
         DJ dj = DJ.getDJ();
         dj.setAndStartEffectSound(DJ.EffectSounds.TRACK1,2000);
+        if(ingreImg!=null){
+            ingreImg.changeImage("");
+        }
         
         GifPanel gif = new GifPanel(0, 0, 1000, 500, AssetLoader.getAssetPath(AssetLoader.Gifs.LEAVES));
         Background.add(gif);
@@ -162,9 +165,14 @@ public class ForageGroundsView extends JPanel {
                 circleGif.setLayout(null);
                 Card.add(circleGif);
                 
-                ingreImg = new ImagePanel(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
-                ingreImg.setBounds(20, 20, 60, 60);
-                circleGif.add(ingreImg);
+                if(ingreImg==null) {
+                    ingreImg = new ImagePanel(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
+                    ingreImg.setBounds(20, 20, 60, 60);
+                    circleGif.add(ingreImg);
+                }
+                else{
+                    ingreImg.changeImage(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
+                }
                 Background.repaint();
             } else {
                 ingreImg.changeImage(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
