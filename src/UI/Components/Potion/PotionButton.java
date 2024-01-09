@@ -126,17 +126,22 @@ public class PotionButton extends JPanel {
         return currentPotion;
     }
     
-    public void setCurrentPotion(AssetLoader.AssetPath val) {
+    public void setCurrentPotionPath(AssetLoader.AssetPath val) {
         currentPotion = val;
     }
     
+    public AssetLoader.AssetPath getCurrentPotionPath(){
+        return currentPotion;
+    }
+    
     public void reset(){
-        this.setCurrentPotion(AssetLoader.TriangleTable.QUESTION_MARK);
+        this.setCurrentPotionPath(AssetLoader.TriangleTable.QUESTION_MARK);
         this.img.changeImage(AssetLoader.getAssetPath(AssetLoader.TriangleTable.QUESTION_MARK));
         this.revalidate();
         this.repaint();
     }
     
+    //likely unnecessary
     public Potion.IdentityTypes getType() {
         return switch (currentPotion) {
             case AssetLoader.Potions.BLUE_NEGATIVE -> Potion.IdentityTypes.BLUENEGATIVE;

@@ -9,6 +9,7 @@ import UI.Components.ImagePanels.ImagePanel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class BookButton extends JPanel {
@@ -85,6 +86,15 @@ public class BookButton extends JPanel {
     
     public void setCurrentPath(AssetLoader.AssetPath val) {
         currentPath = val;
+        img.changeImage(val);
+        repaint();
+    }
+    
+    public void disable(){
+        MouseListener[] mouseListeners = getMouseListeners();
+        for (MouseListener listener : mouseListeners) {
+            removeMouseListener(listener);
+        }
     }
     
 }

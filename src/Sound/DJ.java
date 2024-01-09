@@ -7,6 +7,8 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 
+
+
 public class DJ {
     
     public static DJ DJInstance;

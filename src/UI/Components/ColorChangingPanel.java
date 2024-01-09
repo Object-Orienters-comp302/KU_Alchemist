@@ -32,6 +32,26 @@ public class ColorChangingPanel extends JPanel {
         this(Color.decode(defColorHex), Color.decode(hoverColorHex), 10, RoundingStyle.BOTH);
     }
     
+    public void changeColors(String def,String hover){
+        defColor=Color.decode(def);
+        hoverColor=Color.decode(hover);
+        this.addMouseListener(new ColorChangeListener(this, hoverColor, defColor));
+        this.setBackground(defColor);
+        repaint();
+    }
+    public void changeHoverColor(String hover){
+        hoverColor=Color.decode(hover);
+        this.addMouseListener(new ColorChangeListener(this, hoverColor, defColor));
+        this.setBackground(defColor);
+        repaint();
+    }
+    public void changeDefaultColors(String def){
+        defColor=Color.decode(def);
+        this.addMouseListener(new ColorChangeListener(this, hoverColor, defColor));
+        this.setBackground(defColor);
+        repaint();
+    }
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -90,14 +110,22 @@ public class ColorChangingPanel extends JPanel {
         float height = getHeight();
         float radiusPercentage = ((float) cornerRadius / 100) * Math.min(width, height);
         
+        // Top-left corner
         path.moveTo(0, radiusPercentage);
         path.quadTo(0, 0, radiusPercentage, 0);
+        
+        // Top-right corner
         path.lineTo(width - radiusPercentage, 0);
         path.quadTo(width, 0, width, radiusPercentage);
+        
+        // Bottom-right corner
         path.lineTo(width, height - radiusPercentage);
         path.quadTo(width, height, width - radiusPercentage, height);
+        
+        // Bottom-left corner
         path.lineTo(radiusPercentage, height);
         path.quadTo(0, height, 0, height - radiusPercentage);
+        
         path.closePath();
     }
     

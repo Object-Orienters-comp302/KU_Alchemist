@@ -139,6 +139,8 @@ public class Ingredient {
     public String toString() {
         return this.getType().toString() ;
     }
+
+    // Move Path Related functions to Controllers
     
     public static Ingredient.IngredientTypes getTypeFromPath(AssetLoader.AssetPath path) {
         return switch (path) {
@@ -165,6 +167,34 @@ public class Ingredient {
             case  Ingredient.IngredientTypes.Flower -> AssetLoader.IngredientAssets.FLOWER ;
             case  Ingredient.IngredientTypes.Mushroom -> AssetLoader.IngredientAssets.MUSHROOM ;
             default -> throw new IllegalStateException("Unexpected type: " + type);
+        };
+    }
+    
+    public static Ingredient.AspectTrio getTrioFromPath(AssetLoader.AssetPath path) {
+        return switch (path) {
+            case AssetLoader.Book.ALL_POSITIVE -> AspectTrio.allPositive;
+            case AssetLoader.Book.ALL_NEGATIVE -> AspectTrio.allNegative;
+            case AssetLoader.Book.NEGATIVE_GREEN -> AspectTrio.negativeGreen;
+            case AssetLoader.Book.POSITIVE_RED -> AspectTrio.positiveRed;
+            case AssetLoader.Book.NEGATIVE_BLUE -> AspectTrio.negativeBlue;
+            case AssetLoader.Book.NEGATIVE_RED -> AspectTrio.negativeRed;
+            case AssetLoader.Book.POSITIVE_GREEN -> AspectTrio.positiveGreen;
+            case AssetLoader.Book.POSITIVE_BLUE -> AspectTrio.positiveBlue;
+            default -> throw new IllegalStateException("Unexpected value: " + path);
+        };
+    }
+    
+    public static AssetLoader.AssetPath getPathFromTrio(Ingredient.AspectTrio trio) {
+        return switch (trio) {
+            case AspectTrio.allPositive -> AssetLoader.Book.ALL_POSITIVE  ;
+            case AspectTrio.allNegative -> AssetLoader.Book.ALL_NEGATIVE  ;
+            case AspectTrio.negativeGreen -> AssetLoader.Book.NEGATIVE_GREEN ;
+            case AspectTrio.positiveRed -> AssetLoader.Book.POSITIVE_RED  ;
+            case  AspectTrio.negativeBlue -> AssetLoader.Book.NEGATIVE_BLUE ;
+            case AspectTrio.negativeRed -> AssetLoader.Book.NEGATIVE_RED ;
+            case AspectTrio.positiveGreen -> AssetLoader.Book.POSITIVE_GREEN  ;
+            case AspectTrio.positiveBlue -> AssetLoader.Book.POSITIVE_BLUE ;
+            default -> throw new IllegalStateException("Unexpected value: " + trio);
         };
     }
 }

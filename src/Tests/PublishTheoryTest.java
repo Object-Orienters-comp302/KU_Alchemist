@@ -22,7 +22,7 @@ public class PublishTheoryTest {
     
     @Test
     public void testPublishTheorySuccess() {
-        Ingredient testIngredient = new Ingredient(Ingredient.IngredientTypes.Flower);
+        Ingredient.IngredientTypes testIngredient = Ingredient.IngredientTypes.Flower;
         Ingredient.AspectTrio testMarkers = Ingredient.AspectTrio.allNegative;
         
         
@@ -34,7 +34,7 @@ public class PublishTheoryTest {
     @Test
     public void testPublishTheoryNullInputs() {
         
-        Ingredient testIngredient = null;
+        Ingredient.IngredientTypes testIngredient = null;
         Ingredient.AspectTrio testMarkers = Ingredient.AspectTrio.allPositive;
         
         
@@ -45,7 +45,7 @@ public class PublishTheoryTest {
     @Test
     public void testPublishTheoryExistingPublication() {
         
-        Ingredient testIngredient = new Ingredient(Ingredient.IngredientTypes.Scorpion);
+        Ingredient.IngredientTypes testIngredient = Ingredient.IngredientTypes.Scorpion;
         Ingredient.AspectTrio testMarkers = Ingredient.AspectTrio.negativeBlue;
         
         
@@ -58,7 +58,7 @@ public class PublishTheoryTest {
     @Test
     public void testPublishTheoryGoldAndReputation() {
         
-        Ingredient testIngredient = new Ingredient(Ingredient.IngredientTypes.Mushroom);
+        Ingredient.IngredientTypes testIngredient = Ingredient.IngredientTypes.Mushroom;
         Ingredient.AspectTrio testMarkers = Ingredient.AspectTrio.negativeGreen;
         
         
@@ -73,7 +73,7 @@ public class PublishTheoryTest {
     @Test
     public void testPublishTheoryAddToTrack() {
        
-        Ingredient testIngredient_1 = new Ingredient(Ingredient.IngredientTypes.Feather);
+        Ingredient.IngredientTypes testIngredient_1 = Ingredient.IngredientTypes.Feather;
         Ingredient.AspectTrio testMarkers = Ingredient.AspectTrio.negativeRed;
         
         

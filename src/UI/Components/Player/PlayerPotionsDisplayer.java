@@ -23,7 +23,7 @@ public class PlayerPotionsDisplayer extends JPanel {
 	    JPanel con5;
 	    JPanel con6;
 	    JPanel con7;
-	    JPanel con8;
+	
 
 	    ImagePanel potion1;
 	    ImagePanel potion2;
@@ -32,7 +32,7 @@ public class PlayerPotionsDisplayer extends JPanel {
 	    ImagePanel potion5;
 	    ImagePanel potion6;
 	    ImagePanel potion7;
-	    ImagePanel potion8;
+	
 
 	    JPanel shadow1;
 	    JPanel shadow2;
@@ -41,11 +41,11 @@ public class PlayerPotionsDisplayer extends JPanel {
 	    JPanel shadow5;
 	    JPanel shadow6;
 	    JPanel shadow7;
-	    JPanel shadow8;
+	
 
 	    public PlayerPotionsDisplayer() {
 	        setLayout(null);
-	        setBounds(0, 0, 125, 40);
+	        setBounds(0, 0, 126, 40);
 	        CreateObjects();
 	        SetupObjects();
 	    }
@@ -58,7 +58,6 @@ public class PlayerPotionsDisplayer extends JPanel {
 	        con5 = new JPanel();
 	        con6 = new JPanel();
 	        con7 = new JPanel();
-	        con8 = new JPanel();
 
 	        potion1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.RED_POSITIVE));
 	        potion2 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.GREEN_POSITIVE));
@@ -67,8 +66,7 @@ public class PlayerPotionsDisplayer extends JPanel {
 	        potion5 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.GREEN_NEGATIVE));
 	        potion6 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.BLUE_NEGATIVE));
 	        potion7 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.NEUTRAL));
-	        potion8 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Potions.UNKNOWN));
-	        
+	       
 	        shadow1 = new JPanel();
 	        shadow2 = new JPanel();
 	        shadow3 = new JPanel();
@@ -76,22 +74,20 @@ public class PlayerPotionsDisplayer extends JPanel {
 	        shadow5 = new JPanel();
 	        shadow6 = new JPanel();
 	        shadow7 = new JPanel();
-	        shadow8 = new JPanel();
 	    }
 
 	    public void SetupObjects() {
-	        setupPotionContainer(con1, potion1, 3, 5, shadow1);
+	        setupPotionContainer(con1, potion1, 0, 5, shadow1);
 	        setupPotionContainer(con2, potion2, 18, 5, shadow2);
-	        setupPotionContainer(con3, potion3, 33, 5, shadow3);
-	        setupPotionContainer(con4, potion4, 48, 5, shadow4);
-	        setupPotionContainer(con5, potion5, 63, 5, shadow5);
-	        setupPotionContainer(con6, potion6, 78, 5, shadow6);
-	        setupPotionContainer(con7, potion7, 93, 5, shadow7);
-	        setupPotionContainer(con8, potion8, 108, 5, shadow8);
+	        setupPotionContainer(con3, potion3, 36, 5, shadow3);
+	        setupPotionContainer(con4, potion4, 54, 5, shadow4);
+	        setupPotionContainer(con5, potion5, 72, 5, shadow5);
+	        setupPotionContainer(con6, potion6, 90, 5, shadow6);
+	        setupPotionContainer(con7, potion7, 108, 5, shadow7);
 	    }
 
 	    private void setupPotionContainer(JPanel container, ImagePanel potion, int x, int y, JPanel shadow) {
-	        container.setBounds(x, y, 15, 30);
+	        container.setBounds(x, y, 18, 30);
 	        container.setLayout(null);
 	        add(container);
 
@@ -130,7 +126,6 @@ public class PlayerPotionsDisplayer extends JPanel {
 			case  Potion.IdentityTypes.BLUEPOSITIVE -> shadow3;
 			case  Potion.IdentityTypes.BLUENEGATIVE -> shadow6;
 			case  Potion.IdentityTypes.NETURAL -> shadow7;
-			case  Potion.IdentityTypes.UNKNOWN -> shadow8;
 			default -> throw new IllegalStateException("Unexpected type: ");
 		};
 	}
