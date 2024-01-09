@@ -148,7 +148,7 @@ public class ForageGroundsView extends JPanel {
         DJ dj = DJ.getDJ();
         dj.setAndStartEffectSound(DJ.EffectSounds.TRACK1,2000);
         if(ingreImg!=null){
-            ingreImg.changeImage("");
+            Background.remove(ingreImg);
         }
         
         GifPanel gif = new GifPanel(0, 0, 1000, 500, AssetLoader.getAssetPath(AssetLoader.Gifs.LEAVES));

@@ -28,11 +28,12 @@ public class HealthDisplayer extends JPanel {
     }
     
     public void setHealth(int health){
+        System.out.print("Health: "+ health);
         if (health>3 || health<-3){
             throw new IllegalArgumentException("how is the health below -3");
         }
         Color healthColor= Color.green;
-        if (health <0){
+        if (health >0){
             healthColor = Color.red;
         }
         for (int i=0;i<=7;i++){
