@@ -112,7 +112,7 @@ public class RoundOneController {
         }
     }
     public void removeIngredient(Player player , Ingredient.IngredientTypes ingredient){
-        player.getInventory().removeIngredient(ingredient);
+        player.getInventory().removeIngredient(ingredient,1);
     }
     
     private Boolean CompareTwoAspects(Aspect aspect1, Aspect aspect2) {
