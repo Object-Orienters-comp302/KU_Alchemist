@@ -146,7 +146,7 @@ public class ForageGroundsView extends JPanel {
     public void RunForageAnimation(Ingredient.IngredientTypes ingre) {
         GameController.getInstance().getMenuController().getMenuView().Blockade();
         DJ dj = DJ.getDJ();
-        dj.setAndStartEffectSound(DJ.EffectSounds.TRACK1);
+        dj.setAndStartEffectSound(DJ.EffectSounds.TRACK1,2000);
         
         GifPanel gif = new GifPanel(0, 0, 1000, 500, AssetLoader.getAssetPath(AssetLoader.Gifs.LEAVES));
         Background.add(gif);

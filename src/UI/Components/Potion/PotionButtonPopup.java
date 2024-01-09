@@ -27,7 +27,7 @@ public class PotionButtonPopup extends JPanel {
         PotionPopupButton B0 = new PotionPopupButton(width * 4 / 8, height * 4 / 8, buttonSizeW*3/2, buttonSizeW*3/2,
                                                      AssetLoader.TriangleTable.QUESTION_MARK, imgPanel, potio, true);
         add(B0);
-        
+        /*
         if (!CheckIfInventory(AssetLoader.Potions.UNKNOWN)) {
             CircleTransparentPanel T1 = new CircleTransparentPanel((width * 3 / 8) - (buttonSizeW / 2),
                                                                    (height*3 / 16) - (buttonSizeH / 2), buttonSizeW, buttonSizeH);
@@ -35,9 +35,9 @@ public class PotionButtonPopup extends JPanel {
         }
         PotionPopupButton B1 = new PotionPopupButton(width * 3 / 8, height*3 / 16, buttonSizeW, buttonSizeH,
                                                      AssetLoader.Potions.UNKNOWN, imgPanel, potio,
-                                                     !CheckIfInventory(AssetLoader.Potions.UNKNOWN));
+                                                     CheckIfInventory(AssetLoader.Potions.UNKNOWN));
         add(B1);
-        
+        */
         
         if (!CheckIfInventory(AssetLoader.Potions.BLUE_NEGATIVE)) {
             CircleTransparentPanel T2 = new CircleTransparentPanel((width*3 / 16) - (buttonSizeW / 2),
@@ -47,7 +47,7 @@ public class PotionButtonPopup extends JPanel {
         }
         PotionPopupButton B2 = new PotionPopupButton(width*3 / 16, height * 3 / 8, buttonSizeW, buttonSizeH,
                                                      AssetLoader.Potions.BLUE_NEGATIVE, imgPanel, potio,
-                                                     !CheckIfInventory(AssetLoader.Potions.BLUE_NEGATIVE));
+                                                     CheckIfInventory(AssetLoader.Potions.BLUE_NEGATIVE));
         add(B2);
         
         
@@ -59,7 +59,7 @@ public class PotionButtonPopup extends JPanel {
         }
         PotionPopupButton B3 = new PotionPopupButton(width*3 / 16, height * 5 / 8, buttonSizeW, buttonSizeH,
                                                      AssetLoader.Potions.BLUE_POSITIVE, imgPanel, potio,
-                                                     !CheckIfInventory(AssetLoader.Potions.BLUE_POSITIVE));
+                                                     CheckIfInventory(AssetLoader.Potions.BLUE_POSITIVE));
         add(B3);
         
         if (!CheckIfInventory(AssetLoader.Potions.RED_NEGATIVE)) {
@@ -70,7 +70,7 @@ public class PotionButtonPopup extends JPanel {
         }
         PotionPopupButton B4 = new PotionPopupButton(width * 3 / 8, height * 13 / 16, buttonSizeW, buttonSizeH,
                                                      AssetLoader.Potions.RED_NEGATIVE, imgPanel, potio,
-                                                     !CheckIfInventory(AssetLoader.Potions.RED_NEGATIVE));
+                                                     CheckIfInventory(AssetLoader.Potions.RED_NEGATIVE));
         add(B4);
         
         
@@ -82,7 +82,7 @@ public class PotionButtonPopup extends JPanel {
         }
         PotionPopupButton B5 = new PotionPopupButton(width * 5 / 8, height* 13 / 16, buttonSizeW, buttonSizeH,
                                                      AssetLoader.Potions.RED_POSITIVE, imgPanel, potio,
-                                                     !CheckIfInventory(AssetLoader.Potions.RED_POSITIVE));
+                                                     CheckIfInventory(AssetLoader.Potions.RED_POSITIVE));
         add(B5);
         
         
@@ -94,7 +94,7 @@ public class PotionButtonPopup extends JPanel {
         }
         PotionPopupButton B6 = new PotionPopupButton(width * 13 / 16, height * 5 / 8, buttonSizeW, buttonSizeH,
                                                      AssetLoader.Potions.GREEN_NEGATIVE, imgPanel, potio,
-                                                     !CheckIfInventory(AssetLoader.Potions.GREEN_NEGATIVE));
+                                                     CheckIfInventory(AssetLoader.Potions.GREEN_NEGATIVE));
         add(B6);
         
         
@@ -106,7 +106,7 @@ public class PotionButtonPopup extends JPanel {
         }
         PotionPopupButton B7 = new PotionPopupButton(width * 13 / 16, height * 3 / 8, buttonSizeW, buttonSizeH,
                                                      AssetLoader.Potions.GREEN_POSITIVE, imgPanel, potio,
-                                                     !CheckIfInventory(AssetLoader.Potions.GREEN_POSITIVE));
+                                                     CheckIfInventory(AssetLoader.Potions.GREEN_POSITIVE));
         add(B7);
         
         
@@ -117,7 +117,7 @@ public class PotionButtonPopup extends JPanel {
         }
         PotionPopupButton B8 = new PotionPopupButton(width * 5 / 8, height * 3 / 16, buttonSizeW, buttonSizeH,
                                                      AssetLoader.Potions.NEUTRAL, imgPanel, potio,
-                                                     !CheckIfInventory(AssetLoader.Potions.NEUTRAL));
+                                                     CheckIfInventory(AssetLoader.Potions.NEUTRAL));
         add(B8);
         
         

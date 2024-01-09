@@ -1,5 +1,6 @@
 package UI.Components.Potion;
 
+import UI.Components.ImagePanels.GifPanel;
 import Utils.AssetLoader;
 
 import javax.swing.*;
@@ -10,15 +11,16 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class PotionPopupButton extends JPanel {
+public class PotionPopupButton extends GifPanel {
     private int diameter, x, y;
     private ImagePanel img;
     
     public PotionPopupButton(int x, int y, int width, int height, AssetLoader.AssetPath imgPath,
                              ImagePanel panelToChange, PotionButton book, boolean works) {
         
+        super(x - width / 2,y - height / 2,width,height,AssetLoader.Gifs.FIREBALL.getPath());
         setLayout(null);
-        this.setBounds(x - width / 2, y - height / 2, width, height);
+        diameter=Integer.min(height,width);
         img = new ImagePanel(AssetLoader.getAssetPath(imgPath));
         img.setBounds(width / 10, width / 10, width*4 / 5, height*4 / 5);
         add(img);
@@ -76,7 +78,7 @@ public class PotionPopupButton extends JPanel {
     }
     
     
-    
+    /*
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -91,5 +93,5 @@ public class PotionPopupButton extends JPanel {
         g.setColor(Color.decode("#ebd2a9"));
         g.fillOval(x, y, customDiameter, customDiameter);
     }
-    
+    */
 }

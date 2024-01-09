@@ -178,8 +178,6 @@ public class LoginView extends JPanel implements Publisher {
         NextPanel_Label.setBounds(105, 8, 90, 60);
         NextPanel.add(NextPanel_Label);
         
-        
-        
     }
     
     private void SetupListeners() {
@@ -359,6 +357,10 @@ public class LoginView extends JPanel implements Publisher {
         
         this.repaint();
         
+    }
+    
+    public void setPlayerAmount(int i){
+        this.playerAmount=i;
     }
     
 }

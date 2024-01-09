@@ -98,7 +98,7 @@ public class SoundButtonPopup extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 DJ dj=DJ.getDJ();
                 if (paused){
-                    dj.startBackgroundSound();
+                    dj.continueBackgroundSound();
                     mute.changeImage(AssetLoader.SoundPlayer.NOTEGOLD.getPath());
                     parent.changeImage(AssetLoader.SoundPlayer.NOTEGOLD.getPath());
                     continuePause.changeImage(AssetLoader.SoundPlayer.PAUSEGOLD.getPath());
@@ -107,7 +107,7 @@ public class SoundButtonPopup extends JPanel {
                     repaint();
                 }
                 else{
-                    dj.stopBackgroundSound();
+                    dj.pauseBackgroundSound();
                     mute.changeImage(AssetLoader.SoundPlayer.NOTEANTIGOLD.getPath());
                     parent.changeImage(AssetLoader.SoundPlayer.NOTEANTIGOLD.getPath());
                     continuePause.changeImage(AssetLoader.SoundPlayer.CONTINUEGOLD.getPath());

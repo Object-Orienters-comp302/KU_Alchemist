@@ -69,7 +69,11 @@ public class AssetLoader {
         PUBLISH("resources/Images/buttonText/publishText.png"),
         FORAGE("resources/Images/buttonText/forageText.png"),
         TRANSMUTE("resources/Images/buttonText/transmutateText.png"),
-        INVENTORY("resources/Images/buttonText/inventoryText.png");
+        INVENTORY("resources/Images/buttonText/inventoryText.png"),
+        MARKET("resources/Images/buttonText/marketText.png"),
+        HOST("resources/Images/buttonText/hostText.png"),
+        JOIN("resources/Images/buttonText/joinText.png")
+        ;
         
         
         private final String path;
@@ -331,7 +335,10 @@ public class AssetLoader {
         CIRCLE_BLUE("resources/Gifs/Animations/glowCircularBlue.gif"),
         LEAVES("resources/Gifs/Animations/leaves.gif"),
         HOURGLASS("resources/Gifs/Loading/hourglass.gif"),
-        POTION("resources/Gifs/Loading/loadingPotion.gif");
+        POTION("resources/Gifs/Loading/loadingPotion.gif"),
+        FIREBALL("resources/Gifs/Animations/orbFire.gif")
+        
+        ;
         
         private final String path;
         

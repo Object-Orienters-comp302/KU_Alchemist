@@ -43,7 +43,7 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         displayers.add(this);
         this.playerInstance = player;
         this.controller= GameController.getInstance().getMenuController();;
-        setPreferredSize(new Dimension(260, 80));
+        setPreferredSize(new Dimension(240, 80));
         setLayout(null);
         setPlayerBackground(player); // Sets a different border if player is the current player
         this.playerInstance.getInventory().addListener(this);
@@ -70,19 +70,19 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
 
     public void SetupObjects() {
         container.setLayout(null);
-        container.setBounds(5, 5, 250, 70);
+        container.setBounds(5, 5, 230, 70);
 
         avatarImgPanel.setBounds(0, 0, 70, 70);
         container.add(avatarImgPanel);
 
-        labelPanel_1.setBounds(70, 0, 126, 30);
+        labelPanel_1.setBounds(70, 0, 105, 30);
         container.add(labelPanel_1);
         labelPanel_1.setLayout(null);
 
-        nameLabel.setBounds(5, 0, 115, 30);
+        nameLabel.setBounds(5, 0, 100, 30);
         labelPanel_1.add(nameLabel);
 
-        labelPanel_2.setBounds(195, 0, 55, 36);
+        labelPanel_2.setBounds(175, 0, 55, 36);
         container.add(labelPanel_2);
         labelPanel_2.setLayout(null);
 
@@ -97,7 +97,7 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         coinsLabel.setBounds(0, 0, 30, 30);
         labelPanel_2_2.add(coinsLabel);
 
-        labelPanel_3.setBounds(195, 35, 55, 35);
+        labelPanel_3.setBounds(175, 35, 55, 35);
         container.add(labelPanel_3);
         labelPanel_3.setLayout(null);
 
@@ -113,7 +113,7 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         labelPanel_3_2.add(pointsLabel);
 
         potionsPanel.setLayout(null);
-        potionsPanel.setBounds(70, 30, 126, 40);
+        potionsPanel.setBounds(70, 30, 105, 40);
         container.add(potionsPanel);
 
         add(container); 

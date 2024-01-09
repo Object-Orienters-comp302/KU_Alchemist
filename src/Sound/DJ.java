@@ -1,9 +1,13 @@
 package Sound;
 import Domain.GameController;
+import Models.Ingredient;
+import UI.Components.ImagePanels.GifPanel;
+import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 import jdk.dynalink.beans.StaticClass;
 
 import javax.sound.sampled.*;
+import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -12,8 +16,8 @@ import java.io.IOException;
 public class DJ {
     
     public static DJ DJInstance;
-    Clip BackgroundSound;
-    Clip EffectSound;
+    Clip BackgroundSound,EffectSound;
+    int backStoppedAt=0;
     
     public DJ(){}
     
@@ -38,6 +42,7 @@ public class DJ {
     public void startBackgroundSound() {
         try {
             BackgroundSound.start();
+            backStoppedAt=0;
         } catch (Exception e) {
             e.printStackTrace(); // Handle the exception according to your application's needs
         }
@@ -47,6 +52,17 @@ public class DJ {
         if(BackgroundSound!=null){
             BackgroundSound.stop();
         }
+    }
+    public void pauseBackgroundSound() {
+        backStoppedAt = BackgroundSound.getFrameLength() - BackgroundSound.getFramePosition();
+        if (BackgroundSound != null) {
+            BackgroundSound.stop();
+        }
+    }
+    
+    public void continueBackgroundSound() {
+        BackgroundSound.setFramePosition(BackgroundSound.getFrameLength() - backStoppedAt);
+        BackgroundSound.start();
     }
     
     public void setAndStartBackgroundSound(BackgroundSounds path) {
@@ -83,10 +99,27 @@ public class DJ {
             e.printStackTrace(); // Handle the exception according to your application's needs
         }
     }
+    public void startEffectSound(int ms) {
+        try {
+            pauseBackgroundSound();
+            EffectSound.start();
+            Timer timer = new Timer(1530, (e) -> {
+               continueBackgroundSound();
+            });
+            timer.setRepeats(false);
+            timer.start();
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle the exception according to your application's needs
+        }
+    }
     
     public void setAndStartEffectSound(EffectSounds path) {
         setEffectSound(path);
         startEffectSound();
+    }
+    public void setAndStartEffectSound(EffectSounds path,int ms) {
+        setEffectSound(path);
+        startEffectSound(ms);
     }
     
     

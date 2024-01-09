@@ -1,6 +1,7 @@
 package UI.Components.Potion;
 
 import Models.Potion;
+import UI.Components.ImagePanels.GifPanel;
 import UI.Components.ImagePanels.ImagePanel;
 import Utils.AssetLoader;
 
@@ -9,7 +10,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class PotionButton extends JPanel {
+public class PotionButton extends GifPanel {
     ImagePanel img;
     boolean    transparent = false;
     private int                   diameter;
@@ -19,9 +20,9 @@ public class PotionButton extends JPanel {
     
     
     public PotionButton(int x, int y, int width, int height) {
-        this.setOpaque(false);
+        super(x, y, width, height,AssetLoader.Gifs.FIREBALL.getPath());
         setLayout(null);
-        this.setBounds(x, y, width, height);
+        diameter=Integer.min(height,width);
         currentPotion = AssetLoader.TriangleTable.QUESTION_MARK;
         img           = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.TriangleTable.QUESTION_MARK));
         img.setBounds(width * 9 / 40, width * 9 / 40, width * 9 / 16, height * 9 / 16);
@@ -67,9 +68,8 @@ public class PotionButton extends JPanel {
     }
     
     public PotionButton(int x, int y, int width, int height, boolean transparent) {
-        this.setOpaque(false);
+        super(x, y, width, height,AssetLoader.getAssetPath(AssetLoader.Gifs.FIREBALL));
         setLayout(null);
-        this.setBounds(x, y, width, height);
         AssetLoader.AssetPath currentValue = AssetLoader.TriangleTable.QUESTION_MARK;
         img = new ImagePanel(AssetLoader.getAssetPath(currentValue));
         img.setBounds(width * 9 / 40, width * 9 / 40, width * 9 / 16, height * 9 / 16);
@@ -105,7 +105,7 @@ public class PotionButton extends JPanel {
         
     }
     
-    
+    /*
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -121,7 +121,7 @@ public class PotionButton extends JPanel {
             g.fillOval(x, y, customDiameter, customDiameter);
         }
     }
-    
+    */
     public AssetLoader.AssetPath getCurrentIngredient() {
         return currentPotion;
     }

@@ -8,6 +8,7 @@ import Models.Player;
 import Models.Potion;
 import UI.Components.Artifacts.ArtifactCard;
 import UI.Components.ColorChangingPanel;
+import UI.Components.ImagePanels.GifPanel;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.ImagePanels.OutlinedLabel;
 import UI.Components.Potion.PotionButton;
@@ -44,7 +45,7 @@ public class MarketView extends JPanel {
         Background   = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.BACKGROUND));
         textField = new JTextField();
         potionCard = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
-        potionButton= new PotionButton(225,175,100,100);
+        potionButton= new PotionButton(150,144,200,200);
         
         sellPotionButton = new ColorChangingPanel("#aaaaaa", "#cccccc",
                                                   20, ColorChangingPanel.RoundingStyle.BOTH);
@@ -60,23 +61,27 @@ public class MarketView extends JPanel {
         artifactCard.setBounds(600, 100, 200, 289);
         Background.add(artifactCard);
         
+        Background.add(potionButton);
+        
         potionCard.setBounds(150, 100, 200, 289);
         Background.add(potionCard);
-        Background.add(potionButton);
+        
         
         sellPotionButton.setBounds(150,400,200,50);
         Background.add(sellPotionButton);
         sellPotionButton.setLayout(null);
         
         sellPotionLabel = new OutlinedLabel("SELL POTION","#a96148", "#be7a57", OutlinedLabel.Versions.MID_ORIENTED);
-        sellPotionLabel.setBounds(0,0,150,50);
+        sellPotionLabel.setBounds(0,0,200,50);
+        sellPotionLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
         sellPotionButton.add(sellPotionLabel);
         
         buyArtifactButton.setBounds(600, 400, 200, 50);
         Background.add(buyArtifactButton);
         buyArtifactButton.setLayout(null);
         buyArtifactLabel = new OutlinedLabel("BUY ARTIFACT","#a96148", "#be7a57", OutlinedLabel.Versions.MID_ORIENTED);
-        buyArtifactLabel.setBounds(0,0,150,50);
+        buyArtifactLabel.setBounds(0,0,200,50);
+        buyArtifactLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
         buyArtifactButton.add(buyArtifactLabel);
         
         
