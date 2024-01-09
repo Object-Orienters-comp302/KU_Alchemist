@@ -346,7 +346,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
             PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
             
             
-            displayer.setBounds((i * 265 + 120), 5, 260, 80);
+            displayer.setBounds((i * 250 + 90), 5, 240, 80);
             topPanel.add(displayer);
         }
         

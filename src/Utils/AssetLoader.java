@@ -71,7 +71,8 @@ public class AssetLoader {
         TRANSMUTE("resources/Images/buttonText/transmutateText.png"),
         INVENTORY("resources/Images/buttonText/inventoryText.png"),
         MARKET("resources/Images/buttonText/marketText.png"),
-        
+        HOST("resources/Images/buttonText/hostText.png"),
+        JOIN("resources/Images/buttonText/joinText.png")
         ;
         
         

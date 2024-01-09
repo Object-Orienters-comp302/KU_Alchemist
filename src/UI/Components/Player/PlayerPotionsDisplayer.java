@@ -45,7 +45,7 @@ public class PlayerPotionsDisplayer extends JPanel {
 
 	    public PlayerPotionsDisplayer() {
 	        setLayout(null);
-	        setBounds(0, 0, 126, 40);
+	        setBounds(0, 0, 105, 40);
 	        CreateObjects();
 	        SetupObjects();
 	    }
@@ -78,16 +78,16 @@ public class PlayerPotionsDisplayer extends JPanel {
 
 	    public void SetupObjects() {
 	        setupPotionContainer(con1, potion1, 0, 5, shadow1);
-	        setupPotionContainer(con2, potion2, 18, 5, shadow2);
-	        setupPotionContainer(con3, potion3, 36, 5, shadow3);
-	        setupPotionContainer(con4, potion4, 54, 5, shadow4);
-	        setupPotionContainer(con5, potion5, 72, 5, shadow5);
-	        setupPotionContainer(con6, potion6, 90, 5, shadow6);
-	        setupPotionContainer(con7, potion7, 108, 5, shadow7);
+	        setupPotionContainer(con2, potion2, 15, 5, shadow2);
+	        setupPotionContainer(con3, potion3, 30, 5, shadow3);
+	        setupPotionContainer(con4, potion4, 45, 5, shadow4);
+	        setupPotionContainer(con5, potion5, 60, 5, shadow5);
+	        setupPotionContainer(con6, potion6, 75, 5, shadow6);
+	        setupPotionContainer(con7, potion7, 90, 5, shadow7);
 	    }
 
 	    private void setupPotionContainer(JPanel container, ImagePanel potion, int x, int y, JPanel shadow) {
-	        container.setBounds(x, y, 18, 30);
+	        container.setBounds(x, y, 15, 30);
 	        container.setLayout(null);
 	        add(container);
 
