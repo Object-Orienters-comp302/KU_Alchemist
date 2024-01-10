@@ -24,7 +24,7 @@ public class RoundOneController {
     
     public void TransmuteIngredient(Player player, Ingredient.IngredientTypes ingredientType) {
         if (player.getInventory().isInInventory(ingredientType)) {
-            player.getInventory().removeIngredient(ingredientType,1);
+            player.getInventory().removeIngredient(ingredientType, 1);
             player.getInventory().setGold(player.getInventory().getGold() + 1);
         }
     }
@@ -115,7 +115,7 @@ public class RoundOneController {
         }
     }
     public void removeIngredient(Player player , Ingredient.IngredientTypes ingredient){
-        player.getInventory().removeIngredient(ingredient,1);
+        player.getInventory().removeIngredient(ingredient, 1);
     }
     
     private Boolean CompareTwoAspects(Aspect aspect1, Aspect aspect2) {

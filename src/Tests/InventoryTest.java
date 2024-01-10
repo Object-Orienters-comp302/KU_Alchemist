@@ -3,7 +3,6 @@
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 import static org.junit.jupiter.api.Assertions.*;
 
-import Models.Artifact;
 import org.junit.jupiter.api.*;
 
 import Models.Ingredient;
@@ -59,7 +58,7 @@ public class InventoryTest {
         inventory.addIngredient(Ingredient.IngredientTypes.Feather, 5);
         assertEquals(5, inventory.getIngredientCount(Ingredient.IngredientTypes.Feather), "Ingredient count should be 5");
         
-        inventory.removeIngredient(Ingredient.IngredientTypes.Feather);
+        inventory.removeAllIngredients(Ingredient.IngredientTypes.Feather);
         assertFalse(inventory.isInInventory(Ingredient.IngredientTypes.Feather), "Ingredient should be removed");
         assertTrue(inventory.repOK());
     }
@@ -77,7 +76,7 @@ public class InventoryTest {
         inventory.addIngredient(Ingredient.IngredientTypes.Feather, 3);
         assertEquals(3, inventory.getIngredientCount(Ingredient.IngredientTypes.Feather), "Ingredient count should be 3");
         
-        inventory.removeIngredient(Ingredient.IngredientTypes.Feather);
+        inventory.removeAllIngredients(Ingredient.IngredientTypes.Feather);
         assertFalse(inventory.isInInventory(Ingredient.IngredientTypes.Feather), "Ingredient should be removed");
         assertTrue(inventory.repOK());
     }

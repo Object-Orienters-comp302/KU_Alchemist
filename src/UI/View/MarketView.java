@@ -118,18 +118,19 @@ public class MarketView extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (potionButton.getCurrentPotionPath()!=AssetLoader.TriangleTable.QUESTION_MARK){
-                
+
+                    sellPotion(potionButton.getType());
                 }
             }
         });
         
     }
     
-    private void sellPotion(Potion pot){ //TODO:make it work with type
-        GameController game=GameController.getInstance();
-        Player curr= game.getMenuController().getCurrentPlayer();
-        game.getRoundTwoController().sellPotion(curr.getInventory(),pot);
+    private Potion.Signs sellPotion(Potion.IdentityTypes identityTypes){ //TODO:make it work with type
+        RoundTwoController roundTwoController = GameController.getInstance().getRoundTwoController();
+        Potion.Signs sign = roundTwoController.sellPotion(identityTypes);
         potionButton.reset();
+        return sign;
     }
     private Artifact CardClicked(Player player) { //Calls Forage for Ingredient on controller then, returns its type for the function.
         return GameController.getInstance().getRoundOneController().BuyArtifacts(player);

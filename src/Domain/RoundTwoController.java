@@ -6,57 +6,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RoundTwoController extends RoundOneController{
-    
+
     /**
-     * Sells a potion from the inventory and updates the inventory's gold based on the potion's sign.
+     * Sells a potion from the current player based on the passed identityType, if the potion has a positive sign, add 2 gold to the inventory of the current player, otherwise add 1 gold.
      * 
-     * @param inventory The inventory from which the potion is to be sold.
-     * @param potion    The potion to be sold.
-     * @return          The potion that was sold.
-     * @throws IllegalArgumentException if the potion is not found in the inventory.
+     * @param           Potion.identityType The type of the potion.
+     * @return          The sign of the potion that was sold
+     * @throws          IllegalArgumentException if the potion is not found.
      */
-    public Potion sellPotion(Inventory inventory, Potion potion) {
-        Potion removedPotion = removePotion(inventory.getPotions(), potion);
-    
-        if (removedPotion == null) {
-            throw new IllegalArgumentException("Potion not found in inventory.");
-        }
-    
-        int goldToAdd;
-        switch (removedPotion.getSign()) {
-            case Potion.Signs.Positive:
-                goldToAdd = 3;
-                break;
-            case Potion.Signs.Neutral:
-                goldToAdd = 2;
-                break;
-            case Potion.Signs.Negative:
-                goldToAdd = 1;
-                break;
-            default:
-                throw new IllegalStateException("Unknown potion sign.");
-        }
-    
-        inventory.setGold(inventory.getGold() + goldToAdd);
-    
-        return removedPotion;   
-    }
-    
-    public Potion removePotion(HashMap<Potion, Integer> Potions, Potion potion) {
+    public Potion.Signs sellPotion(Potion.IdentityTypes identityType) {
+        Potion potion = Potion.deIdentify(identityType);
+        Potion.Signs sign = Player.getCurrPlayer().getInventory().removePotion(potion);
         
-        if (Potions.isEmpty()) {
-            return null;
+        if(sign == Potion.Signs.Positive){
+            if(potion.getSign() == Potion.Signs.Positive){
+                Player.getCurrPlayer().getInventory().setGold(Player.getCurrPlayer().getInventory().getGold()+2);
+            }
+            else {
+                Player.getCurrPlayer().getInventory().setGold(Player.getCurrPlayer().getInventory().getGold()+1);
+            }
         }
-        
-        int potion_num = Potions.get(potion);
-        
-        if (potion_num != 0) {
-            Potions.put(potion, potion_num - 1);
-            return potion;
-            
-        } else {
-            return null;
-        }
+        return sign;
     }
     
     public boolean publishTheory(Player currentPlayer, Ingredient.IngredientTypes selectedIngredient, Ingredient.AspectTrio alchemyMarker) {
