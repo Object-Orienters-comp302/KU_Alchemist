@@ -1,7 +1,9 @@
 package Networking;
 
-import java.io.*;
-import java.net.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 public class GameClient {
     private Socket socket;
@@ -15,7 +17,7 @@ public class GameClient {
         new Thread(this::listenToServer).start();
     }
     
-    private void listenToServer() {
+    private GameClient listenToServer() {
         try {
             Object fromServer;
             while ((fromServer = objectIn.readObject()) != null) {
@@ -28,8 +30,11 @@ public class GameClient {
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        
+        return this;
     }
-    public void sendAction(GameAction action) {
+    
+    public GameClient sendAction(GameAction action) {
         try {
             System.out.println("OUT:          GameAction type: " + action.getActionType());
             System.out.println("         : GameAction details: " + action.getDetails());
@@ -37,21 +42,24 @@ public class GameClient {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        return this;
     }
     
-    public void processAction(GameAction action){
+    public GameClient processAction(GameAction action) {
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());
+        
+        return this;
     }
     
     public static void main(String[] args) throws IOException {
         GameClient client = new GameClient("localhost", 12345);
         // Example: send an action
         GameAction action = new GameAction("UpdatePlayer", "Player1 got 2 Feather ingredient.");
-        client.sendAction(action);
-        
         GameAction action1 = new GameAction("UpdateDeck", "Drew 1 card from deck");
-        client.sendAction(action1);
+
+        client.sendAction(action1).sendAction(action1); // This is the builder pattern
     }
 }
 

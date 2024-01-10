@@ -1,9 +1,11 @@
 package Networking;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import java.util.concurrent.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class GameServer {
     private ServerSocket serverSocket;
@@ -27,15 +29,17 @@ public class GameServer {
         }
     }
     
-    public synchronized void broadcastUpdate(GameAction updateAction) {
+    public synchronized GameServer broadcastUpdate(GameAction updateAction) {
         
         for (ClientHandler client : clients.keySet()) {
             System.out.println("OUT: Broadcasting update to " + client.toString());
             client.sendMessage(updateAction);
         }
+        
+        return this;
     }
     
-    public synchronized void processAction(GameAction action) {
+    public synchronized GameServer processAction(GameAction action) {
         // TODO: Process action and update game state
         // For now, just echo the action
         
@@ -43,6 +47,8 @@ public class GameServer {
         System.out.println("            Details: " + action.getDetails());
         
         broadcastUpdate(action);
+        
+        return this;
     }
     
     private class ClientHandler implements Runnable {
@@ -84,17 +90,18 @@ public class GameServer {
             }
         }
         
-        public void sendMessage(Object message) {
+        public ClientHandler sendMessage(Object message) {
             try {
                 objectOut.writeObject(message);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            
+            return this;
         }
     }
     
     public static void main(String[] args) throws IOException {
-        GameServer server = new GameServer(12345); // Port number
-        server.start();
+        new GameServer(12345).start();
     }
 }
