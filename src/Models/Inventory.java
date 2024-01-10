@@ -47,7 +47,7 @@ public class Inventory implements Publisher {
      * @param type The type of ingredient to be removed.
      * @throws NoSuchElementException if the ingredient type is not found.
      */
-    public void removeIngredient(Ingredient.IngredientTypes type) {
+    public void removeAllIngredients(Ingredient.IngredientTypes type) {
         if (ingredientHashMap.containsKey(type)){
             ingredientHashMap.remove(type);
             publishEvent(Type.INGREDIENT);
@@ -182,5 +182,17 @@ public class Inventory implements Publisher {
     @Override
     public void addListener(Listener lis) {
         listeners.add(lis);
+    }
+    
+    public Potion.Signs removePotion(Potion potion) {
+        for (Potion pot: potions.keySet()) {
+            if(pot.getIdentity() == potion.getIdentity() && (potions.get(pot)>0)){
+                int newQuantity = potions.get(pot)-1;
+                potions.put(pot,newQuantity);
+                publishEvent(Type.POTION);
+                return pot.getSign();
+            }
+        }
+        return null;
     }
 }

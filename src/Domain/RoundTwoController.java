@@ -7,39 +7,21 @@ import java.util.HashMap;
 
 public class RoundTwoController extends RoundOneController{
     
-    /**
-     * Sells a potion from the inventory and updates the inventory's gold based on the potion's sign.
-     * 
-     * @param inventory The inventory from which the potion is to be sold.
-     * @param potion    The potion to be sold.
-     * @return          The potion that was sold.
-     * @throws IllegalArgumentException if the potion is not found in the inventory.
-     */
-    public Potion sellPotion(Inventory inventory, Potion potion) {
-        Potion removedPotion = removePotion(inventory.getPotions(), potion);
-    
-        if (removedPotion == null) {
-            throw new IllegalArgumentException("Potion not found in inventory.");
+    public Potion.Signs sellPotion(Potion.IdentityTypes identityType) {
+        Potion potion = Potion.deIdentify(identityType);
+        Potion.Signs sign = Player.getCurrPlayer().getInventory().removePotion(potion);
+        
+        if(sign == Potion.Signs.Positive){
+            if(potion.getSign() == Potion.Signs.Positive){
+                Player.getCurrPlayer().getInventory().setGold(Player.getCurrPlayer().getInventory().getGold()+2);
+            }
+            else {
+                Player.getCurrPlayer().getInventory().setGold(Player.getCurrPlayer().getInventory().getGold()+1);
+            }
+            
         }
-    
-        int goldToAdd;
-        switch (removedPotion.getSign()) {
-            case Potion.Signs.Positive:
-                goldToAdd = 3;
-                break;
-            case Potion.Signs.Neutral:
-                goldToAdd = 2;
-                break;
-            case Potion.Signs.Negative:
-                goldToAdd = 1;
-                break;
-            default:
-                throw new IllegalStateException("Unknown potion sign.");
-        }
-    
-        inventory.setGold(inventory.getGold() + goldToAdd);
-    
-        return removedPotion;   
+        
+        return sign;
     }
     
     public Potion removePotion(HashMap<Potion, Integer> Potions, Potion potion) {
