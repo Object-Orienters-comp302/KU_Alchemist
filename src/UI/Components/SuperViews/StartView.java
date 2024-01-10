@@ -98,7 +98,12 @@ public class StartView extends JPanel implements Publisher {
                 repaint();
             }
         });
-        
+        selectJoin.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("Join CLick");
+            }
+        });
     }
     public void CleanupBase(){
         Background.remove(selectJoin);
