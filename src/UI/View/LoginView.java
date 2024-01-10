@@ -96,9 +96,13 @@ public class LoginView extends JPanel implements Publisher {
         NextPanelContainer                    = new JPanel();
         NextPanel                             =
                 new ColorChangingPanel("#cf9d15", "#FFD700", 40, ColorChangingPanel.RoundingStyle.BOTH);
+        
         NextPanel_Label                       = new JLabel("NEXT");
-        
-        
+    }
+    
+    // Please don't look
+    public void setSuperSensibleText (String text){
+        NextPanel_Label.setText(text);
     }
     
     private void SetupObjets() {

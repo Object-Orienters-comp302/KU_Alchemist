@@ -101,7 +101,10 @@ public class StartView extends JPanel implements Publisher {
         selectJoin.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("Join CLick");
+                ViewFactory.getInstance().getLoginView().setPlayerAmount(1);
+                ViewFactory.getInstance().getLoginView().setSuperSensibleText("START");
+                publishEvent(Type.START_LOGIN_SCREEN);
+                
             }
         });
     }
