@@ -9,17 +9,23 @@ import UI.Components.ImagePanels.ImagePanel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class TriangleTableButton extends JPanel {
     private int diameter, x, y;
     private ImagePanel img;
+    private static ArrayList<TriangleTableButton> list= new ArrayList<>();
+    private static int[] data;
     
     
-    public TriangleTableButton(int x, int y, int width, int height, int index, int[] data) {
+    public TriangleTableButton(int x, int y, int width, int height, int index) {
+        if(data==null){
+            throw new IllegalStateException("you need to first feed table data to class");
+        }
         this.setOpaque(false);
         setLayout(null);
         this.setBounds(x, y, width, height);
-        
+        list.add(index,this);
         img = new ImagePanel(chooseImg(data[index]));
         img.setBounds(0, 0, width, height);
         add(img);
@@ -97,6 +103,17 @@ public class TriangleTableButton extends JPanel {
         
         return distance <= radius;
     }
+    public static void feedData(int[] dat){
+        data=dat;
+    }
+    public static void rebuild(){
+        int ind=0;
+        for (TriangleTableButton but:list){
+            but.img.changeImage(chooseImg(data[ind]));
+            but.repaint();
+            ind++;
+        }
+    }
     
     public static void main(String[] args) {
         // TODO Auto-generated method stub
@@ -106,7 +123,7 @@ public class TriangleTableButton extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1500, 1500);
         frame.getContentPane().setLayout(null);
-        TriangleTableButton login = new TriangleTableButton(300, 300, 400, 400, 0, testArray);
+        TriangleTableButton login = new TriangleTableButton(300, 300, 400, 400, 0);
         
         
         frame.getContentPane().add(login);

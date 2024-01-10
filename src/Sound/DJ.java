@@ -18,6 +18,7 @@ public class DJ {
     public static DJ DJInstance;
     Clip BackgroundSound,EffectSound;
     int backStoppedAt=0;
+    Boolean backgroundRunning=false;
     
     public DJ(){}
     
@@ -43,6 +44,7 @@ public class DJ {
         try {
             BackgroundSound.start();
             backStoppedAt=0;
+            backgroundRunning=true;
         } catch (Exception e) {
             e.printStackTrace(); // Handle the exception according to your application's needs
         }
@@ -51,18 +53,21 @@ public class DJ {
     public void stopBackgroundSound(){
         if(BackgroundSound!=null){
             BackgroundSound.stop();
+            backgroundRunning=false;
         }
     }
     public void pauseBackgroundSound() {
         backStoppedAt = BackgroundSound.getFrameLength() - BackgroundSound.getFramePosition();
         if (BackgroundSound != null) {
             BackgroundSound.stop();
+            backgroundRunning=false;
         }
     }
     
     public void continueBackgroundSound() {
         BackgroundSound.setFramePosition(BackgroundSound.getFrameLength() - backStoppedAt);
         BackgroundSound.start();
+        backgroundRunning=true;
     }
     
     public void setAndStartBackgroundSound(BackgroundSounds path) {
@@ -101,13 +106,19 @@ public class DJ {
     }
     public void startEffectSound(int ms) {
         try {
-            pauseBackgroundSound();
-            EffectSound.start();
-            Timer timer = new Timer(1530, (e) -> {
-               continueBackgroundSound();
-            });
-            timer.setRepeats(false);
-            timer.start();
+            if (backgroundRunning) {
+                pauseBackgroundSound();
+                EffectSound.start();
+                Timer timer = new Timer(1530, (e) -> {
+                    continueBackgroundSound();
+                });
+                timer.setRepeats(false);
+                timer.start();
+            }
+            else {
+                EffectSound.start();
+            }
+            
         } catch (Exception e) {
             e.printStackTrace(); // Handle the exception according to your application's needs
         }

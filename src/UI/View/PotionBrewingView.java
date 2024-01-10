@@ -139,14 +139,13 @@ public class PotionBrewingView extends JPanel {
                     if (Player.getCurrPlayer().getInventory().isInInventory(IngredientB1.getType()) && Player.getCurrPlayer().getInventory()
                             .isInInventory(IngredientB2.getType())) {
                         //TODO Make this better currently this maybe problematic
-                        Potion pot = MakePotion(new Ingredient(IngredientB1.getType()),
-                                                new Ingredient(IngredientB2.getType()), Player.getCurrPlayer());
-                        PotionAnimation(Potion.getPathFromIdentity(pot.getIdentity()));
+                        
+                        PotionAnimation();
                         
                     }
                 }
                 else{
-                    Reset();
+                    reset();
                 }
             }
         });
@@ -178,6 +177,7 @@ public class PotionBrewingView extends JPanel {
     private Potion MakePotion(Ingredient ingredient1, Ingredient ingredient2, Player player) {
         RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
         Potion potion = roundOneController.MakePotion(ingredient1.getAspects(), ingredient2.getAspects());
+        System.out.print(potion.getIdentity());
         MakeExperiments(potion,player,!this.testOnStudent);
         player.getInventory().addPotions(potion, 1);
         
@@ -198,7 +198,7 @@ public class PotionBrewingView extends JPanel {
         roundOneController.Make_experiments(player, potion, testOnStudent);
     }
     
-    private void PotionAnimation(AssetLoader.AssetPath path){
+    private void PotionAnimation(){
         
         GameController.getInstance().getMenuController().getMenuView().Blockade();
         
@@ -278,10 +278,14 @@ public class PotionBrewingView extends JPanel {
                             Timer delayedTimer3 = new Timer(2000, new ActionListener() {
                                 @Override
                                 public void actionPerformed(ActionEvent e) {
+                                    
+                                    Potion pot = MakePotion(new Ingredient(IngredientB1.getType()),
+                                                            new Ingredient(IngredientB2.getType()), Player.getCurrPlayer());
+                                    
                                     Background.remove(GlowGif);
                                     Background.add(PotionBackground);
                                     Background.setComponentZOrder(PotionBackground,0);
-                                    PotionImage.changeImage(AssetLoader.getAssetPath(path));
+                                    PotionImage.changeImage(Potion.getPathFromIdentity(pot.getIdentity()));
                                     Background.add(PotionImage);
                                     
                                     Background.setComponentZOrder(PotionImage,0);
@@ -336,7 +340,7 @@ public class PotionBrewingView extends JPanel {
         
     }
     
-    private void Reset(){
+    public void reset(){
         potionIsBeingDisplayed=false;
         Background.remove(PotionBackground);
         Background.remove(PotionImage);

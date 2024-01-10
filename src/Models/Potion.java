@@ -57,7 +57,7 @@ public class Potion {//creating function is in the GameController for now
         }
     	switch (color) {
         case Colorless:
-            return Identity.UNKNOWN;
+            return Identity.NETURAL;
         case Green:
             switch (sign) {
                 case Positive:

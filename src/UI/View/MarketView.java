@@ -159,5 +159,11 @@ public class MarketView extends JPanel {
             return Text;
         }
     }
+    public void reset(){
+        if (arti!=null){
+            Background.remove(arti);
+        }
+        potionButton.reset();
+    }
 }
 

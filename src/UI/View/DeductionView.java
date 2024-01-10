@@ -11,7 +11,8 @@ import java.awt.*;
 
 public class DeductionView extends JPanel {
     ImagePanel Background;
-    
+    TriangleTableWithImg triTable;
+    RectangleTable rectangleTable;
     public DeductionView() {
         this.setSize(1000, 500);
         setLayout(null);
@@ -23,22 +24,28 @@ public class DeductionView extends JPanel {
         add(Background);
         Background.setLayout(null);
         
-        
-        TriangleTableWithImg triTable = new TriangleTableWithImg(
+        triTable = new TriangleTableWithImg(
                 GameController.getInstance().getMenuController().getCurrentPlayer().getTriangleTableArray());
         triTable.setBounds(10, 80, 400, 400);
         triTable.setOpaque(false);
         Background.add(triTable);
         
-        RectangleTable rect = new RectangleTable(
+        rectangleTable = new RectangleTable(
                 GameController.getInstance().getMenuController().getCurrentPlayer().getRectangleTableArray());
-        rect.setBounds(360, 10, 600, 300);
-        rect.setOpaque(false);
-        Background.add(rect);
+        rectangleTable.setBounds(360, 10, 600, 300);
+        rectangleTable.setOpaque(false);
+        Background.add(rectangleTable);
         revalidate();
         repaint();
         
         this.setVisible(true);
+    }
+    public  void reset(){
+        triTable.feedData(GameController.getInstance().getMenuController().getCurrentPlayer().getTriangleTableArray());
+        triTable.reset();
+        
+        rectangleTable.feedData(GameController.getInstance().getMenuController().getCurrentPlayer().getRectangleTableArray());
+        rectangleTable.reset();
     }
 }
 

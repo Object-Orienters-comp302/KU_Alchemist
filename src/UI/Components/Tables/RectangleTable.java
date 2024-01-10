@@ -18,13 +18,15 @@ public class RectangleTable extends JPanel {
         table.setLocation(0, 0);
         table.setSize(600, 300);
         add(table);
-        
-        for (int i = 0; i <= 7; i++) {
-            RectangleTableButton button = new RectangleTableButton(40 + i * 75, 61, 25, 25, i, data[0]);
-            table.add(button);
-            setComponentZOrder(button, 0);
+        RectangleTableButton.feedData(data);
+        for (int row = 0; row <= 7; row++) {
+            for (int col = 0; col <= 7; col++) {
+                RectangleTableButton button = new RectangleTableButton(40 + col * 75, 62+row*30, 25, 25, col, row);
+                table.add(button);
+                setComponentZOrder(button, 0);
+            }
         }
-        
+        /*
         for (int i = 0; i <= 7; i++) {
             RectangleTableButton button = new RectangleTableButton(40 + i * 75, 92, 25, 25, i, data[1]);
             table.add(button);
@@ -66,6 +68,8 @@ public class RectangleTable extends JPanel {
             table.add(button);
             setComponentZOrder(button, 0);
         }
+        *
+         */
         /*   // testing purposes
         Button but=new Button();
         but.addMouseListener(new MouseAdapter() {
@@ -81,6 +85,14 @@ public class RectangleTable extends JPanel {
         */
         
     }
+    
+    public void feedData(int[][] dat){
+        RectangleTableButton.feedData(dat);
+    }
+    public void reset(){
+        RectangleTableButton.rebuild();
+    }
+    
     
     public static void main(String[] args) {
         //TriangleTable tri = new TriangleTable("#34ebcf");

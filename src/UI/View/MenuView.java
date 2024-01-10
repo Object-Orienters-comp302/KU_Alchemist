@@ -40,14 +40,14 @@ public class MenuView extends JPanel implements Publisher,Listener {
     CutRoundedPanel    displayerPanel;
     CardLayout         cardLay;
     //tables
-    JPanel             tablesPanel;
+    DeductionView             tablesPanel;
     BooksDisplayer     theoriesPanel;
     PotionBrewingView  PotionBrewingPanel;
     ForageGroundsView ForagePanel;
     CustomPlainView         CustomPlainPanel;
     InventoryView     InventoryPanel;
     TransmuteView TransmutePanel;
-    MarketView    BuyArtifactPanel;
+    MarketView    MarketPanel;
     //other?
     JPanel        bottomPanel;
     JPanel             sidePanel;
@@ -99,8 +99,8 @@ public class MenuView extends JPanel implements Publisher,Listener {
         ForagePanel      = new ForageGroundsView();
         CustomPlainPanel = new CustomPlainView();
         InventoryPanel   = new InventoryView();
-        TransmutePanel     = new TransmuteView();
-        BuyArtifactPanel    = new MarketView();
+        TransmutePanel = new TransmuteView();
+        MarketPanel    = new MarketView();
         
         bottomPanel = new JPanel();
         
@@ -178,7 +178,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
         
         displayerPanel.add(TransmutePanel, "Transmute");
         
-        displayerPanel.add(BuyArtifactPanel, "BuyArtifact");
+        displayerPanel.add(MarketPanel, "BuyArtifact");
         
         bottomPanel.setBounds(0, 590, 1000, 130);
         bottomPanel.setOpaque(false);
@@ -318,6 +318,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
                 GameController.getInstance().nextPlayer();
                 roundLabel.setText(GameController.getInstance().getRound().toString());
                 PlayerDisplayer.repaintAll();
+                reset();
             }
         });
         
@@ -331,8 +332,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
         TESTBUTTON.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Blockade();
-                    System.out.println("sxe");
+                tablesPanel.reset();
             }
         });
     }
@@ -402,6 +402,14 @@ public class MenuView extends JPanel implements Publisher,Listener {
     public void LiftBlockade(){
         this.basePanel.remove(this.Block);
         this.repaint();
+    }
+    public void reset(){
+        cardLay.show(displayerPanel,"Plain");
+        TransmutePanel.reset();
+        PotionBrewingPanel.reset();
+        MarketPanel.reset();
+        ForagePanel.reset();
+        tablesPanel.reset();
     }
     
 }
