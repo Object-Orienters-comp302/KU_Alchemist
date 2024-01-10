@@ -49,6 +49,7 @@ public class Player implements Publisher {
     
     public static Player nextPlayer() {
         // Increment the current player index, and loop back if it reaches the end of the list
+        Player.getCurrPlayer().setForageRight(Player.getCurrPlayer().getForageRight()+1);
         currPlayerIndex = (currPlayerIndex + 1) % instances.size();
         Player.getCurrPlayer().publishEvent(Type.GOLD);//This has to update inventory thus to publish event I get the current instance.
         Player.getCurrPlayer().publishEvent(Type.INGREDIENT);
