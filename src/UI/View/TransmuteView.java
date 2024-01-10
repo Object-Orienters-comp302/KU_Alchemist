@@ -51,7 +51,7 @@ public class TransmuteView extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
                 roundOneController.TransmuteIngredient(Player.getCurrPlayer(), B1.getType());
-                B1.reset();
+                reset();
             }
         });
         this.add(transmuteIngredient);
@@ -99,6 +99,9 @@ public class TransmuteView extends JPanel {
         });
         
         this.setVisible(true);
+    }
+    public void reset(){
+        B1.reset();
     }
     
     public static void main(String[] args) {

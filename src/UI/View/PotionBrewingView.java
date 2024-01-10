@@ -145,7 +145,7 @@ public class PotionBrewingView extends JPanel {
                     }
                 }
                 else{
-                    Reset();
+                    reset();
                 }
             }
         });
@@ -340,7 +340,7 @@ public class PotionBrewingView extends JPanel {
         
     }
     
-    private void Reset(){
+    public void reset(){
         potionIsBeingDisplayed=false;
         Background.remove(PotionBackground);
         Background.remove(PotionImage);
