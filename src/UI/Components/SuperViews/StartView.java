@@ -46,8 +46,8 @@ public class StartView extends JPanel implements Publisher {
         */
         
         DJ dj=DJ.getDJ();
-        dj.setAndStartBackgroundSound(DJ.BackgroundSounds.TRACK1);
-        dj.adjustBackgroundVolume(-20f);
+        //dj.setAndStartBackgroundSound(DJ.BackgroundSounds.TRACK1);
+        //dj.adjustBackgroundVolume(-20f);
     }
     
     private void CreateBase(){

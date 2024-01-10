@@ -202,8 +202,9 @@ public class ForageGroundsView extends JPanel {
     }
     public void reset(){
         textField.setText(Texts.Start.getText());
-        if (ingreImg!=null){
-            Background.remove(ingreImg);
+        if (circleGif!=null){
+            Card.remove(circleGif);
+            Card.repaint();
         }
     }
 }

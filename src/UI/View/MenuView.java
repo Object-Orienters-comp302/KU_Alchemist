@@ -332,7 +332,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
         TESTBUTTON.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                tablesPanel.reset();
+                MarketPanel.reset();
             }
         });
     }
@@ -379,6 +379,8 @@ public class MenuView extends JPanel implements Publisher,Listener {
         displayerPanel.add(page,"page");
         cardLay.show(displayerPanel,"page");
         displayerPanel.repaint();
+        setComponentZOrder(displayerPanel,0);
+        repaint();
     }
     
     @Override

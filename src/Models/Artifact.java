@@ -6,6 +6,7 @@ public class Artifact {
     private final Artifact.Name name;
     
     private final Artifact.AbilityType abilityType; // Enum to represent the type of ability
+    private boolean used=false;
     
     @Deprecated
     public Artifact(Artifact.Name name, Artifact.AbilityType abilityType) {
@@ -16,7 +17,12 @@ public class Artifact {
     public Artifact.Name getName() {
         return name;
     }
-    
+    public boolean isUsed(){
+        return used;
+    }
+    public void gotUsed(){
+        used=true;
+    }
     public Artifact.AbilityType getAbilityType() {
         return abilityType;
     }

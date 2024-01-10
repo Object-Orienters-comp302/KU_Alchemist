@@ -1,13 +1,18 @@
 package UI.Components.Artifacts;
 
+import Domain.GameController;
 import Models.Artifact;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.ImagePanels.OutlinedLabel;
+import UI.Components.SuperViews.ElexirOfInsightView;
 import UI.View.LoginView;
+import UI.View.MenuView;
 import Utils.AssetLoader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ArtifactCard extends JPanel {
     
@@ -51,8 +56,17 @@ public class ArtifactCard extends JPanel {
         description.setHorizontalAlignment(JLabel.CENTER);
         description.setVerticalAlignment(JLabel.TOP);
         cardBackground.add(description);
+        if (artifact.isUsed()){
+            ImagePanel giantX= new ImagePanel(AssetLoader.Artifacts.GIANTX);
+            giantX.setBounds(5, 5, 190, 279);
+            cardBackground.add(giantX,0);
+        }
         
         setTextAndImage(artifact.getName());
+        if (!artifact.isUsed()&&GameController.getInstance().getMenuController().
+                getCurrentPlayer().getInventory().checkArtifactExists(artifact.getName())) {
+            setFunction(artifact.getName());
+        }
     }
     
     
@@ -72,6 +86,26 @@ public class ArtifactCard extends JPanel {
                 description.setText("Fill");}
         }
     
+    }
+    public void setFunction(Artifact.Name name){
+        switch (name){
+            case Elixir_of_Insight -> {
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        ElixirOfInsightFunction();
+                    }});
+            }
+        }
+    }
+    
+    
+    public void ElixirOfInsightFunction(){
+        MenuView menu= GameController.getInstance().getMenuController().getMenuView();
+        menu.Blockade();
+        artifact.gotUsed();
+        menu.addAndRunPage(new ElexirOfInsightView());
+        
     }
     
     public static void main(String[] args) { // TODO: Move to UnitTests
