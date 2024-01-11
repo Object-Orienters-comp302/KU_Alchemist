@@ -4,6 +4,7 @@ import Domain.GameController;
 import Domain.MenuController;
 import Models.Player;
 import Models.Token;
+import UI.Components.ImagePanels.GifPanel;
 import UI.Components.ImagePanels.HQImagePanel;
 import UI.Components.Player.PlayerDisplayer;
 import Utils.AssetLoader;
@@ -27,14 +28,22 @@ public class FinalView extends JPanel {
     
         this.setSize(1000, 500);
         this.setVisible(true);
+        this.setLayout(null);
+        
+
         Background = new HQImagePanel(AssetLoader.getAssetPath(AssetLoader.PlainViewAssets.BACKGROUND));
         Background.setVisible(true);
         Background.setLayout(null);
         Background.setBounds(0, 0, 1000, 500);
         this.add(Background);
+        
+        GifPanel ConfettiGif = new GifPanel(0, 0, 950, 800, "resources/Gifs/Animations/confetti.gif");
+        ConfettiGif.setLayout(null);
+        Background.add(ConfettiGif);
+        
         //calculateFinalScores();
         createObjects();
-        setLayout(null);
+        
         
     }
     
@@ -50,17 +59,17 @@ public class FinalView extends JPanel {
         for (int i = 0; i < playerList.size(); i++) {
             
             PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
-            displayer.setBounds(320, (100 + 100*i), 240, 80);
+            displayer.setBounds(320, (80 + 100*i), 240, 80);
             
             JLabel rank = new JLabel();
             rank.setText(i + 1 + ".");
             rank.setFont(new Font("Tahoma", Font.PLAIN,80 ));
-            rank.setBounds(240, (95 + 100*i), 100, 80);
+            rank.setBounds(240, (75 + 100*i), 100, 80);
             
             JLabel score = new JLabel();
             score.setText(playerList.get(i).getScore() + "p");
             score.setFont(new Font("Tahoma", Font.PLAIN,80 ));
-            score.setBounds(580, (95 + 100*i), 300, 80);
+            score.setBounds(580, (75 + 100*i), 300, 80);
             
             if(i == 0){
                 displayer.setBackground(Color.decode(goldColor));
@@ -75,12 +84,10 @@ public class FinalView extends JPanel {
                 rank.setForeground(Color.decode(bronzeColor));
                 score.setForeground(Color.decode(bronzeColor));
             }
-            
             Background.add(rank);
             Background.add(score);
             Background.add(displayer);
         }
-        
     }
     
     private void calculateFinalScores(){
@@ -100,12 +107,13 @@ public class FinalView extends JPanel {
         
         player2.setScore(10);
         player1.setScore(8);
-        player3.setScore(8);
+        player3.setScore(15);
         player4.setScore(14);
         
         JFrame frame = new JFrame();
         frame.setSize(1300, 800);
         frame.add(new FinalView());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
 }
