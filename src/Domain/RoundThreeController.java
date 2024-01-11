@@ -12,7 +12,7 @@ public class RoundThreeController extends RoundTwoController{
        
         if (publicationCardToDebunk != null && aspectTypeToDebunk != null) {
             // Check if the ingredient has a published theory
-            if(WisdomIdol(publicationCardToDebunk.getOwner())){
+            if(isWisdomIdolAvailable(publicationCardToDebunk.getOwner())){
                 WisdomIdolFlag = true;
             }
             if (PublicationTrack.getInstance().isPublished(publicationCardToDebunk)) {
@@ -43,7 +43,7 @@ public class RoundThreeController extends RoundTwoController{
                     publicationCardToDebunk.getOwner().addReputation(-1);
                     if (WisdomIdolFlag == true){
                         publicationCardToDebunk.getOwner().addReputation(1);
-                        WisdomIdolUsed(publicationCardToDebunk.getOwner());
+                        useWisdomIdol(publicationCardToDebunk.getOwner());
                     }
                     return true;
                 
