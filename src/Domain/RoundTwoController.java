@@ -18,14 +18,14 @@ public class RoundTwoController extends RoundOneController{
         Potion potion = Potion.deIdentify(identityType);
         Potion.Signs sign = Player.getCurrPlayer().getInventory().removePotion(potion);
         
-        if(sign == Potion.Signs.Positive){
-            if(potion.getSign() == Potion.Signs.Positive){
-                Player.getCurrPlayer().getInventory().setGold(Player.getCurrPlayer().getInventory().getGold()+2);
-            }
-            else {
-                Player.getCurrPlayer().getInventory().setGold(Player.getCurrPlayer().getInventory().getGold()+1);
-            }
+        
+        if(potion.getSign() == Potion.Signs.Positive){
+            Player.getCurrPlayer().getInventory().setGold(Player.getCurrPlayer().getInventory().getGold()+2);
         }
+        else {
+            Player.getCurrPlayer().getInventory().setGold(Player.getCurrPlayer().getInventory().getGold()+1);
+        }
+        
         return sign;
     }
     
