@@ -90,6 +90,10 @@ public class BookButton extends JPanel {
         repaint();
     }
     
+    public void reset(){
+        BookPanel.traitUsed.remove(currentPath);
+        img.changeImage(AssetLoader.TriangleTable.QUESTION_MARK);
+    }
     public void disable(){
         MouseListener[] mouseListeners = getMouseListeners();
         for (MouseListener listener : mouseListeners) {

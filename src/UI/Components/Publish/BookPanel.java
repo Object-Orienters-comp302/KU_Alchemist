@@ -2,10 +2,7 @@ package UI.Components.Publish;
 
 import Domain.GameController;
 import Domain.RoundTwoController;
-import Models.Ingredient;
-import Models.Player;
-import Models.PublicationTrack;
-import Models.Token;
+import Models.*;
 import UI.Components.ImagePanels.OutlinedLabel;
 import Utils.AssetLoader;
 
@@ -28,13 +25,13 @@ public class BookPanel extends JPanel {
     //purpose was for it to check if one is selected even when not published but decided to use traitUsed for this
     //keeping this because in future it might cause a bug in backend
     
-    Ingredient.IngredientTypes type;
-    BookButton CircleButton;
+    Ingredient.IngredientTypes ingreType;
+    BookButton                 CircleButton;
     ImagePanel book;
     ImageChangingPanel confirmButton;
     EndorsePanel endorsePanel;
     JPanel endorserPanel;
-    
+    DebunkButton debunkButton;
     
     static {
         published.put(AssetLoader.IngredientAssets.FEATHER, false);
@@ -48,7 +45,7 @@ public class BookPanel extends JPanel {
     }
     
     public BookPanel(AssetLoader.AssetPath ingredientPath) {
-        type= Ingredient.getTypeFromPath(ingredientPath);
+        ingreType = Ingredient.getTypeFromPath(ingredientPath);
         
         setPreferredSize(new Dimension(500, 250));
         setLayout(null);
@@ -58,7 +55,13 @@ public class BookPanel extends JPanel {
         add(book);
         book.setLayout(null);
         
+        classicSetup(ingredientPath);
         
+        
+        
+    }
+    
+    public void classicSetup(AssetLoader.AssetPath ingredientPath){
         ImagePanel panel = new ImagePanel(AssetLoader.getAssetPath(ingredientPath));
         panel.setBounds(30, 5, 80, 80);
         book.add(panel);
@@ -74,7 +77,9 @@ public class BookPanel extends JPanel {
         add(CircleButton);
         setComponentZOrder(CircleButton, 0);
         
-        if (PublicationTrack.getInstance().isPublished(type)){
+        
+        
+        if (PublicationTrack.getInstance().isPublished(ingreType)){
             isAlreadyPublished(Ingredient.getTypeFromPath( ingredientPath));
         }
         else {
@@ -86,12 +91,21 @@ public class BookPanel extends JPanel {
                 public void mouseClicked(MouseEvent e) {
                     AssetLoader.AssetPath val = CircleButton.getCurrentPath();
                     if (val != AssetLoader.TriangleTable.QUESTION_MARK &&
-                            GameController.getInstance().getRoundTwoController().canPublish(Player.getCurrPlayer(),type)) {
+                            GameController.getInstance().getRoundTwoController().canPublish(Player.getCurrPlayer(),
+                                                                                            ingreType)) {
                         publish(val);
                     }
                 }
             });
         }
+    }
+    public void startDebunkView(PublicationCard pub){
+        book.remove(endorsePanel);
+        book.remove(endorserPanel);
+        debunkButton = new DebunkButton(140,5,150,pub);
+        //debunkButton.setBounds(140,5,150,150);
+        book.add(debunkButton);
+        
         
     }
     
@@ -99,16 +113,17 @@ public class BookPanel extends JPanel {
         
         Player cur = GameController.getInstance().getMenuController().getCurrentPlayer();
         RoundTwoController cont2 = GameController.getInstance().getRoundTwoController();
-        cont2.publishTheory(cur,type,Ingredient.getTrioFromPath(path));
-        isAlreadyPublished(type);
+        cont2.publishTheory(cur, ingreType, Ingredient.getTrioFromPath(path));
+        isAlreadyPublished(ingreType);
         System.out.println("Published a new theory!"); //TODO: Fix this
     }
     
     public void isAlreadyPublished(Ingredient.IngredientTypes ingredientType){
         Player cur = GameController.getInstance().getMenuController().getCurrentPlayer();
         RoundTwoController cont2 = GameController.getInstance().getRoundTwoController();
-        Ingredient.AspectTrio aspect= PublicationTrack.getInstance().
-                getPublicationCardOf(ingredientType).getAspects();
+        PublicationCard pubCard= PublicationTrack.getInstance().
+                getPublicationCardOf(ingredientType);
+        Ingredient.AspectTrio aspect= pubCard.getAspects();
         AssetLoader.AssetPath aspectPath = Ingredient.getPathFromTrio(aspect);
         
         CircleButton.setCurrentPath(aspectPath);
@@ -121,11 +136,11 @@ public class BookPanel extends JPanel {
         book.add(endorserPanel);
         
         endorserPanel.setLayout(null);
-        OutlinedLabel endorserLabel = new OutlinedLabel("PUBLISHED", "#D4AF37", "#FFD700");
+        OutlinedLabel endorserLabel = new OutlinedLabel("DEBUNK", "#D4AF37", "#FFD700");
         endorserLabel.setBounds(50,15,70,20);
         endorserLabel.setFont(new Font("Arial", Font.BOLD, 10));
-        endorserPanel.add(endorserLabel);
         
+        endorserPanel.add(endorserLabel);
         
         System.out.println("Theory: "+ PublicationTrack.getInstance().getPublicationCards());
         
@@ -135,16 +150,35 @@ public class BookPanel extends JPanel {
         publisherImage.setBounds(0,0,40,40);
         endorserPanel.add(publisherImage);
         
-        endorsePanel= new EndorsePanel(cont2.getCardForIngredient(type));
+        endorsePanel= new EndorsePanel(cont2.getCardForIngredient(ingreType));
         endorsePanel.setLocation(160, 10);
         book.add(endorsePanel);
         
         System.out.print(aspectPath);
         traitUsed.add(aspectPath);
-        published.put(aspectPath, true);
-        ;
+        published.put(Ingredient.getPathFromType(ingreType), true);
+        
+        endorserPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            
+            
+            }});
+            
+        
         BookPanel.this.revalidate();
         BookPanel.this.repaint();
+    
+    }
+    public void reset(){
+        if (!published.get(Ingredient.getPathFromType(ingreType))){
+            System.out.println("INGRE: "+published);
+            CircleButton.reset();
+        }
+    }
+    public void spawnDebunkButton(){
+    
+    
     
     }
     
