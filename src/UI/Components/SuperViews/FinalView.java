@@ -1,4 +1,4 @@
-package UI.View;
+package UI.Components.SuperViews;
 
 import Domain.GameController;
 import Domain.MenuController;
@@ -37,11 +37,11 @@ public class FinalView extends JPanel {
         Background.setBounds(0, 0, 1000, 500);
         this.add(Background);
         
-        GifPanel ConfettiGif = new GifPanel(0, 0, 950, 800, "resources/Gifs/Animations/confetti.gif");
+        GifPanel ConfettiGif = new GifPanel(0, 0, 950, 800, AssetLoader.Gifs.CONFETTI.getPath());
         ConfettiGif.setLayout(null);
         Background.add(ConfettiGif);
         
-        //calculateFinalScores();
+        calculateFinalScores();
         createObjects();
         
         
@@ -105,10 +105,15 @@ public class FinalView extends JPanel {
         Player player4 = new Player("player4",new Token("player4",AssetLoader.getAssetPath(AssetLoader.Avatars.RED)
                 ,AssetLoader.getAssetPath(AssetLoader.Avatars.RED)));
         
-        player2.setScore(10);
-        player1.setScore(8);
-        player3.setScore(15);
-        player4.setScore(14);
+        player1.setReputation(2);
+        player2.setReputation(2);
+        player3.setReputation(1);
+        player4.setReputation(3);
+        
+        player1.getInventory().addGold(10);
+        player2.getInventory().addGold(11);
+        player3.getInventory().addGold(12);
+        player4.getInventory().addGold(13);
         
         JFrame frame = new JFrame();
         frame.setSize(1300, 800);
