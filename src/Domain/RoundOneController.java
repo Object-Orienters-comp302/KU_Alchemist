@@ -147,10 +147,13 @@ public class RoundOneController {
     }
     public boolean WisdomIdol(Player current){
         if(current.getInventory().checkArtifactExists(Artifact.Name.Wisdom_Idol)){
-                current.getInventory().removeArtifact(Artifact.Name.Wisdom_Idol);
                 return true;
         }
         return false;
+    }
+    
+    public void WisdomIdolUsed(Player current){
+        current.getInventory().removeArtifact(Artifact.Name.Wisdom_Idol);
     }
     
 }
