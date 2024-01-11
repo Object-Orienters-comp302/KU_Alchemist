@@ -11,10 +11,9 @@ import Utils.AssetLoader;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
-public class FinalScores extends JPanel {
+public class FinalView extends JPanel {
     
     
     MenuController controller;
@@ -22,7 +21,7 @@ public class FinalScores extends JPanel {
     String silverColor = "#C0C0C0";
     String bronzeColor = "#CD7F32";
     HQImagePanel Background;
-    public FinalScores(){
+    public FinalView(){
         
         controller = GameController.getInstance().getMenuController();
     
@@ -33,7 +32,7 @@ public class FinalScores extends JPanel {
         Background.setLayout(null);
         Background.setBounds(0, 0, 1000, 500);
         this.add(Background);
-        
+        //calculateFinalScores();
         createObjects();
         setLayout(null);
         
@@ -84,7 +83,6 @@ public class FinalScores extends JPanel {
         
     }
     
-
     private void calculateFinalScores(){
         GameController.getInstance().calculateFinalScores();
     }
@@ -102,14 +100,12 @@ public class FinalScores extends JPanel {
         
         player2.setScore(10);
         player1.setScore(8);
-        player3.setScore(3);
+        player3.setScore(8);
         player4.setScore(14);
-        
-        
         
         JFrame frame = new JFrame();
         frame.setSize(1300, 800);
-        frame.add(new FinalScores());
+        frame.add(new FinalView());
         frame.setVisible(true);
     }
 }
