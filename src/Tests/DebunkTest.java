@@ -139,6 +139,7 @@ public class DebunkTest {
         System.out.println(testPlayer_2.getReputation());
         if(debunk == true) {
             assertEquals(rep, testPlayer_2.getReputation());
+            assertEquals(false, testPlayer_2.getInventory().checkArtifactExists(Artifact.Name.Wisdom_Idol));
         }
         else {
             assertFalse(debunk);

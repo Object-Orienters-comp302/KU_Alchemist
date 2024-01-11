@@ -43,6 +43,7 @@ public class RoundThreeController extends RoundTwoController{
                     publicationCardToDebunk.getOwner().addReputation(-1);
                     if (WisdomIdolFlag == true){
                         publicationCardToDebunk.getOwner().addReputation(1);
+                        WisdomIdolUsed(publicationCardToDebunk.getOwner());
                     }
                     return true;
                 
