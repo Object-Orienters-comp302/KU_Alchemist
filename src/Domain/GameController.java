@@ -85,11 +85,12 @@ public class GameController implements Publisher {
     public RoundTwoController getRoundTwoController() {
         return roundTwoController;
     }
-    public RoundThreeController getRoundThreeController(){return roundThreeController;}
+   
     public void nextPlayer(){
         TotalNextTurns +=1;
         Player.nextPlayer();
     }
+    public RoundThreeController getRoundThreeController() { return roundThreeController; }
     public Integer getRound(){
         return (TotalNextTurns/(Player.getPlayers().size()*3)) + 1;
     }

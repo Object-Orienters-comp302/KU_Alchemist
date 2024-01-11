@@ -24,7 +24,7 @@ public class RoundOneController {
     
     public void TransmuteIngredient(Player player, Ingredient.IngredientTypes ingredientType) {
         if (player.getInventory().isInInventory(ingredientType)) {
-            player.getInventory().removeIngredient(ingredientType,1);
+            player.getInventory().removeIngredient(ingredientType, 1);
             player.getInventory().setGold(player.getInventory().getGold() + 1);
         }
     }
@@ -115,7 +115,7 @@ public class RoundOneController {
         }
     }
     public void removeIngredient(Player player , Ingredient.IngredientTypes ingredient){
-        player.getInventory().removeIngredient(ingredient);
+        player.getInventory().removeIngredient(ingredient, 1);
     }
     
     private Boolean CompareTwoAspects(Aspect aspect1, Aspect aspect2) {
@@ -145,12 +145,12 @@ public class RoundOneController {
         }
         return false;
     }
-    public boolean WisdomIdol(Player current){
-        if(current.getInventory().checkArtifactExists(Artifact.Name.Wisdom_Idol)){
-                current.getInventory().removeArtifact(Artifact.Name.Wisdom_Idol);
-                return true;
-        }
-        return false;
+    public boolean isWisdomIdolAvailable(Player current){
+        return current.getInventory().checkArtifactExists(Artifact.Name.Wisdom_Idol);
+    }
+    
+    public void useWisdomIdol(Player current){ //TODO: Fix this horrible naming
+        current.getInventory().removeArtifact(Artifact.Name.Wisdom_Idol);
     }
     
 }

@@ -9,38 +9,44 @@ public class RoundThreeController extends RoundTwoController{
     public boolean debunkTheory(Player currentPlayer, PublicationCard publicationCardToDebunk,
                                 Aspect aspectTypeToDebunk) {
         boolean WisdomIdolFlag = false;
-        if(WisdomIdol(publicationCardToDebunk.getOwner())){
-            WisdomIdolFlag = true;
-        }
+       
         if (publicationCardToDebunk != null && aspectTypeToDebunk != null) {
             // Check if the ingredient has a published theory
+            if(isWisdomIdolAvailable(publicationCardToDebunk.getOwner())){
+                WisdomIdolFlag = true;
+            }
             if (PublicationTrack.getInstance().isPublished(publicationCardToDebunk)) {
                 if (aspectTypeToDebunk.getColor() == Aspect.Colors.Red) {
+                    
                     if (aspectTypeToDebunk.isEqual(
-                            publicationCardToDebunk.getAspects().getAspectRed())) {
+                            Ingredient.getAspects(publicationCardToDebunk.getIngredient()).getAspectRed())) {
                         currentPlayer.addReputation(-1);
+                       
                         return false; // aspect type is not debunked, because aspect is not false
                     }
                 } else if (aspectTypeToDebunk.getColor() == Aspect.Colors.Green) {
                     if (aspectTypeToDebunk.isEqual(
-                            publicationCardToDebunk.getAspects().getAspectGreen())) {
+                            Ingredient.getAspects(publicationCardToDebunk.getIngredient()).getAspectGreen())) {
                         currentPlayer.addReputation(-1);
+                        
                         return false; // aspect type is not debunked, because aspect is not false
                     }
                 } else if (aspectTypeToDebunk.getColor() == Aspect.Colors.Blue) {
                     if (aspectTypeToDebunk.isEqual(
-                            publicationCardToDebunk.getAspects().getAspectBlue())) {
+                            Ingredient.getAspects(publicationCardToDebunk.getIngredient()).getAspectBlue())) {
                         currentPlayer.addReputation(-1);
+                       
                         return false; // aspect type is not debunked, because aspect is not false
                     }
-                } else {
+                }
                     currentPlayer.addReputation(2);
                     publicationCardToDebunk.getOwner().addReputation(-1);
                     if (WisdomIdolFlag == true){
                         publicationCardToDebunk.getOwner().addReputation(1);
+                        useWisdomIdol(publicationCardToDebunk.getOwner());
                     }
                     return true;
-                }
+                
                 
                 
             } else {
