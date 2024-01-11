@@ -11,6 +11,7 @@ public class OutlinedLabel extends JLabel {
     private Color textColor;
     private Color outlineColor;
     private Versions version;
+    private int offset=1;
     
     public OutlinedLabel(String text, Color textColor, Color outlineColor) {
         super(text);
@@ -29,6 +30,19 @@ public class OutlinedLabel extends JLabel {
         this.textColor    = Color.decode(textColor);
         this.outlineColor = Color.decode(outlineColor);
         version=vers;
+    }
+    
+    public void changeFontStyle(int style ){
+        this.setFont(new Font(this.getFont().getFontName(), style, this.getFont().getSize()));
+    }
+    public void changeFontSize(int size ){
+        this.setFont(new Font(this.getFont().getFontName(), this.getFont().getStyle(), size));
+    }
+    public void changeFontName(String name ){
+        this.setFont(new Font(name, this.getFont().getStyle(), this.getFont().getSize()));
+    }
+    public void changeOffset(int i){
+        offset=i;
     }
     
     @Override
@@ -59,7 +73,7 @@ public class OutlinedLabel extends JLabel {
                 
                 // Draw the text on top of the outline
                 g2d.setColor(textColor);
-                g2d.drawString(line, x - 1, y - 1); // Adjusted to align text to the top
+                g2d.drawString(line, x - offset, y - offset); // Adjusted to align text to the top
                 
                 y += fm.getHeight(); // Move to the next line
                 lineBreakMeasurer.setPosition(nextLine);
@@ -83,7 +97,7 @@ public class OutlinedLabel extends JLabel {
             
             // Draw the text on top of the outline
             g2d.setColor(textColor);
-            g2d.drawString(getText(), x - 1, y - 1); // Adjusted to align text to the top
+            g2d.drawString(getText(), x - offset, y - offset); // Adjusted to align text to the top
             
             g2d.dispose();
         }
@@ -96,13 +110,25 @@ public class OutlinedLabel extends JLabel {
     }
     
     public static void main(String[] args) {
+        // Get the local graphics environment
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        
+        // Get the array of font names
+        String[] fontNames = ge.getAvailableFontFamilyNames();
+        
+        // Display the list of font names
+        System.out.println("Available Fonts:");
+        for (String fontName : fontNames) {
+            System.out.println(fontName);
+        }
+        
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Outlined Text JLabel Example");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             
-            OutlinedLabel outlinedLabel = new OutlinedLabel("Hello, Swing!", Color.BLACK, Color.green);
+            OutlinedLabel outlinedLabel = new OutlinedLabel("Hello, Swing!", "#fffff", "#00000",Versions.MID_ORIENTED);
             outlinedLabel.setFont(new Font("Arial", Font.BOLD, 20));
-            
+            outlinedLabel.changeOffset(2);
             // Set the size and position of the JLabel
             outlinedLabel.setBounds(10, 10, 200, 50);
             

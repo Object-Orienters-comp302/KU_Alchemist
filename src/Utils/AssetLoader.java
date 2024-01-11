@@ -265,7 +265,8 @@ public class AssetLoader {
         WISDOM("resources/Images/artifact/wisdom6.png"),
         MORTAR("resources/Images/artifact/mortar5.png"),
         PRESS("resources/Images/artifact/press1.png"),
-        IDOL("resources/Images/artifact/idol.png")
+        IDOL("resources/Images/artifact/idol.png"),
+        GIANTX("resources/Images/artifact/giantX.png")
         ;
         
         private final String path;
