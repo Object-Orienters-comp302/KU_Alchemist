@@ -29,7 +29,9 @@ public class Ingredient {
         }
         return ingredientTypeToAspectTrioMap;
     }
-    
+    public static AspectTrio getAspects(IngredientTypes type){
+        return Ingredient.getIngredientTypeToAspectTrioMap().get(type);
+    }
     @Deprecated
     public boolean equals(Ingredient ingr) {
         return (this.getType() == ingr.getType());

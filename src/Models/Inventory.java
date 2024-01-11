@@ -131,11 +131,16 @@ public class Inventory implements Publisher {
         return false;
     }
     public void removeArtifact(Artifact.Name artifactName){ // TODO: This function seems odd, may not work
+    
+        
         for (Artifact artifact: artifacts){
             if(artifact.getName().equals(artifactName)){
-                getArtifacts().remove(artifact);
+                
+                artifacts.remove(artifact);
+                break;
             }
         }
+      
     }
     public boolean repOK() {
         // Null checks for maps and listeners

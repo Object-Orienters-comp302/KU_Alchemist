@@ -17,6 +17,7 @@ public class PublicationCard {
         this.Owner = owner;
         this.playersThatEndorsed = new HashMap<>();
         playersThatEndorsed.put(1,null);playersThatEndorsed.put(2,null);playersThatEndorsed.put(3,null);
+        PublicationTrack.getInstance().addPublicationCard(this);
     }
     
     public Models.Ingredient.AspectTrio getAspects() {

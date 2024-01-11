@@ -19,6 +19,7 @@ public class GameController implements Publisher {
     private RoundZeroController roundZeroController;
     private RoundOneController roundOneController;
     private RoundTwoController roundTwoController;
+    private RoundThreeController roundThreeController;
     private Integer TotalNextTurns;
     ArrayList<Listener> listeners;
     
@@ -32,6 +33,7 @@ public class GameController implements Publisher {
         roundZeroController= new RoundZeroController();
         roundOneController = new RoundOneController();
         roundTwoController = new RoundTwoController();
+        roundThreeController = new RoundThreeController();
         
         TotalNextTurns = 0;
         listeners = new ArrayList<>();
@@ -87,6 +89,7 @@ public class GameController implements Publisher {
         TotalNextTurns +=1;
         Player.nextPlayer();
     }
+    public RoundThreeController getRoundThreeController() { return roundThreeController; }
     public Integer getRound(){
         return (TotalNextTurns/(Player.getPlayers().size()*3)) + 1;
     }
