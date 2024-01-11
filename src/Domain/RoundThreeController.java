@@ -2,8 +2,8 @@ package Domain;
 
 import Models.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class RoundThreeController extends RoundTwoController{
     public boolean debunkTheory(Player currentPlayer, PublicationCard publicationCardToDebunk,
@@ -80,6 +80,25 @@ public class RoundThreeController extends RoundTwoController{
         Deck.getInstance().setFirstThree(toSet);
         return true;
     }
+    public List<PublicationCard> getPublicationCards(){
+        return PublicationTrack.getInstance().getPublicationCards();
+    }
+    public boolean checkIfIngredientIsPublished(Ingredient.IngredientTypes type){
+        for (PublicationCard card: getPublicationCards()){
+            if (card.getIngredient()==type){
+                return true;
+            }
+        }
+        return false;
+    }
     
+    public boolean checkIfAspectIsPublished(Ingredient.AspectTrio asp){
+        for (PublicationCard card: getPublicationCards()){
+            if (card.getAspects()==asp){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

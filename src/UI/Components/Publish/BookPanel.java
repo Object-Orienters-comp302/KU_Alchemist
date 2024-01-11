@@ -3,6 +3,7 @@ package UI.Components.Publish;
 import Domain.GameController;
 import Domain.RoundTwoController;
 import Models.*;
+import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.OutlinedLabel;
 import Utils.AssetLoader;
 
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BookPanel extends JPanel {
-    public static HashMap<AssetLoader.AssetPath, Boolean> published = new HashMap<AssetLoader.AssetPath, Boolean>();
     public static ArrayList<AssetLoader.AssetPath>        traitUsed = new ArrayList<>();
     
     //public static ArrayList<AssetLoader.AssetPath>        traitRam  = new ArrayList<>();
@@ -29,20 +29,11 @@ public class BookPanel extends JPanel {
     BookButton                 CircleButton;
     ImagePanel book;
     ImageChangingPanel confirmButton;
-    EndorsePanel endorsePanel;
-    JPanel endorserPanel;
-    DebunkButton debunkButton;
+    EndorsePanel       endorsePanel;
+    ColorChangingPanel endorserPanel;
+    DebunkButton       debunkButton;
     
-    static {
-        published.put(AssetLoader.IngredientAssets.FEATHER, false);
-        published.put(AssetLoader.IngredientAssets.FEET, false);
-        published.put(AssetLoader.IngredientAssets.FLOWER, false);
-        published.put(AssetLoader.IngredientAssets.FROG, false);
-        published.put(AssetLoader.IngredientAssets.MANDRAKE, false);
-        published.put(AssetLoader.IngredientAssets.MUSHROOM, false);
-        published.put(AssetLoader.IngredientAssets.SCORPION, false);
-        published.put(AssetLoader.IngredientAssets.WEED, false);
-    }
+    
     
     public BookPanel(AssetLoader.AssetPath ingredientPath) {
         ingreType = Ingredient.getTypeFromPath(ingredientPath);
@@ -66,21 +57,27 @@ public class BookPanel extends JPanel {
         panel.setBounds(30, 5, 80, 80);
         book.add(panel);
         
-        confirmButton = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Book.ENVELOPE),
-                                               AssetLoader.getAssetPath(AssetLoader.Book.PUBLISH));
+        if (confirmButton==null) {
+            confirmButton = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Book.ENVELOPE),
+                                                   AssetLoader.getAssetPath(AssetLoader.Book.PUBLISH));
+            
+            confirmButton.setBounds(160, 112, 120, 40);
+        }
+        confirmButton.changeCurrentImage(AssetLoader.Book.ENVELOPE);
+        book.add(confirmButton,0);
+        book.repaint();
         
-        confirmButton.setBounds(160, 112, 120, 40);
-        book.add(confirmButton);
+        if (CircleButton==null) {
+            CircleButton = new BookButton(35, 90, 65, 65, ingredientPath);
+        }
+        add(CircleButton,0);
         
-        CircleButton = new BookButton(35, 90, 65, 65, ingredientPath);
-        //panel_1.setBounds(70, 110, 80, 80);
-        add(CircleButton);
-        setComponentZOrder(CircleButton, 0);
-        
-        
+        if (debunkButton!=null){
+            book.remove(debunkButton);
+        }
         
         if (PublicationTrack.getInstance().isPublished(ingreType)){
-            isAlreadyPublished(Ingredient.getTypeFromPath( ingredientPath));
+            isAlreadyPublishedSetup(Ingredient.getTypeFromPath(ingredientPath));
         }
         else {
             
@@ -98,11 +95,12 @@ public class BookPanel extends JPanel {
                 }
             });
         }
+        book.repaint();
     }
     public void startDebunkView(PublicationCard pub){
         book.remove(endorsePanel);
         book.remove(endorserPanel);
-        debunkButton = new DebunkButton(140,5,150,pub);
+        debunkButton = new DebunkButton(140,5,150,pub,this);
         //debunkButton.setBounds(140,5,150,150);
         book.add(debunkButton);
         
@@ -114,11 +112,11 @@ public class BookPanel extends JPanel {
         Player cur = GameController.getInstance().getMenuController().getCurrentPlayer();
         RoundTwoController cont2 = GameController.getInstance().getRoundTwoController();
         cont2.publishTheory(cur, ingreType, Ingredient.getTrioFromPath(path));
-        isAlreadyPublished(ingreType);
+        isAlreadyPublishedSetup(ingreType);
         System.out.println("Published a new theory!"); //TODO: Fix this
     }
     
-    public void isAlreadyPublished(Ingredient.IngredientTypes ingredientType){
+    public void isAlreadyPublishedSetup(Ingredient.IngredientTypes ingredientType){
         Player cur = GameController.getInstance().getMenuController().getCurrentPlayer();
         RoundTwoController cont2 = GameController.getInstance().getRoundTwoController();
         PublicationCard pubCard= PublicationTrack.getInstance().
@@ -129,7 +127,7 @@ public class BookPanel extends JPanel {
         CircleButton.setCurrentPath(aspectPath);
         CircleButton.disable();
         
-        endorserPanel=new JPanel();
+        endorserPanel=new ColorChangingPanel("#7D7C7C", "#F1EFEF", 20, ColorChangingPanel.RoundingStyle.BOTH);
         endorserPanel.setOpaque(false);
         endorserPanel.setBounds(confirmButton.getBounds());
         book.remove(confirmButton);
@@ -155,13 +153,12 @@ public class BookPanel extends JPanel {
         book.add(endorsePanel);
         
         System.out.print(aspectPath);
-        traitUsed.add(aspectPath);
-        published.put(Ingredient.getPathFromType(ingreType), true);
+        
         
         endorserPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            
+            startDebunkView(pubCard);
             
             }});
             
@@ -171,10 +168,12 @@ public class BookPanel extends JPanel {
     
     }
     public void reset(){
-        if (!published.get(Ingredient.getPathFromType(ingreType))){
-            System.out.println("INGRE: "+published);
+        System.out.println("Book  ResetReached");
+        
+        if (!GameController.getInstance().getRoundThreeController().checkIfIngredientIsPublished(ingreType)){
             CircleButton.reset();
         }
+        classicSetup(Ingredient.getPathFromType( ingreType));
     }
     public void spawnDebunkButton(){
     

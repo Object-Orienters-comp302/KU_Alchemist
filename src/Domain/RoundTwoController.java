@@ -36,7 +36,7 @@ public class RoundTwoController extends RoundOneController{
                 // Assign the marker to the selected ingredient
                 PublicationCard new_Theory = new PublicationCard(selectedIngredient, alchemyMarker,  currentPlayer); // Todo: The certainty point is a point that can take the values 1, 2, 3, expressing the player's confidence in the theory. It should be checked again after Phase 1
                 // Mark the marker as used
-                PublicationTrack.getInstance().addPublicationCard(new_Theory);
+                //PublicationTrack.getInstance().addPublicationCard(new_Theory); //this is automatic
                 // Pay 1 gold piece to the bank
                 currentPlayer.getInventory().addGold(-1);
                 // Gain 1 point of reputation

@@ -1,5 +1,6 @@
 package UI.Components.ImagePanels;
 
+import Utils.AssetLoader;
 import Utils.GUtil;
 
 import javax.swing.*;
@@ -67,7 +68,9 @@ public class ImageChangingPanel extends JPanel {
         return hoverImage;
     }
     
-    
+    public void changeCurrentImage(AssetLoader.AssetPath path){
+        this.image.changeImage(path);
+    }
     
     public void setHoverImage(String hoverImage) {
         this.hoverImage = hoverImage;

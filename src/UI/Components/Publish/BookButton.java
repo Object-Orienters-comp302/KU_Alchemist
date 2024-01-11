@@ -1,5 +1,7 @@
 package UI.Components.Publish;
 
+import Domain.GameController;
+import Models.Ingredient;
 import Utils.AssetLoader;
 
 import javax.swing.*;
@@ -19,7 +21,7 @@ public class BookButton extends JPanel {
     private int                   x;
     private int                   y;
     private AssetLoader.AssetPath currentPath;
-    
+    private MouseAdapter function;
     public BookButton(int x, int y, int width, int height, AssetLoader.AssetPath path) {
         this.setOpaque(false);
         setLayout(null);
@@ -29,15 +31,15 @@ public class BookButton extends JPanel {
         img.setBounds(width * 9 / 40, width * 9 / 40, width * 9 / 16, height * 9 / 16);
         add(img);
         
-        
-        this.addMouseListener(new MouseAdapter() {
+        function=new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int clickX = e.getX();
                 int clickY = e.getY();
                 //Rectangle bounds = getBounds();
                 
-                if (isClickInsideCircle(clickX, clickY) && !BookPanel.published.get(path)) {
+                if (isClickInsideCircle(clickX, clickY) && !GameController.getInstance().getRoundThreeController().checkIfIngredientIsPublished(
+                        Ingredient.getTypeFromPath(path)))  {
                     System.out.println("Button click inside the circle!");
                     BookButtonPopup pop = new BookButtonPopup(x - width / 2, y - height / 2, width * 2, height * 2, img,
                                                               BookButton.this);
@@ -52,7 +54,9 @@ public class BookButton extends JPanel {
                     System.out.print(getBounds());
                 }
             }
-        });
+        };
+        
+        this.enable();
     }
     
     private boolean isClickInsideCircle(int clickX, int clickY) {
@@ -91,8 +95,14 @@ public class BookButton extends JPanel {
     }
     
     public void reset(){
+        System.out.println("BookButton  ResetReached, current path: "+currentPath+" current trait used: "+BookPanel.traitUsed);
         BookPanel.traitUsed.remove(currentPath);
+        System.out.println(BookPanel.traitUsed);
         img.changeImage(AssetLoader.TriangleTable.QUESTION_MARK);
+        this.enable();
+    }
+    public void enable(){
+        this.addMouseListener(function);
     }
     public void disable(){
         MouseListener[] mouseListeners = getMouseListeners();
