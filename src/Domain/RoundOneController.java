@@ -145,11 +145,11 @@ public class RoundOneController {
         }
         return false;
     }
-    public boolean WisdomIdol(Player current){ //TODO: Fix this horrible naming
-        return current.getInventory().checkArtifactExists(Artifact.Name.Wisdom_Idol)
+    public boolean isWisdomIdolAvailable(Player current){
+        return current.getInventory().checkArtifactExists(Artifact.Name.Wisdom_Idol);
     }
     
-    public void WisdomIdolUsed(Player current){ //TODO: Fix this horrible naming
+    public void useWisdomIdol(Player current){ //TODO: Fix this horrible naming
         current.getInventory().removeArtifact(Artifact.Name.Wisdom_Idol);
     }
     
