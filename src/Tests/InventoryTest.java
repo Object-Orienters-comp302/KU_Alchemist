@@ -15,7 +15,7 @@ import Models.Inventory;
  * Provides unit tests for different functionalities of the Inventory class.
  */
 public class InventoryTest {
-    private Inventory inventory;
+    private static Inventory inventory;
     
     /**
      * Sets up the test environment before each test.
@@ -114,4 +114,8 @@ public class InventoryTest {
 //        assertFalse(inventory.checkArtifactExists(Artifact.Name.Elixir_of_Insight), "Artifact should be removed");
 //        assertTrue(inventory.repOK());
 //    }
+    @AfterAll
+    static void ded() {
+        inventory = null; // Nullify the reference
+    }
 }
