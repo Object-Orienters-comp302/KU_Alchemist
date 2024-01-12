@@ -7,12 +7,12 @@ public class RoundOneController {
     protected RoundOneController() { }
 
 
-    public Ingredient ForageForIngredient (Player player) {
+    public Ingredient.IngredientTypes ForageForIngredient (Player player) {
         if(player.getForageRight() >= 1){
             Deck deck = Deck.getInstance();
-            Ingredient ingredient = deck.popIngredient();
+            Ingredient.IngredientTypes ingredient = deck.popIngredient();
             player.getInventory()
-                    .addIngredient(ingredient.getType(), 1);
+                    .addIngredient(ingredient, 1);
             player.setForageRight(player.getForageRight()-1);
             return ingredient;
         }
@@ -90,12 +90,12 @@ public class RoundOneController {
             if (CompareTwoAspectSizes(AspectTrio1.getAspectBlue(),AspectTrio2.getAspectBlue())) {// If both of them are same we only need to check one.
                 return new Potion(Potion.Colors.Blue, changePositivityToSign(AspectTrio1.getAspectBlue().getPositivity()));
             }
-        } else if (CompareTwoAspects(AspectTrio1.getAspectRed(), AspectTrio2.getAspectRed())) {
+        } if (CompareTwoAspects(AspectTrio1.getAspectRed(), AspectTrio2.getAspectRed())) {
             if (CompareTwoAspectSizes(AspectTrio1.getAspectRed(),AspectTrio2.getAspectRed())) {
                 return new Potion(Potion.Colors.Red,changePositivityToSign(AspectTrio1.getAspectRed().getPositivity()));
             }
             
-        } else if (CompareTwoAspects(AspectTrio1.getAspectGreen(), AspectTrio2.getAspectGreen())) {
+        } if (CompareTwoAspects(AspectTrio1.getAspectGreen(), AspectTrio2.getAspectGreen())) {
             if (CompareTwoAspectSizes(AspectTrio1.getAspectGreen(),AspectTrio2.getAspectGreen())) {
                 return new Potion(Potion.Colors.Green, changePositivityToSign(AspectTrio1.getAspectGreen().getPositivity()));
             }

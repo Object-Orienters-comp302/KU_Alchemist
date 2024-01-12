@@ -49,6 +49,11 @@ public class PublicationCard {
         }
         return false;
     }
+    
+    @Override
+    public String toString() {
+        return "Ingredient: "+ getIngredient()+ " Claimed: " + getAspects() + " Real: "+ Models.Ingredient.getIngredientTypeToAspectTrioMap().get(getIngredient());
+    }
 }
 
 

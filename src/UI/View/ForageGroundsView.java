@@ -135,9 +135,9 @@ public class ForageGroundsView extends JPanel {
     
     private Ingredient.IngredientTypes CardClicked(Player player,
                                                    RoundOneController roundOneController) { //Calls Forage for Ingredient on controller then, returns its type for the function.
-        Ingredient ingredient = roundOneController.ForageForIngredient(player);
+        Ingredient.IngredientTypes ingredient = roundOneController.ForageForIngredient(player);
         if (ingredient != null) {
-            return ingredient.getType();
+            return ingredient;
         } else {
             return null;
         }

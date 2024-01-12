@@ -9,24 +9,33 @@ import UI.Components.ImagePanels.ImagePanel;
 import java.awt.*;
 
 public class BooksDisplayer extends JPanel {
-    
+    BookPanel B0,B1,B2,B3,B4,B5,B6,B7;
+    ImagePanel Background;
     public BooksDisplayer() {
         setPreferredSize(new Dimension(1000, 500));
         setLayout(null);
         setBackground(Color.red);
-        ImagePanel Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.PUBLISH));
+        Background = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.PUBLISH));
         Background.setBounds(0, 0, 1000, 500);
         add(Background);
         Background.setLayout(null);
-        BookPanel B0 = new BookPanel(AssetLoader.IngredientAssets.FEET);
-        BookPanel B1 = new BookPanel(AssetLoader.IngredientAssets.FROG);
-        BookPanel B2 = new BookPanel(AssetLoader.IngredientAssets.FEATHER);
-        BookPanel B3 = new BookPanel(AssetLoader.IngredientAssets.WEED);
-        BookPanel B4 = new BookPanel(AssetLoader.IngredientAssets.MANDRAKE);
-        BookPanel B5 = new BookPanel(AssetLoader.IngredientAssets.MUSHROOM);
-        BookPanel B6 = new BookPanel(AssetLoader.IngredientAssets.SCORPION);
-        BookPanel B7 = new BookPanel(AssetLoader.IngredientAssets.FLOWER);
+
+        createBookPanels();
+        configureBookPanels();
         
+    }
+    private void createBookPanels(){
+        B0 = new BookPanel(AssetLoader.IngredientAssets.FEET);
+        B1 = new BookPanel(AssetLoader.IngredientAssets.FROG);
+        B2 = new BookPanel(AssetLoader.IngredientAssets.FEATHER);
+        B3 = new BookPanel(AssetLoader.IngredientAssets.WEED);
+        B4 = new BookPanel(AssetLoader.IngredientAssets.MANDRAKE);
+        B5 = new BookPanel(AssetLoader.IngredientAssets.MUSHROOM);
+        B6 = new BookPanel(AssetLoader.IngredientAssets.SCORPION);
+        B7 = new BookPanel(AssetLoader.IngredientAssets.FLOWER);
+    }
+
+    private void configureBookPanels(){
         B0.setBounds(10, 5, 400, 200);
         B1.setBounds(335, 5, 400, 200);
         B2.setBounds(670, 5, 400, 200);
@@ -35,17 +44,20 @@ public class BooksDisplayer extends JPanel {
         B5.setBounds(10, 315, 400, 200);
         B6.setBounds(335, 315, 400, 200);
         B7.setBounds(670, 315, 400, 200);
+
         Background.add(B0);
         Background.add(B1);
         Background.add(B2);
-        
-        
         Background.add(B3);
         Background.add(B4);
         Background.add(B5);
         Background.add(B6);
         Background.add(B7);
-        
+    }
+
+    
+    public void reset(){
+        B0.reset();B1.reset();B2.reset();B3.reset();B4.reset();B5.reset();B6.reset();B7.reset();
     }
     
     

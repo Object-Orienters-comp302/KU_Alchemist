@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
 
 public class Deck implements Publisher {
     private static Deck                  single_instance;
-    private        ArrayList<Ingredient> Ingredients;
+    private        ArrayList<Ingredient.IngredientTypes> Ingredients;
     private        ArrayList<Artifact>   Artifacts;
     
     private ArrayList<Listener> listeners;
@@ -18,18 +18,18 @@ public class Deck implements Publisher {
     private Deck() {
         Ingredients = new ArrayList<>();
         Artifacts   = new ArrayList<>();
-        listeners   = new ArrayList<>();//TODO add an initializer
+        listeners   = new ArrayList<>(); //TODO add an initializer
         
         Deck.single_instance = this;
     }
     
-    public HashMap<Integer, Ingredient> getFirstThree() {
+    public HashMap<Integer, Ingredient.IngredientTypes> getFirstThree() {
         return IntStream.range(0, Math.min(3, Ingredients.size()))
                 .boxed()
                 .collect(Collectors.toMap(i -> i, Ingredients::get, (a, b) -> b, HashMap::new));
     }
     
-    public ArrayList<Ingredient> getIngredients() {
+    public ArrayList<Ingredient.IngredientTypes> getIngredients() {
         return Ingredients;
     }
     
@@ -39,7 +39,7 @@ public class Deck implements Publisher {
         return single_instance;
     }
     
-    public void setFirstThree(HashMap<Integer, Ingredient> to_set) {
+    public void setFirstThree(HashMap<Integer, Ingredient.IngredientTypes> to_set) {
         to_set.forEach((index, ingredient) -> {
             if (index >= 0 && index < 3) {
                 if (index < Ingredients.size()) {
@@ -59,7 +59,7 @@ public class Deck implements Publisher {
         }
     }
     
-    public void addIngredient(Ingredient ingredient, int quantity) {
+    public void addIngredient(Ingredient.IngredientTypes ingredient, int quantity) {
         for (int i = 0; i < quantity; i++) {
             Ingredients.add(ingredient);
         }
@@ -73,14 +73,14 @@ public class Deck implements Publisher {
         publishEvent(Type.DECK_ARTIFACT);
     }
     
-    public Ingredient popIngredient() {
+    public Ingredient.IngredientTypes popIngredient() {
         // remove random element from Ingredient list (the array is random, by shuffle)
         
         if (Ingredients.isEmpty()) {
             return null;
         }
         
-        Ingredient ingredient = Ingredients.remove(0);
+        Ingredient.IngredientTypes ingredient = Ingredients.removeFirst();
         publishEvent(Type.DECK_INGREDIENT);
         return ingredient;
     }
@@ -92,7 +92,7 @@ public class Deck implements Publisher {
             return null;
         }
         
-        Artifact artifact = getArtifacts().remove(0);
+        Artifact artifact = getArtifacts().removeFirst();
         publishEvent(Type.DECK_ARTIFACT);
         return artifact;
     }

@@ -30,7 +30,7 @@ public class DebunkTest {
        
         assertFalse(roundThreeController.debunkTheory(testPlayer, null, null));
         assertFalse(roundThreeController.debunkTheory(testPlayer, publicationCard, null));
-        assertFalse(roundThreeController.debunkTheory(testPlayer, null, testAspect));
+        assertFalse(roundThreeController.debunkTheory(testPlayer, null, testAspect.getColor()));
     }
     
     @Test
@@ -38,7 +38,7 @@ public class DebunkTest {
         
         Aspect testAspect = new Aspect(Aspect.Sizes.Big, Aspect.Positivities.Positive, Aspect.Colors.Green);
         
-        assertFalse(roundThreeController.debunkTheory(testPlayer, null, testAspect));
+        assertFalse(roundThreeController.debunkTheory(testPlayer, null, testAspect.getColor()));
     }
     
     @Test
@@ -69,7 +69,7 @@ public class DebunkTest {
         
        
         
-        assertFalse(roundThreeController.debunkTheory(testPlayer, publicationCard, testAspect));
+        assertFalse(roundThreeController.debunkTheory(testPlayer, publicationCard, testAspect.getColor()));
     }
     
     @Test
@@ -84,7 +84,7 @@ public class DebunkTest {
         
         
         
-        assertFalse(roundThreeController.debunkTheory(testPlayer, publicationCard, testAspect));
+        assertFalse(roundThreeController.debunkTheory(testPlayer, publicationCard, testAspect.getColor()));
      
     }
     
@@ -100,7 +100,7 @@ public class DebunkTest {
         
         
         
-        assertFalse(roundThreeController.debunkTheory(testPlayer, publicationCard, testAspect));
+        assertFalse(roundThreeController.debunkTheory(testPlayer, publicationCard, testAspect.getColor()));
     }
     
     @Test
@@ -113,7 +113,7 @@ public class DebunkTest {
         PublicationCard publicationCard = new PublicationCard(testIngredient,testMarkers,testPlayer_2);
         Aspect testAspect = testMarkers.getAspectRed();
         System.out.println(testMarkers);
-        boolean deneme = roundThreeController.debunkTheory(testPlayer, publicationCard, testAspect);
+        boolean deneme = roundThreeController.debunkTheory(testPlayer, publicationCard, testAspect.getColor());
         System.out.println(testPlayer_2.getReputation());
         assertTrue(deneme);
         
@@ -132,7 +132,7 @@ public class DebunkTest {
         PublicationCard publicationCard = new PublicationCard(testIngredient,testMarkers,testPlayer_2);
         Aspect testAspect = testMarkers.getAspectRed();
         System.out.println(testMarkers);
-        boolean debunk = roundThreeController.debunkTheory(testPlayer, publicationCard, testAspect);
+        boolean debunk = roundThreeController.debunkTheory(testPlayer, publicationCard, testAspect.getColor());
         
         System.out.println(debunk);
         System.out.println(rep);
