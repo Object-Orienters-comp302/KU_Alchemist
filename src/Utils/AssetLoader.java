@@ -337,7 +337,8 @@ public class AssetLoader {
         LEAVES("resources/Gifs/Animations/leaves.gif"),
         HOURGLASS("resources/Gifs/Loading/hourglass.gif"),
         POTION("resources/Gifs/Loading/loadingPotion.gif"),
-        FIREBALL("resources/Gifs/Animations/orbFire.gif")
+        FIREBALL("resources/Gifs/Animations/orbFire.gif"),
+        CONFETTI("resources/Gifs/Animations/confetti.gif")
         
         ;
         

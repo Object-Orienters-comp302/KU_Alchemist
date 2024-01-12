@@ -95,6 +95,20 @@ public class GameController implements Publisher {
         return (TotalNextTurns/(Player.getPlayers().size()*3)) + 1;
     }
     
+    public void calculateFinalScores(){
+        
+        for (Player player : Player.getPlayers()) {
+            
+            //add 2 gold for each artifact card
+            int r_artifacts = player.getInventory().getArtifacts().size();
+            player.getInventory().addGold(r_artifacts*2);
+            
+            // 10 point for each reputation point and 1/3 point for each gold
+            player.setScore(player.getReputation()*10 + player.getInventory().getGold()/3);
+            
+        }
+    }
+    
     public void publishEvent(Type type) {
         for (Listener listener : listeners) {
             listener.onEvent(type);
@@ -103,4 +117,6 @@ public class GameController implements Publisher {
     public void addListener(Listener lis) {
         listeners.add(lis);
     }
+    
+
 }
