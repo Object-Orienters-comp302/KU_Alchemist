@@ -33,7 +33,7 @@ public class RoundZeroController {
     
     public void initializeIngredients(int quantity) {
         for (Ingredient.IngredientTypes type : Ingredient.IngredientTypes.values()) {
-            deck.addIngredient(new Ingredient(type), quantity);
+            deck.addIngredient(type, quantity);
         }
     }
     
@@ -57,8 +57,8 @@ public class RoundZeroController {
     
     private void dealIngredientCards(Player player, int count) {
         for (int i = 0; i < count; i++) {
-            Ingredient card = deck.popIngredient();
-            player.getInventory().addIngredient(card.getType(), 1);
+            Ingredient.IngredientTypes card = deck.popIngredient();
+            player.getInventory().addIngredient(card, 1);
         }
     }
 }

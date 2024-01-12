@@ -7,12 +7,12 @@ public class RoundOneController {
     protected RoundOneController() { }
 
 
-    public Ingredient ForageForIngredient (Player player) {
+    public Ingredient.IngredientTypes ForageForIngredient (Player player) {
         if(player.getForageRight() >= 1){
             Deck deck = Deck.getInstance();
-            Ingredient ingredient = deck.popIngredient();
+            Ingredient.IngredientTypes ingredient = deck.popIngredient();
             player.getInventory()
-                    .addIngredient(ingredient.getType(), 1);
+                    .addIngredient(ingredient, 1);
             player.setForageRight(player.getForageRight()-1);
             return ingredient;
         }

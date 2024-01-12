@@ -71,8 +71,8 @@ public class RoundThreeController extends RoundTwoController{
         }
         return false;
     }
-    public boolean elixirRearrange(Ingredient ing1, Ingredient ing2, Ingredient ing3){
-        HashMap<Integer, Ingredient> toSet = new HashMap<>();
+    public boolean elixirRearrange(Ingredient.IngredientTypes ing1, Ingredient.IngredientTypes ing2, Ingredient.IngredientTypes ing3){
+        HashMap<Integer, Ingredient.IngredientTypes> toSet = new HashMap<>();
         toSet.put(0,ing1);
         toSet.put(1,ing2);
         toSet.put(2,ing3);

@@ -4,8 +4,7 @@ import Domain.GameController;
 import Models.Artifact;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.ImagePanels.OutlinedLabel;
-import UI.Components.SuperViews.ElexirOfInsightView;
-import UI.View.LoginView;
+import UI.Components.SuperViews.ElixirOfInsightView;
 import UI.View.MenuView;
 import Utils.AssetLoader;
 
@@ -104,7 +103,7 @@ public class ArtifactCard extends JPanel {
         MenuView menu= GameController.getInstance().getMenuController().getMenuView();
         menu.Blockade();
         artifact.gotUsed();
-        menu.addAndRunPage(new ElexirOfInsightView());
+        menu.addAndRunPage(new ElixirOfInsightView());
         
     }
     
