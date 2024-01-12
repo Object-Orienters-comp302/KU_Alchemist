@@ -174,15 +174,16 @@ public class PotionBrewingView extends JPanel {
         
     
     
-    private Potion MakePotion(Ingredient ingredient1, Ingredient ingredient2, Player player) {
+    // TODO: Bu niye burda amk
+    private Potion MakePotion(Ingredient.IngredientTypes ingredient1, Ingredient.IngredientTypes ingredient2, Player player) {
         RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
-        Potion potion = roundOneController.MakePotion(ingredient1.getAspects(), ingredient2.getAspects());
+        Potion potion = roundOneController.MakePotion(Ingredient.getAspects(ingredient1), Ingredient.getAspects(ingredient2));
         System.out.print(potion.getIdentity());
-        MakeExperiments(potion,player,!this.testOnStudent);
+        MakeExperiments(potion, player, !this.testOnStudent);
         player.getInventory().addPotions(potion, 1);
         
-        roundOneController.removeIngredient(player, ingredient1.getType());
-        roundOneController.removeIngredient(player, ingredient2.getType());
+        roundOneController.removeIngredient(player, ingredient1);
+        roundOneController.removeIngredient(player, ingredient2);
         return potion;
     }
     
@@ -279,8 +280,7 @@ public class PotionBrewingView extends JPanel {
                                 @Override
                                 public void actionPerformed(ActionEvent e) {
                                     
-                                    Potion pot = MakePotion(new Ingredient(IngredientB1.getType()),
-                                                            new Ingredient(IngredientB2.getType()), Player.getCurrPlayer());
+                                    Potion pot = MakePotion(IngredientB1.getType(), IngredientB2.getType(), Player.getCurrPlayer());
                                     
                                     Background.remove(GlowGif);
                                     Background.add(PotionBackground);

@@ -12,8 +12,8 @@ import Models.PublicationTrack;
 
 
 public class PublishTheoryTest {
-    RoundTwoController roundTwoController = GameController.getInstance().getRoundTwoController();
-    Player testPlayer;
+    static RoundTwoController roundTwoController = GameController.getInstance().getRoundTwoController();
+    static Player             testPlayer;
     @BeforeEach
     public void init_player() {
          testPlayer = new Player("Test", null);
@@ -82,5 +82,9 @@ public class PublishTheoryTest {
         roundTwoController.publishTheory(testPlayer, testIngredient_1, testMarkers);
         assertEquals(initialSize + 1, PublicationTrack.getInstance().getPublicationCards().size());
     }
- 
+    @AfterAll
+    static void ded() {
+        roundTwoController = null; // Nullify the reference
+        testPlayer = null;
+    }
 }

@@ -11,7 +11,7 @@ import Models.Ingredient;
 import Models.Potion;
 
 public class MakePotionTest {
-    RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
+    static RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
     @Test
     public void expectedNullPointerException() {
         assertThrows(NullPointerException.class, ()-> {
@@ -49,5 +49,8 @@ public class MakePotionTest {
         });
     }
     
-    
+    @AfterAll
+    static void ded() {
+        roundOneController = null; // Nullify the reference
+    }
 }

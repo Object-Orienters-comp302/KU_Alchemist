@@ -9,8 +9,8 @@ import Models.Player;
 import Models.Ingredient;
 
 public class RoundOneControllerTest {
-    Player testPlayer;
-    Ingredient.IngredientTypes plant1 = Ingredient.IngredientTypes.Plant;
+    static Player                     testPlayer;
+    static Ingredient.IngredientTypes plant1 = Ingredient.IngredientTypes.Plant;
     
     
     @BeforeEach
@@ -57,6 +57,12 @@ public class RoundOneControllerTest {
         assertThrows(NullPointerException.class, () -> {
             GameController.getInstance().getRoundOneController().TransmuteIngredient(null, null);
         });
+    }
+    
+    @AfterAll
+    static void ded() {
+        testPlayer = null; // Nullify the reference
+        plant1 = null;
     }
     
 }
