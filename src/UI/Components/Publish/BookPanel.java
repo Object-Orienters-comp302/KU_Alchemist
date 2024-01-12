@@ -3,6 +3,7 @@ package UI.Components.Publish;
 import Domain.GameController;
 import Domain.RoundTwoController;
 import Models.*;
+import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.OutlinedLabel;
 import Utils.AssetLoader;
 
@@ -27,9 +28,9 @@ public class BookPanel extends JPanel {
     BookButton                 CircleButton;
     ImagePanel book;
     ImageChangingPanel confirmButton;
-    EndorsePanel endorsePanel;
-    JPanel endorserPanel;
-    DebunkButton debunkButton;
+    EndorsePanel       endorsePanel;
+    ColorChangingPanel endorserPanel;
+    DebunkButton       debunkButton;
     OutlinedLabel endorserLabel;
     ImagePanel publisherImage;
     
@@ -130,7 +131,7 @@ public class BookPanel extends JPanel {
         CircleButton.setCurrentPath(aspectPath);
         CircleButton.disable();
         if (endorserPanel==null) {
-            endorserPanel = new JPanel();
+            endorserPanel = new ColorChangingPanel("#c97222 ", "#c97222", 20, ColorChangingPanel.RoundingStyle.BOTH);
         }
         endorserPanel.setOpaque(false);
         endorserPanel.setBounds(confirmButton.getBounds());
