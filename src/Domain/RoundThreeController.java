@@ -5,9 +5,8 @@ import Models.*;
 import java.util.HashMap;
 
 public class RoundThreeController extends RoundTwoController{
-    public boolean debunkTheory(Player currentPlayer, PublicationCard publicationCardToDebunk,
-                                Aspect.Colors aspectColorToDebunk) {
-        System.out.println("debunktheory function started");
+    public boolean debunkTheory(Player currentPlayer, PublicationCard publicationCardToDebunk, Aspect.Colors aspectColorToDebunk) {
+        System.out.println("Debunking theory...");
         boolean WisdomIdolFlag = false;
        
         if (publicationCardToDebunk != null && aspectColorToDebunk != null) {
@@ -17,39 +16,29 @@ public class RoundThreeController extends RoundTwoController{
             }
             if (PublicationTrack.getInstance().isPublished(publicationCardToDebunk)) {
                 if (aspectColorToDebunk == Aspect.Colors.Red) {
-                    
-                    if (publicationCardToDebunk.getAspects().getAspectRed().isEqual(
-                            Ingredient.getAspects(publicationCardToDebunk.getIngredient()).getAspectRed())) {
+                    if (publicationCardToDebunk.getAspects().getAspectRed().isEqual(Ingredient.getAspects(publicationCardToDebunk.getIngredient()).getAspectRed())) {
                         currentPlayer.addReputation(-1);
-                       
                         return false; // aspect type is not debunked, because aspect is not false
                     }
                 } else if (aspectColorToDebunk == Aspect.Colors.Green) {
-                    if (publicationCardToDebunk.getAspects().getAspectGreen().isEqual(
-                            Ingredient.getAspects(publicationCardToDebunk.getIngredient()).getAspectGreen())) {
+                    if (publicationCardToDebunk.getAspects().getAspectGreen().isEqual(Ingredient.getAspects(publicationCardToDebunk.getIngredient()).getAspectGreen())) {
                         currentPlayer.addReputation(-1);
-                        
                         return false; // aspect type is not debunked, because aspect is not false
                     }
                 } else if (aspectColorToDebunk == Aspect.Colors.Blue) {
-                    if (publicationCardToDebunk.getAspects().getAspectBlue().isEqual(
-                            Ingredient.getAspects(publicationCardToDebunk.getIngredient()).getAspectBlue())) {
+                    if (publicationCardToDebunk.getAspects().getAspectBlue().isEqual(Ingredient.getAspects(publicationCardToDebunk.getIngredient()).getAspectBlue())) {
                         currentPlayer.addReputation(-1);
-                       
                         return false; // aspect type is not debunked, because aspect is not false
                     }
                 }
                     currentPlayer.addReputation(2);
                     publicationGotDebunked(publicationCardToDebunk);
                     if (WisdomIdolFlag == true){
-                        publicationCardToDebunk.getOwner().addReputation(2);//changed from 1 to 2 since it felt weak
+                        publicationCardToDebunk.getOwner().addReputation(2); //changed from 1 to 2 since it felt weak
                         useWisdomIdol(publicationCardToDebunk.getOwner());
                     }
-                System.out.println("debunk theory function debunked a theory");
+                System.out.println("A theory was debunked!");
                     return true;
-                
-                
-                
             } else {
                 // Ingredient doesn't have a published theory, debunking not allowed
                 // TODO: Raise error
@@ -67,7 +56,7 @@ public class RoundThreeController extends RoundTwoController{
         if (map.get(3)!=null){map.get(3).addReputation(-1);}
         PublicationTrack.getInstance().removePublicationCard(card);
     }
-    //TODO: add function for when the publications turns out to be true( likely endgame controller)
+    //TODO: add function for when the publications turns out to be true (likely endgame controller)
     public Deck getDeck(){
         return Deck.getInstance();
     }
