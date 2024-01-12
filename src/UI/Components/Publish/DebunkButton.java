@@ -19,14 +19,15 @@ public class DebunkButton extends JPanel {
     Color red,redG,green,greenG,blue,blueG,back;
     ImagePanel img;
     int x,y,size;
-    public DebunkButton(int x,int y,int size,PublicationCard card){
+    public DebunkButton(int x,int y,int size,BookPanel book){
         this.x=x;
         this.y=y;
         this.size=size;
         setBounds(x,y,size,size);
         this.setLayout(null);
+        setOpaque(false);
         
-        arcRad=60;
+        arcRad=size/4;
         
         red=Color.decode("#C92121");
         redG=Color.decode("#FF3131");
@@ -36,7 +37,7 @@ public class DebunkButton extends JPanel {
         blueG=Color.decode("#1F51FF");
         back=Color.white;
         
-        img= new ImagePanel(AssetLoader.Book.ALL_POSITIVE);
+        img= new ImagePanel(book.CircleButton.getCurrentPath());
         img.setBounds((size-arcRad)/2,(size-arcRad)/2,arcRad,arcRad);
         add(img,0);
         
@@ -44,20 +45,32 @@ public class DebunkButton extends JPanel {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                System.out.println("entered");
+                //System.out.println("entered");
                 mouseInside=true;
             }
             
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                System.out.println("exited");
+                //System.out.println("exited");
                 mouseInside=false;
             }
             
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
+                if (state==1){
+                    System.out.println("RED PRESSED");
+                    book.debunkAction(1);
+                }
+                if (state==2){
+                    System.out.println("GREEN PRESSED");
+                    book.debunkAction(2);
+                }
+                if (state==3){
+                    System.out.println("BLUE PRESSED");
+                    book.debunkAction(3);
+                }
                 
             }
         });
@@ -65,7 +78,7 @@ public class DebunkButton extends JPanel {
             @Override
             public void mouseMoved(MouseEvent e) {
                 super.mouseMoved(e);
-                System.out.println("Mouse moved inside: (" + e.getX() + ", " + e.getY() + ")");
+                //System.out.println("Mouse moved inside: (" + e.getX() + ", " + e.getY() + ")");
                 if (mouseInside){
                     
                     int mouseX = e.getX();
@@ -92,7 +105,7 @@ public class DebunkButton extends JPanel {
                         angle=360-angle;
                     }
                     
-                    System.out.println("Angle: "+angle+ "  Distance: "+distance+ "  Rad: "+ Radius + "    ArcRad: "+arcRadius);
+                    //System.out.println("Angle: "+angle+ "  Distance: "+distance+ "  Rad: "+ Radius + "    ArcRad: "+arcRadius);
                     // Print or use the results as needed
                     state=0;
                     repaint();
@@ -100,15 +113,15 @@ public class DebunkButton extends JPanel {
                         if (angle>=90 &&angle<=210) {
                             state=1;
                             repaint();
-                            System.out.println("Mouse is inside the red arc.");
+                            //System.out.println("Mouse is inside the red arc.");
                         } else if (angle>=210 &&angle<=330) {
                             state=2;
                             repaint();
-                            System.out.println("Mouse is inside the green arc.");
+                            //System.out.println("Mouse is inside the green arc.");
                         } else if (angle>=330 || angle<=90) {
                             state=3;
                             repaint();
-                            System.out.println("Mouse is inside the blue arc.");
+                            //System.out.println("Mouse is inside the blue arc.");
                         }
                     }
                 }
@@ -179,13 +192,16 @@ public class DebunkButton extends JPanel {
         
         // Draw inner circular cutout
         int cutoutDiameter =  arcDiameter - arcRad*2;
-        System.out.println("CUTOUT:  " +cutoutDiameter);
+        //System.out.println("CUTOUT:  " +cutoutDiameter);
         int cutoutX = (size - cutoutDiameter) / 2;
         int cutoutY = (size - cutoutDiameter) / 2;
         g.setColor(back);
         g.fillArc(cutoutX, cutoutY, cutoutDiameter, cutoutDiameter, 0, 360);
         
         
+    }
+    public void changeImage(AssetLoader.AssetPath path){
+        img.changeImage(path);
     }
     
     public void debunkAction(int i,PublicationCard car){

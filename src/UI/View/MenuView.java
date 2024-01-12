@@ -5,7 +5,9 @@ import Domain.Event.Publisher;
 import Domain.Event.Type;
 import Domain.GameController;
 import Domain.MenuController;
+import Models.Ingredient;
 import Models.Player;
+import Models.PublicationTrack;
 import UI.Components.ColorChangingPanel;
 import UI.Components.CutRoundedPanel;
 import UI.Components.ImagePanels.HQImagePanel;
@@ -332,7 +334,8 @@ public class MenuView extends JPanel implements Publisher,Listener {
         TESTBUTTON.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                theoriesPanel.reset();
+               System.out.println(PublicationTrack.getInstance().getPublicationCards());
+               System.out.println(Ingredient.getIngredientTypeToAspectTrioMap());
             }
         });
     }

@@ -15,10 +15,8 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class BookPanel extends JPanel {
-    public static HashMap<AssetLoader.AssetPath, Boolean> published = new HashMap<AssetLoader.AssetPath, Boolean>();
     public static ArrayList<AssetLoader.AssetPath>        traitUsed = new ArrayList<>();
     
     //public static ArrayList<AssetLoader.AssetPath>        traitRam  = new ArrayList<>();
@@ -32,17 +30,8 @@ public class BookPanel extends JPanel {
     EndorsePanel endorsePanel;
     JPanel endorserPanel;
     DebunkButton debunkButton;
-    
-    static {
-        published.put(AssetLoader.IngredientAssets.FEATHER, false);
-        published.put(AssetLoader.IngredientAssets.FEET, false);
-        published.put(AssetLoader.IngredientAssets.FLOWER, false);
-        published.put(AssetLoader.IngredientAssets.FROG, false);
-        published.put(AssetLoader.IngredientAssets.MANDRAKE, false);
-        published.put(AssetLoader.IngredientAssets.MUSHROOM, false);
-        published.put(AssetLoader.IngredientAssets.SCORPION, false);
-        published.put(AssetLoader.IngredientAssets.WEED, false);
-    }
+    OutlinedLabel endorserLabel;
+    ImagePanel publisherImage;
     
     public BookPanel(AssetLoader.AssetPath ingredientPath) {
         ingreType = Ingredient.getTypeFromPath(ingredientPath);
@@ -66,13 +55,17 @@ public class BookPanel extends JPanel {
         panel.setBounds(30, 5, 80, 80);
         book.add(panel);
         
-        confirmButton = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Book.ENVELOPE),
-                                               AssetLoader.getAssetPath(AssetLoader.Book.PUBLISH));
-        
+        if (confirmButton==null) {
+            confirmButton = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.Book.ENVELOPE),
+                                                   AssetLoader.getAssetPath(AssetLoader.Book.PUBLISH));
+        }
         confirmButton.setBounds(160, 112, 120, 40);
+        confirmButton.setActiveImage(AssetLoader.Book.ENVELOPE);
         book.add(confirmButton);
         
+        if (CircleButton==null){
         CircleButton = new BookButton(35, 90, 65, 65, ingredientPath);
+        }
         //panel_1.setBounds(70, 110, 80, 80);
         add(CircleButton);
         setComponentZOrder(CircleButton, 0);
@@ -80,7 +73,7 @@ public class BookPanel extends JPanel {
         
         
         if (PublicationTrack.getInstance().isPublished(ingreType)){
-            isAlreadyPublished(Ingredient.getTypeFromPath( ingredientPath));
+            alreadyPublishedSetup(Ingredient.getTypeFromPath(ingredientPath));
         }
         else {
             
@@ -98,15 +91,23 @@ public class BookPanel extends JPanel {
                 }
             });
         }
+        book.repaint();
     }
-    public void startDebunkView(PublicationCard pub){
+    public void startDebunkView(){
         book.remove(endorsePanel);
         book.remove(endorserPanel);
-        debunkButton = new DebunkButton(140,5,150,pub);
+        if (debunkButton==null) {
+            debunkButton = new DebunkButton(140, 5, 150, this);
+        }
+        else {
+            debunkButton.changeImage(CircleButton.getCurrentPath());
+        }
         //debunkButton.setBounds(140,5,150,150);
         book.add(debunkButton);
-        
-        
+    }
+    public void endDebunkView(){
+        book.remove(debunkButton);
+        book.repaint();
     }
     
     public void publish(AssetLoader.AssetPath path){
@@ -114,11 +115,11 @@ public class BookPanel extends JPanel {
         Player cur = GameController.getInstance().getMenuController().getCurrentPlayer();
         RoundTwoController cont2 = GameController.getInstance().getRoundTwoController();
         cont2.publishTheory(cur, ingreType, Ingredient.getTrioFromPath(path));
-        isAlreadyPublished(ingreType);
+        alreadyPublishedSetup(ingreType);
         System.out.println("Published a new theory!"); //TODO: Fix this
     }
     
-    public void isAlreadyPublished(Ingredient.IngredientTypes ingredientType){
+    public void alreadyPublishedSetup(Ingredient.IngredientTypes ingredientType){
         Player cur = GameController.getInstance().getMenuController().getCurrentPlayer();
         RoundTwoController cont2 = GameController.getInstance().getRoundTwoController();
         PublicationCard pubCard= PublicationTrack.getInstance().
@@ -128,51 +129,56 @@ public class BookPanel extends JPanel {
         
         CircleButton.setCurrentPath(aspectPath);
         CircleButton.disable();
-        
-        endorserPanel=new JPanel();
+        if (endorserPanel==null) {
+            endorserPanel = new JPanel();
+        }
         endorserPanel.setOpaque(false);
         endorserPanel.setBounds(confirmButton.getBounds());
         book.remove(confirmButton);
         book.add(endorserPanel);
         
         endorserPanel.setLayout(null);
-        OutlinedLabel endorserLabel = new OutlinedLabel("DEBUNK", "#D4AF37", "#FFD700");
+        if (endorserLabel==null) {
+            endorserLabel = new OutlinedLabel("DEBUNK", "#D4AF37", "#FFD700");
+        }
         endorserLabel.setBounds(50,15,70,20);
         endorserLabel.setFont(new Font("Arial", Font.BOLD, 10));
         
         endorserPanel.add(endorserLabel);
         
-        System.out.println("Theory: "+ PublicationTrack.getInstance().getPublicationCards());
+        System.out.println("Theories: "+ PublicationTrack.getInstance().getPublicationCards());
         
         endorserPanel.setLayout(null);
-        ImagePanel publisherImage = new ImagePanel(cur.getToken().getImage());
+        if (publisherImage==null) {
+            publisherImage = new ImagePanel(pubCard.getOwner().getToken().getImage());
+        }
         publisherImage.addCorner(20);
         publisherImage.setBounds(0,0,40,40);
         endorserPanel.add(publisherImage);
         
-        endorsePanel= new EndorsePanel(cont2.getCardForIngredient(ingreType));
+        if (endorsePanel==null) {
+            endorsePanel = new EndorsePanel(cont2.getCardForIngredient(ingreType));
+        }
         endorsePanel.setLocation(160, 10);
         book.add(endorsePanel);
         
-        System.out.print(aspectPath);
-        traitUsed.add(aspectPath);
-        published.put(Ingredient.getPathFromType(ingreType), true);
+        //System.out.print(aspectPath);
+        //traitUsed.add(aspectPath);
         
         endorserPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            
+                startDebunkView();
             
             }});
             
-        
+        book.repaint();
         BookPanel.this.revalidate();
         BookPanel.this.repaint();
     
     }
     public void reset(){
-        if (!published.get(Ingredient.getPathFromType(ingreType))){
-            System.out.println("INGRE: "+published);
+        if (!GameController.getInstance().getRoundThreeController().checkIfIngredientIsPublished(ingreType)){
             CircleButton.reset();
         }
     }
@@ -182,6 +188,33 @@ public class BookPanel extends JPanel {
     
     }
     
+    public void debunkAction(int i){
+        endDebunkView();
+        PublicationCard pubCard= PublicationTrack.getInstance().
+                getPublicationCardOf(ingreType);
+        Aspect.Colors col = null;
+        switch (i){
+            case 1->col= Aspect.Colors.Red;
+            case 2->col= Aspect.Colors.Green;
+            case 3->col= Aspect.Colors.Blue;
+        }
+        if (GameController.getInstance().getRoundThreeController().debunkTheory
+                (GameController.getInstance().getMenuController().getCurrentPlayer(),pubCard,col)) {
+            theoryGotDebunked();
+        }
+        classicSetup(Ingredient.getPathFromType( ingreType));
+        //TODO:add debunk action here
+    }
+    public void theoryGotDebunked(){
+        System.out.println("Theory get debunked runned");
+        book.remove(endorserPanel);
+        book.remove(endorsePanel);
+        endorserPanel=null;
+        endorsePanel=null;
+        publisherImage=null;
+        CircleButton.reset();
+        book.repaint();
+    }
     public static void main(String[] args) {
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
