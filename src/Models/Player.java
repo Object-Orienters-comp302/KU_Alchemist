@@ -97,8 +97,14 @@ public class Player implements Publisher {
         return sicknessLevel;
     }
     public void setSicknessLevel(Integer sicknessLevel) {
-        this.sicknessLevel = sicknessLevel;
-        publishEvent(Type.SICKNESS); // Sickness yerine playerGotSick gibi bisey yapsak daha iyi olmaz mi?
+        if (sicknessLevel > 3) {
+            this.sicknessLevel = 3;
+        } else if (sicknessLevel < 0) {
+            this.sicknessLevel = 0;
+        } else {
+            this.sicknessLevel = sicknessLevel;
+        }
+        publishEvent(Type.SICKNESS);
         // TODO: Refactor the event names
     }
     public int[] getTriangleTableArray() {
