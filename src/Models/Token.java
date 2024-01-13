@@ -56,5 +56,8 @@ public class Token {
     public void setBackground(BufferedImage background) {
         this.background = background;
     }
+    public static void resetTokens(){
+        Token.tokenCircularList=new CircularLinkedList<>();
+    }
     
 }

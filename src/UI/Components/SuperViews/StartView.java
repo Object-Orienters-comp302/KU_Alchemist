@@ -4,8 +4,11 @@ import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
 import Sound.DJ;
+import UI.Components.ColorChangingPanel;
+import UI.Components.CutRoundedPanel;
 import UI.Components.ImagePanels.HQImagePanel;
 import UI.Components.ImagePanels.ImagePanel;
+import UI.Components.ImagePanels.OutlinedLabel;
 import UI.View.ViewFactory;
 import Utils.AssetLoader;
 
@@ -14,16 +17,18 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class StartView extends JPanel implements Publisher {
     
-    int chosen = 2;
-    
-    ImagePanel Background;
-    ImagePanel NamePanel;
-    ImagePanel StartButton;
-    JPanel     ButtonPanel;
-    
+    int             chosen = 2;
+    int             version;
+    ImagePanel      Background;
+    ImagePanel      NamePanel;
+    ImagePanel      StartButton;
+    JPanel          ButtonPanel;
+    ColorChangingPanel versionSelection1,versionSelection2,versionSelection3;
+    OutlinedLabel vLabel1,vLabel2,vLabel3;
     HQImagePanel        B1,B2,B3;
 
     ImagePanel    selectHost,selectJoin;
@@ -35,6 +40,11 @@ public class StartView extends JPanel implements Publisher {
         setBounds(0, 0, 1280, 720);
         setBackground(Color.BLUE);
         setLayout(null);
+        
+        Random random = new Random();
+        
+        
+        version = random.nextInt(3) + 1;
         
         CreateBase();
         SetupBase();
@@ -57,6 +67,13 @@ public class StartView extends JPanel implements Publisher {
         selectHost  = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW));
         
         selectJoin  = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW));
+        versionSelection1= new ColorChangingPanel("#FFEB7E", "#FCB709", 30, ColorChangingPanel.RoundingStyle.BOTH);
+        versionSelection2=new  ColorChangingPanel("#FFEB7E", "#FCB709", 30, ColorChangingPanel.RoundingStyle.BOTH);
+        versionSelection3=new  ColorChangingPanel("#FFEB7E", "#FCB709", 30, ColorChangingPanel.RoundingStyle.BOTH);
+        
+        vLabel1=new OutlinedLabel("BASE", "#FFFFFF", "#CCCCCC", OutlinedLabel.Versions.MID_ORIENTED);
+        vLabel2=new OutlinedLabel("PRESIDENT", "#FFFFFF", "#CCCCCC", OutlinedLabel.Versions.MID_ORIENTED);
+        vLabel3=new OutlinedLabel("ANIME", "#FFFFFF", "#CCCCCC", OutlinedLabel.Versions.MID_ORIENTED);
         
     }
     private void SetupBase(){
@@ -86,6 +103,31 @@ public class StartView extends JPanel implements Publisher {
         joinText.setBounds(150, 50, 200, 100);
         selectJoin.add(joinText);
         
+        versionSelection1.setBounds(200,550,200,100);
+        Background.add(versionSelection1);
+        versionSelection1.setLayout(null);
+        
+        vLabel1.setBounds(0,0,200,100);
+        vLabel1.changeFontSize(30);
+        versionSelection1.add(vLabel1);
+        
+        versionSelection2.setBounds(500,550,200,100);
+        Background.add(versionSelection2);
+        versionSelection2.setLayout(null);
+       
+        vLabel2.setBounds(0,0,200,100);
+        vLabel2.changeFontSize(30);
+        versionSelection2.add(vLabel2);
+        
+        versionSelection3.setBounds(800,550,200,100);
+        Background.add(versionSelection3);
+        versionSelection3.setLayout(null);
+        
+        vLabel3.setBounds(0,0,200,100);
+        vLabel3.changeFontSize(30);
+        versionSelection3.add(vLabel3);
+        
+        VersionSelection(version);
     }
     private void SetupListenersBase() {
         selectHost.addMouseListener(new MouseAdapter() {
@@ -98,11 +140,55 @@ public class StartView extends JPanel implements Publisher {
                 repaint();
             }
         });
+        versionSelection1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                VersionSelection(1);
+            }
+        });
+        versionSelection2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                VersionSelection(2);
+            }
+        });
+        versionSelection3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                VersionSelection(3);
+            }
+        });
         
     }
+    public void VersionSelection(int i){
+        //"#FFEB7E", "#FCB709"
+        getVersionPanel(version).changeDefaultColors("#FFEB7E");
+        version=i;
+        getVersionPanel(version).changeDefaultColors("#FCB709");
+        
+    }
+    
+    public ColorChangingPanel getVersionPanel(int i){
+        switch (i){
+            case 1-> {
+                return versionSelection1;
+            }
+            case 2->{
+                return versionSelection2;
+            }
+            case 3->{
+                return versionSelection3;
+            }
+        }
+        return null;
+    }
+    
     public void CleanupBase(){
         Background.remove(selectJoin);
         Background.remove(selectHost);
+        Background.remove(versionSelection1);
+        Background.remove(versionSelection2);
+        Background.remove(versionSelection3);
         Background.repaint();
     }
     
@@ -169,6 +255,7 @@ public class StartView extends JPanel implements Publisher {
             @Override
             public void mouseClicked(MouseEvent e) {
                 ViewFactory.getInstance().getLoginView().setPlayerAmount(chosen);
+                ViewFactory.getInstance().getLoginView().generateTokens(version);
                 publishEvent(Type.START_LOGIN_SCREEN);
                 
             }

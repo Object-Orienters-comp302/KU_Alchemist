@@ -54,16 +54,7 @@ public class LoginView extends JPanel implements Publisher {
     
     
     protected LoginView() {
-        new Token("blue", AssetLoader.getAssetPath(AssetLoader.Tokens.BLUE),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE));
-        new Token("red", AssetLoader.getAssetPath(AssetLoader.Tokens.RED),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.RED));
-        new Token("green", AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.GREEN));
-        new Token("purple", AssetLoader.getAssetPath(AssetLoader.Tokens.PURPLE),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.PURPLE));
-        new Token("yellow", AssetLoader.getAssetPath(AssetLoader.Tokens.YELLOW),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
+        
         this.Listeners = new ArrayList<>();
         
         
@@ -76,6 +67,7 @@ public class LoginView extends JPanel implements Publisher {
     
     private void CreateObjects() {
         loginControl = GameController.getInstance().getLoginController();
+        generateTokens(1);//to handle base
         tokenList    = loginControl.getCirularTokens();
         MainPanel    = new ImagePanel(tokenList.get().getBackground());
         MainPanel.setBounds(0, 0, 1280, 720);
@@ -356,6 +348,54 @@ public class LoginView extends JPanel implements Publisher {
         this.setComponentZOrder(LoadingGif,0);
         
         this.repaint();
+        
+    }
+    
+    public void generateTokens(int i){//TODO: put this to controller too lazy "for that" right now
+        if (i==1){
+            new Token("blue", AssetLoader.getAssetPath(AssetLoader.Tokens.BLUE),
+                      AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE));
+            new Token("red", AssetLoader.getAssetPath(AssetLoader.Tokens.RED),
+                      AssetLoader.getAssetPath(AssetLoader.Backgrounds.RED));
+            new Token("green", AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN),
+                      AssetLoader.getAssetPath(AssetLoader.Backgrounds.GREEN));
+            new Token("purple", AssetLoader.getAssetPath(AssetLoader.Tokens.PURPLE),
+                      AssetLoader.getAssetPath(AssetLoader.Backgrounds.PURPLE));
+            new Token("yellow", AssetLoader.getAssetPath(AssetLoader.Tokens.YELLOW),
+                      AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
+        }
+        if (i==2){
+            System.out.println("Presidents generated");
+            Token.resetTokens();
+            new Token("Trump", AssetLoader.PresidentTokens.TRUMP.getPath(), AssetLoader.getAssetPath(AssetLoader.PresidentTokens.USA));
+            new Token("Adolf", AssetLoader.PresidentTokens.ADOLF.getPath(), AssetLoader.getAssetPath(AssetLoader.PresidentTokens.GERMANY));
+            new Token("Biden", AssetLoader.PresidentTokens.BIDEN.getPath(), AssetLoader.getAssetPath(AssetLoader.PresidentTokens.USA));
+            new Token("Bush", AssetLoader.PresidentTokens.BUSH.getPath(), AssetLoader.getAssetPath(AssetLoader.PresidentTokens.USA));
+            new Token("George", AssetLoader.PresidentTokens.GEORGE.getPath(), AssetLoader.getAssetPath(AssetLoader.PresidentTokens.USA));
+            new Token("Goat", AssetLoader.PresidentTokens.GOAT.getPath(), AssetLoader.getAssetPath(AssetLoader.PresidentTokens.TURKEY));
+            new Token("Lincoln", AssetLoader.PresidentTokens.LINCOLN.getPath(), AssetLoader.getAssetPath(AssetLoader.PresidentTokens.USA));
+            new Token("Obama", AssetLoader.PresidentTokens.OBAMA.getPath(), AssetLoader.getAssetPath(AssetLoader.PresidentTokens.USA));
+            new Token("RTE", AssetLoader.PresidentTokens.RTE.getPath(), AssetLoader.getAssetPath(AssetLoader.PresidentTokens.TURKEY));
+            new Token("Stalin", AssetLoader.PresidentTokens.STALIN.getPath(), AssetLoader.getAssetPath(AssetLoader.PresidentTokens.RUSSIA));
+            }
+        if (i==3){
+            System.out.println("Anime generated");
+            Token.resetTokens();
+            new Token("Blue", AssetLoader.FemaleTokens.BLUE.getPath(), AssetLoader.getAssetPath(AssetLoader.Tokens.BLUE));
+            new Token("Gold", AssetLoader.FemaleTokens.GOLD.getPath(), AssetLoader.getAssetPath(AssetLoader.Tokens.YELLOW));
+            new Token("Gray", AssetLoader.FemaleTokens.GRAY.getPath(), AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN));
+            new Token("Green", AssetLoader.FemaleTokens.GREEN.getPath(), AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN));
+            new Token("Purple", AssetLoader.FemaleTokens.PURPLE.getPath(), AssetLoader.getAssetPath(AssetLoader.Tokens.PURPLE));
+            new Token("Red", AssetLoader.FemaleTokens.RED.getPath(), AssetLoader.getAssetPath(AssetLoader.Tokens.RED));
+            new Token("Yellow", AssetLoader.FemaleTokens.YELLOW.getPath(), AssetLoader.getAssetPath(AssetLoader.Tokens.YELLOW));
+        }
+        tokenList    = loginControl.getCirularTokens();
+        if (TokenSelectorPanel_Displayer!=null) {
+            TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
+            MainPanel.changeImage(tokenList.get().getBackground());
+        }
+       
+        
         
     }
     

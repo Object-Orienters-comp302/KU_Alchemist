@@ -88,6 +88,58 @@ public class AssetLoader {
         }
     }
     
+    public enum PresidentTokens implements AssetPath {
+        ADOLF("resources/Images/extraTokens/adolf.png"),
+        BIDEN("resources/Images/extraTokens/biden.png"),
+        BUSH("resources/Images/extraTokens/bush.png"),
+        GEORGE("resources/Images/extraTokens/george.png"),
+        GERMANY("resources/Images/extraTokens/germany.png"),
+        GOAT("resources/Images/extraTokens/goat.png"),
+        GOAT_BW("resources/Images/extraTokens/goatBW.png"),
+        LINCOLN("resources/Images/extraTokens/lincoln.png"),
+        OBAMA("resources/Images/extraTokens/obama.png"),
+        RTE("resources/Images/extraTokens/rte.png"),
+        RUSSIA("resources/Images/extraTokens/russia.png"),
+        STALIN("resources/Images/extraTokens/stalin.png"),
+        TRUMP("resources/Images/extraTokens/trump.png"),
+        TURKEY("resources/Images/extraTokens/turkey.png"),
+        USA("resources/Images/extraTokens/usa.png");
+        
+        private final String path;
+        
+        PresidentTokens(String path) {
+            this.path = path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
+    public enum FemaleTokens implements AssetPath {
+        BLUE("resources/Images/extraTokensFemale/blue.png"),
+        GOLD("resources/Images/extraTokensFemale/gold.png"),
+        GRAY("resources/Images/extraTokensFemale/gray.png"),
+        GREEN("resources/Images/extraTokensFemale/green.png"),
+        PURPLE("resources/Images/extraTokensFemale/purple.png"),
+        RED("resources/Images/extraTokensFemale/red.png"),
+        YELLOW("resources/Images/extraTokensFemale/yellow.png");
+        
+        ;
+        
+        private final String path;
+        
+        FemaleTokens(String path) {
+            this.path = path;
+        }
+        
+        @Override
+        public String getPath() {
+            return path;
+        }
+    }
+    
     public enum Tokens implements AssetPath {
         GREEN_TICK("resources/Images/tokens/greenTick.png"),
         RED_X("resources/Images/tokens/redX.png"),
