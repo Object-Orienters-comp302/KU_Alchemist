@@ -55,61 +55,36 @@ public class Potion {//creating function is in the GameController for now
         if(sign == null || color == null){
             throw new NullPointerException("Sign or color can't be null.");
         }
-    	switch (color) {
-        case Colorless:
-            return Identity.NETURAL;
-        case Green:
-            switch (sign) {
-                case Positive:
-                    return Identity.GREENPOSITIVE;
-                case Neutral:
-                    return Identity.NETURAL;
-                case Negative:
-                    return Identity.GREENNEGATIVE;
-            }
-        case Blue:
-            switch (sign) {
-                case Positive:
-                    return Identity.BLUEPOSITIVE;
-                case Neutral:
-                    return Identity.NETURAL;
-                case Negative:
-                    return Identity.BLUENEGATIVE;
-            }
-        case Red:
-            switch (sign) {
-                case Positive:
-                    return Identity.REDPOSITIVE;
-                case Neutral:
-                    return Identity.NETURAL;
-                case Negative:
-                    return Identity.REDNEGATIVE;
-            }
-    }
-    return Identity.UNKNOWN;
-    	
+        return switch (color) {
+            case Colorless -> IdentityTypes.NETURAL;
+            case Green -> switch (sign) {
+                case Positive -> IdentityTypes.GREENPOSITIVE;
+                case Neutral -> IdentityTypes.NETURAL;
+                case Negative -> IdentityTypes.GREENNEGATIVE;
+            };
+            case Blue -> switch (sign) {
+                case Positive -> IdentityTypes.BLUEPOSITIVE;
+                case Neutral -> IdentityTypes.NETURAL;
+                case Negative -> IdentityTypes.BLUENEGATIVE;
+            };
+            case Red -> switch (sign) {
+                case Positive -> IdentityTypes.REDPOSITIVE;
+                case Neutral -> IdentityTypes.NETURAL;
+                case Negative -> IdentityTypes.REDNEGATIVE;
+            };
+        };
+        
     }
     public static Potion deIdentify(IdentityTypes identity){
-        switch (identity){
-            case NETURAL:
-                return new Potion(Colors.Colorless, Signs.Neutral);
-            case REDNEGATIVE:
-                return new Potion(Colors.Red,Signs.Negative);
-            case BLUENEGATIVE:
-                return new Potion(Colors.Blue, Signs.Negative);
-            case GREENNEGATIVE:
-                return new Potion(Colors.Green,Signs.Negative);
-            case REDPOSITIVE:
-                return new Potion(Colors.Red, Signs.Positive);
-            case BLUEPOSITIVE:
-                return new Potion(Colors.Blue, Signs.Positive);
-            case GREENPOSITIVE:
-                return new Potion(Colors.Green, Signs.Positive);
-            case UNKNOWN:
-                return new Potion(Colors.Colorless, Signs.Neutral);
-        }
-        
-        return new Potion(Colors.Colorless, Signs.Neutral);
+        return switch (identity) {
+            case NETURAL, UNKNOWN -> new Potion(Colors.Colorless, Signs.Neutral);
+            case REDNEGATIVE -> new Potion(Colors.Red, Signs.Negative);
+            case BLUENEGATIVE -> new Potion(Colors.Blue, Signs.Negative);
+            case GREENNEGATIVE -> new Potion(Colors.Green, Signs.Negative);
+            case REDPOSITIVE -> new Potion(Colors.Red, Signs.Positive);
+            case BLUEPOSITIVE -> new Potion(Colors.Blue, Signs.Positive);
+            case GREENPOSITIVE -> new Potion(Colors.Green, Signs.Positive);
+        };
         
     }
     public static Potion.IdentityTypes getIdentityFromPath(AssetLoader.AssetPath path) {

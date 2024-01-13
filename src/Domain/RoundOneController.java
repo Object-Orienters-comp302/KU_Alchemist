@@ -39,7 +39,7 @@ public class RoundOneController {
     public Artifact BuyArtifacts(Player player) {
         final int artifactCost = 3;
         
-        if (player.getInventory().getGold() <= artifactCost) {
+        if (player.getInventory().getGold() < artifactCost) {
             return null; // Not enough gold
         }
         
