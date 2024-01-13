@@ -131,7 +131,7 @@ public class BookPanel extends JPanel {
         CircleButton.setCurrentPath(aspectPath);
         CircleButton.disable();
         if (endorserPanel==null) {
-            endorserPanel = new ColorChangingPanel("#de710d", "#f87000", 20, ColorChangingPanel.RoundingStyle.BOTH);
+            endorserPanel = new ColorChangingPanel("#C97222","#DE710D",  20, ColorChangingPanel.RoundingStyle.BOTH);
         }
         endorserPanel.setOpaque(false);
         endorserPanel.setBounds(confirmButton.getBounds());
