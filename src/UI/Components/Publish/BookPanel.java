@@ -169,8 +169,11 @@ public class BookPanel extends JPanel {
         endorserPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                startDebunkView();
-            
+                
+                if(GameController.getInstance().getRound() > 2) {
+                    startDebunkView();
+                }
+                
             }});
             
         book.repaint();

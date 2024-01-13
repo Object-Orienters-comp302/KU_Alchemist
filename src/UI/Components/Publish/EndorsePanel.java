@@ -101,13 +101,16 @@ public class EndorsePanel extends JPanel{
     pan.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.print(" reached stage 1 ");
                 GameController game = GameController.getInstance();
-                if(game.getRoundTwoController().canEndorse(game.getMenuController().getCurrentPlayer(),card)){
-                    System.out.print(" reached stage 2 ");
-                    game.getRoundTwoController().endorseTheory(game.getMenuController().getCurrentPlayer(),card,i);
-                    setupEndorsers();
-                    pan.getParent().remove(pan); // this is how it works I don't know why
+                if(game.getRound() >2) {
+                    System.out.print(" reached stage 1 ");
+                    
+                    if (game.getRoundTwoController().canEndorse(game.getMenuController().getCurrentPlayer(), card)) {
+                        System.out.print(" reached stage 2 ");
+                        game.getRoundTwoController().endorseTheory(game.getMenuController().getCurrentPlayer(), card, i);
+                        setupEndorsers();
+                        pan.getParent().remove(pan); // this is how it works I don't know why
+                    }
                 }
             }
         });
