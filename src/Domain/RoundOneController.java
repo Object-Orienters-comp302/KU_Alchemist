@@ -66,7 +66,7 @@ public class RoundOneController {
                     player.haveSurgery();
                 }
             }
-            if (potion.getSign()==Potion.Signs.Positive){
+            else if (potion.getSign()==Potion.Signs.Positive){
                 player.setSicknessLevel(player.getSicknessLevel() - 1);
             }
         } else {// Testing on Student
