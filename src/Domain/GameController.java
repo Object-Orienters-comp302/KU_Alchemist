@@ -92,7 +92,12 @@ public class GameController implements Publisher {
     }
     public RoundThreeController getRoundThreeController() { return roundThreeController; }
     public Integer getRound(){
-        return (TotalNextTurns/(Player.getPlayers().size()*3)) + 1;
+        int totalRounds = (TotalNextTurns/(Player.getPlayers().size()*3)) + 1;
+        if(totalRounds < 4){
+            return totalRounds;
+        }
+        publishEvent(Type.START_END_GAME_VIEW);
+        return totalRounds;
     }
     
     public void calculateFinalScores(){

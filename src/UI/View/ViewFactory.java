@@ -1,5 +1,6 @@
 package UI.View;
 
+import UI.Components.SuperViews.FinalView;
 import UI.Components.SuperViews.StartView;
 
 public class ViewFactory {
@@ -17,6 +18,7 @@ public class ViewFactory {
     private TransmuteView transmuteView; // TODO: Refactor this
     private MarketView    buyArtifactView; // TODO: Refactor this
     private StartView     startView;
+    private FinalView     finalView;
     
     
     private ViewFactory() {
@@ -104,4 +106,11 @@ public class ViewFactory {
         }
         return startView;
     }
+    public FinalView getFinalView() {
+        if (finalView == null) {
+            finalView = new FinalView();
+        }
+        return finalView;
+    }
+
 }
