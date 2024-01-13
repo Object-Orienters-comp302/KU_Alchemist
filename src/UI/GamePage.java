@@ -38,11 +38,11 @@ public class GamePage extends JFrame implements Listener {
         
     }
     private void addListeners(){
-        //ViewFactory.getInstance().getMenuView().addListener(this);
         ViewFactory.getInstance().getLoginView().addListener(this);
         ViewFactory.getInstance().getPauseView().addListener(this);
         ViewFactory.getInstance().getHelpScreenView().addListener(this);
         ViewFactory.getInstance().getStartView().addListener(this);
+        GameController.getInstance().addListener(this);
     }
     
     @Override
@@ -61,6 +61,8 @@ public class GamePage extends JFrame implements Listener {
             cardPanel.add(ViewFactory.getInstance().getMenuView(), Cards.MenuView.getString());
             cardLayout.show(cardPanel, Cards.MenuView.getString());
             setVisible(true);
+            ViewFactory.getInstance().getMenuView().addListener(this);
+            
         }
         if (type == Domain.Event.Type.PAUSE) {
             cardPanel.add(ViewFactory.getInstance().getPauseView(), Cards.PauseView.getString());
@@ -72,6 +74,11 @@ public class GamePage extends JFrame implements Listener {
             cardLayout.show(cardPanel, Cards.HelpView.getString());
             setVisible(true);
         }
+        if(type == Domain.Event.Type.START_END_GAME_VIEW){
+            cardPanel.add(ViewFactory.getInstance().getFinalView(), Cards.FinalView.getString());
+            cardLayout.show(cardPanel, Cards.FinalView.getString());
+            setVisible(true);
+        }
     }
     
     enum Cards {
@@ -79,7 +86,9 @@ public class GamePage extends JFrame implements Listener {
         MenuView("MenuView"),
         PauseView("PauseView"),
         HelpView("HelpView"),
-        StartView("StartView");
+        StartView("StartView"),
+        FinalView("FinalView");
+        
         
         private final String string;
         
