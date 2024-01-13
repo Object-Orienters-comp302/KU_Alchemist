@@ -1,6 +1,5 @@
 package Models;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PublicationCard {
@@ -24,8 +23,6 @@ public class PublicationCard {
         return Aspects;
     }
     
-   
-    
     public Ingredient.IngredientTypes getIngredient() { return Ingredient; }
     
     public Player getOwner() { return Owner; }
@@ -43,11 +40,9 @@ public class PublicationCard {
     public HashMap<Integer,Player> getEndorsers(){
         return  playersThatEndorsed;
     }
+    
     public boolean playerCanEndorse(Player player){
-        if (Owner!=player && !playersThatEndorsed.values().contains(player)){
-            return true;
-        }
-        return false;
+        return Owner != player && !playersThatEndorsed.containsValue(player);
     }
     
     @Override
