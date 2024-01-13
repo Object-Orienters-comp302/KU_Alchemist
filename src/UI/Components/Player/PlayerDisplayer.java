@@ -48,6 +48,7 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         setLayout(null);
         setPlayerBackground(player); // Sets a different border if player is the current player
         this.playerInstance.getInventory().addListener(this);
+        this.playerInstance.addListener(this);
         CreateObjects();
         SetupObjects();
         addFunctions();
@@ -163,6 +164,11 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         if (type==Type.POTION){
             potionsPanel.RemoveShadow(playerInstance.getInventory().getPotions());
             healthPanel.setHealth(playerInstance.getSicknessLevel());
+        }
+        if(type == Type.REPUTATION){
+            pointsLabel.setText(playerInstance.getReputation().toString());
+            this.revalidate();
+            this.repaint();
         }
         
     }
