@@ -47,9 +47,6 @@ public class ImageChangingPanel extends JPanel {
         gbc_panel.fill  = GridBagConstraints.BOTH;
         gbc_panel.gridx = 0;
         gbc_panel.gridy = 0;
-        
-        image.changeImage(KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(defImage)), 5, 2));
-        
         add(image, gbc_panel);
         this.addMouseListener(new ImageChangeListener(this.image, this.defImage, this.hoverImage));
     }
@@ -91,8 +88,8 @@ public class ImageChangingPanel extends JPanel {
         
         public ImageChangeListener(ImagePanel panel, String defImage, String hoverImage) {
             this.panel      = panel;
-            this.hoverImage = GUtil.fetchImage(defImage);
-            this.defImage   = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(defImage)), 5, 2);
+            this.hoverImage = GUtil.fetchImage(hoverImage);
+            this.defImage   = GUtil.fetchImage(defImage);
         }
         
         @Override
