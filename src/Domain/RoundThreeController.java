@@ -57,9 +57,7 @@ public class RoundThreeController extends RoundTwoController{
         PublicationTrack.getInstance().removePublicationCard(card);
     }
     //TODO: add function for when the publications turns out to be true (likely endgame controller)
-    public Deck getDeck(){
-        return Deck.getInstance();
-    }
+    
     public boolean useElixirOfInsight(Player currentPlayer, Artifact artifactCard){
         if (artifactCard != null && currentPlayer.getInventory().getArtifacts().contains(artifactCard)) {
             if (artifactCard.getAbilityType().equals(Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT)) {

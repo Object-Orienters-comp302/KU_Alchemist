@@ -2,6 +2,8 @@ package Domain;
 
 import Models.*;
 
+import java.util.HashMap;
+
 public class RoundOneController {
     
     protected RoundOneController() { }
@@ -123,6 +125,15 @@ public class RoundOneController {
     }
     private Boolean CompareTwoAspectSizes(Aspect aspect1, Aspect aspect2){
         return !(aspect1.getSize() == aspect2.getSize());
+    }
+    public Deck getDeck(){
+        return Deck.getInstance();
+    }
+    
+    //ARTIFACTS
+    
+    public void ElixirOfInsightAbility(HashMap<Integer, Ingredient.IngredientTypes> map){
+        GameController.getInstance().getRoundOneController().getDeck().setFirstThree(map);
     }
     
     public boolean MagicMortar(Player current, Artifact.Name artifactName, Ingredient.IngredientTypes ingredient){
