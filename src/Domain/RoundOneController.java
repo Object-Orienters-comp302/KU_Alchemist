@@ -63,13 +63,15 @@ public class RoundOneController {
                                  Boolean TestOnSelf) {//TODO Other cases will be implemented.
         if (TestOnSelf) {
             if (potion.getSign() == Potion.Signs.Negative) {//If negative get sickness
-                player.setSicknessLevel(player.getSicknessLevel() + 1);
-                if (player.getSicknessLevel() >= 3) {
+                player.setHealthLevel(player.getHealthLevel() - 1);
+                /*
+                if (player.getHealthLevel() <= -3) {
                     player.haveSurgery();
                 }
+                 */
             }
             if (potion.getSign()==Potion.Signs.Positive){
-                player.setSicknessLevel(player.getSicknessLevel() - 1);
+                player.setHealthLevel(player.getHealthLevel() + 1);
             }
         } else {// Testing on Student
             if (potion.getSign() == Potion.Signs.Negative) {//If negative lose 1 gold
@@ -136,7 +138,7 @@ public class RoundOneController {
         GameController.getInstance().getRoundOneController().getDeck().setFirstThree(map);
     }
     public void PistolOfSicknessAbility(Player target,int value){
-        target.setSicknessLevel(target.getSicknessLevel()-value);
+        target.setHealthLevel(target.getHealthLevel()-value);
     }
     
     public boolean MagicMortar(Player current, Artifact.Name artifactName, Ingredient.IngredientTypes ingredient){

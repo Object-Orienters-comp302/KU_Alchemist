@@ -4,7 +4,6 @@ import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class Player implements Publisher {
@@ -15,7 +14,7 @@ public class Player implements Publisher {
     private        Inventory           inventory;
     private        Integer             score;
     private        Integer             reputation;
-    private        Integer             sicknessLevel;
+    private        Integer             healthLevel;
     private        ArrayList<Listener> listeners;
     private        int[]               triangleTableArray;
     private        int[][]             rectangleTableArray;
@@ -27,9 +26,9 @@ public class Player implements Publisher {
         this.inventory           = new Inventory();
         this.listeners           = new ArrayList<>();
         this.score               = 0; // Start from 0
-        this.reputation          = 0;
-        this.sicknessLevel       = 0; // Sickness is an integer from 1 to 3 representing how sick the person is
-        this.triangleTableArray  = new int[28];
+        this.reputation         = 0;
+        this.healthLevel        = 0; // Sickness is an integer from 1 to 3 representing how sick the person is
+        this.triangleTableArray = new int[28];
         this.rectangleTableArray = new int[8][8];
         this.forageRight         = 2;
         
@@ -60,7 +59,7 @@ public class Player implements Publisher {
     public void haveSurgery() {
         // If the player gets surgery remove all gold and set sickness to 0
         getInventory().setGold(0);
-        setSicknessLevel(0);
+        setHealthLevel(0);
     }
     public Inventory getInventory() {
         return inventory;
@@ -93,18 +92,19 @@ public class Player implements Publisher {
         this.reputation = reputation;
         publishEvent(Type.REPUTATION);
     }
-    public Integer getSicknessLevel() {
-        return sicknessLevel;
+    public Integer getHealthLevel() {
+        return healthLevel;
     }
-    public void setSicknessLevel(Integer sicknessLevel) {
-        if (sicknessLevel > 3) {
-            this.sicknessLevel = 3;
-        } else if (sicknessLevel < 0) {
-            this.sicknessLevel = 0;
+    public void setHealthLevel(Integer healthLevel) {
+        if (healthLevel > 3) {
+            this.healthLevel = 3;
+        } else if (healthLevel < -3) {
+            this.haveSurgery();
         } else {
-            this.sicknessLevel = sicknessLevel;
+            this.healthLevel = healthLevel;
         }
         publishEvent(Type.SICKNESS);
+        this.inventory.publishEvent(Type.SICKNESS);
         // TODO: Refactor the event names
     }
     public int[] getTriangleTableArray() {

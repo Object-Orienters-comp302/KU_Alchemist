@@ -162,7 +162,10 @@ public class PlayerDisplayer extends RoundedPanel implements Listener {// ToDo: 
         }
         if (type==Type.POTION){
             potionsPanel.RemoveShadow(playerInstance.getInventory().getPotions());
-            healthPanel.setHealth(playerInstance.getSicknessLevel());
+            healthPanel.setHealth(playerInstance.getHealthLevel());
+        }
+        if (type==Type.SICKNESS){
+            healthPanel.setHealth(playerInstance.getHealthLevel());
         }
         
     }
