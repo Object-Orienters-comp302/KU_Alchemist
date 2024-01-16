@@ -2,6 +2,7 @@ package UI.View;
 
 import UI.Components.SuperViews.FinalView;
 import UI.Components.SuperViews.StartView;
+import UI.Components.SuperViews.WaitingRoomView;
 
 public class ViewFactory {
     
@@ -19,6 +20,7 @@ public class ViewFactory {
     private MarketView    buyArtifactView; // TODO: Refactor this
     private StartView     startView;
     private FinalView     finalView;
+    private WaitingRoomView waitingRoomView;
     
     
     private ViewFactory() {
@@ -112,5 +114,10 @@ public class ViewFactory {
         }
         return finalView;
     }
-
+    public WaitingRoomView getWaitingRoomView() {
+        if (waitingRoomView == null) {
+            waitingRoomView = new WaitingRoomView();
+        }
+        return waitingRoomView;
+    }
 }

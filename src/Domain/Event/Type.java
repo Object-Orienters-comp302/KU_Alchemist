@@ -19,6 +19,7 @@ public enum Type {
     START_LOGIN_SCREEN,
     HELP,
     START_START_VIEW,
-    START_END_GAME_VIEW
+    START_END_GAME_VIEW,
+    PLAYER_ADDED
     
 }

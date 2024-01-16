@@ -3,6 +3,7 @@ package UI.Components.SuperViews;
 import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
+import Networking.GameServer;
 import Sound.DJ;
 import UI.Components.ImagePanels.HQImagePanel;
 import UI.Components.ImagePanels.ImagePanel;
@@ -10,9 +11,11 @@ import UI.View.ViewFactory;
 import Utils.AssetLoader;
 
 import javax.swing.*;
+import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class StartView extends JPanel implements Publisher {
@@ -96,6 +99,30 @@ public class StartView extends JPanel implements Publisher {
                 SetupObjectsForHost();
                 SetupListenersForHost();
                 repaint();
+            }
+        });
+        selectJoin.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new Thread(() -> {
+                    try {
+                        GameServer server = new GameServer(12345); // Port number
+                        server.addListener(ViewFactory.getInstance().getWaitingRoomView());
+                        server.start();
+                        
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }).start();
+
+                SwingUtilities.invokeLater(() -> {
+                    WaitingRoomView waitingRoomView = ViewFactory.getInstance().getWaitingRoomView();
+                    JFrame frame = new JFrame();
+                    frame.setSize(1290, 720);
+                    frame.add(waitingRoomView);
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame.setVisible(true);
+                });
             }
         });
         

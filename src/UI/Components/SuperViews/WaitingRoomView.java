@@ -1,6 +1,8 @@
 package UI.Components.SuperViews;
 
 
+import Domain.Event.Listener;
+import Domain.Event.Type;
 import Domain.GameController;
 import Domain.MenuController;
 import Models.Player;
@@ -13,9 +15,8 @@ import Utils.AssetLoader;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Comparator;
 
-public class WaitingRoomView extends JPanel {
+public class WaitingRoomView extends JPanel implements Listener {
     
     MenuController controller;
     String         goldColor = "#FFD700";
@@ -28,7 +29,7 @@ public class WaitingRoomView extends JPanel {
         controller = GameController.getInstance().getMenuController();
         createObjects();
         setupObjects();
-        addPlayers();
+        
     }
     
     
@@ -58,13 +59,13 @@ public class WaitingRoomView extends JPanel {
         selectStart.add(startText);
         
     }
-    public void addPlayers() {
+    public void addPlayer() {
         
         ArrayList<Player> playerList = controller.getPlayers();
         
-        for (int i = 0; i < playerList.size(); i++) {
-            
-            PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
+            int i = playerList.size()-1;
+        
+            PlayerDisplayer displayer = new PlayerDisplayer(playerList.getLast());
             displayer.setBounds(520, (110 + 100*i), 240, 80);
             
             JLabel rank = new JLabel();
@@ -75,7 +76,6 @@ public class WaitingRoomView extends JPanel {
 
             Background.add(rank);
             Background.add(displayer);
-        }
     }
     
     public static void main(String[] args) {
@@ -94,5 +94,14 @@ public class WaitingRoomView extends JPanel {
         frame.add(new WaitingRoomView());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+    }
+    
+    @Override
+    public void onEvent(Type type) {
+        if (type == Type.PLAYER_ADDED) {
+            this.addPlayer();
+            this.revalidate();
+            this.repaint();
+        }
     }
 }
