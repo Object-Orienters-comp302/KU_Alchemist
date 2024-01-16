@@ -62,10 +62,6 @@ public class WaitingRoomView extends JPanel {
         
         ArrayList<Player> playerList = controller.getPlayers();
         
-        playerList.sort(Comparator.comparingInt(Player::getScore)
-                                .thenComparingInt(player -> player.getInventory().getGold() % 3)
-                                .reversed());
-        
         for (int i = 0; i < playerList.size(); i++) {
             
             PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
