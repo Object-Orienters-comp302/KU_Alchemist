@@ -49,6 +49,9 @@ public class RoundZeroController {
         
         Artifact artifact4 = new Artifact(Artifact.Name.Wisdom_Idol, Artifact.AbilityType.MULTIPLE_TIMES_EFFECT_PER_ROUND);
         this.deck.addArtifactCard(artifact4,1);
+        
+        Artifact artifact5 = new Artifact(Artifact.Name.Pistol_of_Sickness_Classic, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        this.deck.addArtifactCard(artifact5,1);
     }
     
     public void gold_setup(Player player, int gold) {

@@ -135,6 +135,9 @@ public class RoundOneController {
     public void ElixirOfInsightAbility(HashMap<Integer, Ingredient.IngredientTypes> map){
         GameController.getInstance().getRoundOneController().getDeck().setFirstThree(map);
     }
+    public void PistolOfSicknessAbility(Player target,int value){
+        target.setSicknessLevel(target.getSicknessLevel()-value);
+    }
     
     public boolean MagicMortar(Player current, Artifact.Name artifactName, Ingredient.IngredientTypes ingredient){
         if(current.getInventory().checkArtifactExists(artifactName)){

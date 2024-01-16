@@ -4,6 +4,7 @@ import Domain.GameController;
 import Models.Artifact;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.ImagePanels.OutlinedLabel;
+import UI.Components.SuperViews.ArtifactTargetSelectorView;
 import UI.Components.SuperViews.ElixirOfInsightView;
 import UI.View.MenuView;
 import Utils.AssetLoader;
@@ -83,6 +84,11 @@ public class ArtifactCard extends JPanel {
             case Wisdom_Idol -> {artifactImage.changeImage(AssetLoader.Artifacts.IDOL);
                 nameLabel.setText("Wisdom Idol");
                 description.setText("Fill");}
+            case Pistol_of_Sickness_Classic -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.IDOL);
+                nameLabel.setText("Pistol");
+                description.setText("Fill");
+            }
         }
     
     }
@@ -95,6 +101,13 @@ public class ArtifactCard extends JPanel {
                         ElixirOfInsightFunction();
                     }});
             }
+            case Pistol_of_Sickness_Classic ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        PistolofSicknessClassicFunction();
+                    }});
+            }
         }
     }
     
@@ -104,6 +117,12 @@ public class ArtifactCard extends JPanel {
         menu.Blockade();
         artifact.gotUsed();
         menu.addAndRunPage(new ElixirOfInsightView());
+    }
+    public void PistolofSicknessClassicFunction(){
+        MenuView menu= GameController.getInstance().getMenuController().getMenuView();
+        menu.Blockade();
+        artifact.gotUsed();
+        menu.addAndRunPage(new ArtifactTargetSelectorView(Artifact.Name.Pistol_of_Sickness_Classic));
         
     }
     

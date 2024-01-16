@@ -1,6 +1,7 @@
 package UI.Components.SuperViews;
 
 import Domain.GameController;
+import Models.Artifact;
 import Models.Deck;
 import Models.Ingredient;
 import Models.Player;
@@ -26,7 +27,7 @@ public class ArtifactTargetSelectorView extends JPanel {
     private ColorChangingPanel confirmButton;
     private Player    curr,player1,player2,player3;
     
-    public ArtifactTargetSelectorView() {
+    public ArtifactTargetSelectorView(Artifact.Name name) {
         setBounds(0,0,1000,500);
         setLayout(null);
         
@@ -91,7 +92,7 @@ public class ArtifactTargetSelectorView extends JPanel {
             card3.add(playerCard3);
         }
         addCardFunctions();
-        
+        addConfirmFunction(name);
     }
     private ColorChangingPanel createConfirmButton() {
         ColorChangingPanel button = new ColorChangingPanel(STEEL, GOLD, 30, ColorChangingPanel.RoundingStyle.BOTH);
@@ -106,13 +107,25 @@ public class ArtifactTargetSelectorView extends JPanel {
         return button;
     }
     
-    private void addConfirmFunction(){
+    private void addConfirmFunction(Artifact.Name name){
         confirmButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                switch (name){
+                    case Pistol_of_Sickness_Classic -> {
+                            firePistol(1);
+                    }
+                }
             
             }
         });
+    }
+    private void firePistol(int i){
+        if (getChosenPlayer()!=null) {
+            System.out.println("FİRED");
+            GameController.getInstance().getRoundOneController().PistolOfSicknessAbility(getChosenPlayer(), 1);
+            liftBlockade();
+        }
     }
     private void liftBlockade(){
         MenuView menu = GameController.getInstance().getMenuController().getMenuView();
@@ -134,31 +147,32 @@ public class ArtifactTargetSelectorView extends JPanel {
     }
     private void addCardFunctions(){
         if (player1!=null){
-            playerCard1.addMouseListener(new MouseAdapter() {
+            card1.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    cardFunction(playerCard1);
+                    cardFunction(card1);
                 }
             });
         }
         if (player2!=null){
-            playerCard2.addMouseListener(new MouseAdapter() {
+            card2.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    cardFunction(playerCard2);
+                    cardFunction(card2);
                 }
             });
         }
         if (player3!=null){
-            playerCard3.addMouseListener(new MouseAdapter() {
+            card3.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    cardFunction(playerCard3);
+                    cardFunction(card3);
                 }
             });
         }
     }
     private void cardFunction(JPanel pan){
+        System.out.println("Card func");
         if (pan==active){
             disactivate(pan);
         }
@@ -168,14 +182,36 @@ public class ArtifactTargetSelectorView extends JPanel {
         }
     }
     private void disactivate(JPanel pan){
-        pan.setBackground(STEEL);
-        active=null;
+        if (active!=null) {
+            System.out.println("Card func dis");
+            pan.setBackground(STEEL);
+            active = null;
+            pan.repaint();
+        }
     }
     private void activate(JPanel pan){
+        System.out.println("Card func act");
         pan.setBackground(GOLD);
         active=pan;
+        pan.repaint();
     }
     
+    private Player getChosenPlayer(){
+        
+        if (active==null){
+            return null;
+        }
+        if (active==card1){
+            return player1;
+        }
+        if (active==card2){
+            return player2;
+        }
+        if (active==card3){
+            return player3;
+        }
+        return null;
+    }
     private ImagePanel getPlayerPanel(int index) {
         if (index == 1) return playerCard1;
         if (index == 2) return playerCard2;

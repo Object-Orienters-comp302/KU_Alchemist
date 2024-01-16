@@ -47,6 +47,7 @@ public class Artifact {
         Elixir_of_Insight,
         Magic_Mortar,
         Printing_Press,
-        Wisdom_Idol
+        Wisdom_Idol,
+        Pistol_of_Sickness_Classic
     }
 }
