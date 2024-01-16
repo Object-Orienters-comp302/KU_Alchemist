@@ -1,5 +1,8 @@
 package Networking;
 
+import Models.Token;
+import Utils.AssetLoader;
+
 import java.io.*;
 import java.net.*;
 
@@ -47,7 +50,8 @@ public class GameClient {
     public static void main(String[] args) throws IOException {
         GameClient client = new GameClient("localhost", 12345);
         // Example: send an action
-        GameAction action = new GameAction(GameAction.ActionType.UPDATE_PLAYER, "Player1 got 2 Feather ingredient.");
+        GameAction action = new GameAction(GameAction.ActionType.PLAYER_JOINED, "Player Name Placeholder",
+                                           AssetLoader.Tokens.RED);
         client.sendAction(action);
         
         GameAction action1 = new GameAction(GameAction.ActionType.UPDATE_DECK, "Drew 1 card from deck");

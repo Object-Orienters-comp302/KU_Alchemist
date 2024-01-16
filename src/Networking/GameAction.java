@@ -1,5 +1,7 @@
 package Networking;
 
+import Utils.AssetLoader;
+
 import javax.swing.*;
 import java.io.Serial;
 import java.io.Serializable;
@@ -10,13 +12,20 @@ public class GameAction implements Serializable {
     
     private ActionType actionType;
     private String details;
-    
+    private AssetLoader.Tokens tokens;
     public GameAction(ActionType actionType, String details) {
         this.actionType = actionType;
         this.details = details;
     }
+    public GameAction(ActionType actionType, String details, AssetLoader.Tokens tokens) {
+        this.actionType = actionType;
+        this.details = details;
+        this.tokens = tokens;
+        
+    }
+    
     enum ActionType{
-        ADDED_PLAYER(""),
+        PLAYER_JOINED("PLAYER JOINED"),
         GOLD(""),
         ARTIFACT(""),
         POTION(""),
@@ -52,5 +61,9 @@ public class GameAction implements Serializable {
     
     public String getDetails() {
         return details;
+    }
+    
+    public AssetLoader.Tokens getTokens() {
+        return tokens;
     }
 }
