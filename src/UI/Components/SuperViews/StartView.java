@@ -108,21 +108,23 @@ public class StartView extends JPanel implements Publisher {
                     try {
                         GameServer server = new GameServer(12345); // Port number
                         server.addListener(ViewFactory.getInstance().getWaitingRoomView());
-                        server.start();
                         
+                        SwingUtilities.invokeLater(() -> {
+                            WaitingRoomView waitingRoomView = ViewFactory.getInstance().getWaitingRoomView();
+                            JFrame frame = new JFrame();
+                            frame.setSize(1290, 720);
+                            frame.add(waitingRoomView);
+                            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            frame.setVisible(true);
+                        });
+                        
+                        server.start();
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
                 }).start();
 
-                SwingUtilities.invokeLater(() -> {
-                    WaitingRoomView waitingRoomView = ViewFactory.getInstance().getWaitingRoomView();
-                    JFrame frame = new JFrame();
-                    frame.setSize(1290, 720);
-                    frame.add(waitingRoomView);
-                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    frame.setVisible(true);
-                });
+
             }
         });
         
