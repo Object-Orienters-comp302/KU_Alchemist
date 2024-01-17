@@ -72,7 +72,7 @@ public class LoginView extends JPanel implements Publisher {
     private void CreateObjects() {
         loginControl = GameController.getInstance().getLoginController();
         tokenList    = loginControl.getCirularTokens();
-        MainPanel    = new ImagePanel(tokenList.get().getBackground());
+        MainPanel    = new ImagePanel(tokenList.get().getBluredBackground());
         MainPanel.setBounds(0, 0, 1280, 720);
         TokenSelectorPanel                    = new CutRoundedPanel(60, true);
         TokenSelectorPanel_Left               =
@@ -181,7 +181,7 @@ public class LoginView extends JPanel implements Publisher {
             public void mouseClicked(MouseEvent e) {
                 tokenList.getPrev();
                 TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
-                MainPanel.changeImage(tokenList.get().getBackground());
+                MainPanel.changeImage(tokenList.get(). getBluredBackground());
             }
         });
         
@@ -190,7 +190,7 @@ public class LoginView extends JPanel implements Publisher {
             public void mouseClicked(MouseEvent e) {
                 tokenList.getNext();
                 TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
-                MainPanel.changeImage(tokenList.get().getBackground());
+                MainPanel.changeImage(tokenList.get(). getBluredBackground());
             }
         });
         
@@ -271,7 +271,7 @@ public class LoginView extends JPanel implements Publisher {
             tokenList.delete();
             TextField.setText("");
             TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
-            MainPanel.changeImage(tokenList.get().getBackground());
+            MainPanel.changeImage(tokenList.get(). getBluredBackground());
             LoginView.iter += 1;
             
             
