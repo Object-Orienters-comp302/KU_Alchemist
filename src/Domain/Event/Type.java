@@ -20,6 +20,7 @@ public enum Type {
     HELP,
     START_START_VIEW,
     START_END_GAME_VIEW,
+    START_ONLINE_LOGIN_SCREEN,
     PLAYER_ADDED
     
 }

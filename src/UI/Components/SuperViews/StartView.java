@@ -145,6 +145,9 @@ public class StartView extends JPanel implements Publisher {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                
+                ViewFactory.getInstance().getLoginView().setPlayerAmount(1);
+                publishEvent(Type.START_ONLINE_LOGIN_SCREEN);
             }
         });
     }

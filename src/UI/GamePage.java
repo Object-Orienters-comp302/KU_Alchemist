@@ -39,6 +39,7 @@ public class GamePage extends JFrame implements Listener {
     }
     private void addListeners(){
         ViewFactory.getInstance().getLoginView().addListener(this);
+        ViewFactory.getInstance().getOnlineLoginView().addListener(this);
         ViewFactory.getInstance().getPauseView().addListener(this);
         ViewFactory.getInstance().getHelpScreenView().addListener(this);
         ViewFactory.getInstance().getStartView().addListener(this);
@@ -55,6 +56,11 @@ public class GamePage extends JFrame implements Listener {
         if (type == Domain.Event.Type.START_LOGIN_SCREEN) {
             cardPanel.add(ViewFactory.getInstance().getLoginView(), Cards.LoginView.getString());
             cardLayout.show(cardPanel, Cards.LoginView.getString());
+            setVisible(true);
+        }
+        if (type == Domain.Event.Type.START_ONLINE_LOGIN_SCREEN) {
+            cardPanel.add(ViewFactory.getInstance().getOnlineLoginView(), Cards.OnlineLoginView.getString());
+            cardLayout.show(cardPanel, Cards.OnlineLoginView.getString());
             setVisible(true);
         }
         if (type == Domain.Event.Type.START_MENUVIEW) {
@@ -83,6 +89,7 @@ public class GamePage extends JFrame implements Listener {
     
     enum Cards {
         LoginView("LoginView"),
+        OnlineLoginView("OnlineLoginView"),
         MenuView("MenuView"),
         PauseView("PauseView"),
         HelpView("HelpView"),
