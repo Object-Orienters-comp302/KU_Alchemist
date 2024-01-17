@@ -280,6 +280,7 @@ public class OnlineLoginView extends JPanel implements Publisher {
                 // JOIN THE GAME
                 // TODO: Join the server with correct data and validate that the data is not already used
                 
+                
                 ThrowLoadingGif();
                 SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                     @Override

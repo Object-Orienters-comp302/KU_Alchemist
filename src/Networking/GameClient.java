@@ -7,15 +7,30 @@ import java.io.*;
 import java.net.*;
 
 public class GameClient {
+    private static GameClient instance;
     private Socket socket;
     private ObjectInputStream objectIn;
     private ObjectOutputStream objectOut;
     
-    public GameClient(String host, int port) throws IOException {
+    private GameClient(String host, int port) throws IOException {
         socket = new Socket(host, port);
         objectOut = new ObjectOutputStream(socket.getOutputStream());
         objectIn = new ObjectInputStream(socket.getInputStream());
         new Thread(this::listenToServer).start();
+    }
+    
+    // Must be called once per client.
+    public static synchronized void init(String host, int port) throws IOException {
+        if (instance == null) {
+            instance = new GameClient(host, port);
+        }
+    }
+    
+    public static GameClient getInstance() throws IllegalStateException {
+        if (instance == null) {
+            throw new IllegalStateException("GameClient is not initialized. Call init() first.");
+        }
+        return instance;
     }
     
     private void listenToServer() {
@@ -48,14 +63,16 @@ public class GameClient {
     }
     
     public static void main(String[] args) throws IOException {
-        GameClient client = new GameClient("localhost", 12345);
+        // Once per client
+        GameClient.init("localhost", 12345);
+        
         // Example: send an action
         GameAction action = new GameAction(GameAction.ActionType.PLAYER_JOINED, "Player Name Placeholder",
                                            AssetLoader.Tokens.RED);
-        client.sendAction(action);
+        GameClient.getInstance().sendAction(action);
         
         GameAction action1 = new GameAction(GameAction.ActionType.UPDATE_DECK, "Drew 1 card from deck");
-        client.sendAction(action1);
+        GameClient.getInstance().sendAction(action1);
     }
 }
 
