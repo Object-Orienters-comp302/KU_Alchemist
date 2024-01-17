@@ -3,6 +3,7 @@ package UI.Components.SuperViews;
 import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
+import Networking.GameClient;
 import Networking.GameServer;
 import Sound.DJ;
 import UI.Components.ImagePanels.HQImagePanel;
@@ -25,6 +26,7 @@ public class StartView extends JPanel implements Publisher {
     ImagePanel Background;
     ImagePanel NamePanel;
     ImagePanel StartButton;
+    ImagePanel selectJoinReal;
     JPanel     ButtonPanel;
     
     HQImagePanel        B1,B2,B3;
@@ -61,6 +63,8 @@ public class StartView extends JPanel implements Publisher {
         
         selectJoin  = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW));
         
+        selectJoinReal = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_WHITE));
+        
     }
     private void SetupBase(){
         Background.setBounds(0, 0, 1280, 720);
@@ -83,6 +87,11 @@ public class StartView extends JPanel implements Publisher {
         selectJoin.setBounds(600,250,500,200);
         Background.add(selectJoin);
         selectJoin.setLayout(null);
+        
+        
+        selectJoinReal.setBounds(600,450,500,200);
+        Background.add(selectJoinReal);
+        selectJoinReal.setLayout(null);
         
         ImagePanel joinText = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.JOIN));
         joinText.setLayout(null);
@@ -128,7 +137,18 @@ public class StartView extends JPanel implements Publisher {
             }
         });
         
+        selectJoinReal.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    GameClient.init("localhost", 12345); //TODO: Ask for port and ip in gui
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
+    
     public void CleanupBase(){
         Background.remove(selectJoin);
         Background.remove(selectHost);
