@@ -23,21 +23,20 @@ public class KawaseBlur {
             int[] sourcePixels = ((DataBufferInt) currentImage.getRaster().getDataBuffer()).getData();
             int[] destPixels = ((DataBufferInt) blurredImage.getRaster().getDataBuffer()).getData();
             
-            IntStream range =
-                    width * height < 10000 ? IntStream.range(0, height) : IntStream.range(0, height).parallel();
-            range.forEach(y -> {
+            IntStream.range(0, height).parallel().forEach(y -> {
                 for (int x = 0; x < width; x++) {
                     int sumA = 0, sumR = 0, sumG = 0, sumB = 0, count = 0;
                     
                     for (int dy = -radius; dy <= radius; dy++) {
                         int ny = y + dy;
-                        if (ny < 0 || ny >= height) { continue; }
+                        if (ny < 0 || ny >= height) continue;
                         
+                        int yOffset = ny * width;
                         for (int dx = -radius; dx <= radius; dx++) {
                             int nx = x + dx;
-                            if (nx < 0 || nx >= width) { continue; }
+                            if (nx < 0 || nx >= width) continue;
                             
-                            int color = sourcePixels[ny * width + nx];
+                            int color = sourcePixels[yOffset + nx];
                             sumA += (color >> 24) & 0xff;
                             sumR += (color >> 16) & 0xff;
                             sumG += (color >> 8) & 0xff;
@@ -46,6 +45,7 @@ public class KawaseBlur {
                         }
                     }
                     
+                    if (count == 0) continue;
                     int avgA = sumA / count;
                     int avgR = sumR / count;
                     int avgG = sumG / count;
