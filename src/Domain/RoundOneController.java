@@ -133,12 +133,42 @@ public class RoundOneController {
     }
     
     //ARTIFACTS
-    
+    public void ArtifactGotUsed(Artifact.Name artifact){
+        GameController.getInstance().getMenuController().getCurrentPlayer().getInventory().removeArtifact(artifact);
+    }
     public void ElixirOfInsightAbility(HashMap<Integer, Ingredient.IngredientTypes> map){
         GameController.getInstance().getRoundOneController().getDeck().setFirstThree(map);
     }
     public void PistolOfSicknessAbility(Player target,int value){
         target.setHealthLevel(target.getHealthLevel()-value);
+    }
+    public void ArtifactReputationAbility(Player target,int value){
+        target.setReputation(target.getReputation()+value);
+    }
+    public void ArtifactHealingAbility(int i){
+        GameController.getInstance().getMenuController().getCurrentPlayer().setHealthLevel(
+                GameController.getInstance().getMenuController().getCurrentPlayer().getHealthLevel()+i);
+    }
+    public void ArtifactGatheringAbility(Artifact.Name name){
+        Inventory inv =GameController.getInstance().getMenuController().getCurrentPlayer().getInventory();
+        switch (name){
+            case Magical_Boar -> {
+                inv.addIngredient(Ingredient.IngredientTypes.Flower,2);
+                inv.addIngredient(Ingredient.IngredientTypes.Plant,2);
+            }
+            case Mystic_Meerkat -> {
+                inv.addIngredient(Ingredient.IngredientTypes.Mushroom,2);
+                inv.addIngredient(Ingredient.IngredientTypes.Mandrake,2);
+            }
+            case Big_Black_Chicken -> {
+                inv.addIngredient(Ingredient.IngredientTypes.ChickenLeg,2);
+                inv.addIngredient(Ingredient.IngredientTypes.Feather,2);
+            }
+            case Hunting_Phoenix -> {
+                inv.addIngredient(Ingredient.IngredientTypes.Scorpion,2);
+                inv.addIngredient(Ingredient.IngredientTypes.Toad,2);
+            }
+        }
     }
     
     public boolean MagicMortar(Player current, Artifact.Name artifactName, Ingredient.IngredientTypes ingredient){

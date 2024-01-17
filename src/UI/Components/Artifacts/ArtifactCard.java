@@ -41,16 +41,16 @@ public class ArtifactCard extends JPanel {
         artifactImage.setBounds(15, 15, 160, 113); // Adjusted bounds
         cardBackground.add(artifactImage);
         
-        nameLabel = new OutlinedLabel("TEST but bit longer", Color.WHITE, Color.BLUE);
+        nameLabel = new OutlinedLabel("TEST but bit longer", "#a57c00", "#C0C0C0", OutlinedLabel.Versions.MID_ORIENTED);
         nameLabel.setHorizontalAlignment(JLabel.CENTER);
         nameLabel.setVerticalAlignment(JLabel.CENTER);
-        nameLabel.setBounds(20, 138, 170, 25); // Adjusted bounds
+        nameLabel.setBounds(5, 138, 180, 30); // Adjusted bounds
         nameLabel.setForeground(Color.white);
-        nameLabel.setFont(new Font("Arial", Font.BOLD, 16)); // Adjusted font size
+        nameLabel.setFont(new Font("Arial", Font.BOLD, 16));
         cardBackground.add(nameLabel);
         
         description = new OutlinedLabel("TEST", Color.WHITE, Color.BLUE);
-        description.setBounds(20, 168, 170, 110); // Adjusted bounds
+        description.setBounds(5, 175, 180, 100); // Adjusted bounds
         description.setForeground(Color.white);
         description.setFont(new Font("Arial", Font.BOLD, 16)); // Adjusted font size
         description.setHorizontalAlignment(JLabel.CENTER);
@@ -74,20 +74,85 @@ public class ArtifactCard extends JPanel {
         switch (name){
             case Elixir_of_Insight -> {artifactImage.changeImage(AssetLoader.Artifacts.WISDOM);
                 nameLabel.setText("Elixir of Insight");
-                description.setText("Elixir of Insight gives you insight");}
+                description.setText("Elixir of Insight allows you to view and change first three cards from the ingredients deck");}
             case Magic_Mortar -> {artifactImage.changeImage(AssetLoader.Artifacts.MORTAR);
                 nameLabel.setText("Magic Mortar");
-                description.setText("Fill");}
+                description.setText("Magic Mortar allows you to recover one of the ingredients you use during potion brewing");}
             case Printing_Press -> {artifactImage.changeImage(AssetLoader.Artifacts.PRESS);
                 nameLabel.setText("Printing Press");
-                description.setText("Fill");}
+                description.setText("Printing Press allows you to publish your theories free of charge");}
             case Wisdom_Idol -> {artifactImage.changeImage(AssetLoader.Artifacts.IDOL);
                 nameLabel.setText("Wisdom Idol");
-                description.setText("Fill");}
+                description.setText("Grants you 1 reputation");}
             case Pistol_of_Sickness_Classic -> {
-                artifactImage.changeImage(AssetLoader.Artifacts.IDOL);
-                nameLabel.setText("Pistol");
-                description.setText("Fill");
+                artifactImage.changeImage(AssetLoader.Artifacts.GUNCLASSIC);
+                nameLabel.setText("Pistol of Sickness");
+                description.setText("Increase sickness level of your target by 1");
+            }
+            case Pistol_of_Sickness_Silver -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.GUNSILVER);
+                nameLabel.setText("Silver Pistol of Sickness");
+                description.setText("Increase sickness level of your target by 1");
+            }
+            case Pistol_of_Sickness_Gold -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.GUNGOLD);
+                nameLabel.setText("Golden Pistol of Sickness");
+                description.setText("Increase sickness level of your target by 2");
+            }
+            case Letter_of_DissContent_Red -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.LETTERRED);
+                nameLabel.setText("Red Letter of DissContent");
+                description.setText("Tarnish reputation of your target by 1");
+            }
+            case Letter_of_DissContent_Blue -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.LETTERBLUE);
+                nameLabel.setText("Blue Letter of DissContent");
+                description.setText("Tarnish reputation of your target by 1");
+            }
+            case Inquisition_Accusation -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.INQUISITION);
+                nameLabel.setText("Accusation to Inquisition");
+                description.setText("Tarnish reputation of your target by 2");
+            }
+            case Chair_of_Alchemy -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.CHAIR);
+                nameLabel.setText("Chair of Alchemy");
+                description.setText("Due to chair diff you gain 1 reputation");
+            }
+            case Syringe_Kit_Basic1 -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.SYRINGE1);
+                nameLabel.setText("Syringe Kit");
+                description.setText("Heals you by 1");
+            }
+            case Syringe_Kit_Basic2 -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.SYRINGE2);
+                nameLabel.setText("Syringe Kit");
+                description.setText("Heals you by 1");
+            }
+            case Elixir_of_Healing -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.HEALTHELIXIR);
+                nameLabel.setText("Elixir of Healing");
+                description.setText("Heals you by 2");
+            }
+            case Big_Black_Chicken -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.CHICKEN);
+                nameLabel.setText("Big Black Chicken");
+                description.setText("You send your Big Black Chicken to forage and it brings you back 2 of feathers and chicken leg");
+            }
+            case Magical_Boar -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.BOAR);
+                nameLabel.setText("Magical Boar");
+                description.setText("You send your Magical Boar to forage and it brings you back 2 of flower and plant");
+            }
+            case Hunting_Phoenix -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.PHOENIX);
+                nameLabel.setText("Hunting Phoenix");
+                description.setText("You send your Hunting Phoenix to hunt and it brings you back 2 of toad and scorpion");
+            }
+            case Mystic_Meerkat -> {
+                artifactImage.changeImage(AssetLoader.Artifacts.MEERKAT);
+                nameLabel.setText("Mystic Meerkat");
+                description.setText("You send your Mystic Meerkat to forage and it brings you back 2 of mandrake and mushroom");
             }
         }
     
@@ -105,9 +170,129 @@ public class ArtifactCard extends JPanel {
                 this.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
-                        PistolofSicknessClassicFunction();
+                        PistolofSicknessFunction(Artifact.Name.Pistol_of_Sickness_Classic);
                     }});
             }
+            case Pistol_of_Sickness_Silver ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        PistolofSicknessFunction(Artifact.Name.Pistol_of_Sickness_Silver);
+                    }});
+            }
+            case Pistol_of_Sickness_Gold ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        PistolofSicknessFunction(Artifact.Name.Pistol_of_Sickness_Gold);
+                    }});
+            }
+            case Letter_of_DissContent_Red ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        ReputationAttackFunction(Artifact.Name.Letter_of_DissContent_Red);
+                    }});
+            }
+            case Letter_of_DissContent_Blue ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        ReputationAttackFunction(Artifact.Name.Letter_of_DissContent_Blue);
+                    }});
+            }
+            case Inquisition_Accusation ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        ReputationAttackFunction(Artifact.Name.Inquisition_Accusation);
+                    }});
+            }
+            case Chair_of_Alchemy ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        GameController.getInstance().getRoundOneController().ArtifactReputationAbility(GameController.getInstance().getMenuController().getCurrentPlayer(),10);
+                        GameController.getInstance().getRoundOneController().ArtifactGotUsed(
+                                Artifact.Name.Chair_of_Alchemy);
+                        GameController.getInstance().getMenuController().getMenuView().reset();
+                    }});
+            }
+            case Syringe_Kit_Basic1 ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        GameController.getInstance().getRoundOneController().ArtifactHealingAbility(1);
+                        GameController.getInstance().getRoundOneController().ArtifactGotUsed(
+                                Artifact.Name.Syringe_Kit_Basic1);
+                        GameController.getInstance().getMenuController().getMenuView().reset();
+                    }});
+            }
+            case Syringe_Kit_Basic2 ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        GameController.getInstance().getRoundOneController().ArtifactHealingAbility(1);
+                        GameController.getInstance().getRoundOneController().ArtifactGotUsed(
+                                Artifact.Name.Syringe_Kit_Basic2);
+                        GameController.getInstance().getMenuController().getMenuView().reset();
+                    }});
+            }
+            case Elixir_of_Healing ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        GameController.getInstance().getRoundOneController().ArtifactHealingAbility(1);
+                        GameController.getInstance().getRoundOneController().ArtifactGotUsed(
+                                Artifact.Name.Elixir_of_Healing);
+                        GameController.getInstance().getMenuController().getMenuView().reset();
+                    }});
+            }
+            case Magical_Boar ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        GameController.getInstance().getRoundOneController().ArtifactGatheringAbility(
+                                Artifact.Name.Magical_Boar);
+                        GameController.getInstance().getRoundOneController().ArtifactGotUsed(
+                                Artifact.Name.Magical_Boar);
+                        GameController.getInstance().getMenuController().getMenuView().reset();
+                    }});
+            }
+            case Hunting_Phoenix ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        GameController.getInstance().getRoundOneController().ArtifactGatheringAbility(
+                                Artifact.Name.Hunting_Phoenix);
+                        GameController.getInstance().getRoundOneController().ArtifactGotUsed(
+                                Artifact.Name.Hunting_Phoenix);
+                        GameController.getInstance().getMenuController().getMenuView().reset();
+                    }});
+            }
+            case Mystic_Meerkat ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        GameController.getInstance().getRoundOneController().ArtifactGatheringAbility(
+                                Artifact.Name.Mystic_Meerkat);
+                        GameController.getInstance().getRoundOneController().ArtifactGotUsed(
+                                Artifact.Name.Mystic_Meerkat);
+                        GameController.getInstance().getMenuController().getMenuView().reset();
+                    }});
+            }
+            case Big_Black_Chicken ->{
+                this.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        GameController.getInstance().getRoundOneController().ArtifactGatheringAbility(
+                                Artifact.Name.Big_Black_Chicken);
+                        GameController.getInstance().getRoundOneController().ArtifactGotUsed(
+                                Artifact.Name.Big_Black_Chicken);
+                        GameController.getInstance().getMenuController().getMenuView().reset();
+                    }});
+            }
+            
         }
     }
     
@@ -115,16 +300,22 @@ public class ArtifactCard extends JPanel {
     public void ElixirOfInsightFunction(){
         MenuView menu= GameController.getInstance().getMenuController().getMenuView();
         menu.Blockade();
-        artifact.gotUsed();
+        GameController.getInstance().getRoundOneController().ArtifactGotUsed(Artifact.Name.Elixir_of_Insight);
         menu.addAndRunPage(new ElixirOfInsightView());
     }
-    public void PistolofSicknessClassicFunction(){
+    public void PistolofSicknessFunction(Artifact.Name name){
         MenuView menu= GameController.getInstance().getMenuController().getMenuView();
         menu.Blockade();
-        artifact.gotUsed();
-        menu.addAndRunPage(new ArtifactTargetSelectorView(Artifact.Name.Pistol_of_Sickness_Classic));
-        
+        GameController.getInstance().getRoundOneController().ArtifactGotUsed(name);
+        menu.addAndRunPage(new ArtifactTargetSelectorView(name));
     }
+    public void ReputationAttackFunction(Artifact.Name name){
+        MenuView menu= GameController.getInstance().getMenuController().getMenuView();
+        menu.Blockade();
+        GameController.getInstance().getRoundOneController().ArtifactGotUsed(name);
+        menu.addAndRunPage(new ArtifactTargetSelectorView(name));
+    }
+    
     
     public static void main(String[] args) { // TODO: Move to UnitTests
         JFrame frame = new JFrame("test");

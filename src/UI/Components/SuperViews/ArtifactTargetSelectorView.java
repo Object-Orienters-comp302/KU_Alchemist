@@ -115,6 +115,21 @@ public class ArtifactTargetSelectorView extends JPanel {
                     case Pistol_of_Sickness_Classic -> {
                             firePistol(1);
                     }
+                    case Pistol_of_Sickness_Silver -> {
+                        firePistol(2);
+                    }
+                    case Pistol_of_Sickness_Gold -> {
+                        firePistol(3);
+                    }
+                    case Letter_of_DissContent_Blue -> {
+                        reputationAttack(-1);
+                    }
+                    case Letter_of_DissContent_Red -> {
+                        reputationAttack(-1);
+                    }
+                    case Inquisition_Accusation -> {
+                        reputationAttack(-2);
+                    }
                 }
             
             }
@@ -123,10 +138,15 @@ public class ArtifactTargetSelectorView extends JPanel {
     private void firePistol(int i){
         if (getChosenPlayer()!=null) {
             System.out.println("FİRED");
-            GameController.getInstance().getRoundOneController().PistolOfSicknessAbility(getChosenPlayer(), 1);
+            GameController.getInstance().getRoundOneController().PistolOfSicknessAbility(getChosenPlayer(), i);
             liftBlockade();
         }
     }
+    private void reputationAttack(int i){
+        GameController.getInstance().getRoundOneController().ArtifactReputationAbility(getChosenPlayer(), i);
+        liftBlockade();
+    }
+    
     private void liftBlockade(){
         MenuView menu = GameController.getInstance().getMenuController().getMenuView();
         menu.LiftBlockade();

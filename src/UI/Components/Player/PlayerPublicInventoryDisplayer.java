@@ -25,7 +25,7 @@ public class PlayerPublicInventoryDisplayer extends ImagePanel {
         int i=0;
         for(Artifact art: player.getInventory().getArtifacts()){
             ArtifactCard card = new ArtifactCard(art);
-            card.setLocation(80+i*220,50);
+            card.setLocation(i*200,50);
             add(card);
             i++;
         

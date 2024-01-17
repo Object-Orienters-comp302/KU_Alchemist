@@ -87,6 +87,16 @@ public class OutlinedLabel extends JLabel {
             
             FontMetrics fm = g2d.getFontMetrics(getFont());
             
+            // Calculate the maximum font size that fits the label width
+            int maxSize = (int) (getWidth() * 0.8); // Adjust as needed
+            int fontSize = getFont().getSize();
+            
+            while (fm.stringWidth(getText()) > getWidth() && fontSize > 1) {
+                fontSize--;
+                setFont(new Font(getFont().getFontName(), getFont().getStyle(), fontSize));
+                fm = g2d.getFontMetrics(getFont());
+            }
+            
             // Calculate the x and y coordinates to center the text horizontally and vertically
             int x = (getWidth() - fm.stringWidth(getText())) / 2;
             int y = (getHeight() - fm.getHeight()) / 2 + fm.getAscent();
@@ -97,7 +107,7 @@ public class OutlinedLabel extends JLabel {
             
             // Draw the text on top of the outline
             g2d.setColor(textColor);
-            g2d.drawString(getText(), x - offset, y - offset); // Adjusted to align text to the top
+            g2d.drawString(getText(), x - offset, y - offset);
             
             g2d.dispose();
         }

@@ -266,7 +266,23 @@ public class AssetLoader {
         MORTAR("resources/Images/artifact/mortar5.png"),
         PRESS("resources/Images/artifact/press1.png"),
         IDOL("resources/Images/artifact/idol.png"),
-        GIANTX("resources/Images/artifact/giantX.png")
+        GIANTX("resources/Images/artifact/giantX.png"),
+        CHAIR("resources/Images/artifact/chair.png"),
+        GUNCLASSIC("resources/Images/artifact/gunClassic.png"),
+        GUNGOLD("resources/Images/artifact/gunGold.png"),
+        GUNSILVER("resources/Images/artifact/gunSilver.png"),
+        INQUISITION("resources/Images/artifact/inquisition.png"),
+        LETTERBLUE("resources/Images/artifact/letterBlue.png"),
+        LETTERRED("resources/Images/artifact/letterRed.png"),
+        BOAR("resources/Images/artifact/boar.png"),
+        CHICKEN("resources/Images/artifact/chickenBlack.png"),
+        PHOENIX("resources/Images/artifact/phoenix.png"),
+        MEERKAT("resources/Images/artifact/meerkat.png"),
+        SYRINGE1("resources/Images/artifact/syringeKit1.png"),
+        SYRINGE2("resources/Images/artifact/syringeKit2.png"),
+        BOMB1("resources/Images/artifact/bomb1.png"),
+        BOMB2("resources/Images/artifact/bomb2.png"),
+        HEALTHELIXIR("resources/Images/artifact/healthElixir.png"),
         ;
         
         private final String path;
