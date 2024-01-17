@@ -24,7 +24,7 @@ public class GameAction implements Serializable {
         
     }
     
-    enum ActionType{
+    public enum ActionType{
         PLAYER_JOINED("PLAYER JOINED"),
         GOLD(""),
         ARTIFACT(""),
