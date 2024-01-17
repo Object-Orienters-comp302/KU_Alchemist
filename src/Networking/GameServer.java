@@ -55,7 +55,7 @@ public class GameServer implements Publisher {
         // For now, just echo the action
         if(action.getActionType() == GameAction.ActionType.PLAYER_JOINED){
             //This does not send the background if there is any errors, send background.
-            add_player(action.getDetails(),action.getTokens());
+            add_player(action.getDetails(), action.getToken());
             publishEvent(Type.PLAYER_ADDED);
         }
         
@@ -64,8 +64,8 @@ public class GameServer implements Publisher {
         
         broadcastUpdate(action);
     }
-    private void add_player(String name, AssetLoader.Tokens tokens){
-        new Player(name, new Token("Player Token",tokens.getPath()));
+    private void add_player(String name, Token token){
+        new Player(name, token);
     }
     
     @Override

@@ -6,6 +6,8 @@ import Domain.Event.Type;
 import Domain.GameController;
 import Domain.LoginController;
 import Models.Token;
+import Networking.GameAction;
+import Networking.GameClient;
 import UI.Components.ColorChangingPanel;
 import UI.Components.CutRoundedPanel;
 import UI.Components.ImagePanels.GifPanel;
@@ -51,16 +53,15 @@ public class OnlineLoginView extends JPanel implements Publisher {
     
     
     protected OnlineLoginView() {
-        new Token("blue", AssetLoader.getAssetPath(AssetLoader.Tokens.BLUE),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.BLUE));
-        new Token("red", AssetLoader.getAssetPath(AssetLoader.Tokens.RED),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.RED));
-        new Token("green", AssetLoader.getAssetPath(AssetLoader.Tokens.GREEN),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.GREEN));
-        new Token("purple", AssetLoader.getAssetPath(AssetLoader.Tokens.PURPLE),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.PURPLE));
-        new Token("yellow", AssetLoader.getAssetPath(AssetLoader.Tokens.YELLOW),
-                  AssetLoader.getAssetPath(AssetLoader.Backgrounds.YELLOW));
+        new Token("blue", AssetLoader.Tokens.BLUE,
+                  AssetLoader.Backgrounds.BLUE);
+        new Token("red", AssetLoader.Tokens.RED,
+                  AssetLoader.Backgrounds.RED);
+        new Token("green", AssetLoader.Tokens.GREEN,
+                  AssetLoader.Backgrounds.GREEN);
+        new Token("purple", AssetLoader.Tokens.PURPLE,
+                  AssetLoader.Backgrounds.PURPLE);
+        new Token("yellow", AssetLoader.Tokens.YELLOW, AssetLoader.Backgrounds.YELLOW);
         this.Listeners = new ArrayList<>();
         
         
@@ -277,10 +278,6 @@ public class OnlineLoginView extends JPanel implements Publisher {
             
             //System.out.print(LoginView.iter);
             if (Objects.equals(NextPanel_Label.getText(), "JOIN")) {
-                // JOIN THE GAME
-                // TODO: Join the server with correct data and validate that the data is not already used
-                
-                
                 ThrowLoadingGif();
                 SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                     @Override

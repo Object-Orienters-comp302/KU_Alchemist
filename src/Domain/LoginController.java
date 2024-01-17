@@ -2,6 +2,8 @@ package Domain;
 
 import Models.Player;
 import Models.Token;
+import Networking.GameAction;
+import Networking.GameClient;
 import Utils.CircularLinkedList;
 
 import java.util.ArrayList;
@@ -18,6 +20,11 @@ public class LoginController {
     }
     
     public logPlayerInEnums logPlayerIn(String PlayerID, Token token) {
+        if (GameController.getInstance().isOnline()) {
+            GameAction action = new GameAction(GameAction.ActionType.PLAYER_JOINED, PlayerID, token);
+            GameClient.getInstance().sendAction(action);
+        }
+        
         // TODO: Add to event log viewer
         if (isUniquePlayerID(PlayerID)) {
             new Player(PlayerID, token);

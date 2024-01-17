@@ -67,9 +67,9 @@ public class GameClient {
         GameClient.init("localhost", 12345);
         
         // Example: send an action
-        GameAction action = new GameAction(GameAction.ActionType.PLAYER_JOINED, "Player Name Placeholder",
-                                           AssetLoader.Tokens.RED);
-        GameClient.getInstance().sendAction(action);
+        // GameAction action = new GameAction(GameAction.ActionType.PLAYER_JOINED, "Player Name Placeholder",
+        // new Token("Player Name Placeholder",AssetLoader.Tokens.RED));
+        // GameClient.getInstance().sendAction(action);
         
         GameAction action1 = new GameAction(GameAction.ActionType.UPDATE_DECK, "Drew 1 card from deck");
         GameClient.getInstance().sendAction(action1);

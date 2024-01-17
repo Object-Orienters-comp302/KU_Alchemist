@@ -1,5 +1,6 @@
 package Networking;
 
+import Models.Token;
 import Utils.AssetLoader;
 
 import javax.swing.*;
@@ -12,16 +13,17 @@ public class GameAction implements Serializable {
     
     private ActionType actionType;
     private String details;
-    private AssetLoader.Tokens tokens;
+    private Token  token;
+    
     public GameAction(ActionType actionType, String details) {
         this.actionType = actionType;
         this.details = details;
     }
-    public GameAction(ActionType actionType, String details, AssetLoader.Tokens tokens) {
+    
+    public GameAction(ActionType actionType, String details, Token token) {
         this.actionType = actionType;
         this.details = details;
-        this.tokens = tokens;
-        
+        this.token = token;
     }
     
     public enum ActionType{
@@ -63,7 +65,7 @@ public class GameAction implements Serializable {
         return details;
     }
     
-    public AssetLoader.Tokens getTokens() {
-        return tokens;
+    public Token getToken() {
+        return token;
     }
 }

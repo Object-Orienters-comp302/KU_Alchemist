@@ -3,6 +3,7 @@ package UI.Components.SuperViews;
 import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
+import Domain.GameController;
 import Networking.GameClient;
 import Networking.GameServer;
 import Sound.DJ;
@@ -116,6 +117,7 @@ public class StartView extends JPanel implements Publisher {
                 new Thread(() -> {
                     try {
                         GameServer server = new GameServer(12345); // Port number
+                        GameController.getInstance().setOnline(true);
                         server.addListener(ViewFactory.getInstance().getWaitingRoomView());
                         
                         SwingUtilities.invokeLater(() -> {
@@ -145,7 +147,7 @@ public class StartView extends JPanel implements Publisher {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                
+                GameController.getInstance().setOnline(true);
                 ViewFactory.getInstance().getLoginView().setPlayerAmount(1);
                 publishEvent(Type.START_ONLINE_LOGIN_SCREEN);
             }

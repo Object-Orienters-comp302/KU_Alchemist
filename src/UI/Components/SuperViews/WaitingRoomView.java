@@ -80,14 +80,13 @@ public class WaitingRoomView extends JPanel implements Listener {
     
     public static void main(String[] args) {
         
-        Player player1 = new Player("player1",new Token("player1", AssetLoader.getAssetPath(AssetLoader.Avatars.RED)
-                , AssetLoader.getAssetPath(AssetLoader.Avatars.RED)));
-        Player player2 = new Player("player2",new Token("player2",AssetLoader.getAssetPath(AssetLoader.Avatars.BLUE)
-                ,AssetLoader.getAssetPath(AssetLoader.Avatars.BLUE)));
-        Player player3 = new Player("player3",new Token("player3",AssetLoader.getAssetPath(AssetLoader.Avatars.PURPLE)
-                ,AssetLoader.getAssetPath(AssetLoader.Avatars.PURPLE)));
-        Player player4 = new Player("player4",new Token("player4",AssetLoader.getAssetPath(AssetLoader.Avatars.YELLOW)
-                ,AssetLoader.getAssetPath(AssetLoader.Avatars.YELLOW)));
+        Player player1 = new Player("player1", new Token("player1", AssetLoader.Avatars.RED, AssetLoader.Avatars.RED));
+        Player player2 =
+                new Player("player2", new Token("player2", AssetLoader.Avatars.BLUE, AssetLoader.Avatars.BLUE));
+        Player player3 =
+                new Player("player3", new Token("player3", AssetLoader.Avatars.PURPLE, AssetLoader.Avatars.PURPLE));
+        Player player4 =
+                new Player("player4", new Token("player4", AssetLoader.Avatars.YELLOW, AssetLoader.Avatars.YELLOW));
         
         JFrame frame = new JFrame();
         frame.setSize(1290, 720);

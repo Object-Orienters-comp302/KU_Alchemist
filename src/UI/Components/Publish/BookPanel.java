@@ -220,15 +220,15 @@ public class BookPanel extends JPanel {
         JFrame frame = new JFrame("test");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 1000);
-        Player cur = new Player("joe",new Token("jo",AssetLoader.getAssetPath(AssetLoader.Avatars.RED)
-                ,AssetLoader.getAssetPath(AssetLoader.Avatars.RED)));
+        Player cur = new Player("joe",new Token("jo",AssetLoader.Avatars.RED
+                ,AssetLoader.Avatars.RED));
         cur.getInventory().addGold(10);
         GameController.getInstance().getRoundTwoController()
                 .publishTheory(cur,Ingredient.IngredientTypes.Scorpion,Ingredient.AspectTrio.allPositive);
         
         
-        Player sec = new Player("joe",new Token("biden",AssetLoader.getAssetPath(AssetLoader.Avatars.BLUE)
-                ,AssetLoader.getAssetPath(AssetLoader.Avatars.BLUE)));
+        Player sec = new Player("joe",new Token("biden",AssetLoader.Avatars.BLUE
+                ,AssetLoader.Avatars.BLUE));
         GameController.getInstance().getRoundTwoController()
                 .endorseTheory(sec,PublicationTrack.getInstance().getPublicationCardOf(
                 Ingredient.IngredientTypes.Scorpion),2);

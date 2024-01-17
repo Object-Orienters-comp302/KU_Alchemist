@@ -1,43 +1,35 @@
 package Models;
 
+import Utils.AssetLoader;
 import Utils.CircularLinkedList;
 import Utils.GUtil;
 import Utils.KawaseBlur;
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Token {
+public class Token implements Serializable {
     public static ArrayList<Token>          tokenList         = new ArrayList<Token>();
     public static CircularLinkedList<Token> tokenCircularList = new CircularLinkedList<Token>();
-    private       String                    name;
-    private       BufferedImage             image;
-    private       BufferedImage             background;
+    private String                name;
+    private AssetLoader.AssetPath image;
+    private AssetLoader.AssetPath background;
     
-    
-    public Token(String name, String imgUrl, String backgroundUrl) {
+    public Token(String name, AssetLoader.AssetPath imgUrl, AssetLoader.AssetPath backgroundUrl) {
         this.name  = name;
-        image      = GUtil.fetchImage(imgUrl);
-        background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(backgroundUrl)), 3, 2);
+        image      = imgUrl;
+        background = backgroundUrl;
         tokenList.add(this);
         tokenCircularList.add(this);
     }
-    public Token(String name, String imgUrl) {
+    public Token(String name, AssetLoader.AssetPath imgUrl) {
         this.name  = name;
-        image      = GUtil.fetchImage(imgUrl);
+        image      = imgUrl;
         tokenList.add(this);
         tokenCircularList.add(this);
     }
-    
-    public Token(String name, BufferedImage img, BufferedImage back) {
-        this.name  = name;
-        image      = img;
-        background = back;
-        tokenList.add(this);
-        tokenCircularList.add(this);
-    }
-    
     
     public String getName() {
         return name;
@@ -48,18 +40,23 @@ public class Token {
     }
     
     public BufferedImage getImage() {
-        return image;
+        return GUtil.fetchImage(AssetLoader.getAssetPath(image));
     }
     
-    public void setImage(BufferedImage image) {
+    public void setImage(AssetLoader.AssetPath image) {
         this.image = image;
     }
     
     public BufferedImage getBackground() {
-        return background;
+        return GUtil.fetchImage(AssetLoader.getAssetPath(background));
     }
     
-    public void setBackground(BufferedImage background) {
+    public BufferedImage getBluredBackground() {
+        return KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(AssetLoader.getAssetPath(background))),
+                                          3, 2);
+    }
+    
+    public void setBackground(AssetLoader.AssetPath background) {
         this.background = background;
     }
     
