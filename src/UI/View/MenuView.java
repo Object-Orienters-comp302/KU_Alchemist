@@ -279,7 +279,9 @@ public class MenuView extends JPanel implements Publisher,Listener {
         side2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                cardLay.show(displayerPanel, "Theories");
+                if(GameController.getInstance().getRound() > 1) {
+                    cardLay.show(displayerPanel, "Theories");
+                }
             }
         });
         side3.addMouseListener(new MouseAdapter() {

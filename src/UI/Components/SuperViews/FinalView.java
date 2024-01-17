@@ -37,7 +37,7 @@ public class FinalView extends JPanel {
         Background.setBounds(0, 0, 1280, 720);
         this.add(Background);
         
-        GifPanel ConfettiGif = new GifPanel(50, 0, 950, 800, AssetLoader.Gifs.CONFETTI.getPath());
+        GifPanel ConfettiGif = new GifPanel(0, 0, 1300, 1300, AssetLoader.Gifs.CONFETTI.getPath());
         ConfettiGif.setLayout(null);
         Background.add(ConfettiGif);
         

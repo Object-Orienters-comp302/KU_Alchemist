@@ -117,9 +117,12 @@ public class MarketView extends JPanel {
         sellPotionButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (potionButton.getCurrentPotionPath()!=AssetLoader.TriangleTable.QUESTION_MARK){
-
-                    sellPotion(potionButton.getType());
+                
+                if(GameController.getInstance().getRound() > 1) {
+                    if (potionButton.getCurrentPotionPath() != AssetLoader.TriangleTable.QUESTION_MARK) {
+                        
+                        sellPotion(potionButton.getType());
+                    }
                 }
             }
         });
