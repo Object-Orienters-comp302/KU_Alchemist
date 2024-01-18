@@ -21,6 +21,7 @@ public class LoginController {
     
     public logPlayerInEnums logPlayerIn(String PlayerID, Token token) {
         if (GameController.getInstance().isOnline() && !GameController.getInstance().isHost()) {
+            GameController.getInstance().setPlayerName(PlayerID);
             GameAction action = new GameAction(GameAction.ActionType.PLAYER_JOINED, PlayerID, token);
             GameClient.getInstance().sendAction(action);
         }

@@ -4,6 +4,8 @@ import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
 import Models.Player;
+import Networking.GameAction;
+import Networking.GameClient;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class GameController implements Publisher {
     private boolean online = false;
     private boolean host = false;
     ArrayList<Listener> listeners;
+    private String PlayerName; // THIS IS FOR ONLINE PURPOSES
     
     private GameController() {
         // Initialize sub-controllers
@@ -89,8 +92,16 @@ public class GameController implements Publisher {
     }
    
     public void nextPlayer(){
+        if(GameController.getInstance().isOnline()){
+            GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.NEXT_ROUND,"Next Round"));
+        }
+        else{
+            TotalNextTurns +=1;
+            Player.nextPlayer();
+        }
+    }
+    public void incrementTotalNextTurns(){
         TotalNextTurns +=1;
-        Player.nextPlayer();
     }
     public RoundThreeController getRoundThreeController() { return roundThreeController; }
     public Integer getRound(){
@@ -136,4 +147,12 @@ public class GameController implements Publisher {
     }
     
     public boolean isHost() { return host; }
+    
+    public String getPlayerName() {
+        return PlayerName;
+    }
+    
+    public void setPlayerName(String playerName) {
+        PlayerName = playerName;
+    }
 }

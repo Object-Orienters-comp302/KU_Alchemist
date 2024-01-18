@@ -34,13 +34,14 @@ public class RoundZeroController {
             gold_setup(player, 10);
             
             // Deal 2 cards to each player
-            dealIngredientCards(player, 2);
             if(GameController.getInstance().isHost()){
                 GameServer.getInstance().broadcastUpdate(new GameAction(GameAction.ActionType.INIT_PLAYER,player.getID(),player.getToken()));
                 GameServer.getInstance().broadcastUpdate(new GameAction(GameAction.ActionType.GOLD,"Added Gold",player.getInventory().getGold(),player.getID()));
-                //GameServer.getInstance().broadcastUpdate(new GameAction());
+                
                 
             }
+            dealIngredientCards(player, 2);
+            
         }
         if(GameController.getInstance().isOnline()){
             GameServer.getInstance().broadcastUpdate(new GameAction(GameAction.ActionType.START_GAME,"Start Game"));
@@ -123,6 +124,10 @@ public class RoundZeroController {
         for (int i = 0; i < count; i++) {
             Ingredient.IngredientTypes card = deck.popIngredient();
             player.getInventory().addIngredient(card, 1);
+            if(GameController.getInstance().isOnline()){
+                GameServer.getInstance().broadcastUpdate(new GameAction(GameAction.ActionType.DECK_INGREDIENT,"Added 1 ingredient while dealing",
+                                                                        player.getID(),card));
+            }
         }
     }
 }

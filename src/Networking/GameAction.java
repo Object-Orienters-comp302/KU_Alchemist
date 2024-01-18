@@ -1,5 +1,6 @@
 package Networking;
 
+import Models.Ingredient;
 import Models.Player;
 import Models.Token;
 import Utils.AssetLoader;
@@ -17,21 +18,28 @@ public class GameAction implements Serializable {
     private Token  token;
     private int    gold;
     private String targetPlayerName;
+    private Ingredient.IngredientTypes ingredientType;
     
-    public GameAction(ActionType actionType, String details) {
+    public GameAction(ActionType actionType, String details) { // THIS IS FOR DEFAULT
         this.actionType = actionType;
         this.details = details;
     }
     
-    public GameAction(ActionType actionType, String details, Token token) {
+    public GameAction(ActionType actionType, String details, Token token) { // THIS IS FOR PLAYERS
         this.actionType = actionType;
         this.details = details;
         this.token = token;
     }
-    public GameAction(ActionType actionType, String details, int gold,String targetPlayerName) {
+    public GameAction(ActionType actionType, String details, int gold,String targetPlayerName) { // THIS IS FOR GOLD
         this.actionType = actionType;
         this.details = details;
         this.gold = gold;
+        this.targetPlayerName = targetPlayerName;
+    }
+    public GameAction(ActionType actionType, String details,String targetPlayerName, Ingredient.IngredientTypes ingredientType){
+        this.actionType = actionType;
+        this.details = details;
+        this.ingredientType = ingredientType;
         this.targetPlayerName = targetPlayerName;
     }
     
@@ -48,12 +56,14 @@ public class GameAction implements Serializable {
         FORAGERIGHT(""),
         PAUSE(""),
         START_LOGIN_SCREEN(""),
+        FORAGE("FORAGE"),
         START_START_VIEW(""),
         START_END_GAME_VIEW(""),
         UPDATE_PLAYER(""),
         UPDATE_DECK(""),
         START_GAME("START_GAME"),
-        INIT_PLAYER("INIT_PLAYER");
+        INIT_PLAYER("INIT_PLAYER"),
+        NEXT_ROUND("NEXT_ROUND");
         
         private final String string;
         
@@ -82,6 +92,10 @@ public class GameAction implements Serializable {
     
     public int getGold() {
         return gold;
+    }
+    
+    public Ingredient.IngredientTypes getIngredientType() {
+        return ingredientType;
     }
     
     public String getTargetPlayerName() {

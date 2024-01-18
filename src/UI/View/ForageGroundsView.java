@@ -1,9 +1,13 @@
 package UI.View;
 
+import Domain.Event.Listener;
+import Domain.Event.Type;
 import Domain.GameController;
 import Domain.RoundOneController;
 import Models.Ingredient;
 import Models.Player;
+import Networking.GameAction;
+import Networking.GameClient;
 import Sound.DJ;
 import UI.Components.ImagePanels.BackgroundSelector;
 import UI.Components.ImagePanels.GifPanel;
@@ -115,6 +119,17 @@ public class ForageGroundsView extends JPanel {
         Card.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                if(!GameController.getInstance().isHost() && GameController.getInstance().isOnline()){
+                    if(Player.getCurrPlayer().getForageRight() >= 1){
+                        GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.FORAGE,"Wants to forage",Player.getCurrPlayer().getID(),null));
+                        
+                    }
+                    else {
+                        textField.setText(Texts.Fail.getText());
+                    }
+                    
+                }
+                else {
                 Ingredient.IngredientTypes ingredientType =
                         CardClicked(Player.getCurrPlayer(), GameController.getInstance().getRoundOneController());
                 if (ingredientType != null) {
@@ -125,7 +140,7 @@ public class ForageGroundsView extends JPanel {
                     textField.setText(Texts.Fail.getText());
                 }
                 
-            }
+            }}
         });
         
         SwitchButton_Transmutate.addMouseListener(new MouseAdapter() {
@@ -141,6 +156,7 @@ public class ForageGroundsView extends JPanel {
     
     private Ingredient.IngredientTypes CardClicked(Player player,
                                                    RoundOneController roundOneController) { //Calls Forage for Ingredient on controller then, returns its type for the function.
+        
         Ingredient.IngredientTypes ingredient = roundOneController.ForageForIngredient(player);
         if (ingredient != null) {
             return ingredient;
@@ -181,6 +197,8 @@ public class ForageGroundsView extends JPanel {
         timer.setRepeats(false);
         timer.start();
     }
+    
+
     
     private enum Texts {
         Start("To forage press the card!! It costs 1 forage right."),

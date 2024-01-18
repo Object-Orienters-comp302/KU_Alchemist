@@ -41,6 +41,9 @@ public class DeductionView extends JPanel {
         this.setVisible(true);
     }
     public  void reset(){
+        if(GameController.getInstance().isOnline()){
+            return;
+        }
         triTable.feedData(GameController.getInstance().getMenuController().getCurrentPlayer().getTriangleTableArray());
         triTable.reset();
         

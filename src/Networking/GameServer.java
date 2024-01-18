@@ -3,6 +3,8 @@ package Networking;
 import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
+import Domain.GameController;
+import Models.Ingredient;
 import Models.Player;
 import Models.Token;
 import UI.View.ViewFactory;
@@ -70,7 +72,14 @@ public class GameServer implements Publisher {
             add_player(action.getDetails(), action.getToken());
             publishEvent(Type.PLAYER_ADDED);
         }
-        
+        if(action.getActionType() == GameAction.ActionType.NEXT_ROUND){
+            GameController.getInstance().incrementTotalNextTurns();
+            Player.nextPlayer();
+        }
+        if(action.getActionType() == GameAction.ActionType.FORAGE){
+            Ingredient.IngredientTypes ingredientType = GameController.getInstance().getRoundOneController().ForageForIngredient(Player.getCurrPlayer());
+            broadcastUpdate(new GameAction(GameAction.ActionType.DECK_INGREDIENT, "Drew one ingredient from deck",Player.getCurrPlayer().getID(),ingredientType));
+        }
         System.out.println("IN: GameAction type: " + action.getActionType());
         System.out.println("            Details: " + action.getDetails());
         

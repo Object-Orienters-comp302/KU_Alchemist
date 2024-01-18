@@ -1,10 +1,13 @@
 package Networking;
 
+import Domain.GameController;
 import Models.Player;
 import Models.Token;
+import UI.Components.Player.PlayerDisplayer;
 import UI.View.ViewFactory;
 import Utils.AssetLoader;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.*;
 
@@ -66,6 +69,18 @@ public class GameClient {
             new Player(action.getDetails(), action.getToken());
         } else if (action.getActionType() == GameAction.ActionType.START_GAME) {
             ViewFactory.getInstance().getOnlineLoginView().publishStartMenu();
+        } else if(action.getActionType() == GameAction.ActionType.NEXT_ROUND){
+            GameController.getInstance().incrementTotalNextTurns();
+            Player.nextPlayer();
+            ViewFactory.getInstance().getMenuView().getRoundLabel().setText(GameController.getInstance().getRound().toString());
+            
+            PlayerDisplayer.repaintAll();
+        } else if (action.getActionType() == GameAction.ActionType.DECK_INGREDIENT) {
+            Player player = findPlayer(action.getTargetPlayerName());
+            player.getInventory().addIngredient(action.getIngredientType(), 1);
+            if(action.getDetails().equals(GameController.getInstance().getPlayerName())) {
+                SwingUtilities.invokeLater(() -> ViewFactory.getInstance().getMenuView().getForagePanel().RunForageAnimation(action.getIngredientType()));//TODO CHANGE THIS TO MVC
+            }
         }
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());
