@@ -26,18 +26,18 @@ public class FinalView extends JPanel {
         
         controller = GameController.getInstance().getMenuController();
     
-        this.setSize(1000, 500);
+        this.setSize(1280, 720);
         this.setVisible(true);
         this.setLayout(null);
         
 
-        Background = new HQImagePanel(AssetLoader.getAssetPath(AssetLoader.PlainViewAssets.BACKGROUND));
+        Background = new HQImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND));
         Background.setVisible(true);
         Background.setLayout(null);
-        Background.setBounds(0, 0, 1000, 500);
+        Background.setBounds(0, 0, 1280, 720);
         this.add(Background);
         
-        GifPanel ConfettiGif = new GifPanel(0, 0, 950, 800, AssetLoader.Gifs.CONFETTI.getPath());
+        GifPanel ConfettiGif = new GifPanel(0, 0, 1300, 1300, AssetLoader.Gifs.CONFETTI.getPath());
         ConfettiGif.setLayout(null);
         Background.add(ConfettiGif);
         
@@ -59,17 +59,17 @@ public class FinalView extends JPanel {
         for (int i = 0; i < playerList.size(); i++) {
             
             PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
-            displayer.setBounds(320, (80 + 100*i), 240, 80);
+            displayer.setBounds(420, (110 + 100*i), 240, 80);
             
             JLabel rank = new JLabel();
             rank.setText(i + 1 + ".");
             rank.setFont(new Font("Tahoma", Font.PLAIN,80 ));
-            rank.setBounds(240, (75 + 100*i), 100, 80);
+            rank.setBounds(340, (105 + 100*i), 100, 80);
             
             JLabel score = new JLabel();
             score.setText(playerList.get(i).getScore() + "p");
             score.setFont(new Font("Tahoma", Font.PLAIN,80 ));
-            score.setBounds(580, (75 + 100*i), 300, 80);
+            score.setBounds(680, (105 + 100*i), 300, 80);
             
             if(i == 0){
                 displayer.setBackground(Color.decode(goldColor));
@@ -98,12 +98,12 @@ public class FinalView extends JPanel {
         
         Player player1 = new Player("player1",new Token("player1",AssetLoader.getAssetPath(AssetLoader.Avatars.RED)
                 ,AssetLoader.getAssetPath(AssetLoader.Avatars.RED)));
-        Player player2 = new Player("player2",new Token("player2",AssetLoader.getAssetPath(AssetLoader.Avatars.RED)
-                ,AssetLoader.getAssetPath(AssetLoader.Avatars.RED)));
-        Player player3 = new Player("player3",new Token("player3",AssetLoader.getAssetPath(AssetLoader.Avatars.RED)
-                ,AssetLoader.getAssetPath(AssetLoader.Avatars.RED)));
-        Player player4 = new Player("player4",new Token("player4",AssetLoader.getAssetPath(AssetLoader.Avatars.RED)
-                ,AssetLoader.getAssetPath(AssetLoader.Avatars.RED)));
+        Player player2 = new Player("player2",new Token("player2",AssetLoader.getAssetPath(AssetLoader.Avatars.BLUE)
+                ,AssetLoader.getAssetPath(AssetLoader.Avatars.BLUE)));
+        Player player3 = new Player("player3",new Token("player3",AssetLoader.getAssetPath(AssetLoader.Avatars.PURPLE)
+                ,AssetLoader.getAssetPath(AssetLoader.Avatars.PURPLE)));
+        Player player4 = new Player("player4",new Token("player4",AssetLoader.getAssetPath(AssetLoader.Avatars.YELLOW)
+                ,AssetLoader.getAssetPath(AssetLoader.Avatars.YELLOW)));
         
         player1.setReputation(2);
         player2.setReputation(2);
@@ -116,7 +116,7 @@ public class FinalView extends JPanel {
         player4.getInventory().addGold(13);
         
         JFrame frame = new JFrame();
-        frame.setSize(1300, 800);
+        frame.setSize(1290, 720);
         frame.add(new FinalView());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);

@@ -1,5 +1,9 @@
 package Networking;
 
+import Models.Player;
+import Models.Token;
+import Utils.AssetLoader;
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -38,11 +42,18 @@ public class GameServer {
     public synchronized void processAction(GameAction action) {
         // TODO: Process action and update game state
         // For now, just echo the action
+        if(action.getActionType() == GameAction.ActionType.PLAYER_JOINED){
+            //This does not send the background if there is any errors, send background.
+            add_player(action.getDetails(),action.getTokens());
+        }
         
         System.out.println("IN: GameAction type: " + action.getActionType());
         System.out.println("            Details: " + action.getDetails());
         
         broadcastUpdate(action);
+    }
+    private void add_player(String name, AssetLoader.Tokens tokens){
+        new Player(name, new Token("Player Token",tokens.getPath()));
     }
     
     private class ClientHandler implements Runnable {

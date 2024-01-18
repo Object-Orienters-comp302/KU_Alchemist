@@ -23,6 +23,12 @@ public class Token {
         tokenList.add(this);
         tokenCircularList.add(this);
     }
+    public Token(String name, String imgUrl) {
+        this.name  = name;
+        image      = GUtil.fetchImage(imgUrl);
+        tokenList.add(this);
+        tokenCircularList.add(this);
+    }
     
     public Token(String name, BufferedImage img, BufferedImage back) {
         this.name  = name;

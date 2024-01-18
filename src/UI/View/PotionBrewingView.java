@@ -2,10 +2,7 @@ package UI.View;
 
 import Domain.GameController;
 import Domain.RoundOneController;
-import Models.Ingredient;
-import Models.Inventory;
-import Models.Player;
-import Models.Potion;
+import Models.*;
 import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.BackgroundSelector;
 import UI.Components.ImagePanels.GifPanel;
@@ -184,6 +181,7 @@ public class PotionBrewingView extends JPanel {
         
         roundOneController.removeIngredient(player, ingredient1);
         roundOneController.removeIngredient(player, ingredient2);
+        roundOneController.MagicMortar(player, Artifact.Name.Magic_Mortar, ingredient2);
         return potion;
     }
     
