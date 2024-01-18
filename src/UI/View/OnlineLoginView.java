@@ -8,6 +8,7 @@ import Domain.LoginController;
 import Models.Token;
 import Networking.GameAction;
 import Networking.GameClient;
+import Networking.GameServer;
 import UI.Components.ColorChangingPanel;
 import UI.Components.CutRoundedPanel;
 import UI.Components.ImagePanels.GifPanel;
@@ -24,6 +25,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -282,8 +284,28 @@ public class OnlineLoginView extends JPanel implements Publisher {
                 SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                     @Override
                     protected Void doInBackground() throws Exception {
-                        GameController.getInstance().getRoundZeroController().gameSetup();
-                        publishEvent(Type.START_MENUVIEW);
+                        if(GameController.getInstance().isHost()){
+                            new Thread(() -> {
+                                try {
+                                    GameServer server = new GameServer(12345); // Port number
+                                    GameController.getInstance().setOnline(true);
+                                    server.addListener(ViewFactory.getInstance().getWaitingRoomView());
+                                    server.publishEvent(Type.PLAYER_ADDED);
+                                    SwingUtilities.invokeLater(() -> {
+                                        publishEvent(Type.START_WAITING_ROOM);
+                                    });
+
+                                    server.start();
+                                } catch (IOException ex) {
+                                    throw new RuntimeException(ex);
+                                }
+                            }).start();
+                            
+                        }else {
+                            
+                            GameController.getInstance().getRoundZeroController().gameSetup();
+                            publishEvent(Type.START_MENUVIEW);
+                            return null;}
                         return null;
                     }
                     

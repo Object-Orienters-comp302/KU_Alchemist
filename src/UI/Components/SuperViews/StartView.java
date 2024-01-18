@@ -144,27 +144,24 @@ public class StartView extends JPanel implements Publisher {
         selectHost.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new Thread(() -> {
-                    try {
-                        GameServer server = new GameServer(12345); // Port number
-                        GameController.getInstance().setOnline(true);
-                        server.addListener(ViewFactory.getInstance().getWaitingRoomView());
-                        
-                        SwingUtilities.invokeLater(() -> {
-                              publishEvent(Type.START_WAITING_ROOM);
-//                            WaitingRoomView waitingRoomView = ViewFactory.getInstance().getWaitingRoomView();
-//                            JFrame frame = new JFrame();
-//                            frame.setSize(1290, 720);
-//                            frame.add(waitingRoomView);
-//                            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//                            frame.setVisible(true);
-                        });
-                        
-                        server.start();
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }).start();
+//                new Thread(() -> {
+//                    try {
+//                        GameServer server = new GameServer(12345); // Port number
+//                        GameController.getInstance().setOnline(true);
+//                        server.addListener(ViewFactory.getInstance().getWaitingRoomView());
+//
+//                        SwingUtilities.invokeLater(() -> {
+//                              publishEvent(Type.START_WAITING_ROOM);
+//                        });
+//
+//                        server.start();
+//                    } catch (IOException ex) {
+//                        throw new RuntimeException(ex);
+//                    }
+//                }).start();
+                publishEvent(Type.START_ONLINE_LOGIN_SCREEN);
+                GameController.getInstance().setOnline(true);
+                GameController.getInstance().setHost(true);
             }
         });
         
@@ -213,9 +210,6 @@ public class StartView extends JPanel implements Publisher {
     }
     
     private void SetupObjectsForHost() {
-
-        
-       
         
         ButtonPanel.setBounds(240, 260, 800, 200);
         ButtonPanel.setOpaque(false);
