@@ -284,29 +284,11 @@ public class OnlineLoginView extends JPanel implements Publisher {
                 SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                     @Override
                     protected Void doInBackground() throws Exception {
-                        if(GameController.getInstance().isHost()){
-                            new Thread(() -> {
-                                try {
-                                    GameServer.init(12345); // Port number
-                                    GameController.getInstance().setOnline(true);
-                                    GameServer.getInstance().addListener(ViewFactory.getInstance().getWaitingRoomView());
-                                    GameServer.getInstance().publishEvent(Type.PLAYER_ADDED);
-                                    SwingUtilities.invokeLater(() -> {
-                                        publishEvent(Type.START_WAITING_ROOM);
-                                    });
-                                    
-                                    GameServer.getInstance().start();
-                                } catch (IOException ex) {
-                                    throw new RuntimeException(ex);
-                                }
-                            }).start();
-                            
-                        }else {
-                            
+                        
                             GameController.getInstance().getRoundZeroController().gameSetup();
                             publishEvent(Type.START_MENUVIEW);
-                            return null;}
-                        return null;
+                            return null;
+
                     }
                     
                     @Override
