@@ -287,15 +287,15 @@ public class OnlineLoginView extends JPanel implements Publisher {
                         if(GameController.getInstance().isHost()){
                             new Thread(() -> {
                                 try {
-                                    GameServer server = new GameServer(12345); // Port number
+                                    GameServer.init(12345); // Port number
                                     GameController.getInstance().setOnline(true);
-                                    server.addListener(ViewFactory.getInstance().getWaitingRoomView());
-                                    server.publishEvent(Type.PLAYER_ADDED);
+                                    GameServer.getInstance().addListener(ViewFactory.getInstance().getWaitingRoomView());
+                                    GameServer.getInstance().publishEvent(Type.PLAYER_ADDED);
                                     SwingUtilities.invokeLater(() -> {
                                         publishEvent(Type.START_WAITING_ROOM);
                                     });
-
-                                    server.start();
+                                    
+                                    GameServer.getInstance().start();
                                 } catch (IOException ex) {
                                     throw new RuntimeException(ex);
                                 }

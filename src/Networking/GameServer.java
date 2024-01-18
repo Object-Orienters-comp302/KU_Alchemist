@@ -16,17 +16,29 @@ import java.util.*;
 import java.util.concurrent.*;
 
 public class GameServer implements Publisher {
+    private static GameServer instance;
     private ServerSocket serverSocket;
     private ArrayList<Listener> listeners;
     
     private ConcurrentHashMap<ClientHandler, Boolean> clients = new ConcurrentHashMap<>();
     
-    public GameServer(int port) throws IOException {
+    private GameServer(int port) throws IOException {
         this.listeners = new ArrayList<>();
         serverSocket = new ServerSocket(port);
         System.out.println("Server started on port " + port);
-        
-
+    }
+    
+    public static synchronized void init(int port) throws IOException {
+        if (instance == null) {
+            instance = new GameServer(port);
+        }
+    }
+    
+    public static GameServer getInstance() throws IllegalStateException {
+        if (instance == null) {
+            throw new IllegalStateException("GameServer is not initialized. Call init() first.");
+        }
+        return instance;
     }
     
     public void start() {
@@ -128,8 +140,8 @@ public class GameServer implements Publisher {
     }
     
     public static void main(String[] args) throws IOException {
-        GameServer server = new GameServer(12345); // Port number
-        server.start();
+        GameServer.init(12345); // Port number
+        GameServer.getInstance().start();
         SwingUtilities.invokeLater(() -> {
             ViewFactory.getInstance().getWaitingRoomView();
         });
