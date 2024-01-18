@@ -33,6 +33,7 @@ public class RoundTwoController extends RoundOneController{
         if (selectedIngredient != null && alchemyMarker != null && currentPlayer.getInventory().getGold() > 0) {
             // Check if the selected ingredient has an available alchemy marker and does not have a published theory
             if (!PublicationTrack.getInstance().isInPublicationTrack(selectedIngredient, alchemyMarker)) {
+                PrintingPress(currentPlayer, Artifact.Name.Printing_Press);
                 // Assign the marker to the selected ingredient
                 PublicationCard new_Theory = new PublicationCard(selectedIngredient, alchemyMarker,  currentPlayer); // Todo: The certainty point is a point that can take the values 1, 2, 3, expressing the player's confidence in the theory. It should be checked again after Phase 1
                 // Mark the marker as used
