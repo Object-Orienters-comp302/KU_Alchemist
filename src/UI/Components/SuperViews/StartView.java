@@ -34,6 +34,10 @@ public class StartView extends JPanel implements Publisher {
 
     ImagePanel    selectHost,selectJoin;
     ArrayList<Listener> Listeners;
+    private ImagePanel selectSinglePlayer;
+    private ImagePanel singleText;
+    private ImagePanel selectMultiPlayer;
+    private ImagePanel multiText;
     
     
     public StartView() {
@@ -64,7 +68,10 @@ public class StartView extends JPanel implements Publisher {
         
         selectJoin  = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW));
         
-        selectJoinReal = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_WHITE));
+        selectJoinReal = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW_CROPPED));
+        
+        selectMultiPlayer = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW_FULL));
+        selectSinglePlayer = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW_FULL));
         
     }
     private void SetupBase(){
@@ -77,7 +84,6 @@ public class StartView extends JPanel implements Publisher {
         Background.add(NamePanel);
         
         selectHost.setBounds(100,250,500,200);
-        Background.add(selectHost);
         selectHost.setLayout(null);
         
         ImagePanel hostText = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.HOST));
@@ -86,21 +92,54 @@ public class StartView extends JPanel implements Publisher {
         selectHost.add(hostText);
         
         selectJoin.setBounds(600,250,500,200);
-        Background.add(selectJoin);
         selectJoin.setLayout(null);
         
-        
+        /*
         selectJoinReal.setBounds(600,450,500,200);
         Background.add(selectJoinReal);
         selectJoinReal.setLayout(null);
-        
+        */
         ImagePanel joinText = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.JOIN));
         joinText.setLayout(null);
         joinText.setBounds(150, 50, 200, 100);
         selectJoin.add(joinText);
         
+        
+        selectSinglePlayer.setLayout(null);
+        selectSinglePlayer.setBounds(350, 475, 500, 200);
+        Background.add(selectSinglePlayer);
+        
+        singleText = new ImagePanel(AssetLoader.ButtonTexts.SINGLE);
+        singleText.setLayout(null);
+        singleText.setBounds(50, 50, 400, 100);
+        selectSinglePlayer.add(singleText);
+        
+        
+        selectMultiPlayer.setLayout(null);
+        selectMultiPlayer.setBounds(350, 250, 500, 200);
+        Background.add(selectMultiPlayer);
+        
+        multiText = new ImagePanel(AssetLoader.ButtonTexts.MULTI);
+        multiText.setLayout(null);
+        multiText.setBounds(50, 50, 400, 100);
+        selectMultiPlayer.add(multiText);
+        
+    }
+    private void SetupMultiplayer(){
+        Background.remove(selectSinglePlayer);
+        Background.remove(selectMultiPlayer);
+        Background.add(selectHost);
+        Background.add(selectJoin);
+        Background.repaint();
+        
     }
     private void SetupListenersBase() {
+        selectMultiPlayer.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                SetupMultiplayer();
+            }
+        });
         selectHost.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
