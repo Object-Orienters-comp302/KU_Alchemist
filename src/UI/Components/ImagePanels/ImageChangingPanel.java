@@ -2,12 +2,14 @@ package UI.Components.ImagePanels;
 
 import Utils.AssetLoader;
 import Utils.GUtil;
+import Utils.KawaseBlur;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.util.Objects;
 
 public class ImageChangingPanel extends JPanel {
     private String defImage;

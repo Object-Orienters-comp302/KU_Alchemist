@@ -11,6 +11,7 @@ import Models.PublicationTrack;
 import UI.Components.ColorChangingPanel;
 import UI.Components.CutRoundedPanel;
 import UI.Components.ImagePanels.HQImagePanel;
+import UI.Components.ImagePanels.ImageBlurPanel;
 import UI.Components.ImagePanels.ImageChangingPanel;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.Player.PlayerDisplayer;
@@ -54,14 +55,14 @@ public class MenuView extends JPanel implements Publisher,Listener {
     JPanel        bottomPanel;
     JPanel             sidePanel;
     //buttons of side panel
-    ImageChangingPanel side1;
-    ImageChangingPanel side2;
-    ImageChangingPanel side3;
-    ImageChangingPanel side4;
-    ImageChangingPanel side5;
-    ImageChangingPanel side6;
-    ImageChangingPanel side7;
-    ImageChangingPanel nextPlayerButton;
+    ImageBlurPanel     side1;
+    ImageBlurPanel side2;
+    ImageBlurPanel side3;
+    ImageBlurPanel side4;
+    ImageBlurPanel side5;
+    ImageBlurPanel side6;
+    ImageBlurPanel side7;
+    ImageBlurPanel nextPlayerButton;
     private JPanel RoundCounterPanel;
     private JLabel roundLabel;
     
@@ -109,22 +110,14 @@ public class MenuView extends JPanel implements Publisher,Listener {
         
         sidePanel = new JPanel();
         //Add assetloader when a new asset is given.
-        side1 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE_1),1);
-        side2 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH_1),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH_0),1);
-        side3 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB_1),1);
-        side4 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE_1),1);
-        side5 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_1),1);
-        side6 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1));
-        side7 = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1));
-        nextPlayerButton = new ImageChangingPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),
-                                       AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_1));
+        side1 = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TABLE_0),1);
+        side2 = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.PUBLISH_1),1);
+        side3 = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB_0),1);
+        side4 = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE_0),1);
+        side5 = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_0),1);
+        side6 = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0));
+        side7 = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0));
+        nextPlayerButton = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0));
         
         BufferedImage background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(
                 GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))), 3, 2);
