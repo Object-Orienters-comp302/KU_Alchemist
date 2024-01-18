@@ -134,8 +134,6 @@ public class StartView extends JPanel implements Publisher {
                         throw new RuntimeException(ex);
                     }
                 }).start();
-
-
             }
         });
         
@@ -157,6 +155,7 @@ public class StartView extends JPanel implements Publisher {
     public void CleanupBase(){
         Background.remove(selectJoin);
         Background.remove(selectHost);
+        Background.remove(selectJoinReal);
         Background.repaint();
     }
     
