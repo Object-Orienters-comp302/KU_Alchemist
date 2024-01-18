@@ -72,7 +72,9 @@ public class AssetLoader {
         INVENTORY("resources/Images/buttonText/inventoryText.png"),
         MARKET("resources/Images/buttonText/marketText.png"),
         HOST("resources/Images/buttonText/hostText.png"),
-        JOIN("resources/Images/buttonText/joinText.png")
+        JOIN("resources/Images/buttonText/joinText.png"),
+        MULTI("resources/Images/buttonText/multiText.png"),
+        SINGLE("resources/Images/buttonText/singleText.png"),
         ;
         
         
@@ -330,6 +332,8 @@ public class AssetLoader {
         FRAME_COPPER("resources/Images/start/frameCopper.png"),
         FRAME_WHITE("resources/Images/start/frameWhite.png"),
         FRAME_YELLOW("resources/Images/start/frameYellow.png"),
+        FRAME_YELLOW_CROPPED("resources/Images/start/frameYellowCropped.png"),
+        FRAME_YELLOW_FULL("resources/Images/start/frameYellowFull.png"),
         GOLD_1("resources/Images/start/goldInt1.png"),
         GOLD_2("resources/Images/start/goldInt2.png"),
         GOLD_3("resources/Images/start/goldInt3.png"),

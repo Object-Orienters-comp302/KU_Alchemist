@@ -3,16 +3,24 @@ package UI.Components.SuperViews;
 import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
+import Domain.GameController;
+import Networking.GameClient;
+import Networking.GameServer;
 import Sound.DJ;
+import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.HQImagePanel;
 import UI.Components.ImagePanels.ImagePanel;
+import UI.Components.ImagePanels.OutlinedLabel;
+import UI.Components.RoundedPanel;
 import UI.View.ViewFactory;
 import Utils.AssetLoader;
 
 import javax.swing.*;
+import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class StartView extends JPanel implements Publisher {
@@ -22,12 +30,17 @@ public class StartView extends JPanel implements Publisher {
     ImagePanel Background;
     ImagePanel NamePanel;
     ImagePanel StartButton;
+    ImagePanel selectJoinReal;
     JPanel     ButtonPanel;
     
     HQImagePanel        B1,B2,B3;
 
     ImagePanel    selectHost,selectJoin;
     ArrayList<Listener> Listeners;
+    private ImagePanel selectSinglePlayer;
+    private ImagePanel singleText;
+    private ImagePanel selectMultiPlayer;
+    private ImagePanel multiText;
     
     
     public StartView() {
@@ -58,6 +71,11 @@ public class StartView extends JPanel implements Publisher {
         
         selectJoin  = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW));
         
+        selectJoinReal = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW_CROPPED));
+        
+        selectMultiPlayer = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW_FULL));
+        selectSinglePlayer = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Start.FRAME_YELLOW_FULL));
+        
     }
     private void SetupBase(){
         Background.setBounds(0, 0, 1280, 720);
@@ -69,7 +87,6 @@ public class StartView extends JPanel implements Publisher {
         Background.add(NamePanel);
         
         selectHost.setBounds(100,250,500,200);
-        Background.add(selectHost);
         selectHost.setLayout(null);
         
         ImagePanel hostText = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.HOST));
@@ -78,17 +95,92 @@ public class StartView extends JPanel implements Publisher {
         selectHost.add(hostText);
         
         selectJoin.setBounds(600,250,500,200);
-        Background.add(selectJoin);
         selectJoin.setLayout(null);
         
+        /*
+        selectJoinReal.setBounds(600,450,500,200);
+        Background.add(selectJoinReal);
+        selectJoinReal.setLayout(null);
+        */
         ImagePanel joinText = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.JOIN));
         joinText.setLayout(null);
         joinText.setBounds(150, 50, 200, 100);
         selectJoin.add(joinText);
         
+        
+        selectSinglePlayer.setLayout(null);
+        selectSinglePlayer.setBounds(350, 475, 500, 200);
+        Background.add(selectSinglePlayer);
+        
+        singleText = new ImagePanel(AssetLoader.ButtonTexts.SINGLE);
+        singleText.setLayout(null);
+        singleText.setBounds(50, 50, 400, 100);
+        selectSinglePlayer.add(singleText);
+        
+        
+        selectMultiPlayer.setLayout(null);
+        selectMultiPlayer.setBounds(350, 250, 500, 200);
+        Background.add(selectMultiPlayer);
+        
+        multiText = new ImagePanel(AssetLoader.ButtonTexts.MULTI);
+        multiText.setLayout(null);
+        multiText.setBounds(50, 50, 400, 100);
+        selectMultiPlayer.add(multiText);
+        
+    }
+    private void SetupMultiplayer(){
+        Background.remove(selectSinglePlayer);
+        Background.remove(selectMultiPlayer);
+        Background.add(selectHost);
+        Background.add(selectJoin);
+        Background.repaint();
+        
     }
     private void SetupListenersBase() {
+        selectMultiPlayer.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                SetupMultiplayer();
+            }
+        });
+
         selectHost.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new Thread(() -> {
+                    try {
+                        GameServer.init(12345); // Port number
+                        GameController.getInstance().setOnline(true);
+                        GameServer.getInstance().addListener(ViewFactory.getInstance().getWaitingRoomView());
+                        SwingUtilities.invokeLater(() -> {
+                            publishEvent(Type.START_WAITING_ROOM);
+                        });
+                        
+                        GameServer.getInstance().start();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }).start();
+                GameController.getInstance().setOnline(true);
+                GameController.getInstance().setHost(true);
+            }
+        });
+        
+        selectJoin.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    GameClient.init("localhost", 12345); //TODO: Ask for port and ip in gui
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+                GameController.getInstance().setOnline(true);
+                //ViewFactory.getInstance().getLoginView().setPlayerAmount(1);
+                publishEvent(Type.START_ONLINE_LOGIN_SCREEN);
+            }
+        });
+        
+        selectSinglePlayer.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 CleanupBase();
@@ -99,10 +191,13 @@ public class StartView extends JPanel implements Publisher {
             }
         });
         
+        
     }
+    
     public void CleanupBase(){
         Background.remove(selectJoin);
         Background.remove(selectHost);
+        Background.remove(selectJoinReal);
         Background.repaint();
     }
     
@@ -116,9 +211,6 @@ public class StartView extends JPanel implements Publisher {
     }
     
     private void SetupObjectsForHost() {
-
-        
-       
         
         ButtonPanel.setBounds(240, 260, 800, 200);
         ButtonPanel.setOpaque(false);
@@ -162,6 +254,9 @@ public class StartView extends JPanel implements Publisher {
         StartButtonText.setLayout(null);
         StartButtonText.setBounds(140, 43, 120, 30);
         StartButton.add(StartButtonText);
+        
+        Background.remove(selectSinglePlayer);
+        Background.remove(selectMultiPlayer);
     }
     
     private void SetupListenersForHost() {
@@ -208,6 +303,54 @@ public class StartView extends JPanel implements Publisher {
             }
         });
         
+    }
+    private void setupObjectsForMulti(boolean isHost){
+        CleanupBase();
+        RoundedPanel panel = new RoundedPanel(40);
+        panel.setLayout(null);
+        panel.setBounds(515,300,250,250);
+        
+        OutlinedLabel portLabel = new OutlinedLabel("PORT:", "#aaafff", "#fffaaf", OutlinedLabel.Versions.MID_ORIENTED);
+        portLabel.setBounds(25,20,200,30);
+        panel.add(portLabel);
+        
+        
+        // Text Field 1
+        JTextField textField1 = new JTextField(); //Port
+        textField1.setBounds(25, 50, 200, 30);
+        textField1.setBorder(null);
+        panel.add(textField1);
+        
+        OutlinedLabel ipLabel = new OutlinedLabel("IP:", "#aaafff", "#fffaaf", OutlinedLabel.Versions.MID_ORIENTED);
+        ipLabel.setBounds(25, 80, 200, 30);
+        
+        JTextField textField2 = new JTextField(); // IP
+        textField2.setBounds(25, 110, 200, 30);
+        textField2.setBorder(null);
+        if (!isHost) {
+            panel.add(ipLabel);
+            panel.add(textField2);
+        }
+        // Button
+        ColorChangingPanel button = new ColorChangingPanel("#fffaaf", "#aaafff", 40, ColorChangingPanel.RoundingStyle.BOTH);
+        button.setBounds(50, 160, 150, 50);
+        button.setLayout(null);
+        OutlinedLabel lab = new OutlinedLabel("JOIN", "#aaafff", "#fffaaf", OutlinedLabel.Versions.MID_ORIENTED);
+        lab.setSize(button.getSize());lab.setLocation(0,0);
+        button.add(lab);
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // Handle button click event
+                String text1 = textField1.getText(); //Port
+                if (!isHost) {
+                    String text2 = textField2.getText(); //IP
+                }
+                //do stuff functions go wild
+            }
+        });
+        panel.add(button);
+        Background.add(panel);
     }
     
     @Override

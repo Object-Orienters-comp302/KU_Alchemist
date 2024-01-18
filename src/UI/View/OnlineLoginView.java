@@ -6,7 +6,9 @@ import Domain.Event.Type;
 import Domain.GameController;
 import Domain.LoginController;
 import Models.Token;
-import Sound.DJ;
+import Networking.GameAction;
+import Networking.GameClient;
+import Networking.GameServer;
 import UI.Components.ColorChangingPanel;
 import UI.Components.CutRoundedPanel;
 import UI.Components.ImagePanels.GifPanel;
@@ -23,12 +25,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
+import java.util.Objects;
 
-public class LoginView extends JPanel implements Publisher {
-    static int iter = 0;
-    int                       playerAmount = 2;
+public class OnlineLoginView extends JPanel implements Publisher {
     LoginController           loginControl;
     CircularLinkedList<Token> tokenList;
     ImagePanel                MainPanel;
@@ -53,11 +54,15 @@ public class LoginView extends JPanel implements Publisher {
     private JTextField TextField;
     
     
-    protected LoginView() {
-        new Token("blue", AssetLoader.Tokens.BLUE, AssetLoader.Backgrounds.BLUE);
-        new Token("red", AssetLoader.Tokens.RED, AssetLoader.Backgrounds.RED);
-        new Token("green", AssetLoader.Tokens.GREEN, AssetLoader.Backgrounds.GREEN);
-        new Token("purple", AssetLoader.Tokens.PURPLE, AssetLoader.Backgrounds.PURPLE);
+    protected OnlineLoginView() {
+        new Token("blue", AssetLoader.Tokens.BLUE,
+                  AssetLoader.Backgrounds.BLUE);
+        new Token("red", AssetLoader.Tokens.RED,
+                  AssetLoader.Backgrounds.RED);
+        new Token("green", AssetLoader.Tokens.GREEN,
+                  AssetLoader.Backgrounds.GREEN);
+        new Token("purple", AssetLoader.Tokens.PURPLE,
+                  AssetLoader.Backgrounds.PURPLE);
         new Token("yellow", AssetLoader.Tokens.YELLOW, AssetLoader.Backgrounds.YELLOW);
         this.Listeners = new ArrayList<>();
         
@@ -91,7 +96,7 @@ public class LoginView extends JPanel implements Publisher {
         NextPanelContainer                    = new JPanel();
         NextPanel                             =
                 new ColorChangingPanel("#cf9d15", "#FFD700", 40, ColorChangingPanel.RoundingStyle.BOTH);
-        NextPanel_Label                       = new JLabel("NEXT");
+        NextPanel_Label                       = new JLabel("JOIN");
         
         
     }
@@ -181,7 +186,7 @@ public class LoginView extends JPanel implements Publisher {
             public void mouseClicked(MouseEvent e) {
                 tokenList.getPrev();
                 TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
-                MainPanel.changeImage(tokenList.get(). getBluredBackground());
+                MainPanel.changeImage(tokenList.get().getBluredBackground());
             }
         });
         
@@ -190,7 +195,7 @@ public class LoginView extends JPanel implements Publisher {
             public void mouseClicked(MouseEvent e) {
                 tokenList.getNext();
                 TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
-                MainPanel.changeImage(tokenList.get(). getBluredBackground());
+                MainPanel.changeImage(tokenList.get().getBluredBackground());
             }
         });
         
@@ -271,20 +276,18 @@ public class LoginView extends JPanel implements Publisher {
             tokenList.delete();
             TextField.setText("");
             TokenSelectorPanel_Displayer.changeImage(tokenList.get().getImage());
-            MainPanel.changeImage(tokenList.get(). getBluredBackground());
-            LoginView.iter += 1;
-            
+            MainPanel.changeImage(tokenList.get().getBluredBackground());
             
             //System.out.print(LoginView.iter);
-            if (NextPanel_Label.getText() == "START") {
-                //TODO MAKE A NEW GENERIC GAMESETUP THAT TAKES AN ARRAYLIST.
+            if (Objects.equals(NextPanel_Label.getText(), "JOIN")) {
                 ThrowLoadingGif();
                 SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                     @Override
                     protected Void doInBackground() throws Exception {
-                        GameController.getInstance().getRoundZeroController().gameSetup();
-                        publishEvent(Type.START_MENUVIEW);
-                        return null;
+                            
+                            
+                            return null;
+
                     }
                     
                     @Override
@@ -294,10 +297,6 @@ public class LoginView extends JPanel implements Publisher {
                 };
                 
                 worker.execute();
-                
-            }
-            if ((LoginView.iter) == playerAmount - 1) {
-                NextPanel_Label.setText("START");
             }
         }
     }
@@ -314,9 +313,12 @@ public class LoginView extends JPanel implements Publisher {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1294, 757);
         frame.getContentPane().setLayout(new GridBagLayout());
-        JPanel login = new LoginView();
+        JPanel login = new OnlineLoginView();
         frame.getContentPane().add(login);
         frame.setVisible(true);
+    }
+    public void publishStartMenu(){
+        publishEvent(Type.START_MENUVIEW);
     }
     
     @Override
@@ -353,9 +355,4 @@ public class LoginView extends JPanel implements Publisher {
         this.repaint();
         
     }
-    
-    public void setPlayerAmount(int i){
-        this.playerAmount=i;
-    }
-    
 }

@@ -4,15 +4,21 @@ import Models.Artifact;
 import Models.Deck;
 import Models.Ingredient;
 import Models.Player;
+import Networking.GameAction;
+import Networking.GameServer;
 
 public class RoundZeroController {
-    private final Deck deck;
+    private Deck deck;
     
     public RoundZeroController() {
         this.deck = Deck.getInstance();
     }
     
+    
     public void gameSetup() {
+        if(!GameController.getInstance().isHost() && GameController.getInstance().isOnline()){
+            return;
+        }
         
         //Creates 4 of each ingredient card in deck
         initializeIngredients(4);
@@ -29,8 +35,18 @@ public class RoundZeroController {
             
             // Deal 2 cards to each player
             dealIngredientCards(player, 2);
+            if(GameController.getInstance().isHost()){
+                GameServer.getInstance().broadcastUpdate(new GameAction(GameAction.ActionType.INIT_PLAYER,player.getID(),player.getToken()));
+                GameServer.getInstance().broadcastUpdate(new GameAction(GameAction.ActionType.GOLD,"Added Gold",player.getInventory().getGold(),player.getID()));
+                //GameServer.getInstance().broadcastUpdate(new GameAction());
+                
+            }
+        }
+        if(GameController.getInstance().isOnline()){
+            GameServer.getInstance().broadcastUpdate(new GameAction(GameAction.ActionType.START_GAME,"Start Game"));
         }
     }
+
     
     public void initializeIngredients(int quantity) {
         for (Ingredient.IngredientTypes type : Ingredient.IngredientTypes.values()) {

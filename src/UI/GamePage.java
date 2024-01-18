@@ -4,6 +4,7 @@ import Domain.Event.Listener;
 import Domain.Event.Type;
 import Domain.GameController;
 import Domain.RoundOneController;
+import UI.Components.SuperViews.WaitingRoomView;
 import UI.View.ViewFactory;
 
 import javax.swing.*;
@@ -39,6 +40,7 @@ public class GamePage extends JFrame implements Listener {
     }
     private void addListeners(){
         ViewFactory.getInstance().getLoginView().addListener(this);
+        ViewFactory.getInstance().getOnlineLoginView().addListener(this);
         ViewFactory.getInstance().getPauseView().addListener(this);
         ViewFactory.getInstance().getHelpScreenView().addListener(this);
         ViewFactory.getInstance().getStartView().addListener(this);
@@ -55,6 +57,11 @@ public class GamePage extends JFrame implements Listener {
         if (type == Domain.Event.Type.START_LOGIN_SCREEN) {
             cardPanel.add(ViewFactory.getInstance().getLoginView(), Cards.LoginView.getString());
             cardLayout.show(cardPanel, Cards.LoginView.getString());
+            setVisible(true);
+        }
+        if (type == Domain.Event.Type.START_ONLINE_LOGIN_SCREEN) {
+            cardPanel.add(ViewFactory.getInstance().getOnlineLoginView(), Cards.OnlineLoginView.getString());
+            cardLayout.show(cardPanel, Cards.OnlineLoginView.getString());
             setVisible(true);
         }
         if (type == Domain.Event.Type.START_MENUVIEW) {
@@ -79,15 +86,22 @@ public class GamePage extends JFrame implements Listener {
             cardLayout.show(cardPanel, Cards.FinalView.getString());
             setVisible(true);
         }
+        if(type == Domain.Event.Type.START_WAITING_ROOM){
+            cardPanel.add(ViewFactory.getInstance().getWaitingRoomView(), Cards.WaitingRoomView.getString());
+            cardLayout.show(cardPanel, Cards.WaitingRoomView.getString());
+            setVisible(true);
+        }
     }
     
     enum Cards {
         LoginView("LoginView"),
+        OnlineLoginView("OnlineLoginView"),
         MenuView("MenuView"),
         PauseView("PauseView"),
         HelpView("HelpView"),
         StartView("StartView"),
-        FinalView("FinalView");
+        FinalView("FinalView"),
+        WaitingRoomView("WaitingRoomView");
         
         
         private final String string;

@@ -4,11 +4,12 @@ import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Deck implements Publisher {
+public class Deck implements Publisher, Serializable {
     private static Deck                  single_instance;
     private        ArrayList<Ingredient.IngredientTypes> Ingredients;
     private        ArrayList<Artifact>   Artifacts;
@@ -109,6 +110,10 @@ public class Deck implements Publisher {
     public void shuffleArtifact() {
         Collections.shuffle(Artifacts);
         publishEvent(Type.DECK_ARTIFACT);
+    }
+    
+    public static void setSingle_instance(Deck single_instance) {
+        Deck.single_instance = single_instance;
     }
     
     @Override

@@ -2,23 +2,26 @@ package UI.View;
 
 import UI.Components.SuperViews.FinalView;
 import UI.Components.SuperViews.StartView;
+import UI.Components.SuperViews.WaitingRoomView;
 
 public class ViewFactory {
     
     private static ViewFactory single_instance;
     
-    private BoardView      boardView;
-    private DashboardView  dashboardView;
-    private HelpScreenView helpScreenView;
-    private MenuView       menuView;
-    private PauseView      pauseView;
-    private LoginView      loginView;
+    private BoardView       boardView;
+    private DashboardView   dashboardView;
+    private HelpScreenView  helpScreenView;
+    private MenuView        menuView;
+    private PauseView       pauseView;
+    private LoginView       loginView;
+    private OnlineLoginView onlineLoginView;
     private CustomPlainView customPlainView;
-    private InventoryView inventoryView;
-    private TransmuteView transmuteView; // TODO: Refactor this
-    private MarketView    buyArtifactView; // TODO: Refactor this
-    private StartView     startView;
-    private FinalView     finalView;
+    private InventoryView   inventoryView;
+    private TransmuteView   transmuteView; // TODO: Refactor this
+    private MarketView      buyArtifactView; // TODO: Refactor this
+    private StartView       startView;
+    private FinalView       finalView;
+    private WaitingRoomView waitingRoomView;
     
     
     private ViewFactory() {
@@ -73,6 +76,14 @@ public class ViewFactory {
         }
         return loginView;
     }
+    
+    public OnlineLoginView getOnlineLoginView() {
+        if (onlineLoginView == null) {
+            onlineLoginView = new OnlineLoginView();
+        }
+        return onlineLoginView;
+    }
+    
     public CustomPlainView getPlainView() {
         if (customPlainView == null) {
             customPlainView = new CustomPlainView();
@@ -93,6 +104,7 @@ public class ViewFactory {
         }
         return transmuteView;
     }
+    
     public MarketView getBuyArtifactView() {
         if (buyArtifactView == null) {
             buyArtifactView = new MarketView();
@@ -106,11 +118,18 @@ public class ViewFactory {
         }
         return startView;
     }
+    
     public FinalView getFinalView() {
         if (finalView == null) {
             finalView = new FinalView();
         }
         return finalView;
     }
-
+    
+    public WaitingRoomView getWaitingRoomView() {
+        if (waitingRoomView == null) {
+            waitingRoomView = new WaitingRoomView();
+        }
+        return waitingRoomView;
+    }
 }

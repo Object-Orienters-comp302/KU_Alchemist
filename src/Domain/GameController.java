@@ -21,6 +21,8 @@ public class GameController implements Publisher {
     private RoundTwoController roundTwoController;
     private RoundThreeController roundThreeController;
     private Integer TotalNextTurns;
+    private boolean online = false;
+    private boolean host = false;
     ArrayList<Listener> listeners;
     
     private GameController() {
@@ -123,5 +125,15 @@ public class GameController implements Publisher {
         listeners.add(lis);
     }
     
-
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+    
+    public boolean isOnline() { return online; }
+    
+    public void setHost(boolean host) {
+        this.host = host;
+    }
+    
+    public boolean isHost() { return host; }
 }

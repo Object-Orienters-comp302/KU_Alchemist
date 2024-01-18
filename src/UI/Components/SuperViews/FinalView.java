@@ -18,19 +18,20 @@ public class FinalView extends JPanel {
     
     
     MenuController controller;
-    String goldColor = "#FFD700";
-    String silverColor = "#C0C0C0";
-    String bronzeColor = "#CD7F32";
-    HQImagePanel Background;
-    public FinalView(){
+    String         goldColor   = "#FFD700";
+    String         silverColor = "#C0C0C0";
+    String         bronzeColor = "#CD7F32";
+    HQImagePanel   Background;
+    
+    public FinalView() {
         
         controller = GameController.getInstance().getMenuController();
-    
+        
         this.setSize(1280, 720);
         this.setVisible(true);
         this.setLayout(null);
         
-
+        
         Background = new HQImagePanel(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND));
         Background.setVisible(true);
         Background.setLayout(null);
@@ -53,33 +54,32 @@ public class FinalView extends JPanel {
         ArrayList<Player> playerList = controller.getPlayers();
         
         playerList.sort(Comparator.comparingInt(Player::getScore)
-                                .thenComparingInt(player -> player.getInventory().getGold() % 3)
-                                .reversed());
+                                .thenComparingInt(player -> player.getInventory().getGold() % 3).reversed());
         
         for (int i = 0; i < playerList.size(); i++) {
             
             PlayerDisplayer displayer = new PlayerDisplayer(playerList.get(i));
-            displayer.setBounds(420, (110 + 100*i), 240, 80);
+            displayer.setBounds(420, (110 + 100 * i), 240, 80);
             
             JLabel rank = new JLabel();
             rank.setText(i + 1 + ".");
-            rank.setFont(new Font("Tahoma", Font.PLAIN,80 ));
-            rank.setBounds(340, (105 + 100*i), 100, 80);
+            rank.setFont(new Font("Tahoma", Font.PLAIN, 80));
+            rank.setBounds(340, (105 + 100 * i), 100, 80);
             
             JLabel score = new JLabel();
             score.setText(playerList.get(i).getScore() + "p");
-            score.setFont(new Font("Tahoma", Font.PLAIN,80 ));
-            score.setBounds(680, (105 + 100*i), 300, 80);
+            score.setFont(new Font("Tahoma", Font.PLAIN, 80));
+            score.setBounds(680, (105 + 100 * i), 300, 80);
             
-            if(i == 0){
+            if (i == 0) {
                 displayer.setBackground(Color.decode(goldColor));
                 rank.setForeground(Color.decode(goldColor));
                 score.setForeground(Color.decode(goldColor));
-            }else if(i==1){
+            } else if (i == 1) {
                 displayer.setBackground(Color.decode(silverColor));
                 rank.setForeground(Color.decode(silverColor));
                 score.setForeground(Color.decode(silverColor));
-            }else{
+            } else {
                 displayer.setBackground(Color.decode(bronzeColor));
                 rank.setForeground(Color.decode(bronzeColor));
                 score.setForeground(Color.decode(bronzeColor));
@@ -90,20 +90,19 @@ public class FinalView extends JPanel {
         }
     }
     
-    private void calculateFinalScores(){
+    private void calculateFinalScores() {
         GameController.getInstance().calculateFinalScores();
     }
     
     public static void main(String[] args) {
         
-        Player player1 = new Player("player1",new Token("player1",AssetLoader.getAssetPath(AssetLoader.Avatars.RED)
-                ,AssetLoader.getAssetPath(AssetLoader.Avatars.RED)));
-        Player player2 = new Player("player2",new Token("player2",AssetLoader.getAssetPath(AssetLoader.Avatars.BLUE)
-                ,AssetLoader.getAssetPath(AssetLoader.Avatars.BLUE)));
-        Player player3 = new Player("player3",new Token("player3",AssetLoader.getAssetPath(AssetLoader.Avatars.PURPLE)
-                ,AssetLoader.getAssetPath(AssetLoader.Avatars.PURPLE)));
-        Player player4 = new Player("player4",new Token("player4",AssetLoader.getAssetPath(AssetLoader.Avatars.YELLOW)
-                ,AssetLoader.getAssetPath(AssetLoader.Avatars.YELLOW)));
+        Player player1 = new Player("player1", new Token("player1", AssetLoader.Avatars.RED, AssetLoader.Avatars.RED));
+        Player player2 =
+                new Player("player2", new Token("player2", AssetLoader.Avatars.BLUE, AssetLoader.Avatars.BLUE));
+        Player player3 =
+                new Player("player3", new Token("player3", AssetLoader.Avatars.PURPLE, AssetLoader.Avatars.PURPLE));
+        Player player4 =
+                new Player("player4", new Token("player4", AssetLoader.Avatars.YELLOW, AssetLoader.Avatars.YELLOW));
         
         player1.setReputation(2);
         player2.setReputation(2);

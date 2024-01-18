@@ -2,6 +2,8 @@ package Domain;
 
 import Models.Player;
 import Models.Token;
+import Networking.GameAction;
+import Networking.GameClient;
 import Utils.CircularLinkedList;
 
 import java.util.ArrayList;
@@ -18,15 +20,23 @@ public class LoginController {
     }
     
     public logPlayerInEnums logPlayerIn(String PlayerID, Token token) {
-        // TODO: Add to event log viewer
-        if (isUniquePlayerID(PlayerID)) {
-            new Player(PlayerID, token);
-            return logPlayerInEnums.LogInSuccesful;
-        } else if (isUniquePlayerID(PlayerID)) {
-            return logPlayerInEnums.PlayerIDTaken;
-        } else {
-            return logPlayerInEnums.AvatarTaken;
+        if (GameController.getInstance().isOnline() && !GameController.getInstance().isHost()) {
+            GameAction action = new GameAction(GameAction.ActionType.PLAYER_JOINED, PlayerID, token);
+            GameClient.getInstance().sendAction(action);
         }
+        else{
+            if (isUniquePlayerID(PlayerID)) {
+                new Player(PlayerID, token);
+                return logPlayerInEnums.LogInSuccesful;
+            } else if (isUniquePlayerID(PlayerID)) {
+                return logPlayerInEnums.PlayerIDTaken;
+            } else {
+                return logPlayerInEnums.AvatarTaken;
+            }
+        }
+        // TODO: Add to event log viewer
+        
+        return null;
     }
     
     public boolean isUniquePlayerID(String PlayerID) {

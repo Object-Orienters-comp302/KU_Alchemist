@@ -4,11 +4,12 @@ import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
-public class Inventory implements Publisher {
+public class Inventory implements Publisher, Serializable {
     HashMap<Ingredient.IngredientTypes, Integer> ingredientHashMap;
     HashMap<Potion, Integer>                     potions;
     ArrayList<Artifact> artifacts;
@@ -118,6 +119,7 @@ public class Inventory implements Publisher {
     }
     
     public void setGold(Integer gold) {
+        
         this.gold = gold;
         publishEvent(Type.GOLD);
     }

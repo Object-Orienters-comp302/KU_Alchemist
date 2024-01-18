@@ -1,21 +1,44 @@
 package Networking;
 
+import Domain.Event.Listener;
+import Domain.Event.Publisher;
+import Domain.Event.Type;
 import Models.Player;
 import Models.Token;
+import UI.View.ViewFactory;
 import Utils.AssetLoader;
 
+import javax.swing.*;
+import javax.swing.text.View;
 import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-public class GameServer {
+public class GameServer implements Publisher {
+    private static GameServer instance;
     private ServerSocket serverSocket;
+    private ArrayList<Listener> listeners;
+    
     private ConcurrentHashMap<ClientHandler, Boolean> clients = new ConcurrentHashMap<>();
     
-    public GameServer(int port) throws IOException {
+    private GameServer(int port) throws IOException {
+        this.listeners = new ArrayList<>();
         serverSocket = new ServerSocket(port);
         System.out.println("Server started on port " + port);
+    }
+    
+    public static synchronized void init(int port) throws IOException {
+        if (instance == null) {
+            instance = new GameServer(port);
+        }
+    }
+    
+    public static GameServer getInstance() throws IllegalStateException {
+        if (instance == null) {
+            throw new IllegalStateException("GameServer is not initialized. Call init() first.");
+        }
+        return instance;
     }
     
     public void start() {
@@ -44,7 +67,8 @@ public class GameServer {
         // For now, just echo the action
         if(action.getActionType() == GameAction.ActionType.PLAYER_JOINED){
             //This does not send the background if there is any errors, send background.
-            add_player(action.getDetails(),action.getTokens());
+            add_player(action.getDetails(), action.getToken());
+            publishEvent(Type.PLAYER_ADDED);
         }
         
         System.out.println("IN: GameAction type: " + action.getActionType());
@@ -52,8 +76,19 @@ public class GameServer {
         
         broadcastUpdate(action);
     }
-    private void add_player(String name, AssetLoader.Tokens tokens){
-        new Player(name, new Token("Player Token",tokens.getPath()));
+    private void add_player(String name, Token token){
+        new Player(name, token);
+    }
+    
+    @Override
+    public void addListener(Listener lis) {
+        listeners.add(lis);
+    }
+    @Override
+    public void publishEvent(Type type) {
+        for (Listener listener : listeners) {
+            listener.onEvent(type);
+        }
     }
     
     private class ClientHandler implements Runnable {
@@ -105,7 +140,10 @@ public class GameServer {
     }
     
     public static void main(String[] args) throws IOException {
-        GameServer server = new GameServer(12345); // Port number
-        server.start();
+        GameServer.init(12345); // Port number
+        GameServer.getInstance().start();
+        SwingUtilities.invokeLater(() -> {
+            ViewFactory.getInstance().getWaitingRoomView();
+        });
     }
 }
