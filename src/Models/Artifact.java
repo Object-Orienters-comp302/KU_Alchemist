@@ -1,8 +1,9 @@
 package Models;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Artifact {
+public class Artifact implements Serializable {
     private final Artifact.Name name;
     
     private final Artifact.AbilityType abilityType; // Enum to represent the type of ability

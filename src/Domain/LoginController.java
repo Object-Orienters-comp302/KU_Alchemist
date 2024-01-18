@@ -24,16 +24,19 @@ public class LoginController {
             GameAction action = new GameAction(GameAction.ActionType.PLAYER_JOINED, PlayerID, token);
             GameClient.getInstance().sendAction(action);
         }
-        
-        // TODO: Add to event log viewer
-        if (isUniquePlayerID(PlayerID)) {
-            new Player(PlayerID, token);
-            return logPlayerInEnums.LogInSuccesful;
-        } else if (isUniquePlayerID(PlayerID)) {
-            return logPlayerInEnums.PlayerIDTaken;
-        } else {
-            return logPlayerInEnums.AvatarTaken;
+        else{
+            if (isUniquePlayerID(PlayerID)) {
+                new Player(PlayerID, token);
+                return logPlayerInEnums.LogInSuccesful;
+            } else if (isUniquePlayerID(PlayerID)) {
+                return logPlayerInEnums.PlayerIDTaken;
+            } else {
+                return logPlayerInEnums.AvatarTaken;
+            }
         }
+        // TODO: Add to event log viewer
+        
+        return null;
     }
     
     public boolean isUniquePlayerID(String PlayerID) {

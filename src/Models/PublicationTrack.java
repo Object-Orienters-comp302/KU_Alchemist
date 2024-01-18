@@ -1,9 +1,10 @@
 package Models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PublicationTrack {
+public class PublicationTrack implements Serializable {
     private static PublicationTrack      single_instance;
     private final  List<PublicationCard> publicationCards;
     

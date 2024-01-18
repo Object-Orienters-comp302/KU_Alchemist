@@ -1,6 +1,8 @@
 package Models;
 
-public class Aspect {
+import java.io.Serializable;
+
+public class Aspect implements Serializable {
     final Sizes        size;
     final Positivities Positivity;
     final Colors       color;

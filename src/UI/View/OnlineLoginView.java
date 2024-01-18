@@ -284,9 +284,8 @@ public class OnlineLoginView extends JPanel implements Publisher {
                 SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>() {
                     @Override
                     protected Void doInBackground() throws Exception {
-                        
-                            GameController.getInstance().getRoundZeroController().gameSetup();
-                            publishEvent(Type.START_MENUVIEW);
+                            
+                            
                             return null;
 
                     }
@@ -317,6 +316,9 @@ public class OnlineLoginView extends JPanel implements Publisher {
         JPanel login = new OnlineLoginView();
         frame.getContentPane().add(login);
         frame.setVisible(true);
+    }
+    public void publishStartMenu(){
+        publishEvent(Type.START_MENUVIEW);
     }
     
     @Override

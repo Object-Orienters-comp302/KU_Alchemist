@@ -22,6 +22,7 @@ public enum Type {
     START_END_GAME_VIEW,
     START_ONLINE_LOGIN_SCREEN,
     START_WAITING_ROOM,
-    PLAYER_ADDED
+    PLAYER_ADDED,
+    DECK
     
 }

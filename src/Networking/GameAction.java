@@ -1,5 +1,6 @@
 package Networking;
 
+import Models.Player;
 import Models.Token;
 import Utils.AssetLoader;
 
@@ -14,6 +15,8 @@ public class GameAction implements Serializable {
     private ActionType actionType;
     private String details;
     private Token  token;
+    private int    gold;
+    private String targetPlayerName;
     
     public GameAction(ActionType actionType, String details) {
         this.actionType = actionType;
@@ -24,6 +27,12 @@ public class GameAction implements Serializable {
         this.actionType = actionType;
         this.details = details;
         this.token = token;
+    }
+    public GameAction(ActionType actionType, String details, int gold,String targetPlayerName) {
+        this.actionType = actionType;
+        this.details = details;
+        this.gold = gold;
+        this.targetPlayerName = targetPlayerName;
     }
     
     public enum ActionType{
@@ -42,7 +51,9 @@ public class GameAction implements Serializable {
         START_START_VIEW(""),
         START_END_GAME_VIEW(""),
         UPDATE_PLAYER(""),
-        UPDATE_DECK("");
+        UPDATE_DECK(""),
+        START_GAME("START_GAME"),
+        INIT_PLAYER("INIT_PLAYER");
         
         private final String string;
         
@@ -67,5 +78,13 @@ public class GameAction implements Serializable {
     
     public Token getToken() {
         return token;
+    }
+    
+    public int getGold() {
+        return gold;
+    }
+    
+    public String getTargetPlayerName() {
+        return targetPlayerName;
     }
 }

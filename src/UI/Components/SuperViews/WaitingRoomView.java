@@ -5,15 +5,22 @@ import Domain.Event.Listener;
 import Domain.Event.Type;
 import Domain.GameController;
 import Domain.MenuController;
+import Domain.RoundZeroController;
+import Models.Deck;
 import Models.Player;
 import Models.Token;
+import Networking.GameAction;
+import Networking.GameServer;
 import UI.Components.ImagePanels.HQImagePanel;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.Player.PlayerDisplayer;
+import UI.View.ViewFactory;
 import Utils.AssetLoader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 public class WaitingRoomView extends JPanel implements Listener {
@@ -29,7 +36,19 @@ public class WaitingRoomView extends JPanel implements Listener {
         controller = GameController.getInstance().getMenuController();
         createObjects();
         setupObjects();
+        setupListeners();
         
+    }
+    
+    private void setupListeners() {
+        selectStart.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                GameController.getInstance().getRoundZeroController().gameSetup();
+                ViewFactory.getInstance().getWaitingRoomView().revalidate();
+                ViewFactory.getInstance().getWaitingRoomView().repaint();
+            }
+        });
     }
     
     

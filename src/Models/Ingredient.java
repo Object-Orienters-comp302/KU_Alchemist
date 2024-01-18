@@ -2,13 +2,14 @@ package Models;
 
 import Utils.AssetLoader;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
 
-public class Ingredient {
+public class Ingredient implements Serializable {
     
     private static HashMap<IngredientTypes, AspectTrio> ingredientTypeToAspectTrioMap;
     final          IngredientTypes                      Type;

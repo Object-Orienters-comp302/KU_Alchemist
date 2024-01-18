@@ -2,9 +2,10 @@ package Models;
 
 import Utils.AssetLoader;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Potion {//creating function is in the GameController for now
+public class Potion implements Serializable {//creating function is in the GameController for now
     final Colors Color;
     final        Signs    Sign;
     final IdentityTypes Identity;

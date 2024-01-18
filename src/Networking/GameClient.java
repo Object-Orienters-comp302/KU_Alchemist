@@ -1,6 +1,8 @@
 package Networking;
 
+import Models.Player;
 import Models.Token;
+import UI.View.ViewFactory;
 import Utils.AssetLoader;
 
 import java.io.*;
@@ -58,8 +60,23 @@ public class GameClient {
     }
     
     public void processAction(GameAction action){
+        if(action.getActionType() == GameAction.ActionType.GOLD){
+            findPlayer(action.getTargetPlayerName()).getInventory().setGold(action.getGold());
+        } else if (action.getActionType() == GameAction.ActionType.INIT_PLAYER ) {
+            new Player(action.getDetails(), action.getToken());
+        } else if (action.getActionType() == GameAction.ActionType.START_GAME) {
+            ViewFactory.getInstance().getOnlineLoginView().publishStartMenu();
+        }
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());
+    }
+    public Player findPlayer(String name){
+        for(Player player:Player.getPlayers()){
+            if(name.equals(player.getID())){
+                return player;
+            }
+        }
+        return null;
     }
     
     public static void main(String[] args) throws IOException {

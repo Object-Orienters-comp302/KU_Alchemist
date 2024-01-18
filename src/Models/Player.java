@@ -3,11 +3,14 @@ package Models;
 import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
+
+import java.io.SequenceInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class Player implements Publisher {
+public class Player implements Publisher, Serializable {
     private static ArrayList<Player>   instances       = new ArrayList<>();
     private static int                 currPlayerIndex = 0;
     private        String              ID;

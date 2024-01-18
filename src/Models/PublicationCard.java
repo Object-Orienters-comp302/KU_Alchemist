@@ -1,8 +1,9 @@
 package Models;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class PublicationCard {
+public class PublicationCard implements Serializable {
 
     private       Models.Ingredient.AspectTrio Aspects; //3 Aspects.
     private final Ingredient.IngredientTypes                   Ingredient;
