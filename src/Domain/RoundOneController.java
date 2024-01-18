@@ -85,7 +85,6 @@ public class RoundOneController {
         if(AspectTrio1 == AspectTrio2){
             throw new RuntimeException("Two trios can't be same");
         }
-        
         if (CompareTwoAspects(AspectTrio1.getAspectBlue(), AspectTrio2.getAspectBlue())) {
             if (CompareTwoAspectSizes(AspectTrio1.getAspectBlue(),AspectTrio2.getAspectBlue())) {// If both of them are same we only need to check one.
                 return new Potion(Potion.Colors.Blue, changePositivityToSign(AspectTrio1.getAspectBlue().getPositivity()));
@@ -129,7 +128,7 @@ public class RoundOneController {
         if(current.getInventory().checkArtifactExists(artifactName)){
             if (artifactName.equals(Artifact.Name.Magic_Mortar)){
                 current.getInventory().getArtifacts().remove(artifactName);
-                current.getInventory().addIngredient(ingredient, 1);
+                current.getInventory().addIngredient(ingredient,1);
                 return true;
             }
         }
