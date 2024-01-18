@@ -140,17 +140,8 @@ public class StartView extends JPanel implements Publisher {
                 SetupMultiplayer();
             }
         });
+
         selectHost.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                CleanupBase();
-                CreateObjectsForHost();
-                SetupObjectsForHost();
-                SetupListenersForHost();
-                repaint();
-            }
-        });
-        selectJoin.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 new Thread(() -> {
@@ -160,12 +151,13 @@ public class StartView extends JPanel implements Publisher {
                         server.addListener(ViewFactory.getInstance().getWaitingRoomView());
                         
                         SwingUtilities.invokeLater(() -> {
-                            WaitingRoomView waitingRoomView = ViewFactory.getInstance().getWaitingRoomView();
-                            JFrame frame = new JFrame();
-                            frame.setSize(1290, 720);
-                            frame.add(waitingRoomView);
-                            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                            frame.setVisible(true);
+                              publishEvent(Type.START_WAITING_ROOM);
+//                            WaitingRoomView waitingRoomView = ViewFactory.getInstance().getWaitingRoomView();
+//                            JFrame frame = new JFrame();
+//                            frame.setSize(1290, 720);
+//                            frame.add(waitingRoomView);
+//                            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//                            frame.setVisible(true);
                         });
                         
                         server.start();
@@ -176,7 +168,7 @@ public class StartView extends JPanel implements Publisher {
             }
         });
         
-        selectJoinReal.addMouseListener(new MouseAdapter() {
+        selectJoin.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
@@ -185,10 +177,23 @@ public class StartView extends JPanel implements Publisher {
                     throw new RuntimeException(ex);
                 }
                 GameController.getInstance().setOnline(true);
-                ViewFactory.getInstance().getLoginView().setPlayerAmount(1);
+                //ViewFactory.getInstance().getLoginView().setPlayerAmount(1);
                 publishEvent(Type.START_ONLINE_LOGIN_SCREEN);
             }
         });
+        
+        selectSinglePlayer.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                CleanupBase();
+                CreateObjectsForHost();
+                SetupObjectsForHost();
+                SetupListenersForHost();
+                repaint();
+            }
+        });
+        
+        
     }
     
     public void CleanupBase(){
@@ -254,6 +259,9 @@ public class StartView extends JPanel implements Publisher {
         StartButtonText.setLayout(null);
         StartButtonText.setBounds(140, 43, 120, 30);
         StartButton.add(StartButtonText);
+        
+        Background.remove(selectSinglePlayer);
+        Background.remove(selectMultiPlayer);
     }
     
     private void SetupListenersForHost() {
