@@ -125,7 +125,7 @@ public class RoundZeroController {
             Ingredient.IngredientTypes card = deck.popIngredient();
             player.getInventory().addIngredient(card, 1);
             if(GameController.getInstance().isOnline()){
-                GameServer.getInstance().broadcastUpdate(new GameAction(GameAction.ActionType.DECK_INGREDIENT,"Added 1 ingredient while dealing",
+                GameServer.getInstance().broadcastUpdate(new GameAction(GameAction.ActionType.DEAL_INGREDIENT,"Added 1 ingredient while dealing",
                                                                         player.getID(),card));
             }
         }

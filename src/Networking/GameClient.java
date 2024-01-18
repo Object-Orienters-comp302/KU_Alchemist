@@ -4,6 +4,7 @@ import Domain.GameController;
 import Models.Player;
 import Models.Token;
 import UI.Components.Player.PlayerDisplayer;
+import UI.View.ForageGroundsView;
 import UI.View.ViewFactory;
 import Utils.AssetLoader;
 
@@ -75,10 +76,18 @@ public class GameClient {
             ViewFactory.getInstance().getMenuView().getRoundLabel().setText(GameController.getInstance().getRound().toString());
             
             PlayerDisplayer.repaintAll();
+        } else if (action.getActionType() == GameAction.ActionType.DEAL_INGREDIENT) {
+            Player player = findPlayer(action.getTargetPlayerName());
+            player.getInventory().addIngredient(action.getIngredientType(), 1);
+            
         } else if (action.getActionType() == GameAction.ActionType.DECK_INGREDIENT) {
             Player player = findPlayer(action.getTargetPlayerName());
             player.getInventory().addIngredient(action.getIngredientType(), 1);
-            if(action.getDetails().equals(GameController.getInstance().getPlayerName())) {
+            player.setForageRight(player.getForageRight()-1);
+            if(action.getTargetPlayerName().equals(GameController.getInstance().getPlayerName())) {
+                ViewFactory.getInstance().getMenuView().getForagePanel().getTextField().setText(String.format(
+                        ForageGroundsView.Texts.Success.getText(), action.getIngredientType().getTypeString()));
+                
                 SwingUtilities.invokeLater(() -> ViewFactory.getInstance().getMenuView().getForagePanel().RunForageAnimation(action.getIngredientType()));//TODO CHANGE THIS TO MVC
             }
         }

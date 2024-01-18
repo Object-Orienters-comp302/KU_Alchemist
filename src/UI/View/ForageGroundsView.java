@@ -114,12 +114,16 @@ public class ForageGroundsView extends JPanel {
         
     }
     
+    public JTextField getTextField() {
+        return textField;
+    }
+    
     private void SetupListeners() {
         
         Card.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(!GameController.getInstance().isHost() && GameController.getInstance().isOnline()){
+                if(GameController.getInstance().isOnline()){
                     if(Player.getCurrPlayer().getForageRight() >= 1){
                         GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.FORAGE,"Wants to forage",Player.getCurrPlayer().getID(),null));
                         
@@ -142,6 +146,7 @@ public class ForageGroundsView extends JPanel {
                 
             }}
         });
+        
         
         SwitchButton_Transmutate.addMouseListener(new MouseAdapter() {
             @Override
@@ -200,7 +205,7 @@ public class ForageGroundsView extends JPanel {
     
 
     
-    private enum Texts {
+    public enum Texts {
         Start("To forage press the card!! It costs 1 forage right."),
         Success("Foraging successful!! Ingredient:%s"),
         Fail("Foraging is not successful!!You can't forage more.");
