@@ -4,6 +4,7 @@ import Domain.Event.Listener;
 import Domain.Event.Type;
 import Domain.GameController;
 import Domain.RoundOneController;
+import UI.Components.SuperViews.WaitingRoomView;
 import UI.View.ViewFactory;
 
 import javax.swing.*;
@@ -85,6 +86,11 @@ public class GamePage extends JFrame implements Listener {
             cardLayout.show(cardPanel, Cards.FinalView.getString());
             setVisible(true);
         }
+        if(type == Domain.Event.Type.START_WAITING_ROOM){
+            cardPanel.add(ViewFactory.getInstance().getWaitingRoomView(), Cards.WaitingRoomView.getString());
+            cardLayout.show(cardPanel, Cards.WaitingRoomView.getString());
+            setVisible(true);
+        }
     }
     
     enum Cards {
@@ -94,7 +100,8 @@ public class GamePage extends JFrame implements Listener {
         PauseView("PauseView"),
         HelpView("HelpView"),
         StartView("StartView"),
-        FinalView("FinalView");
+        FinalView("FinalView"),
+        WaitingRoomView("WaitingRoomView");
         
         
         private final String string;
