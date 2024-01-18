@@ -47,6 +47,20 @@ public class Artifact {
         Elixir_of_Insight,
         Magic_Mortar,
         Printing_Press,
-        Wisdom_Idol
+        Wisdom_Idol,
+        Pistol_of_Sickness_Classic,
+        Pistol_of_Sickness_Silver,
+        Pistol_of_Sickness_Gold,
+        Letter_of_DissContent_Blue,
+        Letter_of_DissContent_Red,
+        Inquisition_Accusation,
+        Big_Black_Chicken,
+        Magical_Boar,
+        Mystic_Meerkat,
+        Hunting_Phoenix,
+        Chair_of_Alchemy,
+        Syringe_Kit_Basic1,
+        Syringe_Kit_Basic2,
+        Elixir_of_Healing,
     }
 }

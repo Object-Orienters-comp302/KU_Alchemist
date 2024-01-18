@@ -331,6 +331,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
             public void mouseClicked(MouseEvent e) {
                System.out.println(PublicationTrack.getInstance().getPublicationCards());
                System.out.println(Ingredient.getIngredientTypeToAspectTrioMap());
+                MarketPanel.reset();
             }
         });
     }

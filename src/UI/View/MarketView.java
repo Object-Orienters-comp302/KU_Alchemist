@@ -140,6 +140,10 @@ public class MarketView extends JPanel {
     }
     
     private void artifactAnimation(Artifact artifact){
+        if (arti!=null){
+            Background.remove(arti);
+            Background.repaint();
+        }
         arti = new ArtifactCard(artifact);
         arti.setLocation(artifactCard.getLocation());
         Background.add(arti);
@@ -167,6 +171,7 @@ public class MarketView extends JPanel {
         if (arti != null) {
             Background.remove(arti);
             Background.repaint();
+            artifactCard.repaint();
         }
         potionButton.reset();
     }

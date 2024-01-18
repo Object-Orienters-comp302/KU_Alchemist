@@ -102,6 +102,12 @@ public class ForageGroundsView extends JPanel {
         SwitchButton_Transmutate.add(Transmutate_Text);
         
         
+        circleGif = new GifPanel(26, 75, 100, 100, AssetLoader.getAssetPath(AssetLoader.Gifs.CIRCLE_BLUE));
+        circleGif.setLayout(null);
+        ingreImg = new ImagePanel(AssetLoader.TriangleTable.QUESTION_MARK);
+        ingreImg.setBounds(20, 20, 60, 60);
+        circleGif.add(ingreImg);
+        
     }
     
     private void SetupListeners() {
@@ -147,9 +153,7 @@ public class ForageGroundsView extends JPanel {
         GameController.getInstance().getMenuController().getMenuView().Blockade();
         DJ dj = DJ.getDJ();
         dj.setAndStartEffectSound(DJ.EffectSounds.TRACK1,2000);
-        if(ingreImg!=null){
-            Background.remove(ingreImg);
-        }
+        
         
         GifPanel gif = new GifPanel(0, 0, 1000, 500, AssetLoader.getAssetPath(AssetLoader.Gifs.LEAVES));
         Background.add(gif);
@@ -161,21 +165,14 @@ public class ForageGroundsView extends JPanel {
             
             if (!showsActiveResult) {
                 showsActiveResult = true;
-                circleGif = new GifPanel(26, 75, 100, 100, AssetLoader.getAssetPath(AssetLoader.Gifs.CIRCLE_BLUE));
-                circleGif.setLayout(null);
-                Card.add(circleGif);
                 
-                if(ingreImg==null) {
-                    ingreImg = new ImagePanel(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
-                    ingreImg.setBounds(20, 20, 60, 60);
-                    circleGif.add(ingreImg);
-                }
-                else{
-                    ingreImg.changeImage(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
-                }
+                Card.add(circleGif);
+                ingreImg.changeImage(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
+                ingreImg.repaint();
                 Background.repaint();
             } else {
                 ingreImg.changeImage(AssetLoader.getAssetPath(Ingredient.getPathFromType(ingre)));
+                ingreImg.repaint();
             }
             
             GameController.getInstance().getMenuController().getMenuView().LiftBlockade();
@@ -204,6 +201,7 @@ public class ForageGroundsView extends JPanel {
         textField.setText(Texts.Start.getText());
         if (circleGif!=null){
             Card.remove(circleGif);
+            showsActiveResult=false;
             Card.repaint();
         }
     }

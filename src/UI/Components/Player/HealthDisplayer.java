@@ -33,19 +33,18 @@ public class HealthDisplayer extends JPanel {
             throw new IllegalArgumentException("how is the health below -3");
         }
         Color healthColor= Color.green;
-        if (health >0){
+        if (health <0){
             healthColor = Color.red;
         }
         for (int i=0;i<=7;i++){
             JPanel pan=list.get(i);
-            if (i<3+health){
+            if (i<3-health){
                 pan.setBackground(Color.gray);
             }
             else {
                 pan.setBackground(healthColor);
             }
         }
-        
     }
     
 }

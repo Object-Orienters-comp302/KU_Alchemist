@@ -67,7 +67,7 @@ public class ElixirOfInsightView extends JPanel {
         
         ingredientCard2= new ImagePanel(AssetLoader.ForageGroundsAssets.CARD);
         ingredientCard2.setBounds(5,5,190,280);
-        ingredientCard1.setLayout(null);
+        ingredientCard2.setLayout(null);
         card2.add(ingredientCard2);
         
         card3= new JPanel();
@@ -78,7 +78,7 @@ public class ElixirOfInsightView extends JPanel {
         
         ingredientCard3= new ImagePanel(AssetLoader.ForageGroundsAssets.CARD);
         ingredientCard3.setBounds(5,5,190,280);
-        ingredientCard1.setLayout(null);
+        ingredientCard3.setLayout(null);
         card3.add(ingredientCard3);
         
         gif1= new GifPanel(20,60,160,160,AssetLoader.Gifs.CIRCLE_BLUE.getPath());
@@ -138,7 +138,7 @@ public class ElixirOfInsightView extends JPanel {
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                GameController.getInstance().getRoundThreeController().getDeck().setFirstThree(firstThree);
+                GameController.getInstance().getRoundOneController().ElixirOfInsightAbility(firstThree);
                 MenuView menu = GameController.getInstance().getMenuController().getMenuView();
                 menu.LiftBlockade();
                 menu.reset();
