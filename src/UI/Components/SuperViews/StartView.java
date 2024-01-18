@@ -7,8 +7,11 @@ import Domain.GameController;
 import Networking.GameClient;
 import Networking.GameServer;
 import Sound.DJ;
+import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.HQImagePanel;
 import UI.Components.ImagePanels.ImagePanel;
+import UI.Components.ImagePanels.OutlinedLabel;
+import UI.Components.RoundedPanel;
 import UI.View.ViewFactory;
 import Utils.AssetLoader;
 
@@ -300,6 +303,54 @@ public class StartView extends JPanel implements Publisher {
             }
         });
         
+    }
+    private void setupObjectsForMulti(boolean isHost){
+        CleanupBase();
+        RoundedPanel panel = new RoundedPanel(40);
+        panel.setLayout(null);
+        panel.setBounds(515,300,250,250);
+        
+        OutlinedLabel portLabel = new OutlinedLabel("PORT:", "#aaafff", "#fffaaf", OutlinedLabel.Versions.MID_ORIENTED);
+        portLabel.setBounds(25,20,200,30);
+        panel.add(portLabel);
+        
+        
+        // Text Field 1
+        JTextField textField1 = new JTextField(); //Port
+        textField1.setBounds(25, 50, 200, 30);
+        textField1.setBorder(null);
+        panel.add(textField1);
+        
+        OutlinedLabel ipLabel = new OutlinedLabel("IP:", "#aaafff", "#fffaaf", OutlinedLabel.Versions.MID_ORIENTED);
+        ipLabel.setBounds(25, 80, 200, 30);
+        
+        JTextField textField2 = new JTextField(); // IP
+        textField2.setBounds(25, 110, 200, 30);
+        textField2.setBorder(null);
+        if (!isHost) {
+            panel.add(ipLabel);
+            panel.add(textField2);
+        }
+        // Button
+        ColorChangingPanel button = new ColorChangingPanel("#fffaaf", "#aaafff", 40, ColorChangingPanel.RoundingStyle.BOTH);
+        button.setBounds(50, 160, 150, 50);
+        button.setLayout(null);
+        OutlinedLabel lab = new OutlinedLabel("JOIN", "#aaafff", "#fffaaf", OutlinedLabel.Versions.MID_ORIENTED);
+        lab.setSize(button.getSize());lab.setLocation(0,0);
+        button.add(lab);
+        button.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                // Handle button click event
+                String text1 = textField1.getText(); //Port
+                if (!isHost) {
+                    String text2 = textField2.getText(); //IP
+                }
+                //do stuff functions go wild
+            }
+        });
+        panel.add(button);
+        Background.add(panel);
     }
     
     @Override
