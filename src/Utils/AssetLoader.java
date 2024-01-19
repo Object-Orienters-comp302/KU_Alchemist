@@ -75,6 +75,7 @@ public class AssetLoader {
         JOIN("resources/Images/buttonText/joinText.png"),
         MULTI("resources/Images/buttonText/multiText.png"),
         SINGLE("resources/Images/buttonText/singleText.png"),
+        NEXT("resources/Images/buttonText/endTurnText.png"),
         ;
         
         
