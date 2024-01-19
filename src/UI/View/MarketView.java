@@ -32,7 +32,8 @@ public class MarketView extends JPanel {
     OutlinedLabel sellPotionLabel,buyArtifactLabel;
     
     ArtifactCard arti;
-    
+    JPanel turnBlock;
+    OutlinedLabel blockLabel;
     MarketView(){
         this.setSize(1000, 500);
         setLayout(null);
@@ -96,11 +97,42 @@ public class MarketView extends JPanel {
         Background.add(textField);
         textField.setColumns(10);
         textField.setOpaque(false);
-
+        
+        roundBlockFunction();
     }
     
     public JTextField getTextField() {
         return textField;
+    }
+    public void roundBlockFunction(){
+        if (GameController.getInstance().getRound()<2){
+            if (turnBlock==null){
+                turnBlock= new JPanel();
+                turnBlock.setBackground(new Color(128, 128, 128,128));
+                turnBlock.setBounds(150,100,200,350);
+                turnBlock.setLayout(null);
+                blockLabel = new OutlinedLabel("UNLOCKS AT ROUND 2", "#FFFFFF", "#CCCCCC",
+                                                             OutlinedLabel.Versions.MID_ORIENTED);
+                blockLabel.setBounds(150,200,200,40);
+                
+                Background.add(blockLabel,0);
+                turnBlock.repaint();
+                Background.repaint();
+                turnBlock.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        e.consume();
+                    }});
+                Background.add(turnBlock,0);
+                Background.repaint();
+            }
+        }else{
+            if (turnBlock!=null){
+                Background.remove(turnBlock);
+                Background.remove(blockLabel);
+                Background.repaint();
+            }
+        }
     }
     
     private void SetupListeners() {
@@ -195,6 +227,7 @@ public class MarketView extends JPanel {
             Background.repaint();
             artifactCard.repaint();
         }
+        roundBlockFunction();
         potionButton.reset();
     }
 }
