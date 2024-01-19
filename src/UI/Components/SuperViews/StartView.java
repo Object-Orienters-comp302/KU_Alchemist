@@ -147,36 +147,20 @@ public class StartView extends JPanel implements Publisher {
         selectHost.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new Thread(() -> {
-                    try {
-                        GameServer.init(12345); // Port number
-                        GameController.getInstance().setOnline(true);
-                        GameServer.getInstance().addListener(ViewFactory.getInstance().getWaitingRoomView());
-                        SwingUtilities.invokeLater(() -> {
-                            publishEvent(Type.START_WAITING_ROOM);
-                        });
-                        
-                        GameServer.getInstance().start();
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }).start();
+
                 GameController.getInstance().setOnline(true);
                 GameController.getInstance().setHost(true);
+                setupObjectsForMulti(GameController.getInstance().isHost());
             }
         });
         
         selectJoin.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                try {
-                    GameClient.init("localhost", 12345); //TODO: Ask for port and ip in gui
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+
                 GameController.getInstance().setOnline(true);
-                //ViewFactory.getInstance().getLoginView().setPlayerAmount(1);
-                publishEvent(Type.START_ONLINE_LOGIN_SCREEN);
+                setupObjectsForMulti(GameController.getInstance().isHost());
+                
             }
         });
         
@@ -338,6 +322,8 @@ public class StartView extends JPanel implements Publisher {
         OutlinedLabel lab = new OutlinedLabel("JOIN", "#aaafff", "#fffaaf", OutlinedLabel.Versions.MID_ORIENTED);
         lab.setSize(button.getSize());lab.setLocation(0,0);
         button.add(lab);
+        panel.add(button);
+        Background.add(panel);
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -345,12 +331,32 @@ public class StartView extends JPanel implements Publisher {
                 String text1 = textField1.getText(); //Port
                 if (!isHost) {
                     String text2 = textField2.getText(); //IP
+                    try {
+                        GameClient.init(text2, Integer.parseInt(text1));
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    publishEvent(Type.START_ONLINE_LOGIN_SCREEN);
+                }else{
+                    new Thread(() -> {
+                        try {
+                            GameServer.init(Integer.parseInt(text1)); // Port number
+                            GameController.getInstance().setOnline(true);
+                            GameServer.getInstance().addListener(ViewFactory.getInstance().getWaitingRoomView());
+                            SwingUtilities.invokeLater(() -> {
+                                publishEvent(Type.START_WAITING_ROOM);
+                            });
+                            
+                            GameServer.getInstance().start();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }).start();
                 }
                 //do stuff functions go wild
             }
         });
-        panel.add(button);
-        Background.add(panel);
+
     }
     
     @Override

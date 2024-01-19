@@ -36,6 +36,8 @@ public class BookPanel extends JPanel {
     OutlinedLabel endorserLabel;
     ImagePanel publisherImage,panel;
     JPanel  turnBlock;
+    OutlinedLabel blockLabel;
+
     
     public BookPanel(AssetLoader.AssetPath ingredientPath) {
         ingreType = Ingredient.getTypeFromPath(ingredientPath);
@@ -174,28 +176,33 @@ public class BookPanel extends JPanel {
         endorsePanel.setLocation(160, 10);
         if (GameController.getInstance().getRound()<3){
             if (turnBlock==null){
-                turnBlock= new JPanel();
-                turnBlock.setBackground(new Color(128, 128, 128,128));
-                turnBlock.setBounds(160,10,120,150);
-                turnBlock.setLayout(null);
-                OutlinedLabel blockLabel = new OutlinedLabel("UNLOCKS AT ROUND 3", "#FFFFFF", "#CCCCCC",
-                                                             OutlinedLabel.Versions.MID_ORIENTED);
-                blockLabel.setBounds(160,50,120,20);
-                
-                book.add(blockLabel);
-                turnBlock.repaint();
-                book.repaint();
-                turnBlock.addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        e.consume();
-                    }});
-                book.add(turnBlock,0);
-                endorsePanel.repaint();
+            turnBlock= new JPanel();
+            turnBlock.setBackground(new Color(128, 128, 128,128));
+            turnBlock.setBounds(160,10,120,150);
+            turnBlock.setLayout(null);
+            
+            blockLabel = new OutlinedLabel("UNLOCKS AT ROUND 3", "#FFFFFF", "#CCCCCC",
+                                                         OutlinedLabel.Versions.MID_ORIENTED);
+            blockLabel.setBounds(160,50,120,20);
+            
+            book.add(blockLabel);
+            turnBlock.repaint();
+            book.repaint();
+            turnBlock.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    e.consume();
+                }});
+            book.add(turnBlock,0);
+            endorsePanel.repaint();
             }
         }else{
             if (turnBlock!=null){
                 book.remove(turnBlock);
+
+                book.remove(blockLabel);
+                book.repaint();
+
             }
         }
         book.add(endorsePanel);
