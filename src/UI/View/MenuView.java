@@ -115,9 +115,8 @@ public class MenuView extends JPanel implements Publisher,Listener {
         side3 = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.LAB_0),1);
         side4 = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.JUNGLE_0),1);
         side5 = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.INVENTORY_0),1);
-        side6 = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0));
-        side7 = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0));
-        nextPlayerButton = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0));
+        side6 = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.ButtonBackgrounds.TRANS_0),1);
+        nextPlayerButton = new ImageBlurPanel(AssetLoader.getAssetPath(AssetLoader.Artifacts.INQUISITION),1);
         
         BufferedImage background = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(
                 GUtil.fetchImage(AssetLoader.getAssetPath(AssetLoader.Backgrounds.MAIN_BACKGROUND))), 3, 2);
@@ -146,7 +145,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
         topPanel.setBackground(Color.black);
         topPanel.setLayout(null);
         
-        pause.setBounds(1200, 5, 80, 80);
+        pause.setBounds(1180, 5, 80, 80);
         topPanel.add(pause);
         
         soundSettings= new SoundButton(40,40,40);
@@ -194,56 +193,61 @@ public class MenuView extends JPanel implements Publisher,Listener {
         sideText1.setBounds(20, 15, 240, 55);
         sidePanel.add(sideText1);
         
-        side1.setBounds(10, 5, 260, 75);
+        side1.setBounds(10, 0, 260, 80);
         sidePanel.add(side1);
         
         
         ImagePanel sideText2 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.PUBLISH));
-        sideText2.setBounds(20, 95, 240, 55);
+        sideText2.setBounds(20, 99, 240, 55);
         sidePanel.add(sideText2);
         
-        side2.setBounds(10, 85, 260, 75);
+        side2.setBounds(10, 84, 260, 80);
         sidePanel.add(side2);
         
         
         ImagePanel sideText3 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.EXPERIMENT));
-        sideText3.setBounds(20, 180, 240, 55);
+        sideText3.setBounds(20, 183, 240, 55);
         sidePanel.add(sideText3);
         
-        side3.setBounds(10, 165, 260, 75);
+        side3.setBounds(10, 168, 260, 80);
         sidePanel.add(side3);
         
         
         ImagePanel sideText4 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.FORAGE));
-        sideText4.setBounds(20, 260, 240, 55);
+        sideText4.setBounds(20, 267, 240, 55);
         sidePanel.add(sideText4);
         
-        side4.setBounds(10, 245, 260, 75);
+        side4.setBounds(10, 252, 260, 80);
         sidePanel.add(side4);
         
         
         ImagePanel sideText5 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.INVENTORY));
-        sideText5.setBounds(20, 340, 240, 55);
+        sideText5.setBounds(20, 351, 240, 55);
         sidePanel.add(sideText5);
         
-        side5.setBounds(10, 325, 260, 75);
+        side5.setBounds(10, 336, 260, 80);
         sidePanel.add(side5);
         
         
         ImagePanel sideText6 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.MARKET));
-        sideText6.setBounds(20, 420, 240, 55);
+        sideText6.setBounds(20, 435, 240, 55);
         sidePanel.add(sideText6);
         
-        side6.setBounds(10, 405, 260, 75);
+        side6.setBounds(10, 420, 260, 80);
         sidePanel.add(side6);
         
-        side7.setBounds(10, 490, 260, 75);
-        sidePanel.add(side7);
+        //side7.setBounds(10, 490, 260, 75);
+        //sidePanel.add(side7);
         
-        nextPlayerButton.setBounds(10, 570, 260, 75);
+        ImagePanel sideText7 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ButtonTexts.NEXT));
+        sideText7.setBounds(20, 535, 240, 55);
+        sidePanel.add(sideText7);
+        
+        
+        nextPlayerButton.setBounds(10, 510, 260, 100);
         sidePanel.add(nextPlayerButton);
         
-        RoundCounterPanel.setBounds(1133, 1, 57, 90);
+        RoundCounterPanel.setBounds(1100, 1, 57, 90);
         RoundCounterPanel.setOpaque(false);
         topPanel.add(RoundCounterPanel);
         RoundCounterPanel.setLayout(null);
@@ -254,8 +258,8 @@ public class MenuView extends JPanel implements Publisher,Listener {
         RoundCounterPanel.add(roundLabel);
         
         bottomPanel.setLayout(null);
-        TESTBUTTON.setBounds(20,20,200,100);
-        bottomPanel.add(TESTBUTTON);
+        //TESTBUTTON.setBounds(20,20,200,100);
+        //bottomPanel.add(TESTBUTTON);
         
     }
     
