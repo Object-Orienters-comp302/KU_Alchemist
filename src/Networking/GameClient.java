@@ -114,15 +114,18 @@ public class GameClient {
                 
             }
         } else if (action.getActionType() == GameAction.ActionType.SEND_POTION) {
-            Player player = Player.getCurrPlayer();
-            player.getInventory().addPotions(action.getPot(), 1);
-            GameController.getInstance().getRoundOneController().removeIngredient(player,action.getIngredientType());
-            GameController.getInstance().getRoundOneController().removeIngredient(player,action.getIngredientType1());
-            ViewFactory.getInstance().getMenuView().getPotionBrewingPanel().MakeExperiments(action.getPot(),player,action.isTestOnStudent());
-            GameController.getInstance().getRoundOneController().MagicMortar(player, Artifact.Name.Magic_Mortar, action.getIngredientType1());
-            if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())){
-                ViewFactory.getInstance().getMenuView().getPotionBrewingPanel().OnlinePotionAnimation(action.getPot());
-            };
+            if(action.getPot() != null){
+                
+                Player player = Player.getCurrPlayer();
+                player.getInventory().addPotions(action.getPot(), 1);
+                GameController.getInstance().getRoundOneController().removeIngredient(player,action.getIngredientType());
+                GameController.getInstance().getRoundOneController().removeIngredient(player,action.getIngredientType1());
+                ViewFactory.getInstance().getMenuView().getPotionBrewingPanel().MakeExperiments(action.getPot(),player,action.isTestOnStudent());
+                GameController.getInstance().getRoundOneController().MagicMortar(player, Artifact.Name.Magic_Mortar, action.getIngredientType1());
+                if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())){
+                    ViewFactory.getInstance().getMenuView().getPotionBrewingPanel().OnlinePotionAnimation(action.getPot());
+                };
+            }
             
             
             
