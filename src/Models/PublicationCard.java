@@ -37,6 +37,17 @@ public class PublicationCard implements Serializable {
             throw new RuntimeException("cannot endorse your own theory??");
         }
         playersThatEndorsed.put(i,player);
+        switch (i){
+            case (1):
+                player.addReputation(3);
+            
+            case (2):
+                player.addReputation(2);
+            
+            case (3):
+                player.addReputation(1);
+                break;
+        }
     }
     public HashMap<Integer,Player> getEndorsers(){
         return  playersThatEndorsed;
