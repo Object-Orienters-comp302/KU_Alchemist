@@ -131,7 +131,7 @@ public class DJ {
     public static enum BackgroundSounds {
         TRACK1("resources/Sounds/Background/Rick-Astley-Never-Gonna-Give-You-Up-_Official-Music-Video_ (1).wav"),
         TRACK2("resources/Sounds/Background/Enchanter.wav"),
-        TRACK3("resources/Sounds/Background/Around the Fire.wav"),
+        TRACK3("resources/Sounds/Background/Around the fire.wav"),
         TRACK4("resources/Sounds/Background/Taverns of Azeroth.wav"),
         TRACK5("resources/Sounds/Background/Reverse Dance.wav")
         
@@ -153,7 +153,9 @@ public class DJ {
         LEAVES("resources/Sounds/Effects/leaves-rustling.wav"),
         CHACHING("resources/Sounds/Effects/cha_ching.wav"),
         COIN("resources/Sounds/Effects/coins.wav"),
-        
+        BUTTON("resources/Sounds/Effects/buttonSound.wav"),
+        FIRE("resources/Sounds/Effects/fire.wav"),
+        EXPLOSION("resources/Sounds/Effects/magicExplosion.wav"),
         ;
         
         

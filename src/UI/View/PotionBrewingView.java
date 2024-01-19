@@ -5,6 +5,7 @@ import Domain.RoundOneController;
 import Models.*;
 import Networking.GameAction;
 import Networking.GameClient;
+import Sound.DJ;
 import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.BackgroundSelector;
 import UI.Components.ImagePanels.GifPanel;
@@ -261,6 +262,7 @@ public class PotionBrewingView extends JPanel {
                     Background.add(FlameGif);
                     Background.setComponentZOrder(FlameGif,0);
                     Background.repaint();
+                    DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.FIRE,1500);
                     
                     Timer delayedTimer1 = new Timer(2000, new ActionListener() {
                         @Override
@@ -278,6 +280,7 @@ public class PotionBrewingView extends JPanel {
                     Timer delayedTimer2 = new Timer(2000, new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
+                            DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.EXPLOSION,1500);
                             Background.add(GlowGif);
                             Background.setComponentZOrder(GlowGif,0);
                             Background.repaint();
@@ -400,7 +403,7 @@ public class PotionBrewingView extends JPanel {
                     Background.add(FlameGif);
                     Background.setComponentZOrder(FlameGif,0);
                     Background.repaint();
-                    
+                    DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.FIRE,1500);
                     Timer delayedTimer1 = new Timer(2000, new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -417,6 +420,7 @@ public class PotionBrewingView extends JPanel {
                     Timer delayedTimer2 = new Timer(2000, new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
+                            DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.EXPLOSION,1500);
                             Background.add(GlowGif);
                             Background.setComponentZOrder(GlowGif,0);
                             Background.repaint();

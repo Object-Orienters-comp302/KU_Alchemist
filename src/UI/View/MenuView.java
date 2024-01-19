@@ -370,6 +370,13 @@ public class MenuView extends JPanel implements Publisher,Listener {
                 }
             }
         });
+        side1.addTheEnterSound();
+        side2.addTheEnterSound();
+        side3.addTheEnterSound();
+        side4.addTheEnterSound();
+        side5.addTheEnterSound();
+        side6.addTheEnterSound();
+        nextPlayerButton.addTheEnterSound();
         
         Block.addMouseListener(new MouseAdapter() {
             @Override

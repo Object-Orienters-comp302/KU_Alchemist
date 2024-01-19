@@ -1,5 +1,7 @@
 package UI.Components.ImagePanels;
 
+import Sound.DJ;
+import UI.Components.ColorChangingPanel;
 import Utils.AssetLoader;
 import Utils.GUtil;
 import Utils.KawaseBlur;
@@ -55,7 +57,10 @@ public class ImageBlurPanel extends JPanel {
         return defImage;
     }
     
-    
+    public void addTheEnterSound(){
+        this.removeMouseListener(this.getMouseListeners()[0]);
+        this.addMouseListener(new ImageChangeListener(this.image, this.defImage,true));
+    }
     
     public void setDefImage(String defImage) {
         this.defImage = defImage;
@@ -73,16 +78,26 @@ public class ImageBlurPanel extends JPanel {
         private final ImagePanel    panel;
         private final BufferedImage hoverImage;
         private final BufferedImage defImage;
+        private boolean hasEnterSound=false;
         
         public ImageChangeListener(ImagePanel panel, String defImage) {
             this.panel      = panel;
             this.hoverImage = GUtil.fetchImage(defImage);
             this.defImage   = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(defImage)), 5, 2);
         }
+        public ImageChangeListener(ImagePanel panel, String defImage,boolean boo) {
+            this.panel      = panel;
+            this.hoverImage = GUtil.fetchImage(defImage);
+            this.defImage   = KawaseBlur.applyKawaseBlur(Objects.requireNonNull(GUtil.fetchImage(defImage)), 5, 2);
+            this.hasEnterSound=boo;
+        }
         
         @Override
         public void mouseEntered(MouseEvent e) {
             panel.changeImage(hoverImage);
+            if (hasEnterSound){
+                DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.BUTTON, 400);
+            }
         }
         
         @Override
