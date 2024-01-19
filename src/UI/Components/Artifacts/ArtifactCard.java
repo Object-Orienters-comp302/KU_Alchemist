@@ -83,7 +83,7 @@ public class ArtifactCard extends JPanel {
                 description.setText("Printing Press allows you to publish your theories free of charge");}
             case Wisdom_Idol -> {artifactImage.changeImage(AssetLoader.Artifacts.IDOL);
                 nameLabel.setText("Wisdom Idol");
-                description.setText("Grants you 1 reputation");}
+                description.setText("Wisdom Idol allows you to not lose any reputation points even if your theory has been proven to be wrong");}
             case Pistol_of_Sickness_Classic -> {
                 artifactImage.changeImage(AssetLoader.Artifacts.GUNCLASSIC);
                 nameLabel.setText("Pistol of Sickness");

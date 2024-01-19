@@ -195,8 +195,13 @@ public class RoundOneController {
         return current.getInventory().checkArtifactExists(Artifact.Name.Wisdom_Idol);
     }
     
-    public void useWisdomIdol(Player current){ //TODO: Fix this horrible naming
+    public void useWisdomIdol(Player current){ 
         ArtifactGotUsed(Artifact.Name.Wisdom_Idol);
+        for (Artifact arti:current.getInventory().getArtifacts()){
+            if (arti.getName().equals(Artifact.Name.Wisdom_Idol)){
+                current.getInventory().getArtifacts().remove(arti);
+            }
+        }
     }
     
 }
