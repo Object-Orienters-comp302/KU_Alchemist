@@ -15,9 +15,7 @@ public class GameController implements Publisher {
     
     private LoginController    loginController;
     private HelpController     helpController;
-    private PauseController    pauseController;
     private MenuController     menuController;
-    private RegisterController registerController;
     private RoundZeroController roundZeroController;
     private RoundOneController roundOneController;
     private RoundTwoController roundTwoController;
@@ -33,8 +31,6 @@ public class GameController implements Publisher {
         loginController    = new LoginController();
         menuController     = new MenuController();
         helpController     = new HelpController();
-        pauseController    = new PauseController();
-        registerController = new RegisterController();
         roundZeroController= new RoundZeroController();
         roundOneController = new RoundOneController();
         roundTwoController = new RoundTwoController();
@@ -67,16 +63,8 @@ public class GameController implements Publisher {
         return helpController;
     }
     
-    public PauseController getPauseController() {
-        return pauseController;
-    }
-    
     public MenuController getMenuController() {
         return menuController;
-    }
-    
-    public RegisterController getRegisterController() {
-        return registerController;
     }
     
     public RoundZeroController getRoundZeroController() {

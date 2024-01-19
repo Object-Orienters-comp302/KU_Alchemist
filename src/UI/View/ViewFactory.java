@@ -8,8 +8,7 @@ public class ViewFactory {
     
     private static ViewFactory single_instance;
     
-    private BoardView       boardView;
-    private DashboardView   dashboardView;
+    // All of the ViewFactory views
     private HelpScreenView  helpScreenView;
     private MenuView        menuView;
     private PauseView       pauseView;
@@ -17,8 +16,8 @@ public class ViewFactory {
     private OnlineLoginView onlineLoginView;
     private CustomPlainView customPlainView;
     private InventoryView   inventoryView;
-    private TransmuteView transmuteView; // TODO: Refactor this
-    private MarketView    marketView; // TODO: Refactor this
+    private TransmuteView transmuteView;
+    private MarketView    marketView;
     private StartView     startView;
     private FinalView       finalView;
     private WaitingRoomView waitingRoomView;
@@ -33,20 +32,6 @@ public class ViewFactory {
             single_instance = new ViewFactory();
         }
         return single_instance;
-    }
-    
-    public BoardView getBoardView() {
-        if (boardView == null) {
-            boardView = new BoardView();
-        }
-        return boardView;
-    }
-    
-    public DashboardView getDashboardView() {
-        if (dashboardView == null) {
-            dashboardView = new DashboardView();
-        }
-        return dashboardView;
     }
     
     public HelpScreenView getHelpScreenView() {

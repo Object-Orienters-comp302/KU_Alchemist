@@ -24,8 +24,6 @@ public class GamePage extends JFrame implements Listener {
         onEvent(Domain.Event.Type.START_START_VIEW);
         addListeners();
         // Manually trigger the event to start START_VIEW
-        //
-        
     }
     private void createPage(){
         cardLayout = new CardLayout();
@@ -54,39 +52,39 @@ public class GamePage extends JFrame implements Listener {
             cardLayout.show(cardPanel, Cards.StartView.getString());
             setVisible(true);
         }
-        if (type == Domain.Event.Type.START_LOGIN_SCREEN) {
+        else if (type == Domain.Event.Type.START_LOGIN_SCREEN) {
             cardPanel.add(ViewFactory.getInstance().getLoginView(), Cards.LoginView.getString());
             cardLayout.show(cardPanel, Cards.LoginView.getString());
             setVisible(true);
         }
-        if (type == Domain.Event.Type.START_ONLINE_LOGIN_SCREEN) {
+        else if (type == Domain.Event.Type.START_ONLINE_LOGIN_SCREEN) {
             cardPanel.add(ViewFactory.getInstance().getOnlineLoginView(), Cards.OnlineLoginView.getString());
             cardLayout.show(cardPanel, Cards.OnlineLoginView.getString());
             setVisible(true);
         }
-        if (type == Domain.Event.Type.START_MENUVIEW) {
+        else if (type == Domain.Event.Type.START_MENUVIEW) {
             cardPanel.add(ViewFactory.getInstance().getMenuView(), Cards.MenuView.getString());
             cardLayout.show(cardPanel, Cards.MenuView.getString());
             setVisible(true);
             ViewFactory.getInstance().getMenuView().addListener(this);
             
         }
-        if (type == Domain.Event.Type.PAUSE) {
+        else if (type == Domain.Event.Type.PAUSE) {
             cardPanel.add(ViewFactory.getInstance().getPauseView(), Cards.PauseView.getString());
             cardLayout.show(cardPanel, Cards.PauseView.getString());
             setVisible(true);
         }
-        if (type == Domain.Event.Type.HELP){
+        else if (type == Domain.Event.Type.HELP){
             cardPanel.add(ViewFactory.getInstance().getHelpScreenView(), Cards.HelpView.getString());
             cardLayout.show(cardPanel, Cards.HelpView.getString());
             setVisible(true);
         }
-        if(type == Domain.Event.Type.START_END_GAME_VIEW){
+        else if(type == Domain.Event.Type.START_END_GAME_VIEW){
             cardPanel.add(ViewFactory.getInstance().getFinalView(), Cards.FinalView.getString());
             cardLayout.show(cardPanel, Cards.FinalView.getString());
             setVisible(true);
         }
-        if(type == Domain.Event.Type.START_WAITING_ROOM){
+        else if(type == Domain.Event.Type.START_WAITING_ROOM){
             cardPanel.add(ViewFactory.getInstance().getWaitingRoomView(), Cards.WaitingRoomView.getString());
             cardLayout.show(cardPanel, Cards.WaitingRoomView.getString());
             setVisible(true);
