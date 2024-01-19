@@ -3,6 +3,8 @@ package UI.View;
 import Domain.GameController;
 import Domain.RoundOneController;
 import Models.*;
+import Networking.GameAction;
+import Networking.GameClient;
 import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.BackgroundSelector;
 import UI.Components.ImagePanels.GifPanel;
@@ -131,15 +133,22 @@ public class PotionBrewingView extends JPanel {
     	MakePotionButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (!potionIsBeingDisplayed) {
-                    Inventory inventory = Player.getCurrPlayer().getInventory();
-                    
-                    if (Player.getCurrPlayer().getInventory().isInInventory(IngredientB1.getType()) && Player.getCurrPlayer().getInventory()
-                            .isInInventory(IngredientB2.getType())) {
-                        //TODO Make this better currently this maybe problematic
-                        
-                        PotionAnimation();
+                    if(GameController.getInstance().isOnline()){
+                        GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.MAKE_EXPERIMENT,"Make Experiment",Player.getCurrPlayer()
+                                .getID(),IngredientB1.getType()
+                                                           ,IngredientB2.getType(),testOnStudent));
                         
                     }
+                    else {
+                        if (Player.getCurrPlayer().getInventory().isInInventory(IngredientB1.getType()) && Player.getCurrPlayer().getInventory()
+                                .isInInventory(IngredientB2.getType())) {
+                            //TODO Make this better currently this maybe problematic
+                            
+                            PotionAnimation();
+                            
+                        }
+                    }
+
                 }
                 else{
                     reset();
@@ -172,7 +181,7 @@ public class PotionBrewingView extends JPanel {
     
     
     // TODO: Bu niye burda amk
-    private Potion MakePotion(Ingredient.IngredientTypes ingredient1, Ingredient.IngredientTypes ingredient2, Player player) {
+    public Potion MakePotion(Ingredient.IngredientTypes ingredient1, Ingredient.IngredientTypes ingredient2, Player player) {
         RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
         Potion potion = roundOneController.MakePotion(Ingredient.getAspects(ingredient1), Ingredient.getAspects(ingredient2));
         System.out.print(potion.getIdentity());
@@ -192,11 +201,150 @@ public class PotionBrewingView extends JPanel {
         frame.setVisible(true);
     }
     
-    private void MakeExperiments(Potion potion, Player player, boolean testOnStudent) {
+    public void MakeExperiments(Potion potion, Player player, boolean testOnStudent) {
         RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
         roundOneController.Make_experiments(player, potion, testOnStudent);
     }
     
+    public void OnlinePotionAnimation(Potion pot){
+        
+        GameController.getInstance().getMenuController().getMenuView().Blockade();
+        
+        int duration3 = 1000;//Background.add(GlowGif);
+        Timer timer3 = new Timer(10, new ActionListener() {
+            private long startTime = -1;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (startTime == -1) {
+                    startTime = System.currentTimeMillis();
+                    Background.add(GlowGif);
+                    Background.setComponentZOrder(GlowGif,0);
+                    Background.repaint();
+                }
+                
+                long elapsedTime = System.currentTimeMillis() - startTime;
+                
+                if (elapsedTime < duration3) {
+                    // Perform animation logic here
+                } else {
+                    // Stop the timer when the duration is reached
+                    ((Timer) e.getSource()).stop();
+                    System.out.println("Animation completed!");
+                    
+                }
+            }
+        });
+        
+        
+        int duration2 = 900;//Background.add(GlowGif);
+        Timer timer2 = new Timer(10, new ActionListener() {
+            private long startTime = -1;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (startTime == -1) {
+                    startTime = System.currentTimeMillis();
+                }
+                
+                long elapsedTime = System.currentTimeMillis() - startTime;
+                
+                if (elapsedTime < duration2) {
+                    // Perform animation logic here
+                    IngredientB1.ChangeLocationBy(1,1);
+                    IngredientB2.ChangeLocationBy(-1,1);
+                    repaint();
+                } else {
+                    // Stop the timer when the duration is reached
+                    ((Timer) e.getSource()).stop();
+                    System.out.println("Animation completed!");
+                    Background.remove(IngredientB1);
+                    Background.remove(IngredientB2);
+                    Background.add(FlameGif);
+                    Background.setComponentZOrder(FlameGif,0);
+                    Background.repaint();
+                    
+                    Timer delayedTimer1 = new Timer(2000, new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            Background.remove(FlameGif);
+                            Background.repaint();
+                            //timer3.start();
+                            ((Timer) e.getSource()).stop();
+                        }
+                    });
+                    
+                    delayedTimer1.setRepeats(false);
+                    delayedTimer1.start();
+                    
+                    Timer delayedTimer2 = new Timer(2000, new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            Background.add(GlowGif);
+                            Background.setComponentZOrder(GlowGif,0);
+                            Background.repaint();
+                            ((Timer) e.getSource()).stop();
+                            
+                            Timer delayedTimer3 = new Timer(2000, new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+                                    
+                                    
+                                    Background.remove(GlowGif);
+                                    Background.add(PotionBackground);
+                                    Background.setComponentZOrder(PotionBackground,0);
+                                    PotionImage.changeImage(Potion.getPathFromIdentity(pot.getIdentity()));
+                                    Background.add(PotionImage);
+                                    
+                                    Background.setComponentZOrder(PotionImage,0);
+                                    Background.repaint();
+                                    potionIsBeingDisplayed=true;
+                                    GameController.getInstance().getMenuController().getMenuView().LiftBlockade();
+                                    ((Timer) e.getSource()).stop();
+                                }
+                            });
+                            
+                            delayedTimer3.setRepeats(false);
+                            delayedTimer3.start();
+                            
+                        }
+                    });
+                    
+                    delayedTimer2.setRepeats(false);
+                    delayedTimer2.start();
+                    
+                    
+                }
+            }
+        });
+        int duration1 = 1500;
+        Timer timer1 = new Timer(10, new ActionListener() {
+            private long startTime = -1;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (startTime == -1) {
+                    startTime = System.currentTimeMillis();
+                }
+                
+                long elapsedTime = System.currentTimeMillis() - startTime;
+                
+                if (elapsedTime < duration1) {
+                    // Perform animation logic here
+                    IngredientB1.ChangeLocationBy(2,-1);
+                    IngredientB2.ChangeLocationBy(-2,-1);
+                    repaint();
+                } else {
+                    // Stop the timer when the duration is reached
+                    ((Timer) e.getSource()).stop();
+                    System.out.println("Animation completed!");
+                    timer2.start();
+                    
+                }
+            }
+        });
+        
+        timer1.start();
+        
+        
+    }
     private void PotionAnimation(){
         
         GameController.getInstance().getMenuController().getMenuView().Blockade();

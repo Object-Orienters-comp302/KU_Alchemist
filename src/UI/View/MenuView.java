@@ -425,4 +425,8 @@ public class MenuView extends JPanel implements Publisher,Listener {
     public MarketView getMarketPanel() {
         return MarketPanel;
     }
+    
+    public PotionBrewingView getPotionBrewingPanel() {
+        return PotionBrewingPanel;
+    }
 }

@@ -17,8 +17,12 @@ public class GameAction implements Serializable {
     private int    gold;
     private String targetPlayerName;
     private Ingredient.IngredientTypes ingredientType;
+    private Ingredient.IngredientTypes ingredientType1;
     private Potion.IdentityTypes identityType;
+    
     private Artifact artifact;
+    private boolean testOnStudent;
+    private Potion pot;
     
     public GameAction(ActionType actionType, String details) { // THIS IS FOR DEFAULT
         this.actionType = actionType;
@@ -58,6 +62,24 @@ public class GameAction implements Serializable {
         this.targetPlayerName= targetPlayerName;
         this.artifact = artifact;
     }
+    public GameAction(ActionType actionType, String details, String targetPlayerName, Ingredient.IngredientTypes ingredientType, Ingredient.IngredientTypes ingredientType1,boolean testOnStudent) { // THIS IS FOR REQUESTS
+        this.actionType = actionType;
+        this.testOnStudent = testOnStudent;
+        this.details    = details;
+        this.targetPlayerName = targetPlayerName;
+        this.ingredientType = ingredientType;
+        this.ingredientType1 = ingredientType1;
+    }
+    public GameAction(ActionType actionType, String details, Potion pot, boolean testOnStudent, Ingredient.IngredientTypes ingredientType, Ingredient.IngredientTypes ingredientType1){
+        this.actionType = actionType;
+        this.details    = details;
+        
+        this.pot = pot;
+        this.testOnStudent = testOnStudent;
+        this.ingredientType = ingredientType;
+        this.ingredientType1 = ingredientType1;
+        
+    }
     
     
     public enum ActionType{
@@ -67,6 +89,8 @@ public class GameAction implements Serializable {
         REQUEST_ARTIFACT("REQUEST_ARTIFACT"),
         GET_ARTIFACT("GET_ARTIFACT"),
         SELL_POTION("SELL_POTION"),
+        MAKE_EXPERIMENT("MAKE_EXPERIMENT"),
+        SEND_POTION("SEND_POTION"),
         DECK_ARTIFACT(""),
         DECK_INGREDIENT(""),
         SICKNESS(""),
@@ -125,5 +149,17 @@ public class GameAction implements Serializable {
     
     public String getTargetPlayerName() {
         return targetPlayerName;
+    }
+    
+    public Ingredient.IngredientTypes getIngredientType1() {
+        return ingredientType1;
+    }
+    
+    public boolean isTestOnStudent() {
+        return !testOnStudent;
+    }
+    
+    public Potion getPot() {
+        return pot;
     }
 }

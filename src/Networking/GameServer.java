@@ -4,10 +4,8 @@ import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
 import Domain.GameController;
-import Models.Artifact;
-import Models.Ingredient;
-import Models.Player;
-import Models.Token;
+import Models.*;
+import UI.View.PotionBrewingView;
 import UI.View.ViewFactory;
 import Utils.AssetLoader;
 
@@ -92,6 +90,12 @@ public class GameServer implements Publisher {
                     artifact = GameController.getInstance().getRoundOneController().BuyArtifacts(Player.getCurrPlayer());
             broadcastUpdate(new GameAction(GameAction.ActionType.GET_ARTIFACT,"Sent artifact",Player.getCurrPlayer()
                     .getID(),artifact));
+        }
+        if(action.getActionType() == GameAction.ActionType.MAKE_EXPERIMENT){
+            Potion
+                    pot = ViewFactory.getInstance().getMenuView().getPotionBrewingPanel().MakePotion(action.getIngredientType(), action.getIngredientType1(), Player.getCurrPlayer());
+            broadcastUpdate(new GameAction(GameAction.ActionType.SEND_POTION,"SEND_POTION", pot,action.isTestOnStudent(),action.getIngredientType(), action.getIngredientType1()));
+            
         }
         System.out.println("IN: GameAction type: " + action.getActionType());
         System.out.println("            Details: " + action.getDetails());
