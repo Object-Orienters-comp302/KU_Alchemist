@@ -2,6 +2,7 @@ package Networking;
 
 import Models.Ingredient;
 import Models.Player;
+import Models.Potion;
 import Models.Token;
 import Utils.AssetLoader;
 
@@ -19,6 +20,7 @@ public class GameAction implements Serializable {
     private int    gold;
     private String targetPlayerName;
     private Ingredient.IngredientTypes ingredientType;
+    private Potion.IdentityTypes identityType;
     
     public GameAction(ActionType actionType, String details) { // THIS IS FOR DEFAULT
         this.actionType = actionType;
@@ -42,12 +44,19 @@ public class GameAction implements Serializable {
         this.ingredientType = ingredientType;
         this.targetPlayerName = targetPlayerName;
     }
+    public GameAction(ActionType actionType, String details, Potion.IdentityTypes identityType) { // THIS IS FOR DEFAULT
+        this.actionType = actionType;
+        this.details = details;
+        this.identityType = identityType;
+    }
+    
     
     public enum ActionType{
         PLAYER_JOINED("PLAYER JOINED"),
         GOLD(""),
         DEAL_INGREDIENT("DEAL_INGREDIENT"),
         ARTIFACT(""),
+        SELL_POTION("SELL_POTION"),
         POTION(""),
         INGREDIENT(""),
         DECK_ARTIFACT(""),
@@ -98,6 +107,10 @@ public class GameAction implements Serializable {
     
     public Ingredient.IngredientTypes getIngredientType() {
         return ingredientType;
+    }
+    
+    public Potion.IdentityTypes getIdentityType() {
+        return identityType;
     }
     
     public String getTargetPlayerName() {

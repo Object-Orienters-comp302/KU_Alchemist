@@ -93,6 +93,8 @@ public class GameClient {
         } else if (action.getActionType() == GameAction.ActionType.TRANSMUTE) {
             GameController.getInstance().getRoundOneController().TransmuteIngredient(findPlayer(action.getTargetPlayerName()),action.getIngredientType());
             
+        } else if(action.getActionType() == GameAction.ActionType.SELL_POTION){
+            GameController.getInstance().getRoundTwoController().sellPotion(action.getIdentityType());
         }
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());

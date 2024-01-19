@@ -83,6 +83,9 @@ public class GameServer implements Publisher {
         if(action.getActionType() == GameAction.ActionType.TRANSMUTE){
             GameController.getInstance().getRoundOneController().TransmuteIngredient(Player.getCurrPlayer(),action.getIngredientType());
         }
+        if(action.getActionType() == GameAction.ActionType.SELL_POTION){
+            GameController.getInstance().getRoundTwoController().sellPotion(action.getIdentityType());
+        }
         System.out.println("IN: GameAction type: " + action.getActionType());
         System.out.println("            Details: " + action.getDetails());
         

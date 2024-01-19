@@ -6,6 +6,8 @@ import Domain.RoundTwoController;
 import Models.Artifact;
 import Models.Player;
 import Models.Potion;
+import Networking.GameAction;
+import Networking.GameClient;
 import UI.Components.Artifacts.ArtifactCard;
 import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.GifPanel;
@@ -129,11 +131,16 @@ public class MarketView extends JPanel {
         
     }
     
-    private Potion.Signs sellPotion(Potion.IdentityTypes identityTypes){ //TODO:make it work with type
-        RoundTwoController roundTwoController = GameController.getInstance().getRoundTwoController();
-        Potion.Signs sign = roundTwoController.sellPotion(identityTypes);
-        potionButton.reset();
-        return sign;
+    private void sellPotion(Potion.IdentityTypes identityTypes){ //TODO:make it work with type
+        if(GameController.getInstance().isOnline()){
+            GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.SELL_POTION,"Sold Potion",identityTypes));
+        }else{
+            RoundTwoController roundTwoController = GameController.getInstance().getRoundTwoController();
+            roundTwoController.sellPotion(identityTypes);
+            potionButton.reset();
+        }
+
+        
     }
     private Artifact CardClicked(Player player) { //Calls Forage for Ingredient on controller then, returns its type for the function.
         return GameController.getInstance().getRoundOneController().BuyArtifacts(player);
