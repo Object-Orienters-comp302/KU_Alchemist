@@ -1,9 +1,6 @@
 package Networking;
 
-import Models.Ingredient;
-import Models.Player;
-import Models.Potion;
-import Models.Token;
+import Models.*;
 import Utils.AssetLoader;
 
 import javax.swing.*;
@@ -21,6 +18,7 @@ public class GameAction implements Serializable {
     private String targetPlayerName;
     private Ingredient.IngredientTypes ingredientType;
     private Potion.IdentityTypes identityType;
+    private Artifact artifact;
     
     public GameAction(ActionType actionType, String details) { // THIS IS FOR DEFAULT
         this.actionType = actionType;
@@ -48,6 +46,17 @@ public class GameAction implements Serializable {
         this.actionType = actionType;
         this.details = details;
         this.identityType = identityType;
+    }
+    public GameAction(ActionType actionType, String details,String targetPlayerName) { // THIS IS FOR REQUESTS
+        this.actionType = actionType;
+        this.details    = details;
+        this.targetPlayerName = targetPlayerName;
+    }
+    public GameAction(ActionType actionType, String details,String targetPlayerName, Artifact artifact) { // THIS IS FOR ARTIFACT RETURNING
+        this.actionType = actionType;
+        this.details = details;
+        this.targetPlayerName= targetPlayerName;
+        this.artifact = artifact;
     }
     
     
@@ -100,6 +109,10 @@ public class GameAction implements Serializable {
     
     public int getGold() {
         return gold;
+    }
+    
+    public Artifact getArtifact() {
+        return artifact;
     }
     
     public Ingredient.IngredientTypes getIngredientType() {

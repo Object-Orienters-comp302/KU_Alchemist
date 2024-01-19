@@ -99,22 +99,34 @@ public class MarketView extends JPanel {
 
     }
     
+    public JTextField getTextField() {
+        return textField;
+    }
+    
     private void SetupListeners() {
         
         buyArtifactButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Artifact artifact =
-                        CardClicked(Player.getCurrPlayer());
-                if (artifact != null) {
-                    textField.setText(String.format(MarketView.Texts.Success.getText(), artifact.getName()));
-                    artifactAnimation(artifact);
-                } else {
-                    textField.setText(MarketView.Texts.Fail.getText());
+                if(GameController.getInstance().isOnline()){
+                    GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.REQUEST_ARTIFACT,"Wants an artifact.",GameController.getInstance()
+                            .getPlayerName()));
                 }
+                else{
+                    Artifact artifact =
+                            CardClicked(Player.getCurrPlayer());
+                    if (artifact != null) {
+                        textField.setText(String.format(MarketView.Texts.Success.getText(), artifact.getName()));
+                        artifactAnimation(artifact);
+                    } else {
+                        textField.setText(MarketView.Texts.Fail.getText());
+                    }
+                }
+
                 
             }
         });
+        
         
         sellPotionButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -146,7 +158,7 @@ public class MarketView extends JPanel {
         return GameController.getInstance().getRoundOneController().BuyArtifacts(player);
     }
     
-    private void artifactAnimation(Artifact artifact){
+    public void artifactAnimation(Artifact artifact){
         if (arti!=null){
             Background.remove(arti);
             Background.repaint();
@@ -159,7 +171,7 @@ public class MarketView extends JPanel {
         
     }
     
-    private enum Texts {
+    public enum Texts {
         Start("To buy artifact press the card! It costs 3 golds"),
         Success("Artifact bought successfully!! Artifact:%s"),
         Fail("You don't have enough gold.");//It will fail as long as the artifact deck is empty.

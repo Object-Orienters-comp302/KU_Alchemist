@@ -4,6 +4,7 @@ import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
 import Domain.GameController;
+import Models.Artifact;
 import Models.Ingredient;
 import Models.Player;
 import Models.Token;
@@ -85,6 +86,12 @@ public class GameServer implements Publisher {
         }
         if(action.getActionType() == GameAction.ActionType.SELL_POTION){
             GameController.getInstance().getRoundTwoController().sellPotion(action.getIdentityType());
+        }
+        if(action.getActionType() == GameAction.ActionType.REQUEST_ARTIFACT){
+            Artifact
+                    artifact = GameController.getInstance().getRoundOneController().BuyArtifacts(Player.getCurrPlayer());
+            broadcastUpdate(new GameAction(GameAction.ActionType.GET_ARTIFACT,"Sent artifact",Player.getCurrPlayer()
+                    .getID(),artifact));
         }
         System.out.println("IN: GameAction type: " + action.getActionType());
         System.out.println("            Details: " + action.getDetails());

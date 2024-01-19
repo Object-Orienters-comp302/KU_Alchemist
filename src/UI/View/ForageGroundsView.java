@@ -125,7 +125,8 @@ public class ForageGroundsView extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(GameController.getInstance().isOnline()){
                     if(Player.getCurrPlayer().getForageRight() >= 1){
-                        GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.FORAGE,"Wants to forage",Player.getCurrPlayer().getID(),null));
+                        GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.FORAGE, "Wants to forage", Player.getCurrPlayer().getID(),
+                                                                           (Ingredient.IngredientTypes) null));
                         
                     }
                     else {

@@ -2,11 +2,10 @@ package Networking;
 
 import Domain.GameController;
 import Models.Player;
-import Models.Token;
 import UI.Components.Player.PlayerDisplayer;
 import UI.View.ForageGroundsView;
+import UI.View.MarketView;
 import UI.View.ViewFactory;
-import Utils.AssetLoader;
 
 import javax.swing.*;
 import java.io.*;
@@ -95,6 +94,23 @@ public class GameClient {
             
         } else if(action.getActionType() == GameAction.ActionType.SELL_POTION){
             GameController.getInstance().getRoundTwoController().sellPotion(action.getIdentityType());
+        } else if (action.getActionType() == GameAction.ActionType.GET_ARTIFACT) {
+            if(action.getArtifact() != null){
+                Player player = findPlayer(action.getTargetPlayerName());
+                player.getInventory().addArtifactCard(action.getArtifact());
+                player.getInventory().setGold(player.getInventory().getGold()-3);
+                if(action.getTargetPlayerName().equals(GameController.getInstance().getPlayerName())){
+                    ViewFactory.getInstance().getMarketView().getTextField().setText(String.format(MarketView.Texts.Success.getText(), action.getArtifact().getName()));
+                    ViewFactory.getInstance().getMarketView().artifactAnimation(action.getArtifact());
+                }
+
+            }else {
+                if (action.getTargetPlayerName().equals(GameController.getInstance().getPlayerName())){
+                    ViewFactory.getInstance().getMarketView().getTextField().setText(MarketView.Texts.Fail.getText());
+                }
+                
+            }
+            
         }
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());
