@@ -465,8 +465,9 @@ public class MenuView extends JPanel implements Publisher,Listener {
         return PotionBrewingPanel;
     }
     
-    public void showDeduction(){
+    public void showDeduction() {
         cardLay.show(displayerPanel, "Tables");
+    }
 
     public BooksDisplayer getTheoriesPanel() {
         return theoriesPanel;
