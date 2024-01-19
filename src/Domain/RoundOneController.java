@@ -173,7 +173,7 @@ public class RoundOneController {
     public boolean MagicMortar(Player current, Artifact.Name artifactName, Ingredient.IngredientTypes ingredient){
         if(current.getInventory().checkArtifactExists(artifactName)){
             if (artifactName.equals(Artifact.Name.Magic_Mortar)){
-                current.getInventory().getArtifacts().remove(artifactName);
+                ArtifactGotUsed(Artifact.Name.Magic_Mortar);
                 current.getInventory().addIngredient(ingredient,1);
                 return true;
             }
@@ -185,6 +185,7 @@ public class RoundOneController {
         if(current.getInventory().checkArtifactExists(artifactName)){
             if(artifactName.equals(Artifact.Name.Printing_Press)){
                 current.getInventory().addGold(1);
+                ArtifactGotUsed(Artifact.Name.Printing_Press);
                 return true;
             }
         }
@@ -195,7 +196,7 @@ public class RoundOneController {
     }
     
     public void useWisdomIdol(Player current){ //TODO: Fix this horrible naming
-        current.getInventory().removeArtifact(Artifact.Name.Wisdom_Idol);
+        ArtifactGotUsed(Artifact.Name.Wisdom_Idol);
     }
     
 }
