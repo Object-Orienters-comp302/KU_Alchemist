@@ -8,6 +8,7 @@ import Domain.MenuController;
 import Models.Ingredient;
 import Models.Player;
 import Models.PublicationTrack;
+import Sound.DJ;
 import UI.Components.ColorChangingPanel;
 import UI.Components.CutRoundedPanel;
 import UI.Components.ImagePanels.HQImagePanel;
@@ -332,12 +333,15 @@ public class MenuView extends JPanel implements Publisher,Listener {
         side6.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                
                 if(GameController.getInstance().isOnline()) {
                     if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())){
                         cardLay.show(displayerPanel, "BuyArtifact");
                     }
                 }else{
-                    cardLay.show(displayerPanel, "BuyArtifact");
+                    cardLay.show(displayerPanel, "BuyArtifact");               
+                  DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.CHACHING,2000);
+
                 }
             }
         });

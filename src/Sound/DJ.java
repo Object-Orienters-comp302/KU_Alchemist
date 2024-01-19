@@ -1,10 +1,4 @@
 package Sound;
-import Domain.GameController;
-import Models.Ingredient;
-import UI.Components.ImagePanels.GifPanel;
-import UI.Components.ImagePanels.ImagePanel;
-import Utils.AssetLoader;
-import jdk.dynalink.beans.StaticClass;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -156,7 +150,9 @@ public class DJ {
     }
     
     public enum EffectSounds {
-        TRACK1("resources/Sounds/Effects/leaves-rustling.wav"),
+        LEAVES("resources/Sounds/Effects/leaves-rustling.wav"),
+        CHACHING("resources/Sounds/Effects/cha_ching.wav"),
+        COIN("resources/Sounds/Effects/coins.wav"),
         
         ;
         
