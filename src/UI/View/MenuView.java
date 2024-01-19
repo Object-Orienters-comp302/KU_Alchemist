@@ -8,6 +8,7 @@ import Domain.MenuController;
 import Models.Ingredient;
 import Models.Player;
 import Models.PublicationTrack;
+import Sound.DJ;
 import UI.Components.ColorChangingPanel;
 import UI.Components.CutRoundedPanel;
 import UI.Components.ImagePanels.HQImagePanel;
@@ -303,6 +304,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 cardLay.show(displayerPanel, "BuyArtifact");
+                DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.CHACHING,2000);
                 
             }
         });
@@ -319,6 +321,7 @@ public class MenuView extends JPanel implements Publisher,Listener {
                 GameController.getInstance().nextPlayer();
                 roundLabel.setText(GameController.getInstance().getRound().toString());
                 PlayerDisplayer.repaintAll();
+                DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.DELETE,3000);
                 reset();
             }
         });

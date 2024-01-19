@@ -1,7 +1,5 @@
 package UI.View;
 
-import Domain.Event.Listener;
-import Domain.Event.Type;
 import Domain.GameController;
 import Domain.RoundOneController;
 import Models.Ingredient;
@@ -174,7 +172,7 @@ public class ForageGroundsView extends JPanel {
     public void RunForageAnimation(Ingredient.IngredientTypes ingre) {
         GameController.getInstance().getMenuController().getMenuView().Blockade();
         DJ dj = DJ.getDJ();
-        dj.setAndStartEffectSound(DJ.EffectSounds.TRACK1,2000);
+        dj.setAndStartEffectSound(DJ.EffectSounds.LEAVES, 2000);
         
         
         GifPanel gif = new GifPanel(0, 0, 1000, 500, AssetLoader.getAssetPath(AssetLoader.Gifs.LEAVES));

@@ -8,6 +8,7 @@ import Models.Player;
 import Models.Potion;
 import Networking.GameAction;
 import Networking.GameClient;
+import Sound.DJ;
 import UI.Components.Artifacts.ArtifactCard;
 import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.GifPanel;
@@ -183,7 +184,7 @@ public class MarketView extends JPanel {
             roundTwoController.sellPotion(identityTypes);
             potionButton.reset();
         }
-
+        DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.COIN,1000);
         
     }
     private Artifact CardClicked(Player player) { //Calls Forage for Ingredient on controller then, returns its type for the function.
@@ -195,6 +196,7 @@ public class MarketView extends JPanel {
             Background.remove(arti);
             Background.repaint();
         }
+        DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.COIN,1000);
         arti = new ArtifactCard(artifact);
         arti.setLocation(artifactCard.getLocation());
         Background.add(arti);

@@ -7,6 +7,7 @@ import Models.Player;
 import Models.Potion;
 import Networking.GameAction;
 import Networking.GameClient;
+import Sound.DJ;
 import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.Potion.IngredientButton;
@@ -59,6 +60,7 @@ public class TransmuteView extends JPanel {
                 else{
                     roundOneController.TransmuteIngredient(Player.getCurrPlayer(), B1.getType());
                 }
+                DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.COIN, 1000);
                 reset();
             }
         });
