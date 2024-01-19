@@ -297,6 +297,17 @@ public class InventoryView extends JPanel implements Listener {
         weed_quantity.setText("0");
     }
     
+    private void PotionsQuantityReset(){
+        bluePostive_quantity.setText("0");
+        redPostive_quantity.setText("0");
+        greenPostive_quantity.setText("0");
+        blueNegative_quantity.setText("0");
+        redNegative_quantity.setText("0");
+        greenNegative_quantity.setText("0");
+        neutral_quantity.setText("0");
+    }
+    
+    
     public void PotionsQuantity() {
         
         HashMap<Potion, Integer> potions = Player.getCurrPlayer().getInventory().getPotions();
@@ -313,11 +324,11 @@ public class InventoryView extends JPanel implements Listener {
             } else if (color == Potion.Colors.Green && sign == Potion.Signs.Positive) {
                 greenPostive_quantity.setText(String.valueOf(potions.get(potion)));
             } else if (color == Potion.Colors.Blue && sign == Potion.Signs.Negative) {
-                bluePostive_quantity.setText(String.valueOf(potions.get(potion)));
+                blueNegative_quantity.setText(String.valueOf(potions.get(potion)));
             } else if (color == Potion.Colors.Red && sign == Potion.Signs.Negative) {
-                redPostive_quantity.setText(String.valueOf(potions.get(potion)));
+                redNegative_quantity.setText(String.valueOf(potions.get(potion)));
             } else if (color == Potion.Colors.Green && sign == Potion.Signs.Negative) {
-                greenPostive_quantity.setText(String.valueOf(potions.get(potion)));
+                greenNegative_quantity.setText(String.valueOf(potions.get(potion)));
             } else if (color == Potion.Colors.Colorless && sign == Potion.Signs.Neutral) {
                 neutral_quantity.setText(String.valueOf(potions.get(potion)));
             }
@@ -333,6 +344,7 @@ public class InventoryView extends JPanel implements Listener {
             this.repaint();
         }
         if (type == Type.POTION) {
+            PotionsQuantityReset();
             PotionsQuantity();
             this.revalidate();
             this.repaint();
