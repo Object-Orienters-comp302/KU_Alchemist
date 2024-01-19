@@ -19,7 +19,9 @@ public class AssetLoader {
         BLANK("resources/Images/backgrounds/blankPng.png"),
         TRANSMUTE_BACKGROUND("resources/Images/backgrounds/transmuteBackground.png"),
         START_BACKGROUND("resources/Images/backgrounds/startBackground0.png"),
-        DEDUCTION_BACKGROUND("resources/Images/backgrounds/deductionBackground.png");
+        DEDUCTION_BACKGROUND("resources/Images/backgrounds/deductionBackground.png"),
+        HELP_BACKGROUND("resources/Images/backgrounds/helpBacground.png");
+        
         
         
         private final String path;
