@@ -421,4 +421,8 @@ public class MenuView extends JPanel implements Publisher,Listener {
     public ForageGroundsView getForagePanel() {
         return ForagePanel;
     }
+    
+    public MarketView getMarketPanel() {
+        return MarketPanel;
+    }
 }

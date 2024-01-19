@@ -100,13 +100,13 @@ public class GameClient {
                 player.getInventory().addArtifactCard(action.getArtifact());
                 player.getInventory().setGold(player.getInventory().getGold()-3);
                 if(action.getTargetPlayerName().equals(GameController.getInstance().getPlayerName())){
-                    ViewFactory.getInstance().getMarketView().getTextField().setText(String.format(MarketView.Texts.Success.getText(), action.getArtifact().getName()));
-                    ViewFactory.getInstance().getMarketView().artifactAnimation(action.getArtifact());
+                    ViewFactory.getInstance().getMenuView().getMarketPanel().getTextField().setText(String.format(MarketView.Texts.Success.getText(), action.getArtifact().getName()));
+                    ViewFactory.getInstance().getMenuView().getMarketPanel().artifactAnimation(action.getArtifact());
                 }
 
             }else {
                 if (action.getTargetPlayerName().equals(GameController.getInstance().getPlayerName())){
-                    ViewFactory.getInstance().getMarketView().getTextField().setText(MarketView.Texts.Fail.getText());
+                    ViewFactory.getInstance().getMenuView().getMarketPanel().getTextField().setText(MarketView.Texts.Fail.getText());
                 }
                 
             }

@@ -167,7 +167,10 @@ public class MarketView extends JPanel {
         arti.setLocation(artifactCard.getLocation());
         Background.add(arti);
         Background.setComponentZOrder(arti,0);
+        Background.revalidate();
+        arti.revalidate();
         Background.repaint();
+        arti.repaint();
         
     }
     
