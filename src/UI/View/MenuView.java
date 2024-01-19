@@ -321,7 +321,6 @@ public class MenuView extends JPanel implements Publisher,Listener {
                 GameController.getInstance().nextPlayer();
                 roundLabel.setText(GameController.getInstance().getRound().toString());
                 PlayerDisplayer.repaintAll();
-                DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.DELETE,3000);
                 reset();
             }
         });

@@ -153,7 +153,6 @@ public class DJ {
         LEAVES("resources/Sounds/Effects/leaves-rustling.wav"),
         CHACHING("resources/Sounds/Effects/cha_ching.wav"),
         COIN("resources/Sounds/Effects/coins.wav"),
-        DELETE("resources/Sounds/Effects/DELETE.wav")
         
         ;
         
