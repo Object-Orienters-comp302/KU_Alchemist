@@ -96,9 +96,10 @@ public class BookButton extends JPanel {
     }
     
     public void reset(){
-        System.out.println("BOOK PANEL RESET :  "+BookPanel.traitUsed);
+        disable();
+        //System.out.println("BOOK PANEL RESET :  "+BookPanel.traitUsed);
         BookPanel.traitUsed.remove(currentPath);
-        System.out.println("BOOK PANEL AFTER RESET :  "+BookPanel.traitUsed);
+        //System.out.println("BOOK PANEL AFTER RESET :  "+BookPanel.traitUsed);
         img.changeImage(AssetLoader.TriangleTable.QUESTION_MARK);
         this.repaint();
         enable();

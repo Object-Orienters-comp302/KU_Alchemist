@@ -6,6 +6,8 @@ import Domain.RoundTwoController;
 import Models.Artifact;
 import Models.Player;
 import Models.Potion;
+import Networking.GameAction;
+import Networking.GameClient;
 import UI.Components.Artifacts.ArtifactCard;
 import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.GifPanel;
@@ -97,22 +99,34 @@ public class MarketView extends JPanel {
 
     }
     
+    public JTextField getTextField() {
+        return textField;
+    }
+    
     private void SetupListeners() {
         
         buyArtifactButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Artifact artifact =
-                        CardClicked(Player.getCurrPlayer());
-                if (artifact != null) {
-                    textField.setText(String.format(MarketView.Texts.Success.getText(), artifact.getName()));
-                    artifactAnimation(artifact);
-                } else {
-                    textField.setText(MarketView.Texts.Fail.getText());
+                if(GameController.getInstance().isOnline()){
+                    GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.REQUEST_ARTIFACT,"Wants an artifact.",GameController.getInstance()
+                            .getPlayerName()));
                 }
+                else{
+                    Artifact artifact =
+                            CardClicked(Player.getCurrPlayer());
+                    if (artifact != null) {
+                        textField.setText(String.format(MarketView.Texts.Success.getText(), artifact.getName()));
+                        artifactAnimation(artifact);
+                    } else {
+                        textField.setText(MarketView.Texts.Fail.getText());
+                    }
+                }
+
                 
             }
         });
+        
         
         sellPotionButton.addMouseListener(new MouseAdapter() {
             @Override
@@ -129,17 +143,22 @@ public class MarketView extends JPanel {
         
     }
     
-    private Potion.Signs sellPotion(Potion.IdentityTypes identityTypes){ //TODO:make it work with type
-        RoundTwoController roundTwoController = GameController.getInstance().getRoundTwoController();
-        Potion.Signs sign = roundTwoController.sellPotion(identityTypes);
-        potionButton.reset();
-        return sign;
+    private void sellPotion(Potion.IdentityTypes identityTypes){ //TODO:make it work with type
+        if(GameController.getInstance().isOnline()){
+            GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.SELL_POTION,"Sold Potion",identityTypes));
+        }else{
+            RoundTwoController roundTwoController = GameController.getInstance().getRoundTwoController();
+            roundTwoController.sellPotion(identityTypes);
+            potionButton.reset();
+        }
+
+        
     }
     private Artifact CardClicked(Player player) { //Calls Forage for Ingredient on controller then, returns its type for the function.
         return GameController.getInstance().getRoundOneController().BuyArtifacts(player);
     }
     
-    private void artifactAnimation(Artifact artifact){
+    public void artifactAnimation(Artifact artifact){
         if (arti!=null){
             Background.remove(arti);
             Background.repaint();
@@ -148,11 +167,14 @@ public class MarketView extends JPanel {
         arti.setLocation(artifactCard.getLocation());
         Background.add(arti);
         Background.setComponentZOrder(arti,0);
+        Background.revalidate();
+        arti.revalidate();
         Background.repaint();
+        arti.repaint();
         
     }
     
-    private enum Texts {
+    public enum Texts {
         Start("To buy artifact press the card! It costs 3 golds"),
         Success("Artifact bought successfully!! Artifact:%s"),
         Fail("You don't have enough gold.");//It will fail as long as the artifact deck is empty.

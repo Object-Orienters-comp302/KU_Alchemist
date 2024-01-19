@@ -1,10 +1,13 @@
 package Networking;
 
+import Domain.GameController;
 import Models.Player;
-import Models.Token;
+import UI.Components.Player.PlayerDisplayer;
+import UI.View.ForageGroundsView;
+import UI.View.MarketView;
 import UI.View.ViewFactory;
-import Utils.AssetLoader;
 
+import javax.swing.*;
 import java.io.*;
 import java.net.*;
 
@@ -66,6 +69,48 @@ public class GameClient {
             new Player(action.getDetails(), action.getToken());
         } else if (action.getActionType() == GameAction.ActionType.START_GAME) {
             ViewFactory.getInstance().getOnlineLoginView().publishStartMenu();
+        } else if(action.getActionType() == GameAction.ActionType.NEXT_ROUND){
+            GameController.getInstance().incrementTotalNextTurns();
+            Player.nextPlayer();
+            ViewFactory.getInstance().getMenuView().getRoundLabel().setText(GameController.getInstance().getRound().toString());
+            
+            PlayerDisplayer.repaintAll();
+        } else if (action.getActionType() == GameAction.ActionType.DEAL_INGREDIENT) {
+            Player player = findPlayer(action.getTargetPlayerName());
+            player.getInventory().addIngredient(action.getIngredientType(), 1);
+            
+        } else if (action.getActionType() == GameAction.ActionType.DECK_INGREDIENT) {
+            Player player = findPlayer(action.getTargetPlayerName());
+            player.getInventory().addIngredient(action.getIngredientType(), 1);
+            player.setForageRight(player.getForageRight()-1);
+            if(action.getTargetPlayerName().equals(GameController.getInstance().getPlayerName())) {
+                ViewFactory.getInstance().getMenuView().getForagePanel().getTextField().setText(String.format(
+                        ForageGroundsView.Texts.Success.getText(), action.getIngredientType().getTypeString()));
+                
+                SwingUtilities.invokeLater(() -> ViewFactory.getInstance().getMenuView().getForagePanel().RunForageAnimation(action.getIngredientType()));//TODO CHANGE THIS TO MVC
+            }
+        } else if (action.getActionType() == GameAction.ActionType.TRANSMUTE) {
+            GameController.getInstance().getRoundOneController().TransmuteIngredient(findPlayer(action.getTargetPlayerName()),action.getIngredientType());
+            
+        } else if(action.getActionType() == GameAction.ActionType.SELL_POTION){
+            GameController.getInstance().getRoundTwoController().sellPotion(action.getIdentityType());
+        } else if (action.getActionType() == GameAction.ActionType.GET_ARTIFACT) {
+            if(action.getArtifact() != null){
+                Player player = findPlayer(action.getTargetPlayerName());
+                player.getInventory().addArtifactCard(action.getArtifact());
+                player.getInventory().setGold(player.getInventory().getGold()-3);
+                if(action.getTargetPlayerName().equals(GameController.getInstance().getPlayerName())){
+                    ViewFactory.getInstance().getMenuView().getMarketPanel().getTextField().setText(String.format(MarketView.Texts.Success.getText(), action.getArtifact().getName()));
+                    ViewFactory.getInstance().getMenuView().getMarketPanel().artifactAnimation(action.getArtifact());
+                }
+
+            }else {
+                if (action.getTargetPlayerName().equals(GameController.getInstance().getPlayerName())){
+                    ViewFactory.getInstance().getMenuView().getMarketPanel().getTextField().setText(MarketView.Texts.Fail.getText());
+                }
+                
+            }
+            
         }
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());

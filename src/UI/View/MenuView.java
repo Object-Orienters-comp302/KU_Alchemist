@@ -414,4 +414,15 @@ public class MenuView extends JPanel implements Publisher,Listener {
         theoriesPanel.reset();
     }
     
+    public JLabel getRoundLabel() {
+        return roundLabel;
+    }
+    
+    public ForageGroundsView getForagePanel() {
+        return ForagePanel;
+    }
+    
+    public MarketView getMarketPanel() {
+        return MarketPanel;
+    }
 }

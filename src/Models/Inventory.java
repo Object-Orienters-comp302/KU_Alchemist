@@ -3,7 +3,10 @@ package Models;
 import Domain.Event.Listener;
 import Domain.Event.Publisher;
 import Domain.Event.Type;
+import Domain.GameController;
+import UI.View.ViewFactory;
 
+import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;

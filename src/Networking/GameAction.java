@@ -1,7 +1,6 @@
 package Networking;
 
-import Models.Player;
-import Models.Token;
+import Models.*;
 import Utils.AssetLoader;
 
 import javax.swing.*;
@@ -17,30 +16,57 @@ public class GameAction implements Serializable {
     private Token  token;
     private int    gold;
     private String targetPlayerName;
+    private Ingredient.IngredientTypes ingredientType;
+    private Potion.IdentityTypes identityType;
+    private Artifact artifact;
     
-    public GameAction(ActionType actionType, String details) {
+    public GameAction(ActionType actionType, String details) { // THIS IS FOR DEFAULT
         this.actionType = actionType;
         this.details = details;
     }
     
-    public GameAction(ActionType actionType, String details, Token token) {
+    public GameAction(ActionType actionType, String details, Token token) { // THIS IS FOR PLAYERS
         this.actionType = actionType;
         this.details = details;
         this.token = token;
     }
-    public GameAction(ActionType actionType, String details, int gold,String targetPlayerName) {
+    public GameAction(ActionType actionType, String details, int gold,String targetPlayerName) { // THIS IS FOR GOLD
         this.actionType = actionType;
         this.details = details;
         this.gold = gold;
         this.targetPlayerName = targetPlayerName;
     }
+    public GameAction(ActionType actionType, String details,String targetPlayerName, Ingredient.IngredientTypes ingredientType){
+        this.actionType = actionType;
+        this.details = details;
+        this.ingredientType = ingredientType;
+        this.targetPlayerName = targetPlayerName;
+    }
+    public GameAction(ActionType actionType, String details, Potion.IdentityTypes identityType) { // THIS IS FOR DEFAULT
+        this.actionType = actionType;
+        this.details = details;
+        this.identityType = identityType;
+    }
+    public GameAction(ActionType actionType, String details,String targetPlayerName) { // THIS IS FOR REQUESTS
+        this.actionType = actionType;
+        this.details    = details;
+        this.targetPlayerName = targetPlayerName;
+    }
+    public GameAction(ActionType actionType, String details,String targetPlayerName, Artifact artifact) { // THIS IS FOR ARTIFACT RETURNING
+        this.actionType = actionType;
+        this.details = details;
+        this.targetPlayerName= targetPlayerName;
+        this.artifact = artifact;
+    }
+    
     
     public enum ActionType{
         PLAYER_JOINED("PLAYER JOINED"),
         GOLD(""),
-        ARTIFACT(""),
-        POTION(""),
-        INGREDIENT(""),
+        DEAL_INGREDIENT("DEAL_INGREDIENT"),
+        REQUEST_ARTIFACT("REQUEST_ARTIFACT"),
+        GET_ARTIFACT("GET_ARTIFACT"),
+        SELL_POTION("SELL_POTION"),
         DECK_ARTIFACT(""),
         DECK_INGREDIENT(""),
         SICKNESS(""),
@@ -48,12 +74,13 @@ public class GameAction implements Serializable {
         FORAGERIGHT(""),
         PAUSE(""),
         START_LOGIN_SCREEN(""),
-        START_START_VIEW(""),
-        START_END_GAME_VIEW(""),
-        UPDATE_PLAYER(""),
+        FORAGE("FORAGE"),
+
         UPDATE_DECK(""),
         START_GAME("START_GAME"),
-        INIT_PLAYER("INIT_PLAYER");
+        INIT_PLAYER("INIT_PLAYER"),
+        NEXT_ROUND("NEXT_ROUND"),
+        TRANSMUTE("TRANSMUTE");
         
         private final String string;
         
@@ -82,6 +109,18 @@ public class GameAction implements Serializable {
     
     public int getGold() {
         return gold;
+    }
+    
+    public Artifact getArtifact() {
+        return artifact;
+    }
+    
+    public Ingredient.IngredientTypes getIngredientType() {
+        return ingredientType;
+    }
+    
+    public Potion.IdentityTypes getIdentityType() {
+        return identityType;
     }
     
     public String getTargetPlayerName() {

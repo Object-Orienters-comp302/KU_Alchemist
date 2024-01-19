@@ -17,9 +17,9 @@ public class ViewFactory {
     private OnlineLoginView onlineLoginView;
     private CustomPlainView customPlainView;
     private InventoryView   inventoryView;
-    private TransmuteView   transmuteView; // TODO: Refactor this
-    private MarketView      buyArtifactView; // TODO: Refactor this
-    private StartView       startView;
+    private TransmuteView transmuteView; // TODO: Refactor this
+    private MarketView    marketView; // TODO: Refactor this
+    private StartView     startView;
     private FinalView       finalView;
     private WaitingRoomView waitingRoomView;
     
@@ -105,11 +105,11 @@ public class ViewFactory {
         return transmuteView;
     }
     
-    public MarketView getBuyArtifactView() {
-        if (buyArtifactView == null) {
-            buyArtifactView = new MarketView();
+    public MarketView getMarketView() {
+        if (marketView == null) {
+            marketView = new MarketView();
         }
-        return buyArtifactView;
+        return marketView;
     }
     
     public StartView getStartView() {
