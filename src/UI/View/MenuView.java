@@ -351,10 +351,19 @@ public class MenuView extends JPanel implements Publisher,Listener {
         nextPlayerButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                GameController.getInstance().nextPlayer();
-                roundLabel.setText(GameController.getInstance().getRound().toString());
-                PlayerDisplayer.repaintAll();
-                reset();
+                if(GameController.getInstance().isOnline()){
+                    if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())) {
+                        GameController.getInstance().nextPlayer();
+                        roundLabel.setText(GameController.getInstance().getRound().toString());
+                        PlayerDisplayer.repaintAll();
+                        reset();
+                    }
+                }else {
+                    GameController.getInstance().nextPlayer();
+                    roundLabel.setText(GameController.getInstance().getRound().toString());
+                    PlayerDisplayer.repaintAll();
+                    reset();
+                }
             }
         });
         
