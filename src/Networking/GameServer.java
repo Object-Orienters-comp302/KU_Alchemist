@@ -97,7 +97,7 @@ public class GameServer implements Publisher {
                     pot = ViewFactory.getInstance().getMenuView().getPotionBrewingPanel().MakePotion(action.getIngredientType(), action.getIngredientType1(), Player.getCurrPlayer());
             if(pot != null){
                 broadcastUpdate(new GameAction(GameAction.ActionType.SEND_POTION,"SEND_POTION", pot,action.isTestOnStudent(),action.getIngredientType(), action.getIngredientType1()));
-                ViewFactory.getInstance().getMenuView().getPotionBrewingPanel().MakeExperiments(action.getPot(),Player.getCurrPlayer(),action.isTestOnStudent());
+                ViewFactory.getInstance().getMenuView().getPotionBrewingPanel().MakeExperiments(pot,Player.getCurrPlayer(),action.isTestOnStudent());
                 GameController.getInstance().getRoundOneController().MagicMortar(Player.getCurrPlayer(), Artifact.Name.Magic_Mortar, action.getIngredientType1());
                 
             }
