@@ -1,17 +1,14 @@
 package Networking;
 
 import Domain.GameController;
-import Domain.RoundOneController;
 import Domain.RoundTwoController;
 import Models.*;
 import UI.Components.Player.PlayerDisplayer;
-import UI.GamePage;
 import UI.View.ForageGroundsView;
 import UI.View.MarketView;
 import UI.View.ViewFactory;
 
 import javax.swing.*;
-import javax.swing.text.View;
 import java.io.*;
 import java.net.*;
 
@@ -139,9 +136,12 @@ public class GameClient {
             ViewFactory.getInstance().getMenuView().getTheoriesPanel().reset();
         } else if (action.getActionType() == GameAction.ActionType.REQUEST_DEBUNK) {
             GameController.getInstance().getRoundThreeController().debunkTheory(Player.getCurrPlayer(),findPublicationCard(
-                    findPlayer(action.getTargetPlayerName()),action.getIngredientType()
-                                                                                                                          ),action.getAspectColorToDebunk());
+                    findPlayer(action.getTargetPlayerName()),action.getIngredientType()),action.getAspectColorToDebunk());
             ViewFactory.getInstance().getMenuView().getTheoriesPanel().reset();
+        } else if (action.getActionType() == GameAction.ActionType.ENDORSE) {
+            GameController.getInstance().getRoundThreeController().endorseTheory(Player.getCurrPlayer(),findPublicationCard(
+                    findPlayer(action.getTargetPlayerName()),action.getIngredientType()),action.getCount());
+                    ViewFactory.getInstance().getMenuView().getTheoriesPanel().reset();
         }
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());

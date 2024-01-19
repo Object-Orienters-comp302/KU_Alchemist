@@ -3,6 +3,8 @@ package UI.Components.Publish;
 import Domain.GameController;
 import Models.Player;
 import Models.PublicationCard;
+import Networking.GameAction;
+import Networking.GameClient;
 import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.ImagePanels.OutlinedLabel;
@@ -55,29 +57,8 @@ public class EndorsePanel extends JPanel{
         tier3Label.setBounds(40,5,100,50);
         tier3.add(tier3Label);
         
-        HashMap<Integer, Player> map= card.getEndorsers();
-        for(int i=1; i<=3;i++){
-            if (map.get(i)!=null){
-                ImagePanel endorserImage= new ImagePanel(map.get(i).getToken().getImage());
-                endorserImage.setBounds(0,0,30,30);
-                endorserImage.addCorner(10);
-                ColorChangingPanel pan =getTierPanel(i);
-                pan.add(endorserImage);
-                pan.changeColors("#bbbbbb","#bbbbbb");
-                getTierLabel(i).setText("ENDORSES");
-                pan.addMouseListener(new MouseAdapter() {
-                                                     @Override
-                                                     public void mouseClicked(MouseEvent e) {
-                                                         e.consume();
-                                                     }});
-                
-            }
-            else{
-                addEndorseClicked( getTierPanel(i),i);
-            }
-            
-        }
-        card.getEndorsers().get(1);
+        setupImages();
+        //card.getEndorsers().get(1);
     
     }
     public ColorChangingPanel getTierPanel(int i){
@@ -107,13 +88,49 @@ public class EndorsePanel extends JPanel{
                     
                     if (game.getRoundTwoController().canEndorse(game.getMenuController().getCurrentPlayer(), card)) {
                         System.out.print(" reached stage 2 ");
-                        game.getRoundTwoController().endorseTheory(game.getMenuController().getCurrentPlayer(), card, i);
-                        setupEndorsers();
-                        pan.getParent().remove(pan); // this is how it works I don't know why
+                        if(GameController.getInstance().isOnline()){
+                            GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.ENDORSE,"Player wants to endorse",card.getOwner()
+                                                                        .getID(),card.getIngredient(),i)
+                                                                );
+                            
+                        }else{
+                            game.getRoundTwoController().endorseTheory(game.getMenuController().getCurrentPlayer(), card, i);
+                            setupEndorsers();
+                            pan.getParent().remove(pan); // this is how it works I don't know why
+                            
+                        }
                     }
                 }
             }
         });
+    }
+    public void reset(){
+        setupImages();
+    }
+    public void setupImages(){
+        HashMap<Integer, Player> map= card.getEndorsers();
+        for(int i=1; i<=3;i++){
+            if (map.get(i)!=null){
+                ImagePanel endorserImage= new ImagePanel(map.get(i).getToken().getImage());
+                endorserImage.setBounds(0,0,30,30);
+                endorserImage.addCorner(10);
+                ColorChangingPanel pan =getTierPanel(i);
+                pan.removeAll();
+                pan.add(endorserImage);
+                pan.changeColors("#bbbbbb","#bbbbbb");
+                getTierLabel(i).setText("ENDORSES");
+                pan.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        e.consume();
+                    }});
+                
+            }
+            else{
+                addEndorseClicked( getTierPanel(i),i);
+            }
+            
+        }
     }
     
     

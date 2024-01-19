@@ -25,6 +25,7 @@ public class GameAction implements Serializable {
     private Potion pot;
     private AssetLoader.AssetPath val;
     private Aspect.Colors aspectColorToDebunk;
+    int count;
     
     public GameAction(ActionType actionType, String details) { // THIS IS FOR DEFAULT
         this.actionType = actionType;
@@ -96,7 +97,13 @@ public class GameAction implements Serializable {
         this.aspectColorToDebunk = col;
         this.ingredientType = ingredientType;
     }
-    
+    public GameAction(ActionType actionType, String details, String targetPlayerName, Ingredient.IngredientTypes ingredientType, int count) {
+        this.actionType = actionType;
+        this.details    = details;
+        this.targetPlayerName = targetPlayerName;
+        this.count = count;
+        this.ingredientType = ingredientType;
+    }
     
     public enum ActionType{
         PLAYER_JOINED("PLAYER JOINED"),
@@ -115,7 +122,8 @@ public class GameAction implements Serializable {
         START_GAME("START_GAME"),
         INIT_PLAYER("INIT_PLAYER"),
         NEXT_ROUND("NEXT_ROUND"),
-        TRANSMUTE("TRANSMUTE");
+        TRANSMUTE("TRANSMUTE"),
+        ENDORSE("ENDORSE");
         
         private final String string;
         
@@ -180,5 +188,9 @@ public class GameAction implements Serializable {
     
     public Aspect.Colors getAspectColorToDebunk() {
         return aspectColorToDebunk;
+    }
+    
+    public int getCount() {
+        return count;
     }
 }

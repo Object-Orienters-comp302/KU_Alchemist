@@ -233,6 +233,10 @@ public class BookPanel extends JPanel {
             book.remove(turnBlock);
             book.repaint();
         }
+        if (endorsePanel!=null){
+            endorsePanel.reset();
+        }
+        
         classicSetup(Ingredient.getPathFromType(ingreType));
     }
     public void spawnDebunkButton(){
