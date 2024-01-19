@@ -3,9 +3,7 @@ package Networking;
 import Domain.GameController;
 import Domain.RoundOneController;
 import Domain.RoundTwoController;
-import Models.Artifact;
-import Models.Ingredient;
-import Models.Player;
+import Models.*;
 import UI.Components.Player.PlayerDisplayer;
 import UI.View.ForageGroundsView;
 import UI.View.MarketView;
@@ -135,12 +133,25 @@ public class GameClient {
             cont2.publishTheory(cur, action.getIngredientType(), Ingredient.getTrioFromPath(action.getVal()));
             ViewFactory.getInstance().getMenuView().getTheoriesPanel().reset();
         } else if (action.getActionType() == GameAction.ActionType.REQUEST_DEBUNK) {
-            GameController.getInstance().getRoundThreeController().debunkTheory(Player.getCurrPlayer(),action.getPublicationCardToDebunk(),action.getAspectColorToDebunk());
+            GameController.getInstance().getRoundThreeController().debunkTheory(Player.getCurrPlayer(),findPublicationCard(
+                    findPlayer(action.getTargetPlayerName()),action.getIngredientType()
+                                                                                                                          ),action.getAspectColorToDebunk());
             ViewFactory.getInstance().getMenuView().getTheoriesPanel().reset();
         }
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());
     }
+    
+    private PublicationCard findPublicationCard(Player player, Ingredient.IngredientTypes ingredientTypes) {
+        for(PublicationCard publicationCard: PublicationTrack.getInstance().getPublicationCards()){
+            
+            if(publicationCard.getOwner().getID().equals(player.getID()) && publicationCard.getIngredient() == ingredientTypes){
+               return publicationCard;
+            }
+        }
+        return null;
+    }
+    
     public Player findPlayer(String name){
         for(Player player:Player.getPlayers()){
             if(name.equals(player.getID())){

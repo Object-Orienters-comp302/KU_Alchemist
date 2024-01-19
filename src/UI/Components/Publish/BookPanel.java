@@ -245,7 +245,7 @@ public class BookPanel extends JPanel {
             case 3->col= Aspect.Colors.Blue;
         }
         if(GameController.getInstance().isOnline()){
-            GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.REQUEST_PUBLISH,"Requesting Debunk",pubCard.getOwner().getID(),col));
+            GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.REQUEST_DEBUNK,"Requesting Debunk",pubCard.getOwner().getID(),pubCard.getIngredient(),col));
             
         }else{
             if (GameController.getInstance().getRoundThreeController().debunkTheory

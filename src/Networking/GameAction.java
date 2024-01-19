@@ -89,11 +89,12 @@ public class GameAction implements Serializable {
         this.ingredientType = ingredientType;
     }
     
-    public GameAction(ActionType actionType, String details, String targetPlayerName, Aspect.Colors col) {
+    public GameAction(ActionType actionType, String details, String targetPlayerName, Ingredient.IngredientTypes ingredientType, Aspect.Colors col) {
         this.actionType = actionType;
         this.details    = details;
         this.targetPlayerName = targetPlayerName;
         this.aspectColorToDebunk = col;
+        this.ingredientType = ingredientType;
     }
     
     
@@ -175,10 +176,6 @@ public class GameAction implements Serializable {
     
     public AssetLoader.AssetPath getVal() {
         return val;
-    }
-    
-    public PublicationCard getPublicationCardToDebunk() {
-        return publicationCardToDebunk;
     }
     
     public Aspect.Colors getAspectColorToDebunk() {
