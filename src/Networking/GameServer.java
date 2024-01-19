@@ -103,6 +103,12 @@ public class GameServer implements Publisher {
             }
             
         }
+        if(action.getActionType() == GameAction.ActionType.USE_ELIXIR){
+            GameController.getInstance().getRoundOneController().getDeck().setFirstThree(action.firstThree);
+        }
+        if(action.getActionType() == GameAction.ActionType.ELIXIR_REQUEST){
+            action.setFirstThree(GameController.getInstance().getRoundOneController().getDeck().getFirstThree());
+        }
 
         System.out.println("IN: GameAction type: " + action.getActionType());
         System.out.println("            Details: " + action.getDetails());
