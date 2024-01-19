@@ -2,7 +2,9 @@ package Networking;
 
 import Domain.GameController;
 import Domain.RoundOneController;
+import Domain.RoundTwoController;
 import Models.Artifact;
+import Models.Ingredient;
 import Models.Player;
 import UI.Components.Player.PlayerDisplayer;
 import UI.View.ForageGroundsView;
@@ -127,8 +129,14 @@ public class GameClient {
                 };
             }
             
-            
-            
+        } else if (action.getActionType() == GameAction.ActionType.REQUEST_PUBLISH) {
+            Player cur = GameController.getInstance().getMenuController().getCurrentPlayer();
+            RoundTwoController cont2 = GameController.getInstance().getRoundTwoController();
+            cont2.publishTheory(cur, action.getIngredientType(), Ingredient.getTrioFromPath(action.getVal()));
+            ViewFactory.getInstance().getMenuView().getTheoriesPanel().reset();
+        } else if (action.getActionType() == GameAction.ActionType.REQUEST_DEBUNK) {
+            GameController.getInstance().getRoundThreeController().debunkTheory(Player.getCurrPlayer(),action.getPublicationCardToDebunk(),action.getAspectColorToDebunk());
+            ViewFactory.getInstance().getMenuView().getTheoriesPanel().reset();
         }
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());

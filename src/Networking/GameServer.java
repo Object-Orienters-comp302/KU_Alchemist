@@ -103,6 +103,7 @@ public class GameServer implements Publisher {
             }
             
         }
+
         System.out.println("IN: GameAction type: " + action.getActionType());
         System.out.println("            Details: " + action.getDetails());
         
