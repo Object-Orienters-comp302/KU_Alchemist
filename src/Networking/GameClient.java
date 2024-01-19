@@ -5,6 +5,7 @@ import Domain.RoundOneController;
 import Domain.RoundTwoController;
 import Models.*;
 import UI.Components.Player.PlayerDisplayer;
+import UI.GamePage;
 import UI.View.ForageGroundsView;
 import UI.View.MarketView;
 import UI.View.ViewFactory;
@@ -76,8 +77,12 @@ public class GameClient {
             GameController.getInstance().incrementTotalNextTurns();
             Player.nextPlayer();
             ViewFactory.getInstance().getMenuView().getRoundLabel().setText(GameController.getInstance().getRound().toString());
-            
             PlayerDisplayer.repaintAll();
+            if(!GameController.getInstance().getPlayerName().equals(Player.getCurrPlayer().getID())){
+                ViewFactory.getInstance().getMenuView().showDeduction();
+            }
+            
+            
         } else if (action.getActionType() == GameAction.ActionType.DEAL_INGREDIENT) {
             Player player = findPlayer(action.getTargetPlayerName());
             player.getInventory().addIngredient(action.getIngredientType(), 1);
