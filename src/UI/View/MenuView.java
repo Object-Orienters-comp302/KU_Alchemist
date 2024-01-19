@@ -277,35 +277,72 @@ public class MenuView extends JPanel implements Publisher,Listener {
         side2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(GameController.getInstance().getRound() > 1) {
-                    cardLay.show(displayerPanel, "Theories");
+                
+                if (GameController.getInstance().getRound() > 1) {
+                    if(GameController.getInstance().isOnline()) {
+                        if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())){
+                            cardLay.show(displayerPanel, "Theories");
+                        }
+                    }else{
+                        cardLay.show(displayerPanel, "Theories");
+                    }
                 }
+           
             }
         });
         side3.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                cardLay.show(displayerPanel, "Brewing");
+    
+                if(GameController.getInstance().isOnline()) {
+                    if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())){
+                        cardLay.show(displayerPanel, "Brewing");
+                    }
+                }else{
+                    cardLay.show(displayerPanel, "Brewing");
+                }
+                
             }
         });
         side4.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                cardLay.show(displayerPanel, "Foraging");
+                if(GameController.getInstance().isOnline()) {
+                    if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())){
+                        cardLay.show(displayerPanel, "Foraging");
+                    }
+                    
+                }else{
+                    cardLay.show(displayerPanel, "Foraging");
+                }
             }
         });
         side5.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                cardLay.show(displayerPanel, "Inventory");
+                
+                if(GameController.getInstance().isOnline()) {
+                    if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())){
+                        cardLay.show(displayerPanel, "Inventory");
+                    }
+                }else{
+                    cardLay.show(displayerPanel, "Inventory");
+                }
             }
         });
         side6.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                cardLay.show(displayerPanel, "BuyArtifact");
-                DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.CHACHING,2000);
                 
+                if(GameController.getInstance().isOnline()) {
+                    if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())){
+                        cardLay.show(displayerPanel, "BuyArtifact");
+                    }
+                }else{
+                    cardLay.show(displayerPanel, "BuyArtifact");               
+                  DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.CHACHING,2000);
+
+                }
             }
         });
         
@@ -318,10 +355,19 @@ public class MenuView extends JPanel implements Publisher,Listener {
         nextPlayerButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                GameController.getInstance().nextPlayer();
-                roundLabel.setText(GameController.getInstance().getRound().toString());
-                PlayerDisplayer.repaintAll();
-                reset();
+                if(GameController.getInstance().isOnline()){
+                    if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())) {
+                        GameController.getInstance().nextPlayer();
+                        roundLabel.setText(GameController.getInstance().getRound().toString());
+                        PlayerDisplayer.repaintAll();
+                        reset();
+                    }
+                }else {
+                    GameController.getInstance().nextPlayer();
+                    roundLabel.setText(GameController.getInstance().getRound().toString());
+                    PlayerDisplayer.repaintAll();
+                    reset();
+                }
             }
         });
         
@@ -430,5 +476,18 @@ public class MenuView extends JPanel implements Publisher,Listener {
     
     public MarketView getMarketPanel() {
         return MarketPanel;
+    }
+    
+    public PotionBrewingView getPotionBrewingPanel() {
+        return PotionBrewingPanel;
+    }
+    
+    public void showDeduction() {
+        cardLay.show(displayerPanel, "Tables");
+    }
+
+    public BooksDisplayer getTheoriesPanel() {
+        return theoriesPanel;
+
     }
 }

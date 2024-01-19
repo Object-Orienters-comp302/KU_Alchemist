@@ -17,8 +17,15 @@ public class GameAction implements Serializable {
     private int    gold;
     private String targetPlayerName;
     private Ingredient.IngredientTypes ingredientType;
+    private Ingredient.IngredientTypes ingredientType1;
     private Potion.IdentityTypes identityType;
+    
     private Artifact artifact;
+    private boolean testOnStudent;
+    private Potion pot;
+    private AssetLoader.AssetPath val;
+    private Aspect.Colors aspectColorToDebunk;
+    int count;
     
     public GameAction(ActionType actionType, String details) { // THIS IS FOR DEFAULT
         this.actionType = actionType;
@@ -58,7 +65,45 @@ public class GameAction implements Serializable {
         this.targetPlayerName= targetPlayerName;
         this.artifact = artifact;
     }
+    public GameAction(ActionType actionType, String details, String targetPlayerName, Ingredient.IngredientTypes ingredientType, Ingredient.IngredientTypes ingredientType1,boolean testOnStudent) { // THIS IS FOR REQUESTS
+        this.actionType = actionType;
+        this.testOnStudent = testOnStudent;
+        this.details    = details;
+        this.targetPlayerName = targetPlayerName;
+        this.ingredientType = ingredientType;
+        this.ingredientType1 = ingredientType1;
+    }
+    public GameAction(ActionType actionType, String details, Potion pot, boolean testOnStudent, Ingredient.IngredientTypes ingredientType, Ingredient.IngredientTypes ingredientType1){
+        this.actionType = actionType;
+        this.details    = details;
+        
+        this.pot = pot;
+        this.testOnStudent = testOnStudent;
+        this.ingredientType = ingredientType;
+        this.ingredientType1 = ingredientType1;
+        
+    }
+    public GameAction(ActionType actionType, String details, AssetLoader.AssetPath val, Ingredient.IngredientTypes ingredientType) {
+        this.actionType = actionType;
+        this.details    = details;
+        this.val = val;
+        this.ingredientType = ingredientType;
+    }
     
+    public GameAction(ActionType actionType, String details, String targetPlayerName, Ingredient.IngredientTypes ingredientType, Aspect.Colors col) {
+        this.actionType = actionType;
+        this.details    = details;
+        this.targetPlayerName = targetPlayerName;
+        this.aspectColorToDebunk = col;
+        this.ingredientType = ingredientType;
+    }
+    public GameAction(ActionType actionType, String details, String targetPlayerName, Ingredient.IngredientTypes ingredientType, int count) {
+        this.actionType = actionType;
+        this.details    = details;
+        this.targetPlayerName = targetPlayerName;
+        this.count = count;
+        this.ingredientType = ingredientType;
+    }
     
     public enum ActionType{
         PLAYER_JOINED("PLAYER JOINED"),
@@ -67,20 +112,18 @@ public class GameAction implements Serializable {
         REQUEST_ARTIFACT("REQUEST_ARTIFACT"),
         GET_ARTIFACT("GET_ARTIFACT"),
         SELL_POTION("SELL_POTION"),
-        DECK_ARTIFACT(""),
+        MAKE_EXPERIMENT("MAKE_EXPERIMENT"),
+        SEND_POTION("SEND_POTION"),
         DECK_INGREDIENT(""),
-        SICKNESS(""),
-        REPUTATION(""),
-        FORAGERIGHT(""),
-        PAUSE(""),
-        START_LOGIN_SCREEN(""),
         FORAGE("FORAGE"),
-
+        REQUEST_PUBLISH("REQUEST_PUBLISH"),
+        REQUEST_DEBUNK("REQUEST_DEBUNK"),
         UPDATE_DECK(""),
         START_GAME("START_GAME"),
         INIT_PLAYER("INIT_PLAYER"),
         NEXT_ROUND("NEXT_ROUND"),
-        TRANSMUTE("TRANSMUTE");
+        TRANSMUTE("TRANSMUTE"),
+        ENDORSE("ENDORSE");
         
         private final String string;
         
@@ -125,5 +168,29 @@ public class GameAction implements Serializable {
     
     public String getTargetPlayerName() {
         return targetPlayerName;
+    }
+    
+    public Ingredient.IngredientTypes getIngredientType1() {
+        return ingredientType1;
+    }
+    
+    public boolean isTestOnStudent() {
+        return !testOnStudent;
+    }
+    
+    public Potion getPot() {
+        return pot;
+    }
+    
+    public AssetLoader.AssetPath getVal() {
+        return val;
+    }
+    
+    public Aspect.Colors getAspectColorToDebunk() {
+        return aspectColorToDebunk;
+    }
+    
+    public int getCount() {
+        return count;
     }
 }

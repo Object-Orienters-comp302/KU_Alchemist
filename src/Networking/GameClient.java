@@ -1,7 +1,8 @@
 package Networking;
 
 import Domain.GameController;
-import Models.Player;
+import Domain.RoundTwoController;
+import Models.*;
 import UI.Components.Player.PlayerDisplayer;
 import UI.View.ForageGroundsView;
 import UI.View.MarketView;
@@ -73,8 +74,12 @@ public class GameClient {
             GameController.getInstance().incrementTotalNextTurns();
             Player.nextPlayer();
             ViewFactory.getInstance().getMenuView().getRoundLabel().setText(GameController.getInstance().getRound().toString());
-            
             PlayerDisplayer.repaintAll();
+            if(!GameController.getInstance().getPlayerName().equals(Player.getCurrPlayer().getID())){
+                ViewFactory.getInstance().getMenuView().showDeduction();
+            }
+            
+            
         } else if (action.getActionType() == GameAction.ActionType.DEAL_INGREDIENT) {
             Player player = findPlayer(action.getTargetPlayerName());
             player.getInventory().addIngredient(action.getIngredientType(), 1);
@@ -110,11 +115,48 @@ public class GameClient {
                 }
                 
             }
+        } else if (action.getActionType() == GameAction.ActionType.SEND_POTION) {
+            if(action.getPot() != null){
+                
+                Player player = Player.getCurrPlayer();
+                player.getInventory().addPotions(action.getPot(), 1);
+                GameController.getInstance().getRoundOneController().removeIngredient(player,action.getIngredientType());
+                GameController.getInstance().getRoundOneController().removeIngredient(player,action.getIngredientType1());
+                ViewFactory.getInstance().getMenuView().getPotionBrewingPanel().MakeExperiments(action.getPot(),player,action.isTestOnStudent());
+                GameController.getInstance().getRoundOneController().MagicMortar(player, Artifact.Name.Magic_Mortar, action.getIngredientType1());
+                if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())){
+                    ViewFactory.getInstance().getMenuView().getPotionBrewingPanel().OnlinePotionAnimation(action.getPot());
+                };
+            }
             
+        } else if (action.getActionType() == GameAction.ActionType.REQUEST_PUBLISH) {
+            Player cur = GameController.getInstance().getMenuController().getCurrentPlayer();
+            RoundTwoController cont2 = GameController.getInstance().getRoundTwoController();
+            cont2.publishTheory(cur, action.getIngredientType(), Ingredient.getTrioFromPath(action.getVal()));
+            ViewFactory.getInstance().getMenuView().getTheoriesPanel().reset();
+        } else if (action.getActionType() == GameAction.ActionType.REQUEST_DEBUNK) {
+            GameController.getInstance().getRoundThreeController().debunkTheory(Player.getCurrPlayer(),findPublicationCard(
+                    findPlayer(action.getTargetPlayerName()),action.getIngredientType()),action.getAspectColorToDebunk());
+            ViewFactory.getInstance().getMenuView().getTheoriesPanel().reset();
+        } else if (action.getActionType() == GameAction.ActionType.ENDORSE) {
+            GameController.getInstance().getRoundThreeController().endorseTheory(Player.getCurrPlayer(),findPublicationCard(
+                    findPlayer(action.getTargetPlayerName()),action.getIngredientType()),action.getCount());
+                    ViewFactory.getInstance().getMenuView().getTheoriesPanel().reset();
         }
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());
     }
+    
+    private PublicationCard findPublicationCard(Player player, Ingredient.IngredientTypes ingredientTypes) {
+        for(PublicationCard publicationCard: PublicationTrack.getInstance().getPublicationCards()){
+            
+            if(publicationCard.getOwner().getID().equals(player.getID()) && publicationCard.getIngredient() == ingredientTypes){
+               return publicationCard;
+            }
+        }
+        return null;
+    }
+    
     public Player findPlayer(String name){
         for(Player player:Player.getPlayers()){
             if(name.equals(player.getID())){
