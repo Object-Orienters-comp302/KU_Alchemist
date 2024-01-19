@@ -23,6 +23,8 @@ public class GameAction implements Serializable {
     private Artifact artifact;
     private boolean testOnStudent;
     private Potion pot;
+    private AssetLoader.AssetPath val;
+    private Aspect.Colors aspectColorToDebunk;
     
     public GameAction(ActionType actionType, String details) { // THIS IS FOR DEFAULT
         this.actionType = actionType;
@@ -80,6 +82,20 @@ public class GameAction implements Serializable {
         this.ingredientType1 = ingredientType1;
         
     }
+    public GameAction(ActionType actionType, String details, AssetLoader.AssetPath val, Ingredient.IngredientTypes ingredientType) {
+        this.actionType = actionType;
+        this.details    = details;
+        this.val = val;
+        this.ingredientType = ingredientType;
+    }
+    
+    public GameAction(ActionType actionType, String details, String targetPlayerName, Ingredient.IngredientTypes ingredientType, Aspect.Colors col) {
+        this.actionType = actionType;
+        this.details    = details;
+        this.targetPlayerName = targetPlayerName;
+        this.aspectColorToDebunk = col;
+        this.ingredientType = ingredientType;
+    }
     
     
     public enum ActionType{
@@ -91,15 +107,10 @@ public class GameAction implements Serializable {
         SELL_POTION("SELL_POTION"),
         MAKE_EXPERIMENT("MAKE_EXPERIMENT"),
         SEND_POTION("SEND_POTION"),
-        DECK_ARTIFACT(""),
         DECK_INGREDIENT(""),
-        SICKNESS(""),
-        REPUTATION(""),
-        FORAGERIGHT(""),
-        PAUSE(""),
-        START_LOGIN_SCREEN(""),
         FORAGE("FORAGE"),
-
+        REQUEST_PUBLISH("REQUEST_PUBLISH"),
+        REQUEST_DEBUNK("REQUEST_DEBUNK"),
         UPDATE_DECK(""),
         START_GAME("START_GAME"),
         INIT_PLAYER("INIT_PLAYER"),
@@ -161,5 +172,13 @@ public class GameAction implements Serializable {
     
     public Potion getPot() {
         return pot;
+    }
+    
+    public AssetLoader.AssetPath getVal() {
+        return val;
+    }
+    
+    public Aspect.Colors getAspectColorToDebunk() {
+        return aspectColorToDebunk;
     }
 }

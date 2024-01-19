@@ -8,7 +8,9 @@ public class RoundThreeController extends RoundTwoController{
     public boolean debunkTheory(Player currentPlayer, PublicationCard publicationCardToDebunk, Aspect.Colors aspectColorToDebunk) {
         System.out.println("Debunking theory...");
         boolean WisdomIdolFlag = false;
-       
+        if(publicationCardToDebunk.getOwner().equals(currentPlayer)){
+            return false; // Player can't debunk his own publishsing
+        }
         if (publicationCardToDebunk != null && aspectColorToDebunk != null) {
             // Check if the ingredient has a published theory
             if(isWisdomIdolAvailable(publicationCardToDebunk.getOwner())){
@@ -17,24 +19,24 @@ public class RoundThreeController extends RoundTwoController{
             if (PublicationTrack.getInstance().isPublished(publicationCardToDebunk)) {
                 if (aspectColorToDebunk == Aspect.Colors.Red) {
                     if (publicationCardToDebunk.getAspects().getAspectRed().isEqual(Ingredient.getAspects(publicationCardToDebunk.getIngredient()).getAspectRed())) {
-                        currentPlayer.addReputation(-1);
+                        currentPlayer.addReputation(-2);
                         return false; // aspect type is not debunked, because aspect is not false
                     }
                 } else if (aspectColorToDebunk == Aspect.Colors.Green) {
                     if (publicationCardToDebunk.getAspects().getAspectGreen().isEqual(Ingredient.getAspects(publicationCardToDebunk.getIngredient()).getAspectGreen())) {
-                        currentPlayer.addReputation(-1);
+                        currentPlayer.addReputation(-2);
                         return false; // aspect type is not debunked, because aspect is not false
                     }
                 } else if (aspectColorToDebunk == Aspect.Colors.Blue) {
                     if (publicationCardToDebunk.getAspects().getAspectBlue().isEqual(Ingredient.getAspects(publicationCardToDebunk.getIngredient()).getAspectBlue())) {
-                        currentPlayer.addReputation(-1);
+                        currentPlayer.addReputation(-2);
                         return false; // aspect type is not debunked, because aspect is not false
                     }
                 }
-                    currentPlayer.addReputation(2);
+                    currentPlayer.addReputation(4);
                     publicationGotDebunked(publicationCardToDebunk);
                     if (WisdomIdolFlag == true){
-                        publicationCardToDebunk.getOwner().addReputation(2); //changed from 1 to 2 since it felt weak
+                        publicationCardToDebunk.getOwner().addReputation(4); //changed from 1 to 2 since it felt weak
                         useWisdomIdol(publicationCardToDebunk.getOwner());
                     }
                 System.out.println("A theory was debunked!");
@@ -49,11 +51,11 @@ public class RoundThreeController extends RoundTwoController{
     }
     
     public void publicationGotDebunked(PublicationCard card){
-        card.getOwner().addReputation(-4);
+        card.getOwner().addReputation(-6);
         HashMap<Integer, Player> map = card.getEndorsers();
-        if (map.get(1)!=null){map.get(1).addReputation(-3);}
-        if (map.get(2)!=null){map.get(2).addReputation(-2);}
-        if (map.get(3)!=null){map.get(3).addReputation(-1);}
+        if (map.get(1)!=null){map.get(1).addReputation(-5);}
+        if (map.get(2)!=null){map.get(2).addReputation(-3);}
+        if (map.get(3)!=null){map.get(3).addReputation(-2);}
         PublicationTrack.getInstance().removePublicationCard(card);
     }
     //TODO: add function for when the publications turns out to be true (likely endgame controller)

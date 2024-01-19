@@ -119,10 +119,10 @@ public class GameController implements Publisher {
             
             //add 2 gold for each artifact card
             int r_artifacts = player.getInventory().getArtifacts().size();
-            player.getInventory().addGold(r_artifacts*2);
+            player.getInventory().addGold(r_artifacts*4);
             
             // 10 point for each reputation point and 1/3 point for each gold
-            player.setScore(player.getReputation()*10 + player.getInventory().getGold()/3);
+            player.setScore(player.getReputation()*10 + player.getInventory().getGold());
             
         }
     }

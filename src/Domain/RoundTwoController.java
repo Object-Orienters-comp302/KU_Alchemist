@@ -41,7 +41,7 @@ public class RoundTwoController extends RoundOneController{
                 // Pay 1 gold piece to the bank
                 currentPlayer.getInventory().addGold(-1);
                 // Gain 1 point of reputation
-                currentPlayer.addReputation(1);
+                currentPlayer.addReputation(4);
                 return true; // Theory published successfully
             }
             return false;
