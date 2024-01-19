@@ -294,7 +294,7 @@ public class StartView extends JPanel implements Publisher {
         panel.setLayout(null);
         panel.setBounds(515,300,250,250);
         
-        OutlinedLabel portLabel = new OutlinedLabel("PORT:", "#aaafff", "#fffaaf", OutlinedLabel.Versions.MID_ORIENTED);
+        OutlinedLabel portLabel = new OutlinedLabel("PORT:", "#003399", "#fffaaf", OutlinedLabel.Versions.MID_ORIENTED);
         portLabel.setBounds(25,20,200,30);
         panel.add(portLabel);
         
@@ -305,7 +305,7 @@ public class StartView extends JPanel implements Publisher {
         textField1.setBorder(null);
         panel.add(textField1);
         
-        OutlinedLabel ipLabel = new OutlinedLabel("IP:", "#aaafff", "#fffaaf", OutlinedLabel.Versions.MID_ORIENTED);
+        OutlinedLabel ipLabel = new OutlinedLabel("IP:", "#003399", "#fffaaf", OutlinedLabel.Versions.MID_ORIENTED);
         ipLabel.setBounds(25, 80, 200, 30);
         
         JTextField textField2 = new JTextField(); // IP
@@ -319,7 +319,7 @@ public class StartView extends JPanel implements Publisher {
         ColorChangingPanel button = new ColorChangingPanel("#fffaaf", "#aaafff", 40, ColorChangingPanel.RoundingStyle.BOTH);
         button.setBounds(50, 160, 150, 50);
         button.setLayout(null);
-        OutlinedLabel lab = new OutlinedLabel("JOIN", "#aaafff", "#fffaaf", OutlinedLabel.Versions.MID_ORIENTED);
+        OutlinedLabel lab = new OutlinedLabel("JOIN", "#003399", "#fffaaf", OutlinedLabel.Versions.MID_ORIENTED);
         lab.setSize(button.getSize());lab.setLocation(0,0);
         button.add(lab);
         panel.add(button);
