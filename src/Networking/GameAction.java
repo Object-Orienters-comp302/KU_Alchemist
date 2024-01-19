@@ -6,6 +6,7 @@ import Utils.AssetLoader;
 import javax.swing.*;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.HashMap;
 
 public class GameAction implements Serializable {
     @Serial
@@ -26,6 +27,7 @@ public class GameAction implements Serializable {
     private AssetLoader.AssetPath val;
     private Aspect.Colors aspectColorToDebunk;
     int count;
+    HashMap<Integer, Ingredient.IngredientTypes> firstThree;
     
     public GameAction(ActionType actionType, String details) { // THIS IS FOR DEFAULT
         this.actionType = actionType;
@@ -105,6 +107,12 @@ public class GameAction implements Serializable {
         this.ingredientType = ingredientType;
     }
     
+    public GameAction(ActionType actionType, String details, HashMap<Integer, Ingredient.IngredientTypes> firstThree) {
+        this.actionType = actionType;
+        this.details = details;
+        this.firstThree = firstThree;
+    }
+    
     public enum ActionType{
         PLAYER_JOINED("PLAYER JOINED"),
         GOLD(""),
@@ -123,7 +131,10 @@ public class GameAction implements Serializable {
         INIT_PLAYER("INIT_PLAYER"),
         NEXT_ROUND("NEXT_ROUND"),
         TRANSMUTE("TRANSMUTE"),
-        ENDORSE("ENDORSE");
+        ENDORSE("ENDORSE"),
+        ELIXIR_REQUEST("ELIXIR_REQUEST"),
+        USE_ELIXIR("USE_ELIXIR");
+        
         
         private final String string;
         
@@ -192,5 +203,13 @@ public class GameAction implements Serializable {
     
     public int getCount() {
         return count;
+    }
+    
+    public HashMap<Integer, Ingredient.IngredientTypes> getFirstThree() {
+        return firstThree;
+    }
+    
+    public void setFirstThree(HashMap<Integer, Ingredient.IngredientTypes> firstThree) {
+        this.firstThree = firstThree;
     }
 }

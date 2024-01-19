@@ -2,6 +2,9 @@ package UI.Components.Artifacts;
 
 import Domain.GameController;
 import Models.Artifact;
+import Models.Deck;
+import Networking.GameAction;
+import Networking.GameClient;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.ImagePanels.OutlinedLabel;
 import UI.Components.SuperViews.ArtifactTargetSelectorView;
@@ -298,10 +301,17 @@ public class ArtifactCard extends JPanel {
     
     
     public void ElixirOfInsightFunction(){
-        MenuView menu= GameController.getInstance().getMenuController().getMenuView();
-        menu.Blockade();
-        GameController.getInstance().getRoundOneController().ArtifactGotUsed(Artifact.Name.Elixir_of_Insight);
-        menu.addAndRunPage(new ElixirOfInsightView());
+        
+        if(GameController.getInstance().isOnline()) {
+            GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.ELIXIR_REQUEST,"ELIXIR_REQUEST"));
+            
+        }else{
+            
+            MenuView menu = GameController.getInstance().getMenuController().getMenuView();
+            menu.Blockade();
+            GameController.getInstance().getRoundOneController().ArtifactGotUsed(Artifact.Name.Elixir_of_Insight);
+            menu.addAndRunPage(new ElixirOfInsightView());
+        }
     }
     public void PistolofSicknessFunction(Artifact.Name name){
         MenuView menu= GameController.getInstance().getMenuController().getMenuView();

@@ -4,8 +4,10 @@ import Domain.GameController;
 import Domain.RoundTwoController;
 import Models.*;
 import UI.Components.Player.PlayerDisplayer;
+import UI.Components.SuperViews.ElixirOfInsightView;
 import UI.View.ForageGroundsView;
 import UI.View.MarketView;
+import UI.View.MenuView;
 import UI.View.ViewFactory;
 
 import javax.swing.*;
@@ -142,6 +144,13 @@ public class GameClient {
             GameController.getInstance().getRoundThreeController().endorseTheory(Player.getCurrPlayer(),findPublicationCard(
                     findPlayer(action.getTargetPlayerName()),action.getIngredientType()),action.getCount());
                     ViewFactory.getInstance().getMenuView().getTheoriesPanel().reset();
+        }else if (action.getActionType() == GameAction.ActionType.ELIXIR_REQUEST){
+            GameController.getInstance().getMenuController().getCurrentPlayer().getInventory().removeArtifact(Artifact.Name.Elixir_of_Insight);
+            if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())) {
+                MenuView menu = GameController.getInstance().getMenuController().getMenuView();
+                menu.Blockade();
+                menu.addAndRunPage(new ElixirOfInsightView(action.firstThree));
+            }
         }
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());
