@@ -8,7 +8,9 @@ public class RoundThreeController extends RoundTwoController{
     public boolean debunkTheory(Player currentPlayer, PublicationCard publicationCardToDebunk, Aspect.Colors aspectColorToDebunk) {
         System.out.println("Debunking theory...");
         boolean WisdomIdolFlag = false;
-       
+        if(publicationCardToDebunk.getOwner().equals(currentPlayer)){
+            return false; // Player can't debunk his own publishsing
+        }
         if (publicationCardToDebunk != null && aspectColorToDebunk != null) {
             // Check if the ingredient has a published theory
             if(isWisdomIdolAvailable(publicationCardToDebunk.getOwner())){
