@@ -3,6 +3,8 @@ package UI.Components.Publish;
 import Domain.GameController;
 import Domain.RoundTwoController;
 import Models.*;
+import Networking.GameAction;
+import Networking.GameClient;
 import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.OutlinedLabel;
 import Utils.AssetLoader;
@@ -35,6 +37,7 @@ public class BookPanel extends JPanel {
     ImagePanel publisherImage,panel;
     JPanel  turnBlock;
     OutlinedLabel blockLabel;
+
     
     public BookPanel(AssetLoader.AssetPath ingredientPath) {
         ingreType = Ingredient.getTypeFromPath(ingredientPath);
@@ -70,7 +73,7 @@ public class BookPanel extends JPanel {
         book.add(confirmButton);
         
         if (CircleButton==null){
-        CircleButton = new BookButton(35, 90, 65, 65, ingredientPath);
+            CircleButton = new BookButton(35, 90, 65, 65, ingredientPath);
         }
         //panel_1.setBounds(70, 110, 80, 80);
         add(CircleButton);
@@ -92,7 +95,12 @@ public class BookPanel extends JPanel {
                     if (val != AssetLoader.TriangleTable.QUESTION_MARK &&
                             GameController.getInstance().getRoundTwoController().canPublish(Player.getCurrPlayer(),
                                                                                             ingreType)) {
-                        publish(val);
+                        if(GameController.getInstance().isOnline()){
+                            GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.REQUEST_PUBLISH, "REQUEST PUBLISH", val, ingreType));
+                        }else {
+                            publish(val);
+                            
+                        }
                     }
                 }
             });
@@ -191,8 +199,10 @@ public class BookPanel extends JPanel {
         }else{
             if (turnBlock!=null){
                 book.remove(turnBlock);
+
                 book.remove(blockLabel);
                 book.repaint();
+
             }
         }
         book.add(endorsePanel);
@@ -209,11 +219,11 @@ public class BookPanel extends JPanel {
                 }
                 
             }});
-            
+        
         book.repaint();
         BookPanel.this.revalidate();
         BookPanel.this.repaint();
-    
+        
     }
     public void reset(){
         if (!GameController.getInstance().getRoundThreeController().checkIfIngredientIsPublished(ingreType)){
@@ -241,11 +251,17 @@ public class BookPanel extends JPanel {
             case 2->col= Aspect.Colors.Green;
             case 3->col= Aspect.Colors.Blue;
         }
-        if (GameController.getInstance().getRoundThreeController().debunkTheory
-                (GameController.getInstance().getMenuController().getCurrentPlayer(),pubCard,col)) {
-            theoryGotDebunked();
+        if(GameController.getInstance().isOnline()){
+            GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.REQUEST_DEBUNK,"Requesting Debunk",pubCard.getOwner().getID(),pubCard.getIngredient(),col));
+            
+        }else{
+            if (GameController.getInstance().getRoundThreeController().debunkTheory
+                    (GameController.getInstance().getMenuController().getCurrentPlayer(),pubCard,col)) {
+                theoryGotDebunked();
+            }
         }
         classicSetup(Ingredient.getPathFromType( ingreType));
+
         //TODO:add debunk action here
     }
     public void theoryGotDebunked(){
@@ -273,7 +289,7 @@ public class BookPanel extends JPanel {
                 ,AssetLoader.Avatars.BLUE));
         GameController.getInstance().getRoundTwoController()
                 .endorseTheory(sec,PublicationTrack.getInstance().getPublicationCardOf(
-                Ingredient.IngredientTypes.Scorpion),2);
+                        Ingredient.IngredientTypes.Scorpion),2);
         
         
         frame.getContentPane().setLayout(new GridBagLayout());
