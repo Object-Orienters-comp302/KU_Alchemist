@@ -80,6 +80,9 @@ public class GameServer implements Publisher {
             Ingredient.IngredientTypes ingredientType = GameController.getInstance().getRoundOneController().ForageForIngredient(Player.getCurrPlayer());
             broadcastUpdate(new GameAction(GameAction.ActionType.DECK_INGREDIENT, "Drew one ingredient from deck",Player.getCurrPlayer().getID(),ingredientType));
         }
+        if(action.getActionType() == GameAction.ActionType.TRANSMUTE){
+            GameController.getInstance().getRoundOneController().TransmuteIngredient(Player.getCurrPlayer(),action.getIngredientType());
+        }
         System.out.println("IN: GameAction type: " + action.getActionType());
         System.out.println("            Details: " + action.getDetails());
         

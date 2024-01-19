@@ -5,6 +5,8 @@ import Domain.RoundOneController;
 import Domain.RoundTwoController;
 import Models.Player;
 import Models.Potion;
+import Networking.GameAction;
+import Networking.GameClient;
 import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.ImagePanel;
 import UI.Components.Potion.IngredientButton;
@@ -50,7 +52,13 @@ public class TransmuteView extends JPanel {
         transmuteIngredient.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 RoundOneController roundOneController = GameController.getInstance().getRoundOneController();
-                roundOneController.TransmuteIngredient(Player.getCurrPlayer(), B1.getType());
+                if(GameController.getInstance().isOnline()){
+                    GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.TRANSMUTE,"TRANSMUTE",GameController.getInstance()
+                            .getPlayerName(), B1.getType()));
+                }
+                else{
+                    roundOneController.TransmuteIngredient(Player.getCurrPlayer(), B1.getType());
+                }
                 reset();
             }
         });

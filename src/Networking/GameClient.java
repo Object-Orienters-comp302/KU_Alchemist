@@ -90,6 +90,9 @@ public class GameClient {
                 
                 SwingUtilities.invokeLater(() -> ViewFactory.getInstance().getMenuView().getForagePanel().RunForageAnimation(action.getIngredientType()));//TODO CHANGE THIS TO MVC
             }
+        } else if (action.getActionType() == GameAction.ActionType.TRANSMUTE) {
+            GameController.getInstance().getRoundOneController().TransmuteIngredient(findPlayer(action.getTargetPlayerName()),action.getIngredientType());
+            
         }
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());

@@ -64,7 +64,8 @@ public class GameAction implements Serializable {
         UPDATE_DECK(""),
         START_GAME("START_GAME"),
         INIT_PLAYER("INIT_PLAYER"),
-        NEXT_ROUND("NEXT_ROUND");
+        NEXT_ROUND("NEXT_ROUND"),
+        TRANSMUTE("TRANSMUTE");
         
         private final String string;
         
