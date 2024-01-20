@@ -151,8 +151,18 @@ public class ArtifactTargetSelectorView extends JPanel {
         }
     }
     private void reputationAttack(int i){
-        GameController.getInstance().getRoundOneController().ArtifactReputationAbility(getChosenPlayer(), i);
-        liftBlockade();
+        
+        if (getChosenPlayer()!=null) {
+            System.out.println("FIRED");
+            if(GameController.getInstance().isOnline()){
+                GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.USE_LETTER,"USE_LETTER",getChosenPlayer().getID(),i));
+                liftBlockade();
+            }else{
+                GameController.getInstance().getRoundOneController().ArtifactReputationAbility(getChosenPlayer(), i);
+                liftBlockade();
+            }
+            
+        }
     }
     
     private void liftBlockade(){

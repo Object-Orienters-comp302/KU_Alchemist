@@ -166,6 +166,19 @@ public class GameClient {
             Player player = findPlayer(action.getTargetPlayerName());
             GameController.getInstance().getRoundOneController().PistolOfSicknessAbility(player, action.getDamage());
             
+        }else if( action.getActionType() == GameAction.ActionType.REQUEST_REPATTACK){
+            
+            GameController.getInstance().getMenuController().getCurrentPlayer().getInventory().removeArtifact(action.getArtifactName());
+            
+            if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())){
+                MenuView menu= GameController.getInstance().getMenuController().getMenuView();
+                menu.Blockade();
+                menu.addAndRunPage(new ArtifactTargetSelectorView(action.getArtifactName()));
+            }
+        }else if(action.getActionType() == GameAction.ActionType.USE_LETTER){
+            
+            Player player = findPlayer(action.getTargetPlayerName());
+            GameController.getInstance().getRoundOneController().ArtifactReputationAbility(player, action.getDamage());
         }
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());

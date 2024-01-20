@@ -324,10 +324,16 @@ public class ArtifactCard extends JPanel {
 
     }
     public void ReputationAttackFunction(Artifact.Name name){
-        MenuView menu= GameController.getInstance().getMenuController().getMenuView();
-        menu.Blockade();
-        GameController.getInstance().getRoundOneController().ArtifactGotUsed(name);
-        menu.addAndRunPage(new ArtifactTargetSelectorView(name));
+        
+        if(GameController.getInstance().isOnline()){
+            GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.REQUEST_REPATTACK, "REQUEST_REPATTACK", name));
+        } else{
+            MenuView menu= GameController.getInstance().getMenuController().getMenuView();
+            menu.Blockade();
+            GameController.getInstance().getRoundOneController().ArtifactGotUsed(name);
+            menu.addAndRunPage(new ArtifactTargetSelectorView(name));
+        }
+
     }
     
     
