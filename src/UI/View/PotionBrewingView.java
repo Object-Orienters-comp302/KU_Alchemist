@@ -10,6 +10,7 @@ import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.BackgroundSelector;
 import UI.Components.ImagePanels.GifPanel;
 import UI.Components.ImagePanels.ImagePanel;
+import UI.Components.ImagePanels.OutlinedLabel;
 import UI.Components.Potion.IngredientButton;
 import Utils.AssetLoader;
 
@@ -32,10 +33,10 @@ public class PotionBrewingView extends JPanel {
     IngredientButton IngredientB1;
     IngredientButton IngredientB2;
     
-    JLabel MakePotionLbl;
-    ImagePanel TickPanel;
-    JLabel lblNewLabel;
-    ImagePanel Card1;
+    OutlinedLabel MakePotionLbl;
+    ImagePanel    TickPanel;
+    OutlinedLabel lblNewLabel;
+    ImagePanel    Card1;
     ImagePanel Card2;
     ImagePanel Cauldron;
     
@@ -59,11 +60,11 @@ public class PotionBrewingView extends JPanel {
     	IngredientB1 = new IngredientButton(150, 155, 140, 140, true);
     	IngredientB2 = new IngredientButton(710, 155, 140, 140, true);
         
-    	MakePotionButton = new ColorChangingPanel("#cf9d15", "#FFD700");
-    	MakePotionLbl = new JLabel("Make Potion");
-    	TestOnStudentBox = new ColorChangingPanel("#cf9d15", "#FFD700");
+    	MakePotionButton = new ColorChangingPanel("#cf9d15", "#FFD700", 30, ColorChangingPanel.RoundingStyle.BOTH);
+    	MakePotionLbl = new OutlinedLabel("Make Potion","#0d0100", "#CCCCCC", OutlinedLabel.Versions.MID_ORIENTED);
+    	TestOnStudentBox = new ColorChangingPanel("#cf9d15", "#FFD700", 30, ColorChangingPanel.RoundingStyle.BOTH);
     	TickPanel = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.Tokens.RED_X));
-    	lblNewLabel = new JLabel("TEST ON STUDENT");
+    	lblNewLabel = new OutlinedLabel("TEST ON STUDENT", "#0d0100", "#CCCCCC", OutlinedLabel.Versions.MID_ORIENTED);
     	Card1 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
     	Card2 = new ImagePanel(AssetLoader.getAssetPath(AssetLoader.ForageGroundsAssets.CARD));
   
@@ -96,11 +97,11 @@ public class PotionBrewingView extends JPanel {
         MakePotionLbl.setBounds(0, 0, 120, 40);
         MakePotionButton.add(MakePotionLbl);
         
-        TestOnStudentBox.setBounds(425, 375, 150, 40);
+        TestOnStudentBox.setBounds(425, 375, 160, 40);
         Background.add(TestOnStudentBox);
         TestOnStudentBox.setLayout(null);
     	
-        TickPanel.setBounds(0, 0, 40, 40);
+        TickPanel.setBounds(5, 5, 30, 30);
         TestOnStudentBox.add(TickPanel);
         
         lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));

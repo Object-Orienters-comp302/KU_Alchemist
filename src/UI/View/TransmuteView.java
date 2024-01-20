@@ -10,6 +10,7 @@ import Networking.GameClient;
 import Sound.DJ;
 import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.ImagePanel;
+import UI.Components.ImagePanels.OutlinedLabel;
 import UI.Components.Potion.IngredientButton;
 import UI.Components.Potion.PotionButton;
 import Utils.AssetLoader;
@@ -48,7 +49,7 @@ public class TransmuteView extends JPanel {
         this.add(Card);
         
         
-        transmuteIngredient = new ColorChangingPanel("#cf9d15", "#FFD700");
+        transmuteIngredient = new ColorChangingPanel("#cf9d15", "#FFD700", 30, ColorChangingPanel.RoundingStyle.BOTH);
         transmuteIngredient.setBounds(440, 320, 120, 40);
         transmuteIngredient.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
@@ -66,8 +67,8 @@ public class TransmuteView extends JPanel {
         });
         this.add(transmuteIngredient);
         transmuteIngredient.setLayout(null);
-        JLabel transmuteIngredientLbl = new JLabel("Transmute");
-        transmuteIngredientLbl.setFont(new Font("Tahoma", Font.BOLD, 14));
+        OutlinedLabel transmuteIngredientLbl = new OutlinedLabel("Transmute", "#0d0100", "#CCCCCC", OutlinedLabel.Versions.MID_ORIENTED);
+        //transmuteIngredientLbl.setFont(new Font("Tahoma", Font.BOLD, 14));
         transmuteIngredientLbl.setHorizontalAlignment(SwingConstants.CENTER);
         transmuteIngredientLbl.setBounds(0, 0, 120, 40);
         transmuteIngredient.add(transmuteIngredientLbl);
