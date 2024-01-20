@@ -1,5 +1,7 @@
 package UI.Components;
 
+import Sound.DJ;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -142,6 +144,11 @@ public class ColorChangingPanel extends JPanel {
         return false;
     }
     
+    public void addTheEnterSound(){
+        this.removeMouseListener(this.getMouseListeners()[0]);
+        this.addMouseListener(new ColorChangeListener(this, hoverColor, defColor,true));
+    }
+    
     // Enum for specifying the rounding style
     public enum RoundingStyle {
         LEFT,
@@ -154,16 +161,26 @@ public class ColorChangingPanel extends JPanel {
         private final JPanel panel;
         private final Color  hoverColor;
         private final Color  originalColor;
+        private boolean hasEnterSound=false;
         
         public ColorChangeListener(JPanel panel, Color hoverColor, Color originalColor) {
             this.panel         = panel;
             this.hoverColor    = hoverColor;
             this.originalColor = originalColor;
         }
+        public ColorChangeListener(JPanel panel, Color hoverColor, Color originalColor,boolean hasSound) {
+            this.panel         = panel;
+            this.hoverColor    = hoverColor;
+            this.originalColor = originalColor;
+            this.hasEnterSound=hasSound;
+        }
         
         @Override
         public void mouseEntered(MouseEvent e) {
             panel.setBackground(hoverColor);
+            if (hasEnterSound){
+                DJ.getDJ().setAndStartEffectSound(DJ.EffectSounds.BUTTON,1000);
+            }
         }
         
         @Override
