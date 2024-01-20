@@ -146,7 +146,8 @@ public class GameAction implements Serializable {
         ELIXIR_REQUEST("ELIXIR_REQUEST"),
         USE_ELIXIR("USE_ELIXIR"),
         REQUEST_PISTOL("REQUEST_PISTOL"),
-        USE_PISTOL("USE_PISTOL");
+        USE_PISTOL("USE_PISTOL"),
+        REQUEST_REPATTACK("REQUEST_REPATTACK");
         
         
         private final String string;
