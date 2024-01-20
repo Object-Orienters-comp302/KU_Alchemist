@@ -111,6 +111,11 @@ public class GameServer implements Publisher {
         }if(action.getActionType() == GameAction.ActionType.USE_PISTOL){
             Player player = findPlayer(action.getTargetPlayerName());
             GameController.getInstance().getRoundOneController().PistolOfSicknessAbility(player, action.getDamage());
+        }if(action.getActionType() == GameAction.ActionType.REQUEST_PISTOL){
+            GameController.getInstance().getRoundOneController().ArtifactGotUsed(action.getArtifactName());
+        }if(action.getActionType() == GameAction.ActionType.USE_LETTER){
+            Player player = findPlayer(action.getTargetPlayerName());
+            GameController.getInstance().getRoundOneController().ArtifactReputationAbility(player, action.getDamage());
         }
         System.out.println("IN: GameAction type: " + action.getActionType());
         System.out.println("            Details: " + action.getDetails());
