@@ -3,7 +3,6 @@ package Networking;
 import Models.*;
 import Utils.AssetLoader;
 
-import javax.swing.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -27,6 +26,8 @@ public class GameAction implements Serializable {
     private AssetLoader.AssetPath val;
     private Aspect.Colors aspectColorToDebunk;
     int count;
+    private Artifact.Name artifactName;
+    int damage;
     HashMap<Integer, Ingredient.IngredientTypes> firstThree;
     
     public GameAction(ActionType actionType, String details) { // THIS IS FOR DEFAULT
@@ -106,11 +107,21 @@ public class GameAction implements Serializable {
         this.count = count;
         this.ingredientType = ingredientType;
     }
-    
     public GameAction(ActionType actionType, String details, HashMap<Integer, Ingredient.IngredientTypes> firstThree) {
         this.actionType = actionType;
         this.details = details;
         this.firstThree = firstThree;
+    }
+    public GameAction(ActionType actionType, String details, Artifact.Name artifactName) {
+        this.actionType = actionType;
+        this.details = details;
+        this.artifactName = artifactName;
+    }
+    public GameAction(ActionType actionType, String details, String targetPlayerName , int damage) {
+        this.actionType = actionType;
+        this.details = details;
+        this.targetPlayerName = targetPlayerName;
+        this.damage = damage;
     }
     
     public enum ActionType{
@@ -133,7 +144,9 @@ public class GameAction implements Serializable {
         TRANSMUTE("TRANSMUTE"),
         ENDORSE("ENDORSE"),
         ELIXIR_REQUEST("ELIXIR_REQUEST"),
-        USE_ELIXIR("USE_ELIXIR");
+        USE_ELIXIR("USE_ELIXIR"),
+        REQUEST_PISTOL("REQUEST_PISTOL"),
+        USE_PISTOL("USE_PISTOL");
         
         
         private final String string;
@@ -211,5 +224,13 @@ public class GameAction implements Serializable {
     
     public void setFirstThree(HashMap<Integer, Ingredient.IngredientTypes> firstThree) {
         this.firstThree = firstThree;
+    }
+    
+    public Artifact.Name getArtifactName() {
+        return artifactName;
+    }
+    
+    public int getDamage() {
+        return damage;
     }
 }

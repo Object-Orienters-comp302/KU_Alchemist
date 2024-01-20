@@ -5,12 +5,9 @@ import Domain.Event.Publisher;
 import Domain.Event.Type;
 import Domain.GameController;
 import Models.*;
-import UI.View.PotionBrewingView;
 import UI.View.ViewFactory;
-import Utils.AssetLoader;
 
 import javax.swing.*;
-import javax.swing.text.View;
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -109,7 +106,12 @@ public class GameServer implements Publisher {
         if(action.getActionType() == GameAction.ActionType.ELIXIR_REQUEST){
             action.setFirstThree(GameController.getInstance().getRoundOneController().getDeck().getFirstThree());
         }
-
+        if(action.getActionType() == GameAction.ActionType.REQUEST_PISTOL){
+            GameController.getInstance().getRoundOneController().ArtifactGotUsed(action.getArtifactName());
+        }if(action.getActionType() == GameAction.ActionType.USE_PISTOL){
+            Player player = findPlayer(action.getTargetPlayerName());
+            GameController.getInstance().getRoundOneController().PistolOfSicknessAbility(player, action.getDamage());
+        }
         System.out.println("IN: GameAction type: " + action.getActionType());
         System.out.println("            Details: " + action.getDetails());
         
@@ -177,7 +179,14 @@ public class GameServer implements Publisher {
             }
         }
     }
-    
+    public Player findPlayer(String name){
+        for(Player player:Player.getPlayers()){
+            if(name.equals(player.getID())){
+                return player;
+            }
+        }
+        return null;
+    }
     public static void main(String[] args) throws IOException {
         GameServer.init(12345); // Port number
         GameServer.getInstance().start();

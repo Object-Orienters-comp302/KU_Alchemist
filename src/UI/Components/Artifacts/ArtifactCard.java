@@ -2,7 +2,6 @@ package UI.Components.Artifacts;
 
 import Domain.GameController;
 import Models.Artifact;
-import Models.Deck;
 import Networking.GameAction;
 import Networking.GameClient;
 import UI.Components.ImagePanels.ImagePanel;
@@ -314,10 +313,15 @@ public class ArtifactCard extends JPanel {
         }
     }
     public void PistolofSicknessFunction(Artifact.Name name){
-        MenuView menu= GameController.getInstance().getMenuController().getMenuView();
-        menu.Blockade();
-        GameController.getInstance().getRoundOneController().ArtifactGotUsed(name);
-        menu.addAndRunPage(new ArtifactTargetSelectorView(name));
+        if(GameController.getInstance().isOnline()){
+            GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.REQUEST_PISTOL, "USE_PISTOL", name));
+        } else{
+            MenuView menu= GameController.getInstance().getMenuController().getMenuView();
+            menu.Blockade();
+            GameController.getInstance().getRoundOneController().ArtifactGotUsed(name);
+            menu.addAndRunPage(new ArtifactTargetSelectorView(name));
+        }
+
     }
     public void ReputationAttackFunction(Artifact.Name name){
         MenuView menu= GameController.getInstance().getMenuController().getMenuView();

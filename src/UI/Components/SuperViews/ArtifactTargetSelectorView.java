@@ -5,6 +5,8 @@ import Models.Artifact;
 import Models.Deck;
 import Models.Ingredient;
 import Models.Player;
+import Networking.GameAction;
+import Networking.GameClient;
 import UI.Components.ColorChangingPanel;
 import UI.Components.ImagePanels.GifPanel;
 import UI.Components.ImagePanels.ImagePanel;
@@ -137,9 +139,15 @@ public class ArtifactTargetSelectorView extends JPanel {
     }
     private void firePistol(int i){
         if (getChosenPlayer()!=null) {
-            System.out.println("FİRED");
-            GameController.getInstance().getRoundOneController().PistolOfSicknessAbility(getChosenPlayer(), i);
-            liftBlockade();
+            System.out.println("FIRED");
+            if(GameController.getInstance().isOnline()){
+                GameClient.getInstance().sendAction(new GameAction(GameAction.ActionType.USE_PISTOL,"USE_PISTOL",getChosenPlayer().getID(),i));
+                liftBlockade();
+            }else{
+                GameController.getInstance().getRoundOneController().PistolOfSicknessAbility(getChosenPlayer(), i);
+                liftBlockade();
+            }
+            
         }
     }
     private void reputationAttack(int i){

@@ -4,6 +4,7 @@ import Domain.GameController;
 import Domain.RoundTwoController;
 import Models.*;
 import UI.Components.Player.PlayerDisplayer;
+import UI.Components.SuperViews.ArtifactTargetSelectorView;
 import UI.Components.SuperViews.ElixirOfInsightView;
 import UI.View.ForageGroundsView;
 import UI.View.MarketView;
@@ -151,6 +152,20 @@ public class GameClient {
                 menu.Blockade();
                 menu.addAndRunPage(new ElixirOfInsightView(action.firstThree));
             }
+        }else if (action.getActionType() == GameAction.ActionType.REQUEST_PISTOL){
+            GameController.getInstance().getMenuController().getCurrentPlayer().getInventory().removeArtifact(action.getArtifactName());
+            
+            if(Player.getCurrPlayer().getID().equals(GameController.getInstance().getPlayerName())){
+                MenuView menu= GameController.getInstance().getMenuController().getMenuView();
+                menu.Blockade();
+                menu.addAndRunPage(new ArtifactTargetSelectorView(action.getArtifactName()));
+            }
+            
+        }else if (action.getActionType() == GameAction.ActionType.USE_PISTOL){
+            
+            Player player = findPlayer(action.getTargetPlayerName());
+            GameController.getInstance().getRoundOneController().PistolOfSicknessAbility(player, action.getDamage());
+            
         }
         System.out.println("IN    : processing action type: " + action.getActionType());
         System.out.println("      : processing action details: " + action.getDetails());
