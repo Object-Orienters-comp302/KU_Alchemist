@@ -57,7 +57,7 @@ public class RoundZeroController {
     
     public void  initializeArtifacts(){
         Artifact artifact1 = new Artifact(Artifact.Name.Elixir_of_Insight, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
-        this.deck.addArtifactCard(artifact1,1);
+        this.deck.addArtifactCard(artifact1,3);
         
         Artifact artifact2 = new Artifact(Artifact.Name.Magic_Mortar, Artifact.AbilityType.MULTIPLE_TIMES_EFFECT_PER_ROUND);
         this.deck.addArtifactCard(artifact2,1);
@@ -73,17 +73,17 @@ public class RoundZeroController {
         Artifact artifact5 = new Artifact(Artifact.Name.Pistol_of_Sickness_Classic, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
         this.deck.addArtifactCard(artifact5,1);
         
-        Artifact artifact6 = new Artifact(Artifact.Name.Pistol_of_Sickness_Silver, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
-        this.deck.addArtifactCard(artifact6,1);
+        //Artifact artifact6 = new Artifact(Artifact.Name.Pistol_of_Sickness_Silver, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        //this.deck.addArtifactCard(artifact6,1);
         
-        Artifact artifact7 = new Artifact(Artifact.Name.Pistol_of_Sickness_Gold, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
-        this.deck.addArtifactCard(artifact7,1);
+        //Artifact artifact7 = new Artifact(Artifact.Name.Pistol_of_Sickness_Gold, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        //this.deck.addArtifactCard(artifact7,1);
         
         Artifact artifact8 = new Artifact(Artifact.Name.Syringe_Kit_Basic1, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
         this.deck.addArtifactCard(artifact8,1);
         
-        Artifact artifact9 = new Artifact(Artifact.Name.Syringe_Kit_Basic2, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
-        this.deck.addArtifactCard(artifact9,1);
+        //Artifact artifact9 = new Artifact(Artifact.Name.Syringe_Kit_Basic2, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        //this.deck.addArtifactCard(artifact9,1);
         
         Artifact artifact10 = new Artifact(Artifact.Name.Elixir_of_Healing, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
         this.deck.addArtifactCard(artifact10,1);
@@ -91,26 +91,26 @@ public class RoundZeroController {
         Artifact artifact11 = new Artifact(Artifact.Name.Letter_of_DissContent_Blue, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
         this.deck.addArtifactCard(artifact11,1);
         
-        Artifact artifact12 = new Artifact(Artifact.Name.Letter_of_DissContent_Red, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
-        this.deck.addArtifactCard(artifact12,1);
+        //Artifact artifact12 = new Artifact(Artifact.Name.Letter_of_DissContent_Red, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        //this.deck.addArtifactCard(artifact12,1);
         
         Artifact artifact13 = new Artifact(Artifact.Name.Inquisition_Accusation, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
         this.deck.addArtifactCard(artifact13,1);
         
-        Artifact artifact14 = new Artifact(Artifact.Name.Elixir_of_Healing, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
-        this.deck.addArtifactCard(artifact14,1);
+        //Artifact artifact14 = new Artifact(Artifact.Name.Elixir_of_Healing, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        //this.deck.addArtifactCard(artifact14,1);
         
-        Artifact artifact15 = new Artifact(Artifact.Name.Big_Black_Chicken, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
-        this.deck.addArtifactCard(artifact15,1);
+        //Artifact artifact15 = new Artifact(Artifact.Name.Big_Black_Chicken, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        //this.deck.addArtifactCard(artifact15,1);
         
-        Artifact artifact16 = new Artifact(Artifact.Name.Magical_Boar, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
-        this.deck.addArtifactCard(artifact16,1);
+        //Artifact artifact16 = new Artifact(Artifact.Name.Magical_Boar, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        //this.deck.addArtifactCard(artifact16,1);
         
-        Artifact artifact17 = new Artifact(Artifact.Name.Hunting_Phoenix, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
-        this.deck.addArtifactCard(artifact17,1);
+        //Artifact artifact17 = new Artifact(Artifact.Name.Hunting_Phoenix, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        //this.deck.addArtifactCard(artifact17,1);
         
-        Artifact artifact18 = new Artifact(Artifact.Name.Mystic_Meerkat, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
-        this.deck.addArtifactCard(artifact18,1);
+        //Artifact artifact18 = new Artifact(Artifact.Name.Mystic_Meerkat, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
+        //this.deck.addArtifactCard(artifact18,1);
         
         Artifact artifact19 = new Artifact(Artifact.Name.Chair_of_Alchemy, Artifact.AbilityType.IMMEDIATE_ONE_TIME_EFFECT);
         this.deck.addArtifactCard(artifact19,1);
