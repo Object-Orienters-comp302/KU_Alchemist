@@ -1,1 +1,1 @@
-A Java Swing implementation of the `Alchemists` game by Czech Games.
+A Java Swing implementation of the `Alchemists` board game by Czech Games.
